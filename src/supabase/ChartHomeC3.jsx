@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 
 import { getBusiness, getUsersAdmin } from "../apis/ApiData";
 import moment from "moment-with-locales-es6";
@@ -79,8 +79,7 @@ export const ChartHomeC3 = () => {
         </div>
       ) : (
         <div className=" grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-4  ">
-          <section className="bg-white dark:bg-[#37415197] dark:text-white  shadow-lg w-[280px] md:w-[19rem] px-5 py-2 rounded-md my-1 md:my-5"
-          >
+          <section className="bg-white dark:bg-[#37415197] dark:text-white  shadow-lg w-[280px] md:w-[19rem] px-5 py-2 rounded-md my-1 md:my-5">
             <div className="principal flex items-center justify-between">
               <div className="text font-bold mx-2 block">Ventas</div>
               <div className="icon bg-[#019afa4b] inline-block   rounded-full p-1">

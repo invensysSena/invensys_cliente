@@ -1,7 +1,4 @@
-
-
-
-import React, { useRef, useState, useCallback, useEffect } from "react";
+import  { useRef, useState, useCallback, useEffect } from "react";
 import moment from "moment-with-locales-es6";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
@@ -17,15 +14,14 @@ import { ChackSelection } from "../components/ChackSelection";
 
 import { useGetUsers } from "../hooks/context/GetUsersContext";
 import { TodoFunctions } from "../apis/ApiData";
-import {  Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { getBusiness, getUsersAdmin } from "../apis/ApiData";
-
 
 moment.locale("es");
 
 export const ChartHomeC4 = () => {
   const { getUsersAdmins, getCountData } = useGetUsers();
-  
+
   const [dataVentas, setDataVentas] = useState([]);
 
   useEffect(() => {
@@ -33,25 +29,23 @@ export const ChartHomeC4 = () => {
       await getUsersAdmins();
       const response = await TodoFunctions.getComprasFv();
       setDataVentas(response.data.responseFv);
-   
+
       await getCountData();
-     
     };
 
     initial();
   }, []);
-    const [ventas, setVentas] = useState([]);
-    useEffect(() => {
-        (async () => {
-            const bussiness = await getBusiness();          
-            setVentas(bussiness.data.dataCompras);
-            await getUsersAdmin();   
-        })();
-    }, []);
+  const [ventas, setVentas] = useState([]);
+  useEffect(() => {
+    (async () => {
+      const bussiness = await getBusiness();
+      setVentas(bussiness.data.dataCompras);
+      await getUsersAdmin();
+    })();
+  }, []);
 
   const defaultColDef = ChackSelection();
   const gridRef = useRef();
-
 
   const [columnDefs, setColumnDefs] = useState([
     {
@@ -78,15 +72,15 @@ export const ChartHomeC4 = () => {
     },
     {
       headerName: "Mayores Precios",
-      field: 'change',
-      cellRenderer: 'agSparklineCellRenderer',
+      field: "change",
+      cellRenderer: "agSparklineCellRenderer",
       cellRendererParams: {
         sparklineOptions: {
-          type: 'bar',
-          fill: '#019afa',
-          stroke: '#91cc75',
+          type: "bar",
+          fill: "#019afa",
+          stroke: "#91cc75",
           highlightStyle: {
-            fill: '#5994f5',
+            fill: "#5994f5",
           },
           valueAxisDomain: [0, 1],
           paddingOuter: 0,
@@ -106,10 +100,7 @@ export const ChartHomeC4 = () => {
       chartDataType: "category",
       filter: "agTextColumnFilter",
     },
-
-
   ]);
-
 
   const onFilterTextBoxChanged = useCallback(() => {
     gridRef.current.api.setQuickFilter(
@@ -127,11 +118,10 @@ export const ChartHomeC4 = () => {
     <>
       {dataVentas.length > 0 ? (
         <>
-
           <div className="panel_second_h w-[100%] mx-auto flex-col lg:flex-row flex justify-between items-center">
-          <div className="buttons">
-          <h1 className="font-bold text-xl dark:text-white">Ventas</h1>
-          </div>
+            <div className="buttons">
+              <h1 className="font-bold text-xl dark:text-white">Ventas</h1>
+            </div>
 
             <div className="search dark:bg-[#37415197] dark:text-white bg-white mb-3 flex items-center p-2 rounded-full justify-end my-5">
               <div className="icon_search mx-1">
@@ -161,10 +151,13 @@ export const ChartHomeC4 = () => {
             </div>
           </div>
           <div
-        className={darkMode ? "ag-theme-alpine-dark h-[300px] w-[300px] md:w-[100%] md:h-[600px] shadow-2xl mx-auto rounded-lg overflow-hidden " : " rounded-lg overflow-hidden ag-theme-alpine h-[300px] w-[300px] md:w-[100%] md:h-[600px] shadow-2xl mx-auto"}
-       
-        id="myGrid"
-      >
+            className={
+              darkMode
+                ? "ag-theme-alpine-dark h-[300px] w-[300px] md:w-[100%] md:h-[600px] shadow-2xl mx-auto rounded-lg overflow-hidden "
+                : " rounded-lg overflow-hidden ag-theme-alpine h-[300px] w-[300px] md:w-[100%] md:h-[600px] shadow-2xl mx-auto"
+            }
+            id="myGrid"
+          >
             <AgGridReact
               ref={gridRef}
               localeText={AG_GRID_LOCALE_EN}
@@ -174,7 +167,7 @@ export const ChartHomeC4 = () => {
                   _id: item._id,
                   nameProduct: item.nameProduct,
                   unidades: item.unidades,
-                  change:[item.total],
+                  change: [item.total],
                   cantidadProducts: item.cantidadProducts,
                   total: ("$ " + item.total).replace(
                     /(\d)(?=(\d\d\d)+(?!\d))/g,
@@ -187,7 +180,6 @@ export const ChartHomeC4 = () => {
               })}
               defaultColDef={defaultColDef}
               animateRows={true}
-
               rowDragManaged={true}
               enableRangeSelection={true}
               icons={true}

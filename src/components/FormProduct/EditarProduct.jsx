@@ -1,50 +1,52 @@
-import React,{useEffect, useState} from 'react'
+import { useEffect, useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { ToastContainer, toast } from "react-toastify";
-import { useParams, useNavigate, Link } from 'react-router-dom';
-import {getProductsId,getCategorias,updateProducto} from '../../apis/ApiData'
+import { useParams, useNavigate, Link } from "react-router-dom";
+import {
+  getProductsId,
+  getCategorias,
+  updateProducto,
+} from "../../apis/ApiData";
 export const EditarProduct = () => {
+  const navigate = useNavigate();
+  const id = useParams();
+  const [category, setCategoria] = useState([]);
+  const [producto, setProducto] = useState([]);
+  const [active, setActive] = useState(false);
 
-    const navigate = useNavigate();
-    const id = useParams();
-    const [category, setCategoria] = useState([]);
-    const [producto, setProducto] = useState([]);
-    const [active, setActive] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [dataGategorias, setDataGategorias] = useState([]);
+  useEffect(() => {
+    (async () => {
+      const { data } = await getProductsId(id.id);
 
-    const [loading, setLoading] = useState(true);
-    const [dataGategorias, setDataGategorias] = useState([])
-    useEffect(() => {
-        (async () => {
-            const {data} = await getProductsId(id.id);
-            
-           const category = await getCategorias()
-          
-           setDataGategorias(category.data.data);
-           setProducto(data.data);
-            
-        })()
-        },[])
-     
-   
-    
-      const onInputChange = (e) => {
+      const category = await getCategorias();
 
-        setProducto({ ...producto, [e.target.name]: e.target.value,
-          
-            [e.target.description]: e.target.value,
-         
-            [e.target.category]: e.target.value,
-           
-        });
-      };
-    
+      setDataGategorias(category.data.data);
+      setProducto(data.data);
+    })();
+  }, []);
+
+  const onInputChange = (e) => {
+    setProducto({
+      ...producto,
+      [e.target.name]: e.target.value,
+
+      [e.target.description]: e.target.value,
+
+      [e.target.category]: e.target.value,
+    });
+  };
+
   return (
     <>
       <ToastContainer />
-      <div className=" min-h-screen
+      <div
+        className=" min-h-screen
 
 dark:bg-gradient-to-r from-[#163b59] from-10%
- via-[#18324f] via-30% to-[#121b2e] to-90% ">
+ via-[#18324f] via-30% to-[#121b2e] to-90% "
+      >
         <div className="Formulario fixed dark:bg-[#37415197] dark:text-white bg-white rounded-lg inset-0 drop-shadow-2xl w-6/12 m-auto  h-fit z-50">
           <div className="sec1 w-full p-2 flex justify-between">
             <div className="x cursor-pointer">
@@ -76,15 +78,13 @@ dark:bg-gradient-to-r from-[#163b59] from-10%
               initialValues={{
                 name: producto.description,
                 description: "",
-               
               }}
               onSubmit={async (values) => {
                 setLoading(false);
                 const data = {
-                  name: producto.name,
+                  name: values.name,
                   description: producto.description,
                   category: category[0],
-                  
                 };
 
                 if (category.length === 0) {
@@ -206,8 +206,7 @@ dark:bg-gradient-to-r from-[#163b59] from-10%
                     />
                   </div>
                 </div>
-   
-             
+
                 <div className="name border dark:border-[#019afa] border-gray-300 rounded-lg">
                   <label htmlFor="name" className="mx-2 text-sm ">
                     Estado
@@ -278,21 +277,21 @@ dark:bg-gradient-to-r from-[#163b59] from-10%
                             >
                               <g
                                 stroke="#ccc"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
                               >
                                 <circle
                                   cx="12"
                                   cy="12"
                                   r="9"
                                   fill="#ccc"
-                                  fill-opacity=".3"
+                                  fillOpacity=".3"
                                 />
                                 <path
                                   fill="none"
-                                  stroke-dasharray="14"
-                                  stroke-dashoffset="14"
+                                  strokeDasharray="14"
+                                  strokeDashoffset="14"
                                   d="M8 12L11 15L16 10"
                                 >
                                   <animate
@@ -332,9 +331,9 @@ dark:bg-gradient-to-r from-[#163b59] from-10%
                             <path
                               fill="#ccc"
                               stroke="#ccc"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="2"
                               d="M11 18a1 1 0 1 0 2 0a1 1 0 0 0-2 0Zm0-6a1 1 0 1 0 2 0a1 1 0 0 0-2 0Zm0-6a1 1 0 1 0 2 0a1 1 0 0 0-2 0Z"
                             />
                           </svg>
@@ -537,11 +536,11 @@ dark:bg-gradient-to-r from-[#163b59] from-10%
                             y1="5.271%"
                             y2="91.793%"
                           >
-                            <stop offset="0%" stop-color="currentColor" />
+                            <stop offset="0%" stopColor="currentColor" />
                             <stop
                               offset="100%"
-                              stop-color="currentColor"
-                              stop-opacity=".55"
+                              stopColor="currentColor"
+                              stopOpacity=".55"
                             />
                           </linearGradient>
                           <linearGradient
@@ -553,13 +552,13 @@ dark:bg-gradient-to-r from-[#163b59] from-10%
                           >
                             <stop
                               offset="0%"
-                              stop-color="currentColor"
-                              stop-opacity="0"
+                              stopColor="currentColor"
+                              stopOpacity="0"
                             />
                             <stop
                               offset="100%"
-                              stop-color="currentColor"
-                              stop-opacity=".55"
+                              stopColor="currentColor"
+                              stopOpacity=".55"
                             />
                           </linearGradient>
                         </defs>
@@ -590,4 +589,4 @@ dark:bg-gradient-to-r from-[#163b59] from-10%
       </div>
     </>
   );
-}
+};

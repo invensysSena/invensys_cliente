@@ -343,7 +343,7 @@ export const Header = () => {
         </div>
       </div>
       <header
-        className=" hed_responsive border-b-2 dark:border-b dark:border-[#777777] bg-[#f4f8ffdd]
+        className=" hed_responsive border-b-2 dark:border-b dark:border-[#777777] bg-[#fff]
         
         dark:bg-gradient-to-r from-[#163b59] from-10%
          via-[#18324f] via-30% to-[#121b2e] to-90% dark:text-white   border-gray-100

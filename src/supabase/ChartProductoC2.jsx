@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import { getBusiness } from "../apis/ApiData";
 import Chart from "react-apexcharts";
