@@ -25,6 +25,7 @@ import SliderCount from "../components/SliderCount";
 import { Sled } from "../components/Sled";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import { ViewOne } from "../components/componentsHome/ViewOne";
 export const HomePage = () => {
   AOS.init({
     duration: 3000,
@@ -220,6 +221,7 @@ export const HomePage = () => {
             </section>
           </div>
         </div>
+        <ViewOne/>
         <div className="text-center fuente-t1 ">
           <span
             className="
@@ -228,6 +230,7 @@ export const HomePage = () => {
             Impulsamos en la inovacion
           </span>
         </div>
+        
         <div
           className="flex flex-col lg:flex-row  items-center justify-center lg:justify-around 
         

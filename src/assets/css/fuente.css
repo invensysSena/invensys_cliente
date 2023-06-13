@@ -79,6 +79,8 @@
     width: 100%;
     line-height: 45px;
     margin: 10px 8px;
+    box-shadow: rgba(106, 174, 242, 0.302) 0px 18px 50px -10px;
+   
   }
   .btn-y {
     display: none;
