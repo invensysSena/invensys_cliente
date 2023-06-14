@@ -9,17 +9,15 @@ import { useContextSubProducts } from "../hooks/context/ContextSubProducts";
 export const TranslateProduct = () => {
   const [products, setProducts] = React.useState([]);
   const [idB, setIdB] = useState([]);
-  const { inventario} = useInventario();
+  const { inventario } = useInventario();
   const { id } = useParams();
 
-  const {  updateSubProductsContent, subProductsData } =
-    useContextSubProducts();
+  const { updateSubProductsContent } = useContextSubProducts();
 
   useEffect(() => {
     (async () => {
       const data = await getSubProducts(id);
       setProducts(data.data.response);
-      
     })();
   }, [id]);
   const HandleSearch = async (value) => {
@@ -40,6 +38,7 @@ export const TranslateProduct = () => {
 
   const DataNew = async (value) => {
     if (value === "") {
+      value = " ";
     }
     const data = await getSubProducts(id);
     return setProducts(data.data.response);
@@ -98,9 +97,7 @@ export const TranslateProduct = () => {
   };
 
   useEffect(() => {
-    (async () => {
-    
-    })();
+    (async () => {})();
   }, []);
 
   const handleVolver = () => {
@@ -110,7 +107,7 @@ export const TranslateProduct = () => {
   return (
     <>
       <ToastContainer />
-      <div className="rounded border  w-fit p-1  mt-4 max-w-5xl  h-full z-50 mx-auto">
+      <div className="rounded border  w-fit p-1  mt-4 max-w-5xl  h-full z-50 mx-auto dark:bg-[#37415197]">
         <div className="container absolute inset-0 my-auto h-fit shadow-2xl effect_blur2 z-50  mx-auto w-fit border rounded-md p-">
           <div className="d effect_blur2 border mb-1 p-1 ">
             <div className="flex justify-between">

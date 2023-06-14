@@ -1,4 +1,4 @@
-import React, { useContext, createContext, useState } from "react";
+import { useContext, createContext, useState } from "react";
 import {
   getProveedores,
   postProveedores,
@@ -15,7 +15,7 @@ export const ContextProveedores = ({ children }) => {
 
   const getProviders = async () => {
     const res = await getProveedores();
-    
+
     setProvidersData(res.data);
     return res;
   };

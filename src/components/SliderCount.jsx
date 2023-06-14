@@ -1,4 +1,4 @@
-import React, { useRef, Suspense, lazy } from "react";
+import  { useRef } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";

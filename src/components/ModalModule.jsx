@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import { useParams, Link } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { useGetUsers } from "../hooks/context/GetUsersContext";
-export const ModalModule = ({ children }) => {
+export const ModalModule = () => {
   const {
     getUsers,
     getUsersAdmins,

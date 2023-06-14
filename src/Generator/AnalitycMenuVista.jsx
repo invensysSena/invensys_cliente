@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { NavLink } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 import { getBusiness, getDataAll } from "../apis/ApiData";
-import "./style.css";
+
 export const AnalitycMenuVista = () => {
   const [expand, setExpand] = useState(false);
   const [load, setLoad] = useState(false);
@@ -115,15 +115,15 @@ export const AnalitycMenuVista = () => {
                 <span className="bg-gray-100 rounded-full p-1">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    class="icon icon-tabler icon-tabler-chart-histogram"
+                    className="icon icon-tabler icon-tabler-chart-histogram"
                     width="32"
                     height="32"
                     viewBox="0 0 24 24"
-                    stroke-width="1"
+                    strokeWidth="1"
                     stroke="#20c4d9"
                     fill="none"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   >
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                     <path d="M3 3v18h18"></path>
@@ -153,15 +153,15 @@ export const AnalitycMenuVista = () => {
                 <span className="bg-gray-100 rounded-full p-1">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    class="icon icon-tabler icon-tabler-chart-dots-2"
+                    className="icon icon-tabler icon-tabler-chart-dots-2"
                     width="32"
                     height="32"
                     viewBox="0 0 24 24"
-                    stroke-width="1"
+                    strokeWidth="1"
                     stroke="#3f51b5"
                     fill="none"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   >
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                     <path d="M3 3v18h18"></path>

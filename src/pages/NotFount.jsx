@@ -1,4 +1,3 @@
-import React from 'react'
 import img from "../assets/img/error.svg"
 import { Link } from 'react-router-dom'
 import "../assets/css/fuente.css"

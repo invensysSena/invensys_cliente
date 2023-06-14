@@ -1,4 +1,3 @@
-import React from "react";
 import { ChartComandsA } from "../supabase/ChartComandsA";
 
 export const ComandsSistemA = () => {

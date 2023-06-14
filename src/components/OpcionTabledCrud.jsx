@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from "react";
+import {useState,useEffect} from "react";
 
 import Swal from "sweetalert2";
 import "../assets/css/styleSlider.css";
@@ -42,8 +42,7 @@ useEffect(() => {
       border: "1px solid #5DADE2",
       backdrop: "8px",
       customClass: "swal-wide",
-      showCancelButton: true,
-      confirmButtonColor: "#1daf53",
+      
       focusCancel: false,
       focusConfirm: false,
       showCancelButton: true,

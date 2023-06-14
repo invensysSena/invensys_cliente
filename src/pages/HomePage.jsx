@@ -1,4 +1,3 @@
-import { React, Suspense, lazy } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronRight,
@@ -6,6 +5,7 @@ import {
   faBolt,
   faWandMagicSparkles,
 } from "@fortawesome/free-solid-svg-icons";
+import "./home.css";
 
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -31,10 +31,12 @@ export const HomePage = () => {
     duration: 3000,
   });
   document.body.style = "overflow-x: hidden";
+  // webkit-scrollbar
+
   return (
     <>
       <div
-        className="w-full overflow-x-hidden 
+        className="w-full scroll-attribute overflow-x-hidden 
         
         "
       >
@@ -221,7 +223,7 @@ export const HomePage = () => {
             </section>
           </div>
         </div>
-        <ViewOne/>
+        <ViewOne />
         <div className="text-center fuente-t1 ">
           <span
             className="
@@ -230,7 +232,7 @@ export const HomePage = () => {
             Impulsamos en la inovacion
           </span>
         </div>
-        
+
         <div
           className="flex flex-col lg:flex-row  items-center justify-center lg:justify-around 
         

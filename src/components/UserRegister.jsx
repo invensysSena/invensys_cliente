@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./efectosCss.css";

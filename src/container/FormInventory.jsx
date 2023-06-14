@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import "../index.css";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 
@@ -155,11 +155,11 @@ export const FormInventory = () => {
                               y1="5.271%"
                               y2="91.793%"
                             >
-                              <stop offset="0%" stop-color="currentColor" />
+                              <stop offset="0%" stopColor="currentColor" />
                               <stop
                                 offset="100%"
-                                stop-color="currentColor"
-                                stop-opacity=".55"
+                                stopColor="currentColor"
+                                stopOpacity=".55"
                               />
                             </linearGradient>
                             <linearGradient
@@ -171,13 +171,13 @@ export const FormInventory = () => {
                             >
                               <stop
                                 offset="0%"
-                                stop-color="currentColor"
-                                stop-opacity="0"
+                                stopColor="currentColor"
+                                stopOpacity="0"
                               />
                               <stop
                                 offset="100%"
-                                stop-color="currentColor"
-                                stop-opacity=".55"
+                                stopColor="currentColor"
+                                stopOpacity=".55"
                               />
                             </linearGradient>
                           </defs>

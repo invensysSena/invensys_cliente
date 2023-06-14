@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import { useState, useMemo } from "react";
 import { NavLink } from "react-router-dom";
 import "../assets/css/fuente.css";
 import user from "../assets/icons/user-check.svg";
@@ -27,14 +27,11 @@ moment.locale("es");
 export const MenuLateral = () => {
   const { getAdminDataAll, adminGetData } = useGetUsers();
   const [data, setData] = useState([]);
-  const [number, setNumber] = useState(0);
   useMemo(() => {
     const initial = async () => {
       const initials = await getAdminDataAll();
       await TodoFunctions.SearchDismiutionUnidadProduct();
       setData(initials);
-
-      setNumber(1);
     };
     initial();
   }, [data]);
@@ -180,13 +177,13 @@ export const MenuLateral = () => {
 selft_scroll
 fixed top-0
   bg-white mr-[8rem] dark:bg-[#1e293b] min-h-screen
- w-30 lg:w-52 z-50  b  overflow-x-hidden animate__animated animate__fadeIn `
+ w-30 lg:w-52 z-50  b  overflow-x-hidden  `
               : `
 
 selft_scroll
 fixed top-0
   bg-white mr-[8rem] dark:bg-[#1e293b] min-h-screen
- w-14 lg:w-52   b  overflow-x-hidden effect  animate__animated animate__fadeIn`
+ w-14 lg:w-52   b  overflow-x-hidden effect  `
           }
         >
           <div
@@ -223,7 +220,7 @@ fixed top-0
                     >
                       <path
                         fill="currentColor"
-                        fill-rule="evenodd"
+                        fillRule="evenodd"
                         d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5ZM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5Z"
                       />
                     </svg>
@@ -238,7 +235,7 @@ fixed top-0
                     >
                       <path
                         fill="currentColor"
-                        fill-rule="evenodd"
+                        fillRule="evenodd"
                         d="M6 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L12.293 7.5H6.5A.5.5 0 0 0 6 8Zm-2.5 7a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5Z"
                       />
                     </svg>
@@ -261,9 +258,9 @@ fixed top-0
                         >
                           <path
                             fill="#c1c7ce"
-                            fill-rule="evenodd"
+                            fillRule="evenodd"
                             d="M12 4a8 8 0 0 0-6.96 11.947A4.99 4.99 0 0 1 9 14h6a4.99 4.99 0 0 1 3.96 1.947A8 8 0 0 0 12 4Zm7.943 14.076A9.959 9.959 0 0 0 22 12c0-5.523-4.477-10-10-10S2 6.477 2 12a9.958 9.958 0 0 0 2.057 6.076l-.005.018l.355.413A9.98 9.98 0 0 0 12 22a9.947 9.947 0 0 0 5.675-1.765a10.055 10.055 0 0 0 1.918-1.728l.355-.413l-.005-.018ZM12 6a3 3 0 1 0 0 6a3 3 0 0 0 0-6Z"
-                            clip-rule="evenodd"
+                            clipRule="evenodd"
                           />
                         </svg>
                       ) : (
@@ -299,9 +296,9 @@ fixed top-0
                         >
                           <path
                             fill="#c1c7ce"
-                            fill-rule="evenodd"
+                            fillRule="evenodd"
                             d="M12 4a8 8 0 0 0-6.96 11.947A4.99 4.99 0 0 1 9 14h6a4.99 4.99 0 0 1 3.96 1.947A8 8 0 0 0 12 4Zm7.943 14.076A9.959 9.959 0 0 0 22 12c0-5.523-4.477-10-10-10S2 6.477 2 12a9.958 9.958 0 0 0 2.057 6.076l-.005.018l.355.413A9.98 9.98 0 0 0 12 22a9.947 9.947 0 0 0 5.675-1.765a10.055 10.055 0 0 0 1.918-1.728l.355-.413l-.005-.018ZM12 6a3 3 0 1 0 0 6a3 3 0 0 0 0-6Z"
-                            clip-rule="evenodd"
+                            clipRule="evenodd"
                           />
                         </svg>
                       ) : (
@@ -336,7 +333,7 @@ fixed top-0
                     bg-gray-100
                     items-center 
                      mx-1 my-[2px]  p-2 font-medium dark:text-white text-black dark:bg-gray-700 
-                     rounded dark:bg-gray-700`
+                     rounded `
                             : `flex 
                      hover:bg-gray-100 dark:hover:bg-gray-700 
                      items-center 
@@ -715,12 +712,12 @@ fixed top-0
                             fill="none"
                             stroke="
 #777777"
-                            stroke-linejoin="round"
-                            stroke-width="4"
+                            strokeLinejoin="round"
+                            strokeWidth="4"
                           >
                             <rect width="30" height="36" x="9" y="8" rx="2" />
                             <path
-                              stroke-linecap="round"
+                              strokeLinecap="round"
                               d="M18 4v6m12-6v6m-14 9h16m-16 8h12m-12 8h8"
                             />
                           </g>
@@ -855,12 +852,12 @@ fixed top-0
                               y2="16"
                               gradientUnits="userSpaceOnUse"
                             >
-                              <stop offset="0" stop-color="#ffca3f" />
-                              <stop offset=".014" stop-color="#fec83e" />
-                              <stop offset=".238" stop-color="#ebaf35" />
-                              <stop offset=".471" stop-color="#de9d2e" />
-                              <stop offset=".717" stop-color="#d6922a" />
-                              <stop offset=".999" stop-color="#d38f29" />
+                              <stop offset="0" stopColor="#ffca3f" />
+                              <stop offset=".014" stopColor="#fec83e" />
+                              <stop offset=".238" stopColor="#ebaf35" />
+                              <stop offset=".471" stopColor="#de9d2e" />
+                              <stop offset=".717" stopColor="#d6922a" />
+                              <stop offset=".999" stopColor="#d38f29" />
                             </linearGradient>
                             <linearGradient
                               id="vscodeIconsFileTypeLicensebat1"

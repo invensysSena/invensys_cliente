@@ -162,7 +162,7 @@ export const ChartHomeC4 = () => {
               ref={gridRef}
               localeText={AG_GRID_LOCALE_EN}
               columnDefs={columnDefs}
-              rowData={ventas.map((item, i) => {
+              rowData={ventas.map((item) => {
                 return {
                   _id: item._id,
                   nameProduct: item.nameProduct,

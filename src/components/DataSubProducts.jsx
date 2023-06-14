@@ -1,10 +1,4 @@
-import React, {
-  useRef,
-  useState,
-  useCallback,
-  useEffect,
-  useMemo,
-} from "react";
+import { useRef, useState, useCallback, useEffect, useMemo } from "react";
 import moment from "moment-with-locales-es6";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
@@ -19,7 +13,7 @@ import { setNormal } from "./ChackSelection";
 import { Link } from "react-router-dom";
 import { useContextSubProducts } from "../hooks/context/ContextSubProducts";
 moment.locale("es");
-export const DataSubProducts = ({ dataInventorySubProducts, id, upload }) => {
+export const DataSubProducts = ({ dataInventorySubProducts, id }) => {
   // count categorias
   const defaultColDef = ChackSelection();
   const gridRef = useRef();
@@ -46,7 +40,7 @@ export const DataSubProducts = ({ dataInventorySubProducts, id, upload }) => {
       chartDataType: "email",
       filter: "agTextColumnFilter",
 
-      cellEditorParams: (params) => {
+      cellEditorParams: () => {
         return {};
       },
     },

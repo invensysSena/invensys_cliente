@@ -16,15 +16,7 @@ export const FormProduct = () => {
   const [active, setActive] = useState(false);
   const [active2, setActive2] = useState(false);
   const [loading, setLoading] = useState(true);
-  //   const disabledDate = (current) => {
-  //     moment.locale('es');
-  //    return current && current < moment().endOf('day')
-
-  //   };
-  //   const onChange = (value, dateString) => {
-
-  //       setFecha(dateString)
-  //   }
+  
 
   return (
     <>

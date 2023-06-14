@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -44,6 +44,7 @@ export const ListInventory = () => {
     [inventario, getEmail]
   );
 
+  console.log(CorreoRepetido);
   return (
     <div className="notf block rounded-md bg-white dark:bg-[#37415197] px-3">
       <h2 className="mx-2 font-bold dark:text-white">Lista de Bodega</h2>
@@ -65,7 +66,6 @@ export const ListInventory = () => {
                 dur="0.75s"
                 repeatCount="indefinite"
                 type="rotate"
-                Flog
                 values="0 12 12;360 12 12"
               />
             </path>
@@ -88,31 +88,29 @@ export const ListInventory = () => {
             >
               {getRol === "user" ? (
                 <>
-                  <>
-                    {CorreoRepetido.map((item) => (
-                      <SwiperSlide>
-                        <div key={item._id}>
-                          <Link
-                            to={`inventory/${item._id}`}
-                            className="truncate dark:bg-[#314768] dark:text-white p-3 rounded-lg bg-gray-100 "
-                          >
-                            dd
-                            {item.name_inventory}
-                          </Link>
-                        </div>
-                      </SwiperSlide>
-                    ))}
-                  </>
+                  {CorreoRepetido.map((item) => (
+                    <SwiperSlide key={item._id}>
+                      <div>
+                        <Link
+                          to={`inventory/${item._id}`}
+                          className="truncate dark:bg-[#314768] dark:text-white text-black p-3 rounded-lg bg-gray-100 "
+                        >
+                          dd
+                          {item.name_inventory}
+                        </Link>
+                      </div>
+                    </SwiperSlide>
+                  ))}
                 </>
               ) : (
                 <>
                   {inventario.map((item) => (
-                    <SwiperSlide>
+                    <SwiperSlide key={item._id}>
                       <Link
                         to={`inventory/${item._id}`}
                         className="truncate dark:bg-[#314768] dark:text-white p-3 rounded-lg bg-gray-100 "
                       >
-                        {item.name_inventory}
+                        {item._id}
                       </Link>
                     </SwiperSlide>
                   ))}

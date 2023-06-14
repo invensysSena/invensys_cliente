@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { TodoFunctions } from "../apis/ApiData";
 export const FormTrae = () => {
   // const [data.setData] = ({
@@ -24,18 +24,21 @@ export const FormTrae = () => {
   };
   return (
     <>
-      <div class="bg-white dark:bg-[#37415197] dark:border-none rounded-md dark:text-white border w-full  lg:h-fit p-4 m-1">
+      <div className="bg-white dark:bg-[#37415197] dark:border-none rounded-md dark:text-white border w-full  lg:h-fit p-4 m-1">
         <form onSubmit={handleFormTrae}>
-          <div class="grid gap-6 mb-6  md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-6 mb-6  md:grid-cols-2 lg:grid-cols-3">
             <div>
-              <label for="first_name" class="block mb-2 text-sm font-medium  ">
+              <label
+                htmlFor="first_name"
+                className="block mb-2 text-sm font-medium  "
+              >
                 Tipo de persona
               </label>
               <input
                 type="text"
                 id="first_name"
                 name="tipoPersona"
-                class="bg-gray-50 outline-none border
+                className="bg-gray-50 outline-none border
                  border-gray-300  text-sm rounded-lg dark:text-white
               focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#374151] 
                
@@ -46,13 +49,16 @@ export const FormTrae = () => {
               />
             </div>
             <div>
-              <label for="last_name" class="block mb-2 text-sm font-medium  ">
+              <label
+                htmlFor="last_name"
+                className="block mb-2 text-sm font-medium  "
+              >
                 Nit
               </label>
               <input
                 type="text"
                 id="last_name"
-                class="bg-gray-50 outline-none  border border-gray-300 text-gray-900 text-sm rounded-lg
+                className="bg-gray-50 outline-none  border border-gray-300 text-gray-900 text-sm rounded-lg
              focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-[#374151] dark:text-white"
                 placeholder="..."
                 name="nit"
@@ -61,8 +67,8 @@ export const FormTrae = () => {
             </div>
             <div>
               <label
-                for="first_name"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                htmlFor="first_name"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
               >
                 Identificación
               </label>
@@ -70,7 +76,7 @@ export const FormTrae = () => {
                 type="text"
                 id="first_name"
                 name="tipoIdentificacion"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
               focus:ring-blue-500 dark:bg-[#374151] dark:text-white focus:border-blue-500 block w-full p-2.5 outline-none "
                 placeholder="..."
                 onChange={HandleInput}
@@ -78,15 +84,15 @@ export const FormTrae = () => {
             </div>
             <div>
               <label
-                for="last_name"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300 outline-none "
+                htmlFor="last_name"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300 outline-none "
               >
                 No.
               </label>
               <input
                 type="text"
                 id="last_name"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
              focus:ring-blue-500 dark:bg-[#374151] dark:text-white focus:border-blue-500 block w-full p-2.5 outline-none "
                 placeholder="..."
                 name="numero"
@@ -96,15 +102,15 @@ export const FormTrae = () => {
             {/* xx */}
             <div>
               <label
-                for="company"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                htmlFor="company"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
               >
                 Nombre de la Empre/Neg
               </label>
               <input
                 type="text"
                 id="company"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
              focus:ring-blue-500 dark:bg-[#374151] dark:text-white focus:border-blue-500 block w-full p-2.5 outline-none "
                 placeholder="..."
                 name="nombre"
@@ -113,8 +119,8 @@ export const FormTrae = () => {
             </div>
             <div>
               <label
-                for="phone"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                htmlFor="phone"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
               >
                 Numero Tel:
               </label>
@@ -123,13 +129,16 @@ export const FormTrae = () => {
                 id="phone"
                 name="telefono"
                 onChange={HandleInput}
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
              focus:ring-blue-500 dark:bg-[#374151] dark:text-white focus:border-blue-500 block w-full p-2.5 outline-none "
                 placeholder="123-45-678"
               />
             </div>
             <div>
-              <label for="website" class="block mb-2 text-sm font-medium  ">
+              <label
+                htmlFor="website"
+                className="block mb-2 text-sm font-medium  "
+              >
                 Pais
               </label>
               <input
@@ -137,15 +146,15 @@ export const FormTrae = () => {
                 id="website"
                 name="pais"
                 onChange={HandleInput}
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
              focus:ring-blue-500 dark:bg-[#374151] dark:text-white focus:border-blue-500 block w-full p-2.5 outline-none "
                 placeholder="..."
               />
             </div>
             <div>
               <label
-                for="visitors"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                htmlFor="visitors"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
               >
                 Departamento
               </label>
@@ -154,16 +163,16 @@ export const FormTrae = () => {
                 id="visitors"
                 name="departamento"
                 onChange={HandleInput}
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
              focus:ring-blue-500 dark:bg-[#374151] dark:text-white focus:border-blue-500 block w-full p-2.5 outline-none "
                 placeholder=""
               />
             </div>
 
-            <div class="mb-6">
+            <div className="mb-6">
               <label
-                for="email"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                htmlFor="email"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
               >
                 Ciudad
               </label>
@@ -171,17 +180,17 @@ export const FormTrae = () => {
                 type="text"
                 id="email"
                 onChange={HandleInput}
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
          focus:ring-blue-500 dark:bg-[#374151] dark:text-white focus:border-blue-500 block w-full p-2.5 outline-none "
                 placeholder="ciudad"
                 name="ciudad"
               />
             </div>
           </div>
-          <div class="mb-6">
+          <div className="mb-6">
             <label
-              for="email"
-              class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+              htmlFor="email"
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
             >
               Dirección
             </label>
@@ -189,16 +198,16 @@ export const FormTrae = () => {
               type="text"
               id="email"
               onChange={HandleInput}
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
          focus:ring-blue-500 dark:bg-[#374151] dark:text-white focus:border-blue-500 block w-full p-2.5 outline-none "
               placeholder=""
               name="direccion"
             />
           </div>
-          <div class="mb-6">
+          <div className="mb-6">
             <label
-              for="email"
-              class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+              htmlFor="email"
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
             >
               Email:
             </label>
@@ -206,7 +215,7 @@ export const FormTrae = () => {
               type="email"
               id="email"
               onChange={HandleInput}
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
          focus:ring-blue-500 dark:bg-[#374151] dark:text-white focus:border-blue-500 block w-full p-2.5 outline-none  "
               placeholder="invensys@company.com"
               name="correo"
@@ -216,7 +225,7 @@ export const FormTrae = () => {
           {loading ? (
             <span
               type="submit"
-              class="text-white bg-[#019afa] hover:bg-[#13a3fd] focus:outline-none focus:ring-blue-300
+              className="text-white bg-[#019afa] hover:bg-[#13a3fd] focus:outline-none focus:ring-blue-300
      font-medium rounded-lg text-sm cursor-no-drop w-full  px-5 py-2.5 text-center flex justify-center
       "
             >
@@ -232,8 +241,8 @@ export const FormTrae = () => {
                     cy="12"
                     r="9.5"
                     fill="none"
-                    stroke-linecap="round"
-                    stroke-width="3"
+                    strokeLinecap="round"
+                    strokeWidth="3"
                   >
                     <animate
                       attributeName="stroke-dasharray"
@@ -267,7 +276,7 @@ export const FormTrae = () => {
           ) : (
             <button
               type="submit"
-              class="text-white bg-[#019afa] hover:bg-[#13a3fd] focus:outline-none focus:ring-blue-300
+              className="text-white bg-[#019afa] hover:bg-[#13a3fd] focus:outline-none focus:ring-blue-300
      font-medium rounded-lg text-sm block w-full  px-5 py-2.5 text-center
       "
             >

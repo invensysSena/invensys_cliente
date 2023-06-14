@@ -1,4 +1,4 @@
-import React, { useRef, useState, useCallback, useEffect } from "react";
+import  { useRef, useState, useCallback, useEffect } from "react";
 import moment from "moment-with-locales-es6";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
@@ -14,7 +14,7 @@ import { setPrinterFriendly } from "./ChackSelection";
 import { ChackSelection } from "./ChackSelection";
 import { setNormal } from "./ChackSelection";
 
-import { TodoFunctions,getBusiness } from "../apis/ApiData";
+import { TodoFunctions} from "../apis/ApiData";
 import { Link, Outlet } from "react-router-dom";
 import OptionVentas from "./OptionVentas";
 moment.locale("es");
@@ -187,8 +187,8 @@ export const DataTablePedido = () => {
                       <path
                         fill="none"
                         stroke="#3498DB"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                         d="M4.5 10.5h3.85a1.65 1.65 0 0 0 .32-3.27l-3.34-.46a1.65 1.65 0 0 1 .32-3.27H9.5M7 13.5V.5"
                       />
                     </svg>

@@ -1,4 +1,4 @@
-import React, { useState, useContext, createContext } from "react";
+import { useState, useContext, createContext } from "react";
 
 import { getBusiness } from "../../apis/ApiData";
 

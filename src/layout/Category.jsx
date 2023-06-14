@@ -1,4 +1,3 @@
-import React from 'react'
 import { MenuLateral } from '../components/MenuLateral'
 import { DatatableCategorys } from '../components/DatatableCategorys'
 import { ContextCategory} from '../hooks/context/ContextCategory'

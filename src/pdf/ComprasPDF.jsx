@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from "react";
 import {
   Page,
   Text,
@@ -7,7 +6,7 @@ import {
   StyleSheet,
   Image,
 } from "@react-pdf/renderer";
-import { TodoFunctions } from "../apis/ApiData";
+
 import moment from "moment-with-locales-es6";
 moment.locale("es");
 const styles = StyleSheet.create({
@@ -58,16 +57,13 @@ const styles = StyleSheet.create({
 });
 
 export const ComprasPDF = ({ ventas, totalesProducts }) => {
-  const [productos, setProductos] = useState([]);
-  const [cliente, setCliente] = useState([]);
   if (ventas.length === 0) return null;
-  
+
   if (totalesProducts.length === 0) return null;
-  
+
   const total = totalesProducts.reduce((a, b) => a + b.total, 0);
 
   return (
-    
     <Document>
       <Page size="A4" style={styles.page}>
         <View
@@ -163,7 +159,7 @@ export const ComprasPDF = ({ ventas, totalesProducts }) => {
             </View>
 
             {totalesProducts.map((item, i) => (
-              <View style={styles.tableRow}>
+              <View style={styles.tableRow} key={i}>
                 <Text style={[styles.tableCell, styles.text]}>{i + 1}</Text>
                 <Text style={[styles.tableCell, styles.text]}>
                   {item.nameProduct}

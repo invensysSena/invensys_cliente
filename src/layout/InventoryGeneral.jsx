@@ -1,6 +1,4 @@
-
 import { MenuLateral } from '../components/MenuLateral'
-import { DatatableCategorys } from '../components/DatatableCategorys'
 import { ContextCategory} from '../hooks/context/ContextCategory'
 import { DatatableInventory } from '../components/DatatableInventory'
 export const InventoryGeneral = () => {

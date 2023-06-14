@@ -1,4 +1,3 @@
-import React from "react";
 import { MenuLateral } from "../components/MenuLateral";
 import { FormInventory } from "../container/FormInventory";
 import { ContextInventario } from "../hooks/context/ContextInventario";
@@ -37,7 +36,7 @@ export const Inventory = () => {
                     <div className="w-[50%]">
                       <FormInventory />
                     </div>
-                    <div className="w-[90%] md:w-[38%] mb-2  ml-1">
+                    <div className="w-[90%] md:w-[43%] mb-2  ml-1">
                       <ListInventory />
                     </div>
                   </div>

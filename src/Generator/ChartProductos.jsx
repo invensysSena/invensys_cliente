@@ -1,5 +1,3 @@
-import React from "react";
-
 import { ChartProductoC2 } from "../supabase/ChartProductoC2";
 import { ChartProductC1 } from "../supabase/ChartProductsC1";
 

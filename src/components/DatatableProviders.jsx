@@ -1,4 +1,4 @@
-import React, { useRef, useState, useCallback, useEffect } from "react";
+import  { useRef, useState, useCallback, useEffect } from "react";
 import moment from "moment-with-locales-es6";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
@@ -129,12 +129,12 @@ export const DatatableProviders = () => {
                   <g
                     fill="none"
                     stroke="#3498DB"
-                    stroke-linejoin="round"
-                    stroke-width="4"
+                    strokeLinejoin="round"
+                    strokeWidth="4"
                   >
                     <rect width="30" height="36" x="9" y="8" rx="2" />
                     <path
-                      stroke-linecap="round"
+                      strokeLinecap="round"
                       d="M18 4v6m12-6v6m-14 9h16m-16 8h12m-12 8h8"
                     />
                   </g>

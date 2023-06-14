@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, {  useEffect } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { usePostAuth } from "../hooks/context/UserContextData";
 
@@ -7,7 +7,7 @@ import { faAngleLeft, faUser } from "@fortawesome/free-solid-svg-icons";
 import "../index.css";
 import { ToastContainer, toast } from "react-toastify";
 function CodePassword() {
-   const { verifyCodeUser } = usePostAuth();
+  const { verifyCodeUser } = usePostAuth();
 
   let getEmal = localStorage.getItem("email");
 
@@ -28,14 +28,11 @@ function CodePassword() {
             if (i !== inputs.length - 1) inputs[i + 1].focus();
             event.preventDefault();
           }
-          if (event.keyCode >= 4 && event.keyCode <= 91) {
-          }
         }
       });
     }
   }
-  const handleForm = async(e) => {
-
+  const handleForm = async (e) => {
     e.preventDefault();
     const code1 = e.target.code1.value;
     const code2 = e.target.code2.value;
@@ -43,48 +40,58 @@ function CodePassword() {
     const code4 = e.target.code4.value;
     const code5 = e.target.code5.value;
     const code6 = e.target.code6.value;
-    if (code1 === "" || code2 === "" || code3 === "" || code4 === "" || code5 === "" || code6 === "") {
-     return toast.error("Por favor ingrese todos los campos");
-      
-    }else{
-      let arrayCode = [parseInt(code1), parseInt(code2), parseInt(code3), parseInt(code4), parseInt(code5), parseInt(code6)];
+    if (
+      code1 === "" ||
+      code2 === "" ||
+      code3 === "" ||
+      code4 === "" ||
+      code5 === "" ||
+      code6 === ""
+    ) {
+      return toast.error("Por favor ingrese todos los campos");
+    } else {
+      let arrayCode = [
+        parseInt(code1),
+        parseInt(code2),
+        parseInt(code3),
+        parseInt(code4),
+        parseInt(code5),
+        parseInt(code6),
+      ];
       let codigo = arrayCode.join("");
       let email = localStorage.getItem("email");
-      let data ={
+      let data = {
         codigo,
-        email
-      }
+        email,
+      };
       const response = await verifyCodeUser(data);
-      if(response.status === 200){
+      if (response.status === 200) {
         return (
-          localStorage.setItem("codigo", parseInt(codigo) ),
-          toast.success("Verificación exitosa",
-          {
+          localStorage.setItem("codigo", parseInt(codigo)),
+          toast.success("Verificación exitosa", {
             autoClose: 3000,
-          }
-
-          ),
+          }),
           setTimeout(() => {
             window.location.href = "/newPassword+auth=true";
-
-          },3000)
-          ) 
+          }, 3000)
+        );
       }
-      if(response.response.status === 400){
+      if (response.response.status === 400) {
         return toast.error("El código ingresado es incorrecto");
       }
     }
-    
-  }
-useEffect(() => {
-  handleVerifyCode();
-}, [])
+  };
+  useEffect(() => {
+    handleVerifyCode();
+  }, []);
   return (
     <div>
-      <div className="bg-gray-100 min-h-screen
+      <div
+        className="bg-gray-100 min-h-screen
 
 dark:bg-gradient-to-r from-[#163b59] from-10%
- via-[#18324f] via-30% to-[#121b2e] to-90%   relative">
+ via-[#18324f] via-30% to-[#121b2e] to-90%   relative"
+      >
         <ToastContainer />
         <div className="flex dark:bg-[#37415197] dark:text-white dark:border-none  bg-white w-full border-b justify-between items-center">
           <div className="flex items-center  ">
@@ -92,7 +99,10 @@ dark:bg-gradient-to-r from-[#163b59] from-10%
               to={"/recovery+password/identify"}
               className="items-center flex dark:text-white dark:bg-[#37415197] bg-gray-200 m-1 rounded text-white py-2 px-3"
             >
-              <FontAwesomeIcon icon={faAngleLeft} className="text-2xl text-gray-700 dark:text-white" />
+              <FontAwesomeIcon
+                icon={faAngleLeft}
+                className="text-2xl text-gray-700 dark:text-white"
+              />
               <span className="pl-2 text-gray-700 dark:text-white">Volver</span>
             </Link>
             <span className="text-2xl text-[#0099FF] mx-2 font-bold ">

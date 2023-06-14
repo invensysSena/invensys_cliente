@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import  { useMemo, useState } from "react";
 
 import { getBusiness, getUsersAdmin } from "../apis/ApiData";
 import moment from "moment-with-locales-es6";
@@ -175,9 +175,9 @@ export const ChartBodegaC1 = () => {
                     <path
                       fill="#019afa"
                       stroke="#fff"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="4"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="4"
                       d="M6 40V19a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2ZM42 8v21a2 2 0 0 1-2 2h-7a2 2 0 0 1-2-2V19a2 2 0 0 0-2-2H19a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h21a2 2 0 0 1 2 2Z"
                     />
                   </mask>

@@ -1,8 +1,9 @@
-import React, {
+import  {
     useRef,
     useState,
     useCallback,
     useEffect,
+    useMemo,
   } from "react";
   import moment from 'moment-with-locales-es6';
   import "ag-grid-community/styles/ag-grid.css";
@@ -67,7 +68,7 @@ import React, {
         chartDataType: 'email',
         filter: "agTextColumnFilter",
         
-        cellEditorParams:(params)=>{
+        cellEditorParams:()=>{
           return {
             
           }
@@ -130,7 +131,7 @@ import React, {
       );
     }, []);
   const [darkMode, setDarkMode] = useState(false);
-  useEffect(() => {
+  useMemo(() => {
     if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
       setDarkMode(true);
     }
@@ -251,12 +252,12 @@ import React, {
                       <g
                         fill="none"
                         stroke="currentColor"
-                        stroke-linejoin="round"
-                        stroke-width="4"
+                        strokeLinejoin="round"
+                        strokeWidth="4"
                       >
                         <path d="M44 14L24 4L4 14v20l20 10l20-10V14Z" />
                         <path
-                          stroke-linecap="round"
+                          strokeLinecap="round"
                           d="m4 14l20 10m0 20V24m20-10L24 24M34 9L14 19"
                         />
                       </g>
@@ -276,12 +277,12 @@ import React, {
                       <g
                         fill="none"
                         stroke="currentColor"
-                        stroke-linejoin="round"
-                        stroke-width="4"
+                        strokeLinejoin="round"
+                        strokeWidth="4"
                       >
                         <path d="M44 14L24 4L4 14v20l20 10l20-10V14Z" />
                         <path
-                          stroke-linecap="round"
+                          strokeLinecap="round"
                           d="m4 14l20 10m0 20V24m20-10L24 24M34 9L14 19"
                         />
                       </g>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import { Outlet, useParams, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
@@ -46,7 +46,7 @@ export const ConfigInventory = () => {
   const geType = localStorage.getItem("type");
   const validaDelete = () => {
     Swal.fire({
-      background: darkMode ? "#374151":"white",
+      background: darkMode ? "#374151" : "white",
       color: darkMode ? "white" : "black",
       title: "¿Estas seguro de eliminar esta bodega?  ",
       text: "se eliminara todo lo relacionado a este bodega incluyendo subproductos. No podras revertir esta accion!",
@@ -61,7 +61,6 @@ export const ConfigInventory = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         DeleteInventory();
-      } else {
       }
     });
   };
@@ -211,7 +210,7 @@ export const ConfigInventory = () => {
                   {usersAdmin.length > 0 ? (
                     <>
                       {usersAdmin.map((item) => (
-                        <div className="">
+                        <div className="" key={item._id}>
                           <span
                             className="flex border gap-1 dark:bg-[#374151f2] dark:border-none  dark:text-white m-2 p-1 rounded cursor-pointer hover:bg-[#7bbce7] hover:text-white"
                             onClick={() => handleUpdateBodega(item.correo)}
@@ -277,8 +276,11 @@ export const ConfigInventory = () => {
                 </p>
                 {subProductsTranslate.length > 0 ? (
                   <div className="h-[30rem] overflow-y-auto scroll-mx-2.5">
-                    {subProductsTranslate.map((item, index) => (
-                      <div className="div shadow-md dark:text-white p-1 border rounded-md m-2">
+                    {subProductsTranslate.map((item) => (
+                      <div
+                        className="div shadow-md dark:text-white p-1 border rounded-md m-2"
+                        key={item._id}
+                      >
                         <div className="flex justify-between">
                           <span>
                             {" "}
@@ -475,6 +477,7 @@ export const ConfigInventory = () => {
                                     description: "",
                                   }}
                                   onSubmit={async (values) => {
+                                    values.name_inventory;
                                     const dataUpdate = {
                                       name_inventory:
                                         inventoryData.name_inventory,
@@ -610,12 +613,12 @@ export const ConfigInventory = () => {
                                               >
                                                 <stop
                                                   offset="0%"
-                                                  stop-color="currentColor"
+                                                  stopColor="currentColor"
                                                 />
                                                 <stop
                                                   offset="100%"
-                                                  stop-color="currentColor"
-                                                  stop-opacity=".55"
+                                                  stopColor="currentColor"
+                                                  stopOpacity=".55"
                                                 />
                                               </linearGradient>
                                               <linearGradient
@@ -627,13 +630,13 @@ export const ConfigInventory = () => {
                                               >
                                                 <stop
                                                   offset="0%"
-                                                  stop-color="currentColor"
-                                                  stop-opacity="0"
+                                                  stopColor="currentColor"
+                                                  stopOpacity="0"
                                                 />
                                                 <stop
                                                   offset="100%"
-                                                  stop-color="currentColor"
-                                                  stop-opacity=".55"
+                                                  stopColor="currentColor"
+                                                  stopOpacity=".55"
                                                 />
                                               </linearGradient>
                                             </defs>
@@ -832,14 +835,14 @@ export const ConfigInventory = () => {
                                 d="M3 3h4v7.5c0 1.93 1.57 3.5 3.5 3.5H13v-4l7 6l-7 6v-4h-2.5C6.36 18 3 14.64 3 10.5V3Z"
                               />
                             </svg>
-                            <span className="text-white  text-sm md:text-xl ">
+                            <span className="text-white  text-sm md:text-lg ">
                               Trasladar productos
                             </span>
                           </div>
                         </div>
                       </div>
                       {estado2 ? (
-                        <div className="mt-[-4rem]">
+                        <div className="mt-[-4rem] ">
                           <CategoryInventory
                             element={inventarioSelect}
                             id={id}

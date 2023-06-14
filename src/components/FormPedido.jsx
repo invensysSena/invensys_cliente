@@ -8,7 +8,7 @@ import {
 } from "../apis/ApiData";
 import * as Yup from "yup";
 import "animate.css";
-import {  useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import moment from "moment-with-locales-es6";
 moment.locale("es");
@@ -24,12 +24,11 @@ export const FormPedido = () => {
   const [subProducts, setSubProducts] = useState([]);
   const [products, setProducts] = React.useState([]);
   // ?? state
-  
 
   const [estadoModel, setEstadoModel] = useState(false);
   const [data, setData] = useState([]);
   const [pedidosList, setPedidosList] = useState([]);
-  const [loading,setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -40,12 +39,10 @@ export const FormPedido = () => {
     })();
   }, []);
   useEffect(() => {
- 
     (async () => {
       const subProducts = await getSubProducts(idInventario);
 
       setSubProducts(subProducts.data.response);
-     
     })();
   }, [idInventario]);
 
@@ -55,13 +52,11 @@ export const FormPedido = () => {
     const data = proveedores.filter((e) => e._id === idProvider);
 
     dataArray.push(data[0]);
-  } else {
   }
 
   if (idInventario !== "") {
     const data = inventario.filter((e) => e._id === idInventario);
     inventoryArray.push(data[0]);
-  } else {
   }
 
   // activar con ctrl + k
@@ -71,19 +66,6 @@ export const FormPedido = () => {
     }
   });
 
-  //   idBodega,
-  //   idProvedor,
-  //   idSubproducto,
-  //   company,
-  //   unidades,
-  //   tipo,
-  //   totalCompra,
-  //   name,
-  //   precioCompra,
-  //   precioVenta,
-  //   estado,
-  //   fecha,
-  //   caducidad,
   const handleBuscador = (value) => {
     const filteredData = subProducts.filter((item) => {
       return item.name.toLowerCase().includes(value.toLowerCase());
@@ -100,6 +82,7 @@ export const FormPedido = () => {
   };
   const DataNew = async (value) => {
     if (value === "") {
+      value = "";
     }
     const data = await getSubProducts(idInventario);
     return setProducts(data.data.response);
@@ -135,30 +118,29 @@ export const FormPedido = () => {
       ]);
     }
   };
-  const handleClickFormPedido = (estado) => {
+  const handleClickFormPedido = () => {
     (async () => {
-      setLoading(true)
+      setLoading(true);
       try {
         const response = await TodoFunctions.postPedidos(pedidosList);
-      setLoading(false)
-      if(response.status === 200){
-        toast.success('Pedido realizado con exito', {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
+        setLoading(false);
+        if (response.status === 200) {
+          toast.success("Pedido realizado con exito", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
           });
-        toast.success()
-        setPedidosList([])
-        
-      }
+          toast.success();
+          setPedidosList([]);
+        }
       } catch (error) {
-        setLoading(false)
-        toast.error('Error al realizar el pedido', {
+        setLoading(false);
+        toast.error("Error al realizar el pedido", {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -167,9 +149,8 @@ export const FormPedido = () => {
           draggable: true,
           progress: undefined,
           theme: "light",
-          });
+        });
       }
-
     })();
   };
   return (
@@ -348,8 +329,8 @@ export const FormPedido = () => {
                       <path
                         fill="none"
                         stroke="#777777"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                         d="m21 21l-4.343-4.343m0 0A8 8 0 1 0 5.343 5.343a8 8 0 0 0 11.314 11.314Z"
                       />
                     </svg>
@@ -408,8 +389,8 @@ export const FormPedido = () => {
                                   <path
                                     fill="none"
                                     stroke="#777777"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
                                     d="m21 21l-4.343-4.343m0 0A8 8 0 1 0 5.343 5.343a8 8 0 0 0 11.314 11.314Z"
                                   />
                                 </svg>
@@ -469,10 +450,10 @@ export const FormPedido = () => {
                           </defs>
                           <g
                             fill="#FFF"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-miterlimit="10"
-                            stroke-width="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeMiterlimit="10"
+                            strokeWidth="2"
                           >
                             <circle cx="35.958" cy="35.99" r="23" />
                             <use href="#openmojiEightOclock0" />
@@ -480,10 +461,10 @@ export const FormPedido = () => {
                           <g
                             fill="none"
                             stroke="#000"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-miterlimit="10"
-                            stroke-width="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeMiterlimit="10"
+                            strokeWidth="2"
                           >
                             <circle cx="35.958" cy="35.99" r="23" />
                             <use href="#openmojiEightOclock0" />
@@ -631,10 +612,10 @@ export const FormPedido = () => {
                         </defs>
                         <g
                           fill="#FFF"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-miterlimit="10"
-                          stroke-width="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeMiterlimit="10"
+                          strokeWidth="2"
                         >
                           <circle cx="35.958" cy="35.99" r="23" />
                           <use href="#openmojiEightOclock0" />
@@ -642,10 +623,10 @@ export const FormPedido = () => {
                         <g
                           fill="none"
                           stroke="#000"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-miterlimit="10"
-                          stroke-width="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeMiterlimit="10"
+                          strokeWidth="2"
                         >
                           <circle cx="35.958" cy="35.99" r="23" />
                           <use href="#openmojiEightOclock0" />
@@ -662,7 +643,7 @@ export const FormPedido = () => {
                   <div className="h-[18rem]  overflow-y-auto ">
                     {pedidosList.map((i) => {
                       return (
-                        <div className="container">
+                        <div className="container" key={i.idSubproducto}>
                           <div className="bg-gray-100 dark:bg-[#374151] dark:text-white flex justify-between gap-1 mx-1 p-1 my-1 rounded ">
                             <div>{i.name}</div>
                             <div>Unid...: {i.unidades}</div>
@@ -674,7 +655,7 @@ export const FormPedido = () => {
                             </div>
                             <div
                               className="delete cursor-pointer"
-                              onClick={(e) => {
+                              onClick={() => {
                                 setPedidosList(
                                   pedidosList.filter((e) => e.name !== i.name)
                                 );
@@ -693,9 +674,9 @@ export const FormPedido = () => {
                                   />
                                   <path
                                     stroke="red"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="2"
                                     d="M20 7h-2M4 7h2m0 0h12M6 7v11a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7m-9-.5v0A2.5 2.5 0 0 1 11.5 4h1A2.5 2.5 0 0 1 15 6.5v0"
                                   />
                                 </g>
@@ -781,8 +762,8 @@ export const FormPedido = () => {
                       cy="12"
                       r="9.5"
                       fill="none"
-                      stroke-linecap="round"
-                      stroke-width="3"
+                      strokeLinecap="round"
+                      strokeWidth="3"
                     >
                       <animate
                         attributeName="stroke-dasharray"

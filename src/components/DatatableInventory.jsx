@@ -1,19 +1,11 @@
-import React, {
-  useRef,
-  useState,
-  useCallback,
-  useEffect,
-  useMemo,
-} from "react";
+import { useRef, useState, useCallback, useEffect, useMemo } from "react";
 import moment from "moment-with-locales-es6";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
 import "react-loading-skeleton/dist/skeleton.css";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-enterprise";
-import plus from "../assets/icons/plus.svg";
 import { AG_GRID_LOCALE_EN } from "../locale/locale";
-import OpcionesCategory from "./OpcionesCategory";
 import { RegisterCategorys } from "./RegisterCategorys";
 import { checkboxSelection } from "./ChackSelection";
 import { headerCheckboxSelection } from "./ChackSelection";
@@ -22,14 +14,13 @@ import { ChackSelection } from "./ChackSelection";
 import { setNormal } from "./ChackSelection";
 import { getBusiness } from "../apis/ApiData";
 import { ContextCategory } from "../hooks/context/ContextCategory";
-import CustomLoadingCellRenderer from "./CustomLoadingCellRenderer";
 import { useContextCategory } from "../hooks/context/ContextCategory";
 
 moment.locale("es");
 export const DatatableInventory = () => {
   const [subViewProducts, setSubViewProducts] = useState([]);
   const [load, setLoad] = useState(false);
-  const { dataGategorias, getDataCategorias } = useContextCategory();
+  const { getDataCategorias } = useContextCategory();
 
   useEffect(() => {
     const initial = async () => {
@@ -75,7 +66,7 @@ export const DatatableInventory = () => {
       chartDataType: "email",
       filter: "agTextColumnFilter",
 
-      cellEditorParams: (params) => {
+      cellEditorParams: () => {
         return {};
       },
     },
@@ -176,10 +167,6 @@ export const DatatableInventory = () => {
     },
   ]);
 
-  const handleShowModel = () => {
-    StateModel(!stateModel);
-  };
-
   const onBtnExport = useCallback(() => {
     gridRef.current.api.exportDataAsCsv();
   }, []);
@@ -195,12 +182,6 @@ export const DatatableInventory = () => {
       setNormal(api);
     }, 2000);
   }, []);
-
-  const money = new Intl.NumberFormat("en-CO", {
-    style: "currency",
-    currency: "COP",
-    minimumFractionDigits: 2,
-  });
 
   const onFilterTextBoxChanged = useCallback(() => {
     gridRef.current.api.setQuickFilter(
@@ -218,12 +199,12 @@ export const DatatableInventory = () => {
   }, []);
 
   const totalUnidades = subViewProducts.reduce((a, b) => a + b.unidad, 0);
- const [darkMode, setDarkMode] = useState(false);
- useEffect(() => {
-   if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-     setDarkMode(true);
-   }
- }, []);
+  const [darkMode, setDarkMode] = useState(false);
+  useEffect(() => {
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      setDarkMode(true);
+    }
+  }, []);
   return (
     <>
       {load ? (

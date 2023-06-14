@@ -1,87 +1,84 @@
-
-import React, { createContext, useState, useContext } from "react";
+import { createContext, useState, useContext } from "react";
 import {
-  PostDataUser, postRecoveryEmail, recoverycode, newPassword, PostDataAdmin,
-AuthGoogle} from "../../apis/ApiData"
-export const contextUserAdmin = createContext()
+  PostDataUser,
+  postRecoveryEmail,
+  recoverycode,
+  newPassword,
+  PostDataAdmin,
+  AuthGoogle,
+} from "../../apis/ApiData";
+export const contextUserAdmin = createContext();
 
 export const usePostAuth = () => {
-  const contextUser = useContext( contextUserAdmin );
+  const contextUser = useContext(contextUserAdmin);
   return contextUser;
-}
-export const UserContextData = ( { children } ) => {
-  const [getUserPost, setGetUserPostAut] = useState( [] )
+};
+export const UserContextData = ({ children }) => {
+  const [getUserPost, setGetUserPostAut] = useState([]);
 
-  const recoveryPasssword = async ( email ) => {
-   try {
-     const response = await postRecoveryEmail( email )
-    return response
-   } catch (error) {
-    return error
-   }
-  }
-  const newPasswordL = async ( data ) => {
+  const recoveryPasssword = async (email) => {
     try {
-      const response = await newPassword( data )
-      return response
+      const response = await postRecoveryEmail(email);
+      return response;
     } catch (error) {
-      return error
-    }
-  }
-  const verifyCodeUser = async ( data ) => {
-
-   try {
-     const response = await recoverycode( data );
-     return response;
-   } catch ( error ) {
       return error;
-    
-   }
-  }
-  const getPostLoginAuthGoogle = async ( postDataUser ) => {
-
-    try {
-      const response = await AuthGoogle( postDataUser );
-      return response
-    } catch ( error ) {
-      return error
     }
-  }
-  const getPostLogin= async ( postDataUser ) => {
+  };
+  const newPasswordL = async (data) => {
     try {
-      const response = await PostDataUser( postDataUser );
-      return response
-    } catch ( error ) {
-      return error
+      const response = await newPassword(data);
+      return response;
+    } catch (error) {
+      return error;
     }
-  }
+  };
+  const verifyCodeUser = async (data) => {
+    try {
+      const response = await recoverycode(data);
+      return response;
+    } catch (error) {
+      return error;
+    }
+  };
+  const getPostLoginAuthGoogle = async (postDataUser) => {
+    try {
+      const response = await AuthGoogle(postDataUser);
+      return response;
+    } catch (error) {
+      return error;
+    }
+  };
+  const getPostLogin = async (postDataUser) => {
+    try {
+      const response = await PostDataUser(postDataUser);
+      return response;
+    } catch (error) {
+      return error;
+    }
+  };
   const getPostRegister = async (postDataAdmin) => {
     try {
-        const response = await PostDataAdmin(postDataAdmin);
-        return response;
+      const response = await PostDataAdmin(postDataAdmin);
+      return response;
     } catch (error) {
-        return error;
+      return error;
     }
-}
+  };
 
-
-
-  return <contextUserAdmin.Provider value={{
-
-    getUserPost,
-    getPostRegister,
-    setGetUserPostAut,
-    getPostLogin,
-    recoveryPasssword,
-    verifyCodeUser,
-    newPasswordL,
-    getPostLoginAuthGoogle,
-   
-
-
-  }}  >
-
-    {children}
-  </contextUserAdmin.Provider>
-
-}
+  return (
+    <contextUserAdmin.Provider
+      value={{
+        getUserPost,
+        getPostRegister,
+        setGetUserPostAut,
+        getPostLogin,
+        recoveryPasssword,
+        verifyCodeUser,
+        newPasswordL,
+        getPostLoginAuthGoogle,
+      }}
+    >
+      {children}
+    </contextUserAdmin.Provider>
+  );
+};

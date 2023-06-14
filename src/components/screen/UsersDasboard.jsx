@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
 import { getBusiness, getUsersAdmin } from "../../apis/ApiData";
 import { ReactSortable } from "react-sortablejs";
@@ -193,15 +193,21 @@ export const UsersDasboard = () => {
                         overflowX: "auto",
                       }}
                       className=" grid border
-                       dark:border-none gird-cols-1 md:grid-cols-2 lg:grid-cols-3"
+                       dark:border-none gird-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1"
                     >
                       {users.map((item, index) => (
-                        <div className="flex flex-col web-b dark:bg-[#374151] ">
+                        <div
+                          className="flex m-1 flex-col web-b dark:bg-[#374151] "
+                          key={index}
+                        >
                           <div
                             className=" inline-block rounded-md truncate  "
                             key={index}
                           >
-                            <Link to={`usersInfo/${item.idAccount}`}>
+                            <Link
+                              to={`usersInfo/${item.idAccount}`}
+                              className=""
+                            >
                               <div className="card_content px-1  py-2 sm:px-1">
                                 <div className="flex w-full truncate items-center justify-between">
                                   <h2 className="card_title text-lg text-gray-600 dark:text-white ">

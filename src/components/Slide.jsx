@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import pasion from "../assets/img/pasion.jpg";
 import ezfuerzo from "../assets/img/ezfuerzo.jpg";
 import crecimiento from "../assets/img/crecimiento.jpg";
@@ -37,7 +37,7 @@ export const Slide = () => {
 
       {imagenesGalery.map((imagen, index) => {
         return (
-          <div className="">
+          <div className="" key={index}>
             {imagenActaul === index && (
               <img
                 key={index}

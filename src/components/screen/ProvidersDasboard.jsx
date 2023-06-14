@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
 import { getBusiness, getUsersAdmin } from "../../apis/ApiData";
 import { ReactSortable } from "react-sortablejs";
@@ -181,7 +181,10 @@ export const ProvidersDasboard = () => {
                       className="flex flex-wrap overflow-x-auto "
                     >
                       {provider.map((item, index) => (
-                        <div className="flex ">
+                        <div className="flex "
+                        
+                          key={index}
+                        >
                           <div
                             className=" inline-block h-fit rounded-md dark:bg-[#37415197] dark:text-[#019afa] bg-white "
                             key={index}

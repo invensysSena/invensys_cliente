@@ -1,4 +1,3 @@
-import React from "react";
 import { MenuLateral } from "../components/MenuLateral";
 
 export const AyudaAdmin = () => {

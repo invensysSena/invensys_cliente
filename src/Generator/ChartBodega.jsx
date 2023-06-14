@@ -1,4 +1,3 @@
-import React from "react";
 import { ChartBodegaC1 } from "../supabase/ChartBodegaC1";
 import { ChartBodegaC2 } from "../supabase/ChartBodegaC2";
 

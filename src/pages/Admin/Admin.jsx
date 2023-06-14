@@ -1,4 +1,3 @@
-import React from "react";
 import { MenuLateral } from "../../components/MenuLateral";
 import { InicioChart } from "../../components/InicioChart";
 import { ContextModules } from "../../hooks/context/ContextModules";

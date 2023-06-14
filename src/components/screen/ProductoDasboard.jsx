@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
 import { getBusiness, getUsersAdmin } from "../../apis/ApiData";
 import moment from "moment-with-locales-es6";

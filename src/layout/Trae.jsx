@@ -1,4 +1,3 @@
-import React from "react";
 import { MenuLateral } from "../components/MenuLateral";
 import { FormTrae } from "../log/FormTrae";
 import { ListTrae } from "../log/ListTrae";

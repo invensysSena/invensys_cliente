@@ -5,7 +5,7 @@ import {
   faGlobe,
   
 } from "@fortawesome/free-solid-svg-icons";
-import React from "react";
+
 import "../assets/css/fuente.css";
 
 export const Footer = () => {

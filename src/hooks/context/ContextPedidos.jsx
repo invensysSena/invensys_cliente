@@ -1,14 +1,13 @@
-import React, { createContext, useContext } from "react";
+import { createContext, useContext } from "react";
 
 const ContextPedidosHook = createContext();
 
 export const useContextPedidos = () => useContext(ContextPedidos);
 
-export const ContextPedidos = ({children}) => {
+export const ContextPedidos = ({ children }) => {
   return (
-      <ContextPedidosHook.Provider value={{
-      }}>
-          {children}
-        </ContextPedidosHook.Provider>
-  )
-}
+    <ContextPedidosHook.Provider value={{}}>
+      {children}
+    </ContextPedidosHook.Provider>
+  );
+};

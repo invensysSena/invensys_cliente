@@ -1,4 +1,3 @@
-import React from "react";
 import { MenuLateral } from "../components/MenuLateral";
 
 import { Link, Outlet } from "react-router-dom";

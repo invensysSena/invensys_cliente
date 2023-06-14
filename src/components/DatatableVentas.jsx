@@ -1,4 +1,4 @@
-import React, { useRef, useState, useCallback, useEffect } from "react";
+import  { useRef, useState, useCallback, useEffect } from "react";
 import moment from "moment-with-locales-es6";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
@@ -21,8 +21,6 @@ moment.locale("es");
 
 export const DatatableVentas = () => {
   const { getUsersAdmins, getCountData } = useGetUsers();
-  const [loading, setLoading] = useState(true);
-
   const [dataVentas, setDataVentas] = useState([]);
 
   useEffect(() => {
@@ -32,7 +30,7 @@ export const DatatableVentas = () => {
       setDataVentas(response.data.responseFv);
 
       await getCountData();
-      setLoading(false);
+    
     };
 
     initial();
@@ -178,8 +176,8 @@ export const DatatableVentas = () => {
                       <path
                         fill="none"
                         stroke="#3498DB"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                         d="M4.5 10.5h3.85a1.65 1.65 0 0 0 .32-3.27l-3.34-.46a1.65 1.65 0 0 1 .32-3.27H9.5M7 13.5V.5"
                       />
                     </svg>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import "../../assets/css/styleSlider.css";
 import { useContextProduct } from "../../hooks/context/ContextProduxt";
@@ -31,7 +31,7 @@ function OptionsProducto(e) {
       backdrop: "8px",
       customClass: "swal-wide",
       showCancelButton: true,
-      confirmButtonColor: "#1daf53",
+      
       focusCancel: false,
       focusConfirm: false,
       confirmButtonColor: "#3085d6",

@@ -1,4 +1,4 @@
-import React, { useRef, useState, useCallback, useEffect } from "react";
+import { useRef, useState, useCallback, useEffect } from "react";
 import moment from "moment-with-locales-es6";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
@@ -26,12 +26,10 @@ moment.locale("es");
 export const Datatable = () => {
   const { dataGategorias, getDataCategorias } = useContextCategory();
 
-  const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     const initial = async () => {
       await getDataCategorias();
-      setLoading(false);
+      
     };
 
     initial();
@@ -62,7 +60,7 @@ export const Datatable = () => {
       chartDataType: "email",
       filter: "agTextColumnFilter",
 
-      cellEditorParams: (params) => {
+      cellEditorParams: () => {
         return {};
       },
     },
@@ -315,12 +313,12 @@ export const Datatable = () => {
                     <g
                       fill="none"
                       stroke="currentColor"
-                      stroke-linejoin="round"
-                      stroke-width="4"
+                      strokeLinejoin="round"
+                      strokeWidth="4"
                     >
                       <path d="M44 14L24 4L4 14v20l20 10l20-10V14Z" />
                       <path
-                        stroke-linecap="round"
+                        strokeLinecap="round"
                         d="m4 14l20 10m0 20V24m20-10L24 24M34 9L14 19"
                       />
                     </g>
@@ -340,12 +338,12 @@ export const Datatable = () => {
                     <g
                       fill="none"
                       stroke="currentColor"
-                      stroke-linejoin="round"
-                      stroke-width="4"
+                      strokeLinejoin="round"
+                      strokeWidth="4"
                     >
                       <path d="M44 14L24 4L4 14v20l20 10l20-10V14Z" />
                       <path
-                        stroke-linecap="round"
+                        strokeLinecap="round"
                         d="m4 14l20 10m0 20V24m20-10L24 24M34 9L14 19"
                       />
                     </g>

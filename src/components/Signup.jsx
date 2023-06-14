@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { GoogleLogin } from "@react-oauth/google";
@@ -9,19 +9,19 @@ import {
   faLock,
   faCircleQuestion,
   faEye,
-  faEyeSlash,faAngleLeft
+  faEyeSlash,
+  faAngleLeft,
 } from "@fortawesome/free-solid-svg-icons";
 import { usePostAuth } from "../hooks/context/UserContextData";
 import { ToastContainer, toast } from "react-toastify";
 import * as Yup from "yup";
 import "animate.css";
-import { Link,useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const Signup = () => {
   const [typeInput, setTypeInput] = useState(true);
- 
-  const { getPostRegister } = usePostAuth();
 
+  const { getPostRegister } = usePostAuth();
 
   const Navigate = useNavigate();
   return (
@@ -47,7 +47,6 @@ export const Signup = () => {
             <video
               src="https://res.cloudinary.com/dkqp3wkbi/video/upload/v1670421680/animacion_media_fawwzt.mp4"
               autoPlay
-              playinline
               loop
               muted
               preload="auto"
@@ -68,7 +67,7 @@ export const Signup = () => {
                 <div className="p ml-1">
                   <GoogleLogin
                     onSuccess={(credentialResponse) => {
-                       jwt_decode(credentialResponse.credential);
+                      jwt_decode(credentialResponse.credential);
                     }}
                     onError={() => {}}
                     useOneTap

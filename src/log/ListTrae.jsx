@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { TodoFunctions } from "../apis/ApiData";
 import image from "../assets/img/company.jpg";
 export const ListTrae = () => {
@@ -21,9 +21,9 @@ export const ListTrae = () => {
   }, []);
   return (
     <>
-      <div class=" ">
+      <div className=" ">
         <div
-          class="relative flex flex-col dark:border-none dark:bg-[#37415197] items-center rounded-[20px] w-full lg:w-[700px]
+          className="relative flex flex-col dark:border-none dark:bg-[#37415197] items-center rounded-[20px] w-full lg:w-[700px]
              border   bg-white bg-clip-border
              shadow-3xl shadow-shadow-500 dark:!bg-navy-800  p-3"
         >
@@ -41,8 +41,8 @@ export const ListTrae = () => {
                     cy="12"
                     r="9.5"
                     fill="none"
-                    stroke-linecap="round"
-                    stroke-width="3"
+                    strokeLinecap="round"
+                    strokeWidth="3"
                   >
                     <animate
                       attributeName="stroke-dasharray"
@@ -77,94 +77,98 @@ export const ListTrae = () => {
             <>
               {data.length > 0 ? (
                 <>
-                  <div class="mt-2 mb-8 w-full">
-                    <h4 class="px-2 text-xl dark:text-[#019afa] font-bold text-navy-700 ">
+                  <div className="mt-2 mb-8 w-full">
+                    <h4 className="px-2 text-xl dark:text-[#019afa] font-bold text-navy-700 ">
                       Información general de tu negocio
                     </h4>
                   </div>
-                  <div class="grid grid-cols-2 gap-4 px-2 w-full">
+                  <div className="grid grid-cols-2 gap-4 px-2 w-full">
                     <div
-                      class="flex flex-col items-start justify-center rounded-2xl 
+                      className="flex flex-col items-start justify-center rounded-2xl 
                     dark:bg-[#374151] dark:text-white
                      bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none"
                     >
-                      <p class="text-sm text-gray-600 dark:text-white">
+                      <p className="text-sm text-gray-600 dark:text-white">
                         Nombre
                       </p>
-                      <p class="text-base font-medium text-navy-700 ">
+                      <p className="text-base font-medium text-navy-700 ">
                         {data[0].nombre}
                       </p>
                     </div>
 
-                    <div class="flex flex-col dark:bg-[#374151] dark:text-white justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
-                      <p class="text-sm text-gray-600 dark:text-white">
+                    <div className="flex flex-col dark:bg-[#374151] dark:text-white justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
+                      <p className="text-sm text-gray-600 dark:text-white">
                         Tipo de persona
                       </p>
-                      <p class="text-base font-medium text-navy-700 ">
+                      <p className="text-base font-medium text-navy-700 ">
                         {data[0].tipoPersona}
                       </p>
                     </div>
 
-                    <div class="flex flex-col dark:bg-[#374151] dark:text-white items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
-                      <p class="text-sm text-gray-600 dark:text-white">Nit</p>
-                      <p class="text-base font-medium text-navy-700 ">
+                    <div className="flex flex-col dark:bg-[#374151] dark:text-white items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
+                      <p className="text-sm text-gray-600 dark:text-white">
+                        Nit
+                      </p>
+                      <p className="text-base font-medium text-navy-700 ">
                         {data[0].nit}
                       </p>
                     </div>
 
-                    <div class="flex flex-col dark:bg-[#374151] dark:text-white justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
-                      <p class="text-sm text-gray-600dark:text-white dark:text-white">
+                    <div className="flex flex-col dark:bg-[#374151] dark:text-white justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
+                      <p className="text-sm text-gray-600dark:text-white dark:text-white">
                         Identificación
                       </p>
-                      <p class="text-base font-medium text-navy-700 ">
+                      <p className="text-base font-medium text-navy-700 ">
                         {data[0].tipoIdentificacion}: {data[0].numero}
                       </p>
                     </div>
 
-                    <div class="flex flex-col items-start dark:bg-[#374151] dark:text-white justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
-                      <p class="text-sm text-gray-600 dark:text-white">
+                    <div className="flex flex-col items-start dark:bg-[#374151] dark:text-white justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
+                      <p className="text-sm text-gray-600 dark:text-white">
                         Correo
                       </p>
-                      <p class="text-base font-medium text-navy-700 ">
+                      <p className="text-base font-medium text-navy-700 ">
                         {data[0].correo}
                       </p>
                     </div>
 
-                    <div class="flex flex-col justify-center dark:bg-[#374151] dark:text-white rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
-                      <p class="text-sm text-gray-600 dark:text-white">
+                    <div className="flex flex-col justify-center dark:bg-[#374151] dark:text-white rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
+                      <p className="text-sm text-gray-600 dark:text-white">
                         Telefono
                       </p>
-                      <p class="text-base font-medium text-navy-700 ">
+                      <p className="text-base font-medium text-navy-700 ">
                         {data[0].telefono}
                       </p>
                     </div>
-                    <div class="flex flex-col dark:bg-[#374151] dark:text-white justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
-                      <p class="text-sm text-gray-600 dark:text-white">Pais</p>
-                      <p class="text-base font-medium text-navy-700 ">
+                    <div className="flex flex-col dark:bg-[#374151] dark:text-white justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
+                      <p className="text-sm text-gray-600 dark:text-white">
+                        Pais
+                      </p>
+                      <p className="text-base font-medium text-navy-700 ">
                         {data[0].pais}
                       </p>
                     </div>
-                    <div class="flex flex-col dark:bg-[#374151] dark:text-white justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
-                      <p class="text-sm text-gray-600 dark:text-white">
+                    <div className="flex flex-col dark:bg-[#374151] dark:text-white justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
+                      <p className="text-sm text-gray-600 dark:text-white">
                         Ciudad
                       </p>
-                      <p class="text-base font-medium text-navy-700 ">
+                      <p className="text-base font-medium text-navy-700 ">
                         {data[0].ciudad}
                       </p>
                     </div>
-                    <div class="flex flex-col dark:bg-[#374151] dark:text-white justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
-                      <p class="text-sm text-gray-600 dark:text-white">
+                    <div className="flex flex-col dark:bg-[#374151] dark:text-white justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
+                      <p className="text-sm text-gray-600 dark:text-white">
                         Departameto
                       </p>
-                      <p class="text-base font-medium text-navy-700 ">
+                      <p className="text-base font-medium text-navy-700 ">
                         {data[0].departamento}
                       </p>
                     </div>
-                    <div class="flex flex-col dark:bg-[#374151] dark:text-white justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
-                      <p class="text-sm text-gray-600 dark:text-white">
+                    <div className="flex flex-col dark:bg-[#374151] dark:text-white justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
+                      <p className="text-sm text-gray-600 dark:text-white">
                         Dirección
                       </p>
-                      <p class="text-base font-medium text-navy-700 ">
+                      <p className="text-base font-medium text-navy-700 ">
                         {data[0].direccion}
                       </p>
                     </div>

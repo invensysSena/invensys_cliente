@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useCallback, useMemo } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { getCategorias } from "../apis/ApiData";
 import { ImportProducts } from "./ImportProducts";
 import "animate.css";
 import { Link } from "react-router-dom";
-export const CategoryInventory = ({ element, id, estadoModel }) => {
+export const CategoryInventory = () => {
   const [category, setCategory] = useState([]);
   const [arrayId, setArrayId] = useState([]);
   const [arrayName, setArrayName] = useState([]);
@@ -39,17 +39,17 @@ export const CategoryInventory = ({ element, id, estadoModel }) => {
         <div
           className={
             arrayId.includes(arrayId)
-              ? "categoria bg-blue-100 w-[70%] md:w-[500px] mx-auto animate__animated animate__fadeIn scroll-smooth  border rounded-md my-4"
-              : "categoria bg-white w-[90%] md:w-[500px] h-[20rem] lg:h-fit overflow-y-auto lg:mx-auto animate__animated animate__fadeIn  scroll-smooth border rounded-md my-4"
+              ? "categoria dark:bg-[#37415197] bg-blue-100 w-[70%] md:w-[500px] mx-auto animate__animated animate__fadeIn scroll-smooth  border rounded-md my-4"
+              : "categoria bg-white w-[90%] md:w-[500px] h-[20rem] lg:h-fit overflow-y-auto lg:mx-auto animate__animated animate__fadeIn  scroll-smooth border rounded-md my-4 dark:bg-[#37415197]"
           }
         >
-          <h2 className="font-bold  m-4 text-xl">Categorias</h2>
+          <h2 className="font-bold  m-4 text-xl dark:text-white">Categorias</h2>
           {category.length > 0 ? (
-            <p className="mx-4">
+            <p className="mx-4 dark:text-white">
               Seleciona las categorias para la importacion de los productos
             </p>
           ) : (
-            <p className="mx-4 my-4">
+            <p className="mx-4 my-4 dark:text-white">
               No se encontraron categorias, crea tu primer categoria
               <Link
                 className="
@@ -84,7 +84,6 @@ export const CategoryInventory = ({ element, id, estadoModel }) => {
                     dur="0.75s"
                     repeatCount="indefinite"
                     type="rotate"
-                    Flog
                     values="0 12 12;360 12 12"
                   />
                 </path>
@@ -95,7 +94,7 @@ export const CategoryInventory = ({ element, id, estadoModel }) => {
               <div className="flex flex-wrap gap-1 mxmd:w-[500px]">
                 {arrayName.map((item) => (
                   <div
-                    className="bg-blue-100 rounded-md flex items-center mx-1 px-2 py-1 "
+                    className="bg-blue-100  rounded-md flex items-center mx-1 px-2 py-1 "
                     key={item._id}
                   >
                     <svg
@@ -117,7 +116,7 @@ export const CategoryInventory = ({ element, id, estadoModel }) => {
                 {category.map((item) => (
                   <li
                     key={item._id}
-                    className="py-2 flex p-4 bg-gray-100 cursor-pointer m-2 rounded-md"
+                    className="py-2 flex p-4 bg-gray-100 dark:bg-[#37415197] dark:text-white cursor-pointer m-2 rounded-md"
                     onClick={() => {
                       return handleCategory(item._id, item.name_category);
                     }}
@@ -142,7 +141,7 @@ export const CategoryInventory = ({ element, id, estadoModel }) => {
                 {arrayId.length > 0 ? (
                   <>
                     <button
-                      className="bg-gray-200 text-end flex justify-end m-2  text-gray-800 font-bold py-2 px-3 rounded"
+                      className="bg-gray-200 dark:bg-[#37415197] dark:text-white text-end flex justify-end m-2  text-gray-800 font-bold py-2 px-3 rounded"
                       onClick={() => {
                         setEstado(!estado);
                       }}

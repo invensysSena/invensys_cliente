@@ -1,4 +1,4 @@
-import React, { useRef, useState, useCallback, useEffect } from "react";
+import { useRef, useState, useCallback, useEffect } from "react";
 import moment from "moment-with-locales-es6";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
@@ -115,13 +115,13 @@ export const DatatableProduct = () => {
     }
   });
 
-   const [darkMode, setDarkMode] = useState(false);
-   useEffect(() => {
-     if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-       setDarkMode(true);
-     }
-   }, []);
-  
+  const [darkMode, setDarkMode] = useState(false);
+  useEffect(() => {
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      setDarkMode(true);
+    }
+  }, []);
+
   return (
     <>
       <UploadExcel estado={ExcelModel} />

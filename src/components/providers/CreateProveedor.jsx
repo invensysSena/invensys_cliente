@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { ToastContainer, toast } from "react-toastify";
@@ -313,21 +313,21 @@ export const CreateProveedor = () => {
                             >
                               <g
                                 stroke="#ccc"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
                               >
                                 <circle
                                   cx="12"
                                   cy="12"
                                   r="9"
                                   fill="#ccc"
-                                  fill-opacity=".3"
+                                  fillOpacity=".3"
                                 />
                                 <path
                                   fill="none"
-                                  stroke-dasharray="14"
-                                  stroke-dashoffset="14"
+                                  strokeDasharray="14"
+                                  strokeDashoffset="14"
                                   d="M8 12L11 15L16 10"
                                 >
                                   <animate
@@ -367,9 +367,9 @@ export const CreateProveedor = () => {
                             <path
                               fill="#ccc"
                               stroke="#ccc"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="2"
                               d="M11 18a1 1 0 1 0 2 0a1 1 0 0 0-2 0Zm0-6a1 1 0 1 0 2 0a1 1 0 0 0-2 0Zm0-6a1 1 0 1 0 2 0a1 1 0 0 0-2 0Z"
                             />
                           </svg>
@@ -572,11 +572,11 @@ export const CreateProveedor = () => {
                             y1="5.271%"
                             y2="91.793%"
                           >
-                            <stop offset="0%" stop-color="currentColor" />
+                            <stop offset="0%" stopColor="currentColor" />
                             <stop
                               offset="100%"
-                              stop-color="currentColor"
-                              stop-opacity=".55"
+                              stopColor="currentColor"
+                              stopOpacity=".55"
                             />
                           </linearGradient>
                           <linearGradient
@@ -588,13 +588,13 @@ export const CreateProveedor = () => {
                           >
                             <stop
                               offset="0%"
-                              stop-color="currentColor"
-                              stop-opacity="0"
+                              stopColor="currentColor"
+                              stopOpacity="0"
                             />
                             <stop
                               offset="100%"
-                              stop-color="currentColor"
-                              stop-opacity=".55"
+                              stopColor="currentColor"
+                              stopOpacity=".55"
                             />
                           </linearGradient>
                         </defs>

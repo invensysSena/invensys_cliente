@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import "../assets/css/CambioFotoPerfilAdmin.css";
 import { useGetUsers } from "../hooks/context/GetUsersContext";
 export const CambioFotoPerfilAdmin = () => {

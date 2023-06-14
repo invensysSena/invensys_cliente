@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useMemo } from "react";
 import { Route, Routes } from "react-router-dom";
 import { AuthUser } from "../components/AuthUser.jsx";
 import { Signup } from "../components/Signup.jsx";
@@ -56,19 +56,14 @@ import { DataTablePedido } from "../components/DataTablePedido";
 import { ConfigAdmin } from "../layout/ConfigAdmin";
 import { ChartBodega } from "../Generator/ChartBodega";
 import { ChartHome } from "../Generator/ChartHome";
-import { ChartInventario } from "../Generator/ChartInventario";
-import { ChartPedidos } from "../Generator/ChartPedidos";
-import { ChartVentas } from "../Generator/ChartVentas";
-import { ChartUsuarios } from "../Generator/ChartUsuarios";
+
 import { ChartProductos } from "../Generator/ChartProductos";
 import { ProductAgotados } from "../components/NotificationsHeader/ProductAgotados";
 import { ComandsSistemA } from "../Generator/ComandsSistemA";
 import { InventoryGeneral } from "../layout/InventoryGeneral";
 import { urlServer } from "../urlApi/url";
 import { dataIsAllowed } from "../secure/lowed.Modules";
-
 import { Licence } from "../security/Licence";
-import { useCallback } from "react";
 export const Router = () => {
   const [usersP, setUsersP] = useState([]);
   const token = localStorage.getItem("secure_token");
@@ -164,20 +159,7 @@ export const Router = () => {
                   element={<TranslateProduct />}
                 />
               </Route>
-              <Route
-                path=""
-                element={
-                  <div>
-                    <img
-                      src="https://res.cloudinary.com/dkqp3wkbi/image/upload/v1681822432/stored/11668796_20945371-removebg-preview_ja7xon.png"
-                      alt="inventory"
-                      width={"50%"}
-                      height={200}
-                      style={{ margin: "auto" }}
-                    />
-                  </div>
-                }
-              />
+              <Route path="" element={<div></div>} />
             </Route>
             <Route
               path={dataIsAllowed[13].url}
@@ -347,13 +329,7 @@ export const Router = () => {
             >
               <Route path="" element={<ChartHome />}></Route>
               <Route path="AnBodega/:id" element={<ChartBodega />}></Route>
-              <Route
-                path="AnInventario/:id"
-                element={<ChartInventario />}
-              ></Route>
-              <Route path="AnPedidos/:id" element={<ChartPedidos />}></Route>
-              <Route path="AnVentas/:id" element={<ChartVentas />}></Route>
-              <Route path="AnUsuarios/:id" element={<ChartUsuarios />}></Route>
+
               <Route
                 path="TodoComands/:id"
                 element={<ComandsSistemA />}

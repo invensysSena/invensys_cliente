@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import "../index.css";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -378,7 +378,7 @@ export const AuthUser = () => {
                 <video
                   src="https://res.cloudinary.com/dkqp3wkbi/video/upload/v1670421680/animacion_media_fawwzt.mp4"
                   autoPlay
-                  playinline
+                
                   loop
                   muted
                   preload="auto"

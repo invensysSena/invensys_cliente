@@ -1,10 +1,4 @@
-import React, {
-  useRef,
-  useState,
-  useCallback,
-  useEffect,
-  useMemo,
-} from "react";
+import { useRef, useState, useCallback, useEffect, useMemo } from "react";
 import moment from "moment-with-locales-es6";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
@@ -128,8 +122,6 @@ export const DataTableUsers = () => {
       document.getElementById("filter-text-box").value
     );
   }, []);
-
-  const onSelectionChanged = (event) => {};
 
   // detectar el modo oscuro del sistema
   const [darkMode, setDarkMode] = useState(false);
@@ -352,7 +344,6 @@ export const DataTableUsers = () => {
           rowSelection={"multiple"}
           enableCharts={true}
           cacheQuickFilter={true}
-          onSelectionChanged={onSelectionChanged}
         ></AgGridReact>
       </div>
     </>

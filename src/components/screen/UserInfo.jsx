@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { getUsersAdmin, getServices } from "../../apis/ApiData";
 import sinDada from "../../assets/img/sinDada.jpg";
@@ -66,10 +66,10 @@ export const UserInfo = () => {
                 className="flex  flex-col gap-1 w-[279px] md:w-full sm:flex-row"
               >
                 <div className="w-full  ">
-                  <div class="card border dark:text-white dark:border-none dark:bg-[#37415197]">
-                    <div class="head">
-                      <div class="circle"></div>
-                      <div class="img">
+                  <div className="card border dark:text-white dark:border-none dark:bg-[#37415197]">
+                    <div className="head">
+                      <div className="circle"></div>
+                      <div className="img">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="100%"
@@ -88,7 +88,7 @@ export const UserInfo = () => {
                       </div>
                     </div>
 
-                    <div class="description dark:text-white">
+                    <div className="description dark:text-white">
                       <h3 className="dark:text-white">{item.correo}</h3>
                       <h4 className="dark:text-white">Usuario</h4>
                       <p>
@@ -97,13 +97,13 @@ export const UserInfo = () => {
                       </p>
                     </div>
 
-                    <div class="contact">
+                    <div className="contact">
                       <Link to="/usuarios">crear usuario</Link>
                     </div>
                   </div>
                 </div>
-                <div class="card2 w-full border dark:text-white dark:border-none dark:bg-[#37415197]">
-                  <div class="head ">
+                <div className="card2 w-full border dark:text-white dark:border-none dark:bg-[#37415197]">
+                  <div className="head ">
                     <h1 className="m-2">
                       <span className="text-xl font-sans font-bold">
                         <span>Actividad de:</span>

@@ -31,6 +31,8 @@ export const ImportProducts = ({ idCategorias }) => {
   });
 
   if (idCategorias.length > 0) {
+    let n = null;
+    console.log(n);
   } else {
     window.location.href = "/bodega";
   }
@@ -56,7 +58,7 @@ export const ImportProducts = ({ idCategorias }) => {
       <ToastContainer />
       {productsFilter.length > 0 ? (
         <div
-          className="bg-white shadow-md border lg:mx-auto rounded-md w-[90%]
+          className="bg-white dark:bg-[#37415197] dark:border-[#777777] dark:text-white shadow-md border lg:mx-auto rounded-md w-[90%]
          lg:w-fit z-50 flex flex-col justify-center max-w-[1300px]
           2xl:max-w-screen-xl overflow-x-auto mb-4  mt-4  lg:mt-20"
         >
@@ -80,7 +82,7 @@ export const ImportProducts = ({ idCategorias }) => {
                     mx-3
                     mt-2
                     mb-4
-                    text-gray-500
+                    text-gray-500 dark:text-white
 
                   "
               >
@@ -91,7 +93,7 @@ export const ImportProducts = ({ idCategorias }) => {
             <div className="cancelar">
               <button
                 onClick={() => window.location.reload()}
-                className="bg-gray-200 mx-2 flex p-3 rounded-md"
+                className="bg-gray-200 mx-2 flex p-3 rounded-md dark:bg-[#37415197] "
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -122,8 +124,8 @@ export const ImportProducts = ({ idCategorias }) => {
                     cy="12"
                     r="9.5"
                     fill="none"
-                    stroke-linecap="round"
-                    stroke-width="3"
+                    strokeLinecap="round"
+                    strokeWidth="3"
                   >
                     <animate
                       attributeName="stroke-dasharray"
@@ -265,7 +267,7 @@ export const ImportProducts = ({ idCategorias }) => {
                           <Field
                             name="name"
                             type="text"
-                            className="border outline-none rounded-md p-2"
+                            className="border outline-none rounded-md p-2 dark:bg-transparent dark:border dark:border-[#019afa] "
                             value={product.name}
                             defaultValue={product.name}
                           />
@@ -282,7 +284,7 @@ export const ImportProducts = ({ idCategorias }) => {
                           <Field
                             name="priceCompra"
                             type="text"
-                            className="border outline-none rounded-md p-2"
+                            className="border outline-none rounded-md p-2 dark:bg-transparent dark:border dark:border-[#019afa]"
                             placeholder="Ej: 1.000"
                           />
                         </div>
@@ -298,7 +300,7 @@ export const ImportProducts = ({ idCategorias }) => {
                           <Field
                             name="priceVenta"
                             type="text"
-                            className="border outline-none rounded-md p-2"
+                            className="border outline-none rounded-md p-2 dark:bg-transparent dark:border dark:border-[#019afa]"
                             placeholder="Ej: 2.000"
                           />
                         </div>
@@ -314,7 +316,7 @@ export const ImportProducts = ({ idCategorias }) => {
                           <Field
                             name="unidad"
                             type="text"
-                            className="border outline-none rounded-md p-2"
+                            className="border outline-none rounded-md p-2 dark:bg-transparent dark:border dark:border-[#019afa]"
                             placeholder="Ej: 20"
                           />
                         </div>
@@ -336,7 +338,8 @@ export const ImportProducts = ({ idCategorias }) => {
                                 <RangePicker
                                   disabledDate={disabledDate}
                                   onChange={onChange}
-                                  className="w-full p-2 outline-none border border-white rounded-lg
+                                  color="#019afa" 
+                                  className="w-full p-2 outline-none border border-white rounded-lg dark:bg-transparent dark:border dark:border-[#019afa] dark:text-white
                     
                     focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent
                     "
@@ -357,7 +360,7 @@ export const ImportProducts = ({ idCategorias }) => {
                           <Field
                             name="stockMaximo"
                             type="text"
-                            className="border rounded-md outline-none p-2"
+                            className="border rounded-md outline-none p-2 dark:bg-transparent dark:border dark:border-[#019afa]"
                             placeholder="Ej: 23"
                           />
                         </div>
@@ -373,7 +376,7 @@ export const ImportProducts = ({ idCategorias }) => {
                           <Field
                             name="stockMinimo"
                             type="text"
-                            className="border rounded-md p-2 outline-none"
+                            className="border rounded-md p-2 outline-none dark:bg-transparent dark:border dark:border-[#019afa]"
                             placeholder="Ej: 23"
                           />
                         </div>
@@ -414,8 +417,8 @@ export const ImportProducts = ({ idCategorias }) => {
                                     cy="12"
                                     r="9.5"
                                     fill="none"
-                                    stroke-linecap="round"
-                                    stroke-width="3"
+                                    strokeLinecap="round"
+                                    strokeWidth="3"
                                   >
                                     <animate
                                       attributeName="stroke-dasharray"
@@ -495,8 +498,8 @@ export const ImportProducts = ({ idCategorias }) => {
                       cy="12"
                       r="9.5"
                       fill="none"
-                      stroke-linecap="round"
-                      stroke-width="3"
+                      strokeLinecap="round"
+                      strokeWidth="3"
                     >
                       <animate
                         attributeName="stroke-dasharray"

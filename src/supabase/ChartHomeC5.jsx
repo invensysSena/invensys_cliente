@@ -176,7 +176,7 @@ export const ChartHomeC5 = () => {
               ref={gridRef}
               localeText={AG_GRID_LOCALE_EN}
               columnDefs={columnDefs}
-              rowData={compras.map((item, i) => {
+              rowData={compras.map((item) => {
                 return {
                   _id: item._id,
                   name: item.nameProduct,

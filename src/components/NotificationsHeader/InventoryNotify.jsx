@@ -1,4 +1,4 @@
-import React, { useEffect, useState,useMemo } from "react";
+import  { useEffect, useState,useMemo } from "react";
 import { deleteNotification, getNotification } from "../../apis/ApiData";
 import moment from "moment-with-locales-es6";
 import Skeleton from "react-loading-skeleton";

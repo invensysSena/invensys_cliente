@@ -1,4 +1,3 @@
-import React from 'react'
 import { MenuLateral } from '../components/MenuLateral'
 import {DatatableProduct} from '../components/DatatableProduct'
 import {ContextProduxt} from "../hooks/context/ContextProduxt"

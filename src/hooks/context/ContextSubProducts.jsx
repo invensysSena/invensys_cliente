@@ -1,4 +1,4 @@
-import React, { useState, useContext, createContext } from "react";
+import { useState, useContext, createContext } from "react";
 import { getSubProducts, TodoFunctions } from "../../apis/ApiData";
 import { DataSubProducts } from "../../components/DataSubProducts";
 
@@ -17,7 +17,6 @@ export const ContextSubProducts = ({ children }) => {
 
   const updateSubProductsContent = async (id, data) => {
     const response = await TodoFunctions.translateProducts(data);
-    
 
     setSubProductsData(
       subProductsData.map((item) =>
