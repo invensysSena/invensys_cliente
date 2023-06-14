@@ -5,8 +5,6 @@ import {
   faBolt,
   faWandMagicSparkles,
 } from "@fortawesome/free-solid-svg-icons";
-import "./home.css";
-
 import AOS from "aos";
 import "aos/dist/aos.css";
 import "animate.css";
