@@ -26,8 +26,10 @@ import "react-lazy-load-image-component/src/effects/blur.css";
 import { ViewOne } from "../components/componentsHome/ViewOne";
 import { useMemo, useState,lazy } from "react";
 import { HomeEfectA } from "./homeAparience/HomeEfectA";
+import "./scrolfH.css"
 const LazyHomeEffect = lazy(()=>import("./homeAparience/HomeEfectA"))
 const LazyViewOne = lazy(()=>import("./homeAparience/HomeEfectA"))
+
 export const HomePage = () => {
   AOS.init({
     duration: 3000,
@@ -44,7 +46,7 @@ export const HomePage = () => {
   return (
     <>
       <div
-        className="w-full scroll-attribute overflow-x-hidden 
+        className="w-full  overflow-x-hidden 
         
         "
       >
