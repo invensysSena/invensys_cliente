@@ -283,7 +283,7 @@ export const Signup = () => {
                       href="#!"
                       className="text-[#2771E0] hover:text-blue-700 transition duration-200 ease-in-out  sm:ml-1"
                     >
-                      Inicar Sesión
+                      Iniciar Sesión
                     </span>
                   </Link>
                 </p>

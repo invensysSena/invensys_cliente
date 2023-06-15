@@ -22,7 +22,7 @@ export const DatatableInventory = () => {
   const [load, setLoad] = useState(false);
   const { getDataCategorias } = useContextCategory();
 
-  useEffect(() => {
+  useMemo(() => {
     const initial = async () => {
       await getDataCategorias();
     };
@@ -30,7 +30,7 @@ export const DatatableInventory = () => {
     initial();
   }, []);
 
-  useEffect(() => {
+  useMemo(() => {
     (async () => {
       setLoad(true);
 
@@ -40,7 +40,7 @@ export const DatatableInventory = () => {
     })();
   }, []);
 
-  console.log(".....", subViewProducts);
+
 
   // count categorias
 
@@ -409,6 +409,7 @@ export const DatatableInventory = () => {
               rowData={subViewProducts.map((item, i) => {
                 let ganancias = item.priceVenta - item.priceCompra;
                 let total = item.priceVenta * item.unidad;
+                console.log("----",total);
                 const fechaActual = new Date();
                 const diaActual = fechaActual.getDate();
                 const mesActual = fechaActual.getMonth();

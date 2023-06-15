@@ -513,7 +513,7 @@ dark:bg-gradient-to-r from-[#163b59] from-10%
                       className="bg-[#5994f5] text-white p-2 rounded-full w-full"
                       type="submit"
                     >
-                      Crear producto
+                      Actualizar producto
                     </button>
                   ) : (
                     <span

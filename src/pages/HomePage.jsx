@@ -24,8 +24,10 @@ import { Sled } from "../components/Sled";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { ViewOne } from "../components/componentsHome/ViewOne";
-import { useMemo, useState } from "react";
+import { useMemo, useState,lazy } from "react";
 import { HomeEfectA } from "./homeAparience/HomeEfectA";
+const LazyHomeEffect = lazy(()=>import("./homeAparience/HomeEfectA"))
+const LazyViewOne = lazy(()=>import("./homeAparience/HomeEfectA"))
 export const HomePage = () => {
   AOS.init({
     duration: 3000,
@@ -230,6 +232,7 @@ export const HomePage = () => {
             </section>
           </div>
         </div>
+
         <ViewOne />
         <div className="text-center fuente-t1 ">
           <span
