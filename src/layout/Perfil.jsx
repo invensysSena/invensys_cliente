@@ -1,4 +1,4 @@
-import  { useState, useMemo } from "react";
+import { useState, useMemo } from "react";
 import { MenuLateral } from "../components/MenuLateral";
 import "../assets/css/styleSlider.css";
 import { CambioFotoPerfilAdmin } from "../components/CambioFotoPerfilAdmin";
@@ -28,7 +28,7 @@ export const Perfil = () => {
       setLoading(false);
     };
     initial();
-  }, [  ]);
+  }, []);
 
   const handleBtnSpand = () => {
     setbtnSpand(true);
@@ -69,10 +69,9 @@ export const Perfil = () => {
         <CambioFotoPerfilAdmin handleImg={handleImg} />
       ) : null}
 
-      <div className="flex ">
-        <div className=" ">
-          <MenuLateral />
-        </div>
+      <div className="flex overflow-y-hidden">
+        <MenuLateral />
+
         <div
           className="bg-[#eef9fd]  w-full block  min-h-screen
 

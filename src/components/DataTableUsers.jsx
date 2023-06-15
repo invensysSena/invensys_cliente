@@ -125,7 +125,7 @@ export const DataTableUsers = () => {
 
   // detectar el modo oscuro del sistema
   const [darkMode, setDarkMode] = useState(false);
-  useEffect(() => {
+  useMemo(() => {
     if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
       setDarkMode(true);
     }
@@ -318,8 +318,8 @@ export const DataTableUsers = () => {
       <div
         className={
           darkMode
-            ? "ag-theme-alpine-dark h-[300px] w-[300px] md:w-[100%] md:h-[600px] shadow-2xl mx-auto rounded-lg overflow-hidden "
-            : " rounded-lg overflow-hidden ag-theme-alpine h-[300px] w-[300px] md:w-[100%] md:h-[600px] shadow-2xl mx-auto"
+            ? "ag-theme-alpine-dark h-[300px] w-[260px] sm:w-[300px] md:w-[100%] md:h-[600px] shadow-2xl mx-auto rounded-lg overflow-hidden "
+            : " rounded-lg overflow-hidden ag-theme-alpine h-[260px] sm:w-[300px] w-[300px] md:w-[100%] md:h-[600px] shadow-2xl mx-auto"
         }
         id="myGrid"
       >

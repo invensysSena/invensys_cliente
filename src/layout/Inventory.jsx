@@ -29,11 +29,11 @@ export const Inventory = () => {
               </p>
             </div>
 
-            <div className="container_cont lg:min-w-7xl">
+            <div className="container_cont lg:min-w-7xl overflow-y-hidden">
               <ContextInventario>
                 <ContextSubProducts>
                   <div className="flex flex-col md:flex-row gap- items-start md:items-end">
-                    <div className="w-[50%]">
+                    <div className="w-[100%]">
                       <FormInventory />
                     </div>
                     <div className="w-[90%] md:w-[43%] mb-2  ml-1">

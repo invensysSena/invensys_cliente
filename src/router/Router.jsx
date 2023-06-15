@@ -64,6 +64,7 @@ import { InventoryGeneral } from "../layout/InventoryGeneral";
 import { urlServer } from "../urlApi/url";
 import { dataIsAllowed } from "../secure/lowed.Modules";
 import { Licence } from "../security/Licence";
+import { Privaci } from "../privacy/Privaci.jsx";
 export const Router = () => {
   const [usersP, setUsersP] = useState([]);
   const token = localStorage.getItem("secure_token");
@@ -128,6 +129,7 @@ export const Router = () => {
       <UserContextData>
         <GetUsersContext>
           <Routes>
+            <Route path="/privacy" element={<Privaci />} />
             <Route path="/prueba" element={<Prueba />} />
             <Route path="*" element={<NotFount />} />
 

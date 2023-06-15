@@ -110,7 +110,7 @@ export const ListInventory = () => {
                         to={`inventory/${item._id}`}
                         className="truncate dark:bg-[#314768] dark:text-white p-3 rounded-lg bg-gray-100 "
                       >
-                        {item._id}
+                        {item.name_inventory}
                       </Link>
                     </SwiperSlide>
                   ))}

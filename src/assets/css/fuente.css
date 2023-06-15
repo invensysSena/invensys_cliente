@@ -243,6 +243,7 @@
   box-shadow: inset rgba(2, 2, 2, 0.126) 0px 25px 50px -12px;
   transition: all 200ms ease-out;
   position: relative;
+  z-index: -1;
 }
 .elementor-background-overlay {
   background-image: url(https://res.cloudinary.com/dkqp3wkbi/image/upload/v1679756405/stored/FONDOS-11_bej4wy.png);

@@ -200,7 +200,7 @@ export const DatatableInventory = () => {
 
   const totalUnidades = subViewProducts.reduce((a, b) => a + b.unidad, 0);
   const [darkMode, setDarkMode] = useState(false);
-  useEffect(() => {
+  useMemo(() => {
     if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
       setDarkMode(true);
     }

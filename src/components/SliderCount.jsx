@@ -1,4 +1,4 @@
-import  { useRef } from "react";
+import { useRef } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -21,7 +21,7 @@ const SliderCount = () => {
     progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
   };
   return (
-    <div className="max-w-7xl m-auto dark:text-white dark:bg-[#37415197] p-4">
+    <div className=" max-w-7xl m-auto dark:text-white  p-4">
       <Swiper
         spaceBetween={30}
         centeredSlides={true}

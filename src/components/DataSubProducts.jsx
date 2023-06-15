@@ -140,12 +140,12 @@ export const DataSubProducts = ({ dataInventorySubProducts, id }) => {
     );
   }, []);
 
-  const [darkMode, setDarkMode] = useState(false);
-  useEffect(() => {
-    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      setDarkMode(true);
-    }
-  }, []);
+    const [darkMode, setDarkMode] = useState(false);
+    useMemo(() => {
+      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        setDarkMode(true);
+      }
+    }, []);
   return (
     <>
       <div className="panel_opciones bg-white dark:text-white dark:bg-[#37415197] w-[90%] md:w-full md:mx-auto mt-4 mb-4  rounded-md p-2">

@@ -82,11 +82,11 @@ export const ListTrae = () => {
                       Información general de tu negocio
                     </h4>
                   </div>
-                  <div className="grid grid-cols-2 gap-4 px-2 w-full">
+                  <div className="grid overflow-y-auto h-[20rem] md:h-fit  grid-cols-1 md:grid-cols-2 gap-4 px-2 w-full">
                     <div
                       className="flex flex-col items-start justify-center rounded-2xl 
                     dark:bg-[#374151] dark:text-white
-                     bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none"
+                     bg-white bg-clip-border px-3 p-1 md:py-4 shadow-3xl  shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none"
                     >
                       <p className="text-sm text-gray-600 dark:text-white">
                         Nombre
@@ -96,7 +96,7 @@ export const ListTrae = () => {
                       </p>
                     </div>
 
-                    <div className="flex flex-col dark:bg-[#374151] dark:text-white justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
+                    <div className="flex flex-col dark:bg-[#374151] dark:text-white justify-center rounded-2xl bg-white bg-clip-border px-3 p-1 md:py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
                       <p className="text-sm text-gray-600 dark:text-white">
                         Tipo de persona
                       </p>
@@ -105,7 +105,7 @@ export const ListTrae = () => {
                       </p>
                     </div>
 
-                    <div className="flex flex-col dark:bg-[#374151] dark:text-white items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
+                    <div className="flex flex-col dark:bg-[#374151] dark:text-white items-start justify-center rounded-2xl bg-white bg-clip-border px-3 p-1 md:py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
                       <p className="text-sm text-gray-600 dark:text-white">
                         Nit
                       </p>
@@ -114,7 +114,7 @@ export const ListTrae = () => {
                       </p>
                     </div>
 
-                    <div className="flex flex-col dark:bg-[#374151] dark:text-white justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
+                    <div className="flex flex-col dark:bg-[#374151] dark:text-white justify-center rounded-2xl bg-white bg-clip-border px-3 p-1 md:py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
                       <p className="text-sm text-gray-600dark:text-white dark:text-white">
                         Identificación
                       </p>
@@ -123,7 +123,7 @@ export const ListTrae = () => {
                       </p>
                     </div>
 
-                    <div className="flex flex-col items-start dark:bg-[#374151] dark:text-white justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
+                    <div className="flex flex-col items-start dark:bg-[#374151] dark:text-white justify-center rounded-2xl bg-white bg-clip-border px-3 p-1 md:py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
                       <p className="text-sm text-gray-600 dark:text-white">
                         Correo
                       </p>
@@ -132,7 +132,7 @@ export const ListTrae = () => {
                       </p>
                     </div>
 
-                    <div className="flex flex-col justify-center dark:bg-[#374151] dark:text-white rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
+                    <div className="flex flex-col justify-center dark:bg-[#374151] dark:text-white rounded-2xl bg-white bg-clip-border px-3 p-1 md:py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
                       <p className="text-sm text-gray-600 dark:text-white">
                         Telefono
                       </p>
@@ -140,7 +140,7 @@ export const ListTrae = () => {
                         {data[0].telefono}
                       </p>
                     </div>
-                    <div className="flex flex-col dark:bg-[#374151] dark:text-white justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
+                    <div className="flex flex-col dark:bg-[#374151] dark:text-white justify-center rounded-2xl bg-white bg-clip-border px-3 p-1 md:py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
                       <p className="text-sm text-gray-600 dark:text-white">
                         Pais
                       </p>
@@ -148,7 +148,7 @@ export const ListTrae = () => {
                         {data[0].pais}
                       </p>
                     </div>
-                    <div className="flex flex-col dark:bg-[#374151] dark:text-white justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
+                    <div className="flex flex-col dark:bg-[#374151] dark:text-white justify-center rounded-2xl bg-white bg-clip-border px-3 p-1 md:py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
                       <p className="text-sm text-gray-600 dark:text-white">
                         Ciudad
                       </p>
@@ -156,7 +156,7 @@ export const ListTrae = () => {
                         {data[0].ciudad}
                       </p>
                     </div>
-                    <div className="flex flex-col dark:bg-[#374151] dark:text-white justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
+                    <div className="flex flex-col dark:bg-[#374151] dark:text-white justify-center rounded-2xl bg-white bg-clip-border px-3 p-1 md:py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
                       <p className="text-sm text-gray-600 dark:text-white">
                         Departameto
                       </p>
@@ -164,7 +164,7 @@ export const ListTrae = () => {
                         {data[0].departamento}
                       </p>
                     </div>
-                    <div className="flex flex-col dark:bg-[#374151] dark:text-white justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
+                    <div className="flex flex-col dark:bg-[#374151] dark:text-white justify-center rounded-2xl bg-white bg-clip-border px-3 p-1 md:py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
                       <p className="text-sm text-gray-600 dark:text-white">
                         Dirección
                       </p>

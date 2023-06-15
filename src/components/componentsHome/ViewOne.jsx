@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 
 import analityc from "../../assets/img/analityc.jpg";
 import estadisc from "../../assets/img/estadisc.png";
-import darkEstadist from "../../assets/img/darkestadis.png";
+import darkEstadist from "../../assets/img/darkestadist.png";
 import darkBodega from "../../assets/img/bodegDark.png";
 
 export const ViewOne = () => {
@@ -18,10 +18,10 @@ export const ViewOne = () => {
     <div>
       <div
         className="container_img justify-between  
-         flex gap-8 mt-[8rem] max-w-[1400px] mx-auto"
+         flex gap-8 mt-[8rem] flex-col lg:flex-row items-center max-w-[1400px] mx-auto"
       >
-        <div className="listImagenes flex flex-col gap-4">
-          <div className="span flex">
+        <div className="listImagenes flex flex-col gap-4 items-center ">
+          <div className="span flex justify-center mx-auto tex-center">
             <span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -35,90 +35,92 @@ export const ViewOne = () => {
                 />
               </svg>
             </span>
-            <span className="dark:text-white">
+            <span className="dark:text-white ">
               Crea bodegas de forma dinamica, expandiendo tu negocio en
               diferentes lugares
             </span>
           </div>
-          <div
-            className="item1 rounded-lg  
+          <div className="mx-2 gap-2 flex-col flex ">
+            <div
+              className="item1 rounded-lg  
                 
-                w-[28rem] flex  items-center shadow-xl  dark:border dark:border-[#777777]
+              w-full  md:w-[28rem] flex  items-center shadow-xl  dark:border dark:border-[#777777]
                 "
-            style={{ boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px" }}
-          >
-            <div className="icon">
-              <LazyLoadImage
-                src="https://dg8krxphbh767.cloudfront.net/exercises/allergies.svg"
-                alt=""
-              />
+              style={{ boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px" }}
+            >
+              <div className="icon">
+                <LazyLoadImage
+                  src="https://dg8krxphbh767.cloudfront.net/exercises/allergies.svg"
+                  alt=""
+                />
+              </div>
+              <div className="title">
+                <h2 className="font-bold m-1 dark:text-white">
+                  Bodega de distribución
+                </h2>
+                <p className="m-2 dark:text-white">
+                  {" "}
+                  clasificar y distribuye productos a diferentes destinos.,
+                  zonas de preparación de pedidos y sistemas de gestión de
+                  inventario para facilitar el flujo eficiente de productos.
+                </p>
+              </div>
             </div>
-            <div className="title">
-              <h2 className="font-bold m-1 dark:text-white">
-                Bodega de distribución
-              </h2>
-              <p className="m-2 dark:text-white">
-                {" "}
-                clasificar y distribuye productos a diferentes destinos., zonas
-                de preparación de pedidos y sistemas de gestión de inventario
-                para facilitar el flujo eficiente de productos.
-              </p>
-            </div>
-          </div>
-          <div
-            className="item1 rounded-lg  
-                
-                w-[28rem] flex  items-center dark:border dark:border-[#777777]
+            <div
+              className="item1 rounded-lg  
+                w-full
+                md:w-[28rem] flex  items-center dark:border dark:border-[#777777]
                 "
-            style={{ boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px" }}
-          >
-            <div className="icon">
-              <LazyLoadImage
-                src="https://dg8krxphbh767.cloudfront.net/exercises/allergies.svg"
-                alt=""
-              />
+              style={{ boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px" }}
+            >
+              <div className="icon">
+                <LazyLoadImage
+                  src="https://dg8krxphbh767.cloudfront.net/exercises/allergies.svg"
+                  alt=""
+                />
+              </div>
+              <div className="title">
+                <h2 className="font-bold m-1 dark:text-white">
+                  Bodega de almacenamiento
+                </h2>
+                <p className="m-2 dark:text-white">
+                  guardaa y organizar diversos tipos de productos o mercancías.
+                  Puedes utilizarlo para almacenar una amplia gama de productos
+                  o artículos,
+                </p>
+              </div>
             </div>
-            <div className="title">
-              <h2 className="font-bold m-1 dark:text-white">
-                Bodega de almacenamiento
-              </h2>
-              <p className="m-2 dark:text-white">
-                guardaa y organizar diversos tipos de productos o mercancías.
-                Puedes utilizarlo para almacenar una amplia gama de productos o
-                artículos,
-              </p>
-            </div>
-          </div>
-          <div
-            className="item1 rounded-lg  
-                
-                w-[28rem] flex  items-center dark:border dark:border-[#777777]
+            <div
+              className="item1 rounded-lg  
+                w-full 
+                md:w-[28rem] flex  items-center dark:border dark:border-[#777777]
                 "
-            style={{ boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px" }}
-          >
-            <div className="icon mx-1">
-              <LazyLoadImage
-                src="https://dg8krxphbh767.cloudfront.net/exercises/allergies.svg"
-                alt=""
-              />
-            </div>
-            <div className="title">
-              <h2 className="font-bold m-1 dark:text-white">Más</h2>
-              <p className="dark:text-white">
-                utilizada para almacenar documentos, registros y archivos
-                físicos. Suelen contar con sistemas de organización, estanterías
-                y medidas de seguridad para preservar y proteger la información
-                almacenada.
-              </p>
+              style={{ boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px" }}
+            >
+              <div className="icon mx-1">
+                <LazyLoadImage
+                  src="https://dg8krxphbh767.cloudfront.net/exercises/allergies.svg"
+                  alt=""
+                />
+              </div>
+              <div className="title">
+                <h2 className="font-bold m-1 dark:text-white">Más</h2>
+                <p className="dark:text-white">
+                  utilizada para almacenar documentos, registros y archivos
+                  físicos. Suelen contar con sistemas de organización,
+                  estanterías y medidas de seguridad para preservar y proteger
+                  la información almacenada.
+                </p>
+              </div>
             </div>
           </div>
         </div>
-        <div className="img_scan">
+        <div className="img_scan mx-1">
           {darkMode ? (
             <LazyLoadImage
               src={darkBodega}
               alt=""
-              className="w-[1000px] rounded-lg"
+              className=" md:w-[1000px] rounded-lg"
               data-aos="fade-left"
               style={{ boxShadow: "#019afa5a 0px 8px 24px  " }}
             />
@@ -133,7 +135,7 @@ export const ViewOne = () => {
           )}
         </div>
       </div>
-      <div className="esta justify-center flex mt-[3rem]">
+      <div className="esta justify-center flex mt-[3rem] mx-1">
         {darkMode ? (
           <LazyLoadImage
             src={darkEstadist}
@@ -151,22 +153,6 @@ export const ViewOne = () => {
             style={{ boxShadow: "#019afa5a 0px 8px 24px  " }}
           />
         )}
-      </div>
-      <div
-        className="let-Vontend w-[50rem] items-center flex mx-auto justify-between border-2 shadow-md mt-[3rem] rounded-md
-         shadow-[#019afa66] border-[#019afa]"
-      >
-        <span className="text-[#019afa] font-bold my-4  text-xl mx-2">
-          Invensys
-        </span>
-        <span className="w-[30rem] text-gray-600 text-lg dark:text-white">
-          Conoce mas sobre invensys y los servicios que ofrecen para ti
-        </span>
-        <span>
-          <a href="/" className="text-[#019afa] mx-1 underline">
-            Ver más
-          </a>
-        </span>
       </div>
     </div>
   );

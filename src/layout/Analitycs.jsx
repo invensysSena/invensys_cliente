@@ -7,7 +7,7 @@ export const Analitycs = () => {
   const [open, setOpen] = useState(false);
   return (
     <>
-      <div className="flex">
+      <div className="flex overflow-y-hidden">
         <MenuLateral />
         <div
           className=" w-full  block bg-[#f4f8ffdd]

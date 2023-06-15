@@ -1,4 +1,4 @@
-import  { useRef, useState, useCallback, useEffect } from "react";
+import { useRef, useState, useCallback, useEffect } from "react";
 import moment from "moment-with-locales-es6";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
@@ -16,6 +16,7 @@ import { useContextProviders } from "../hooks/context/ContextProveedores";
 import OptionsProviders from "./OptionsProviders";
 
 import { CreateProveedor } from "./providers/CreateProveedor";
+import { useMemo } from "react";
 moment.locale("es");
 
 export const DatatableProviders = () => {
@@ -28,7 +29,6 @@ export const DatatableProviders = () => {
 
   const defaultColDef = ChackSelection();
   const gridRef = useRef();
-
 
   const [columnDefs, setColumnDefs] = useState([
     {
@@ -105,12 +105,12 @@ export const DatatableProviders = () => {
     );
   }, []);
 
-   const [darkMode, setDarkMode] = useState(false);
-   useEffect(() => {
-     if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-       setDarkMode(true);
-     }
-   }, []);
+  const [darkMode, setDarkMode] = useState(false);
+  useMemo(() => {
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      setDarkMode(true);
+    }
+  }, []);
 
   return (
     <>

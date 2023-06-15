@@ -1,4 +1,4 @@
-import  { useRef, useState, useCallback, useEffect } from "react";
+import { useRef, useState, useCallback, useEffect } from "react";
 import moment from "moment-with-locales-es6";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
@@ -14,33 +14,26 @@ import { setPrinterFriendly } from "./ChackSelection";
 import { ChackSelection } from "./ChackSelection";
 import { setNormal } from "./ChackSelection";
 
-import { TodoFunctions} from "../apis/ApiData";
+import { TodoFunctions } from "../apis/ApiData";
 import { Link, Outlet } from "react-router-dom";
 import OptionVentas from "./OptionVentas";
 moment.locale("es");
 
 export const DataTablePedido = () => {
-
-  const [data, setData] = useState([])
- 
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     const initial = async () => {
-        const response = await TodoFunctions.getPedidos()
-      
-        setData(response.data.pedidosproveedor);
-    
-        
-      };
-      
-      initial();
-    }, []);
-   
-    
+      const response = await TodoFunctions.getPedidos();
+
+      setData(response.data.pedidosproveedor);
+    };
+
+    initial();
+  }, []);
+
   const defaultColDef = ChackSelection();
   const gridRef = useRef();
-
-
 
   const [columnDefs, setColumnDefs] = useState([
     {
@@ -60,15 +53,15 @@ export const DataTablePedido = () => {
     },
     {
       headerName: "Mejores ventas",
-      field: 'change',
-      cellRenderer: 'agSparklineCellRenderer',
+      field: "change",
+      cellRenderer: "agSparklineCellRenderer",
       cellRendererParams: {
         sparklineOptions: {
-          type: 'bar',
-          fill: '#019afa',
-          stroke: '#91cc75',
+          type: "bar",
+          fill: "#019afa",
+          stroke: "#91cc75",
           highlightStyle: {
-            fill: '#5994f5',
+            fill: "#5994f5",
           },
           valueAxisDomain: [0, 1],
           paddingOuter: 0,
@@ -146,7 +139,6 @@ export const DataTablePedido = () => {
       setDarkMode(true);
     }
   }, []);
-
 
   return (
     <>
@@ -325,8 +317,8 @@ export const DataTablePedido = () => {
           <div
             className={
               darkMode
-                ? "ag-theme-alpine-dark h-[300px] w-[300px] md:w-[100%] md:h-[600px] shadow-2xl mx-auto rounded-lg overflow-hidden "
-                : " rounded-lg overflow-hidden ag-theme-alpine h-[300px] w-[300px] md:w-[100%] md:h-[600px] shadow-2xl mx-auto"
+                ? "ag-theme-alpine-dark h-[300px] w-[80%] sm:w-[550px] lg:w-[100%] md:w-[90%] md:h-[600px] shadow-2xl mx-auto rounded-lg overflow-hidden "
+                : "  h-[300px] w-[90%] sm:w-[550px] lg:w-[90%] md:w-[90%] md:h-[600px] shadow-2xl mx-auto rounded-lg overflow-hidden "
             }
             id="myGrid"
           >

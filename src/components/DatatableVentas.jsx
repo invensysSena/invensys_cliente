@@ -316,8 +316,8 @@ export const DatatableVentas = () => {
           <div
             className={
               darkMode
-                ? "ag-theme-alpine-dark h-[300px] w-[300px] md:w-[100%] md:h-[600px] shadow-2xl mx-auto rounded-lg overflow-hidden "
-                : " rounded-lg overflow-hidden ag-theme-alpine h-[300px] w-[300px] md:w-[100%] md:h-[600px] shadow-2xl mx-auto"
+                ? "ag-theme-alpine-dark h-[300px] w-[80%] sm:w-[550px] lg:w-[100%] md:w-[90%] md:h-[600px] shadow-2xl mx-auto rounded-lg overflow-hidden "
+                : "  h-[300px] w-[90%] sm:w-[550px] lg:w-[90%] md:w-[90%] md:h-[600px] shadow-2xl mx-auto rounded-lg overflow-hidden "
             }
             id="myGrid"
           >

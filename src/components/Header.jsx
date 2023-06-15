@@ -139,7 +139,9 @@ export const Header = () => {
                           icon={faHome}
                           className="text-gray-400 text-xl"
                         />
-                        <span className="ml-2 font-medium">Inicio</span>
+                        <span className="ml-2 font-medium text-[18px]">
+                          Inicio
+                        </span>
                       </span>
 
                       <FontAwesomeIcon
@@ -159,7 +161,7 @@ export const Header = () => {
                           icon={faUser}
                           className="text-gray-400 text-xl "
                         />{" "}
-                        <span className="ml-2">Iniciar sesión</span>
+                        <span className="ml-2 text-[18px]">Iniciar sesión</span>
                       </span>
 
                       <FontAwesomeIcon
@@ -178,7 +180,9 @@ export const Header = () => {
                           icon={faCircleUser}
                           className="text-gray-400 text-xl  "
                         />{" "}
-                        <span className="ml-2 font-medium">Crear cuenta</span>
+                        <span className="ml-2 font-medium text-[18px]">
+                          Crear cuenta
+                        </span>
                       </span>
                       <FontAwesomeIcon
                         icon={faAngleRight}
@@ -192,7 +196,7 @@ export const Header = () => {
           </div>
           <div className="sec dark:bg-[#1e293b]">
             <div className="  dark:bg-[#1e293b]">
-              <h2 className="my-3 mx-2 block dark:text-white text-xl">Más</h2>
+              <h2 className="my-3 mx-2 block dark:text-white text-xl ">Más</h2>
               <hr className="border-[#1876F2]" />
               <div className="list">
                 <ul>
@@ -207,7 +211,7 @@ export const Header = () => {
                           icon={faLayerGroup}
                           className="text-gray-400 text-xl"
                         />{" "}
-                        <span className="ml-2 font-medium dark:text-white">
+                        <span className="ml-2 font-medium dark:text-white text-[18px]">
                           Quienes somos
                         </span>{" "}
                       </span>
@@ -228,7 +232,7 @@ export const Header = () => {
                           icon={faCloud}
                           className="text-gray-400"
                         />{" "}
-                        <span className=" ml-2 font-medium dark:text-white">
+                        <span className=" ml-2 font-medium dark:text-white text-[18px]">
                           Servicios
                         </span>
                       </span>
@@ -249,7 +253,7 @@ export const Header = () => {
                           icon={faHeart}
                           className="text-gray-400 text-xl"
                         />
-                        <span className=" ml-2 font-medium dark:text-white">
+                        <span className=" ml-2 font-medium dark:text-white text-[18px]">
                           {" "}
                           Invensys
                         </span>{" "}
@@ -266,7 +270,9 @@ export const Header = () => {
           </div>
           <div className="sec">
             <div className="t">
-              <h2 className="my-2 mx-2 block dark:text-white text-xl">Ayuda</h2>
+              <h2 className="my-2 mx-2 block dark:text-white text-xl text-[18px]">
+                Ayuda
+              </h2>
               <hr className="border-[#1876F2]" />
               <div className="list">
                 <ul>
@@ -284,7 +290,7 @@ export const Header = () => {
                           icon={faAddressBook}
                           className="text-gray-400 text-xl "
                         />{" "}
-                        <span className=" ml-2 font-medium dark:text-white">
+                        <span className=" ml-2 font-medium dark:text-white text-[18px]">
                           {" "}
                           Contáctanos
                         </span>
@@ -305,7 +311,7 @@ export const Header = () => {
                           icon={faHandshake}
                           className="text-gray-400 text-xl "
                         />{" "}
-                        <span className=" ml-2 font-medium dark:text-white">
+                        <span className=" ml-2 font-medium dark:text-white text-[18px]">
                           Servicio al cliente
                         </span>
                       </span>
@@ -326,7 +332,7 @@ export const Header = () => {
                           icon={faGear}
                           className="text-gray-400 text-xl "
                         />{" "}
-                        <span className=" ml-2 font-medium dark:text-white">
+                        <span className=" ml-2 font-medium dark:text-white text-[18px]">
                           Ajustes
                         </span>
                       </span>

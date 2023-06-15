@@ -24,12 +24,20 @@ import { Sled } from "../components/Sled";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { ViewOne } from "../components/componentsHome/ViewOne";
+import { useMemo, useState } from "react";
+import { HomeEfectA } from "./homeAparience/HomeEfectA";
 export const HomePage = () => {
   AOS.init({
     duration: 3000,
   });
   document.body.style = "overflow-x: hidden";
   // webkit-scrollbar
+  const [darkMode, setDarkMode] = useState(false);
+  useMemo(() => {
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      setDarkMode(true);
+    }
+  }, []);
 
   return (
     <>
@@ -90,9 +98,10 @@ export const HomePage = () => {
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 1000 100"
               preserveAspectRatio="none"
+              fill="#18324f"
             >
               <path
-                className="elementor-shape-fill"
+                className={darkMode ? "transparent" : "elementor-shape-fill"}
                 d="M500,97C126.7,96.3,0.8,19.8,0,0v100l1000,0V1C1000,19.4,873.3,97.8,500,97z"
               ></path>
             </svg>{" "}
@@ -287,6 +296,9 @@ export const HomePage = () => {
             />
           </div>
         </div>
+        <div className="slid">
+          <HomeEfectA />
+        </div>
         <div className="text-center fuente-t1 ">
           <span className="text-2xl md:text-6xl dark:text-white">
             Comodo para que cualquier persona pueda utilizarlo sin dificultad
@@ -294,66 +306,32 @@ export const HomePage = () => {
         </div>
         {/* ? section cards  */}
         <div className="block md:hidden">
-          <h2 className="w-[90%] mb-5  mx-auto font-bold text-2xl">
+          <h2 className="w-[90%] mb-5  mx-auto font-bold text-2xl dark:text-white">
             Información sobre <span className="text-[#3498db]">Invensys</span>{" "}
           </h2>
           <div className="cards">
-            <section className="bg-white border mb-6 shadow-md mt-2 w-[90%] mx-auto rounded-lg p-2 ">
-              <h2 className="text-xl font-bold">
+            <section className="bg-white dark:border-[#777777] dark:bg-[#37415197] border mb-6 shadow-md mt-2 w-[90%] mx-auto rounded-lg p-2 ">
+              <h2 className="text-xl font-bold dark:text-white">
                 Manejo de tu inventario mas facil y comodo
               </h2>
-              <p>
+              <p className="dark:text-white">
                 Con invensys podra llevar un control permanente de todos los
                 productos, necesidades de abastecimiento, reporte de
                 vencimientos y rotaciond e sus productos.
               </p>
             </section>
-            <section className="bg-white border shadow-md mb-4 mt-2 w-[90%] mx-auto rounded-lg p-2 ">
-              <h2 className="text-xl font-bold">
+            <section className="dark:border-[#777777] dark:bg-[#37415197] bg-white border shadow-md mb-4 mt-2 w-[90%] mx-auto rounded-lg p-2 ">
+              <h2 className="text-xl font-bold dark:text-white">
                 Estadisticas y informes de tu negocio
               </h2>
-              <p>
+              <p className="dark:text-white">
                 Representación de graficas, ayudando un mejor analisis de tu
                 negocio para que puedas mejorar y que tu negocio cresca más
               </p>
             </section>
           </div>
         </div>
-        <div className="max-w-7xl mx-auto justify-center">
-          <div className="flex flex-col w-60 md:w-full  mx-auto sm:flex-row justify-center">
-            <div className="  sm:min-w-60 mx-2">
-              <Link
-                to={"/login"}
-                className="
-           md:px-4 py-4 flex items-center text-sm md:text-xl justify-between rounded-xl  text-white
-            bg-black  dark:bg-[#019afa] duration-200 w-full  mb-2 md:mb-12  truncate
-             transition  ease-in-out drop-shadow-md shadow-xl hover:shadow-gray-500/50"
-              >
-                <span className="mt-1 ml-1">Crear una cuenta en stored</span>
-                <FontAwesomeIcon
-                  className="my-1 mx-2 text-xl"
-                  icon={faChevronRight}
-                />{" "}
-              </Link>
-            </div>
-            <div className="sm:min-w-60">
-              <Link
-                to={"/signup"}
-                className=" px-4 py-3.5 flex items-center rounded-xl
-             w-full truncate text-sm md:text-xl justify-between
-            text-black  dark:bg-[#019afa] hover:bg-transparent  border-2 shadow-lg hover:shadow-gray-500/50
-             border-black dark:border-[#019afa] dark:text-white mb-1 md:mb-12
-             transition duration-150 ease-in-out drop-shadow-md  "
-              >
-                <span className="mt-1 font-bold">Iniciar sesión en stored</span>
-                <FontAwesomeIcon
-                  className="my-1 mx-2 text-xl"
-                  icon={faChevronRight}
-                />{" "}
-              </Link>
-            </div>
-          </div>
-        </div>
+
         <SliderCount />
         <div className="img">{/* <CardHomeFine /> */}</div>
 

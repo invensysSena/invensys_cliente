@@ -5,11 +5,9 @@ import { Outlet } from "react-router-dom";
 import { TodoFunctions } from "../apis/ApiData";
 import "../assets/css/fuente.css";
 export const Notification = () => {
-
   useMemo(() => {
     (async () => {
-    await TodoFunctions.deleteEstadoNotificacion();
-      
+      await TodoFunctions.deleteEstadoNotificacion();
     })();
   }, []);
 
@@ -18,7 +16,7 @@ export const Notification = () => {
       <div className="flex">
         <MenuLateral />
         <div
-          className=" w-full grid place-content-center h-screen
+          className=" w-full grid place-content-center my-2 min-h-screen
         bg-[#f4f8ffdd]
         
         dark:bg-gradient-to-r from-[#163b59] from-10%
@@ -36,7 +34,7 @@ export const Notification = () => {
               Notificaciones
             </h2>
             <hr />
-            <div className="sticky top-0 bg-white dark:bg-[#374151] z-50">
+            <div className="sticky top-0 bg-white dark:bg-[#374151] z-50 h-fit">
               <NotifyHeader />
             </div>
             <Outlet />

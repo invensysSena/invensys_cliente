@@ -170,7 +170,7 @@ export const UsersDasboard = () => {
               {spiner === true ? (
                 <></>
               ) : (
-                <div className="content-webkit  dark:bg-[#37415197]  overflow-x-auto">
+                <div className="content-webkit  dark:bg-[#37415197]  overflow-x-auto w-[16rem] md:w-full">
                   <h3 className="m-4 text-gray-500 dark:text-[#019afa]  ">
                     Informacion general
                   </h3>
