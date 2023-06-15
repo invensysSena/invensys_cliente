@@ -1,3 +1,5 @@
+import Loadable from "react-loadable";
+
 import { useState, useMemo } from "react";
 import { Route, Routes } from "react-router-dom";
 import { AuthUser } from "../components/AuthUser.jsx";
@@ -65,6 +67,8 @@ import { urlServer } from "../urlApi/url";
 import { dataIsAllowed } from "../secure/lowed.Modules";
 import { Licence } from "../security/Licence";
 import { Privaci } from "../privacy/Privaci.jsx";
+
+
 export const Router = () => {
   const [usersP, setUsersP] = useState([]);
   const token = localStorage.getItem("secure_token");

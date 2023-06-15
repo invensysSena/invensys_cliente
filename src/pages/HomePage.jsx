@@ -1,6 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faChevronRight,
   faStar,
   faBolt,
   faWandMagicSparkles,
@@ -24,11 +23,9 @@ import { Sled } from "../components/Sled";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { ViewOne } from "../components/componentsHome/ViewOne";
-import { useMemo, useState,lazy } from "react";
+import { useMemo, useState } from "react";
 import { HomeEfectA } from "./homeAparience/HomeEfectA";
-import "./scrolfH.css"
-const LazyHomeEffect = lazy(()=>import("./homeAparience/HomeEfectA"))
-const LazyViewOne = lazy(()=>import("./homeAparience/HomeEfectA"))
+import "./scrolfH.css";
 
 export const HomePage = () => {
   AOS.init({
@@ -139,8 +136,9 @@ export const HomePage = () => {
             />
           </div>
           <div
-            className="w-[93%] mx:auto md:w-96 relative shadow-2xl dark:text-white dark:bg-[#37415197] bg-white rounded-md border p-10 "
+            className="w-[93%]  mx:auto md:w-96 relative shadow-2xl dark:text-white dark:bg-[#37415197] bg-white rounded-md border p-10 "
             data-aos="fade-left"
+            style={{ zIndex: -1 }}
           >
             <div className="cir1 h-4 m-1 w-4 absolute bg-red-500 top-0 left-0 rounded-full"></div>
             <div className="cir2 h-4 m-1 w-4 absolute bg-[#fbbf24] top-0 left-6 rounded-full"></div>
