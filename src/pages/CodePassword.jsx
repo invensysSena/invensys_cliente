@@ -6,6 +6,8 @@ import { usePostAuth } from "../hooks/context/UserContextData";
 import { faAngleLeft, faUser } from "@fortawesome/free-solid-svg-icons";
 import "../index.css";
 import { ToastContainer, toast } from "react-toastify";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import logo from "../assets/logo/logo peque.png";
 function CodePassword() {
   const { verifyCodeUser } = usePostAuth();
 
@@ -106,7 +108,11 @@ dark:bg-gradient-to-r from-[#163b59] from-10%
               <span className="pl-2 text-gray-700 dark:text-white">Volver</span>
             </Link>
             <span className="text-2xl text-[#0099FF] mx-2 font-bold ">
-              Stored
+            <div className="self_t lg:mr-4">
+            <Link to="/">
+              <LazyLoadImage src={logo} alt="" width={70} className="py-1" />
+            </Link>
+          </div>
             </span>
           </div>
           <div className="flex items-center">

@@ -11,7 +11,8 @@ import {
 import "../index.css";
 import { ToastContainer, toast } from "react-toastify";
 import { Formik, Field, Form, ErrorMessage } from "formik";
-
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import logo from "../assets/logo/logo peque.png";
 function RecoveryPass() {
   const { recoveryPasssword } = usePostAuth();
   const [loading, setLoading] = useState(false);
@@ -36,7 +37,13 @@ function RecoveryPass() {
             />
             <span className="pl-2 text-gray-700 dark:text-white">Volver</span>
           </Link>
-          <span className="text-2xl text-[#0099FF] mx-2 font-bold ">Stored</span>
+          <span className="text-2xl text-[#0099FF] mx-2 font-bold ">
+          <div className="self_t lg:mr-4">
+            <Link to="/">
+              <LazyLoadImage src={logo} alt="" width={70} className="py-1" />
+            </Link>
+          </div>
+          </span>
         </div>
         <div className="flex items-center">
           <span className="mx-2 hidden sm:block">

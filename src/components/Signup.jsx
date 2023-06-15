@@ -44,7 +44,7 @@ export const Signup = () => {
 
       window.location.href = "/perfil";
     } else {
-      toast.error("Hubo un error al crear el administrador", {
+      toast.error("Hubo un error al iniciar sesion con tu cuenta de google, intenta nuevamente", {
         position: toast.POSITION.TOP_RIGHT,
         theme: "dark",
       });
