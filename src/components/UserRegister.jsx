@@ -64,7 +64,10 @@ export const UserRegister = ({estado=false }) => {
                 .required("El campo no puede estar vacio"),
               password: Yup.string()
                 .required("El campo no puede estar vacio")
-                .min(6, "Debe tener mas de 6 caracteres"),
+                .min(6, "Debe tener mas de 6 caracteres")
+                .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[%$#@])[A-Za-z\d%$#@]{6,}$/,
+                    "Debe incluir al menos una letra mayuscula, un numero y un caracter especial %$#@"
+                  ),
             })}
             onSubmit={async (values) => {
               let response = await UserRegister(values);
