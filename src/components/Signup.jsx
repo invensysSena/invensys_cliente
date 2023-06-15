@@ -21,9 +21,37 @@ import { Link, useNavigate } from "react-router-dom";
 export const Signup = () => {
   const [typeInput, setTypeInput] = useState(true);
 
-  const { getPostRegister } = usePostAuth();
+  const { getPostRegister,getPostLoginAuthGoogle  } = usePostAuth();
 
   const Navigate = useNavigate();
+  const setDataGoogl = async (data) => {
+    const { email, name, picture } = data;
+    const dataGoogle = {
+      email,
+      name,
+      picture,
+    };
+    const response = await getPostLoginAuthGoogle(dataGoogle);
+
+    if (response.status === 200) {
+      let getData = response.data;
+      localStorage.setItem("secure_token", getData.token);
+      localStorage.setItem("auth_cuenta", getData.auth);
+      localStorage.setItem("response_auth", getData.message);
+      localStorage.setItem("perfil_rol", getData.rol);
+      localStorage.setItem("type", getData.rol);
+      setSpiner(!spiner);
+
+      window.location.href = "/perfil";
+    } else {
+      toast.error("Hubo un error al crear el administrador", {
+        position: toast.POSITION.TOP_RIGHT,
+        theme: "dark",
+      });
+      setSpiner(true);
+    }
+  }
+  
   return (
     <>
       <ToastContainer />
@@ -65,18 +93,19 @@ export const Signup = () => {
                                 p-2 m-2 flex items-center justify-center rounded"
               >
                 <div className="p ml-1">
-                  <GoogleLogin
-                    onSuccess={(credentialResponse) => {
-                      jwt_decode(credentialResponse.credential);
-                    }}
-                    onError={() => {}}
-                    useOneTap
-                    locale
-                    type="classic"
-                    shape="pill"
-                    theme="filled_black"
-                    logo_alignment="left"
-                  />
+                <GoogleLogin
+                      onSuccess={(credentialResponse) => {
+                        let decode = jwt_decode(credentialResponse.credential);
+                        setDataGoogl(decode);
+                      }}
+                      onError={() => {}}
+                      useOneTap
+                      locale
+                      type="standard"
+                      shape="pill"
+                      theme="filled_black"
+                      logo_alignment="left"
+                    />
                 </div>
               </div>
             </div>
@@ -84,7 +113,8 @@ export const Signup = () => {
               <p className="text-center mx-4 mb-0 dark:text-white">O</p>
             </div>
             <Formik
-              initialValues={{ email: "", password: "" }}
+              initialValues={{ email: "", password: "", toggle: false,
+              checked: []}}
               validationSchema={Yup.object({
                 email: Yup.string()
                   .email("El email no es valido")
@@ -97,6 +127,8 @@ export const Signup = () => {
                   ),
               })}
               onSubmit={async (values) => {
+                console.log(values);
+                if(values.toggle === false) return toast.info("Acepta terminos y condiciones para continuar")
                 let response = await getPostRegister(values);
                 if (response.status === 200) {
                   await toast.success("Usuario creado exitosamente!", {
@@ -235,7 +267,7 @@ export const Signup = () => {
                   </button>
                 </div>
                 <div className="permisos   mt-2 ml-3">
-                  <Field type="checkbox" name="toggle" className="text-xl" />
+                <Field type="checkbox" name="toggle" />
                   <Link
                     to="/privacy"
                     className="mx-2  text-slate-900 dark:text-white hover:underline overflow-hidden

@@ -96,6 +96,7 @@ export const AuthUser = () => {
                   initialValues={{
                     email: "",
                     password: "",
+                   
                   }}
                   validationSchema={Yup.object({
                     email: Yup.string()
@@ -105,7 +106,9 @@ export const AuthUser = () => {
                       "El campo no puede estar vacio"
                     ),
                   })}
+                  
                   onSubmit={async (values) => {
+                    
                     setSpiner(false);
                     let response = await getPostLogin(values);
                     if (
@@ -401,21 +404,7 @@ export const AuthUser = () => {
                       )}
                     </div>
 
-                    <div className="permisos  mx-2 mt-2">
-                      <Field
-                        type="checkbox"
-                        name="toggle"
-                        className="text-xl"
-                      />
-                      <Link
-                        to="/privacy"
-                        className="mx-2 dark:text-[#0099FF]  text-slate-900 hover:underline overflow-hidden
-                                "
-                      >
-                        Acepto términos y condiciones
-                      </Link>
-                    </div>
-
+                    
                     <div
                       className="ajuste-cuenta   flex justify-start mt-4 mx-2 mb-2
                             "

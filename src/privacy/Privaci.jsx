@@ -1,17 +1,17 @@
 export const Privaci = () => {
   return (
     <div>
-      <div className="my-2 mx-1">
+      <div className="my-12 mx-1">
         <div className=" md:w-[40rem] mx-auto border dark:border-[#777777] dark:bg-[#37415197] container  rounded-md shadow-md">
           <section className="mx-2 my-4">
             <h1 className="dark:text-white mx-1 my-4 text-xl block">
               Términos y condiciones
             </h1>
             <p className="dark:text-white">
-              Invensy es un sistema de inventarios que ofrece a sus usuarios
+              Invensys es un sistema de inventarios que ofrece a sus usuarios
               información sobre distintos tipos de servicios
               (Usuarios,Bodegas,Inventario, etc.), así como la posibilidad de
-              adquirirlos. Invensy no es un proveedor de servicios y no ofrece
+              adquirirlos. Invensys no es un proveedor de servicios y no ofrece
             </p>
           </section>
           <section className="mx-2 my-4">
