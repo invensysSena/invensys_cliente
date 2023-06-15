@@ -40,7 +40,7 @@ export const Signup = () => {
       localStorage.setItem("response_auth", getData.message);
       localStorage.setItem("perfil_rol", getData.rol);
       localStorage.setItem("type", getData.rol);
-      setSpiner(!spiner);
+     
 
       window.location.href = "/perfil";
     } else {
@@ -48,7 +48,7 @@ export const Signup = () => {
         position: toast.POSITION.TOP_RIGHT,
         theme: "dark",
       });
-      setSpiner(true);
+      
     }
   }
   
