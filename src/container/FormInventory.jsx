@@ -36,8 +36,8 @@ export const FormInventory = () => {
                   description: "",
                 }}
                 validationSchema={Yup.object({
-                  name_inventory: Yup.string().required("Rquerido"),
-                  description: Yup.string().required("requerido"),
+                  name_inventory: Yup.string().required("Requerido"),
+                  description: Yup.string().required("Requerido"),
                 })}
                 onSubmit={async (values) => {
                   loading(true);
@@ -45,7 +45,7 @@ export const FormInventory = () => {
                     const data = await PostInventario(values);
                     loading(false);
                     if (data.status === 200) {
-                      toast.success("Inventario creado", {
+                      toast.success("Bodega creada con exito", {
                         position: "top-right",
                         autoClose: 2000,
                         hideProgressBar: false,
@@ -55,7 +55,7 @@ export const FormInventory = () => {
                         progress: undefined,
                       });
                     } else {
-                      toast.error("Error al crear inventario", {
+                      toast.error("Error al crear la bodega", {
                         position: "top-right",
                         autoClose: 2000,
                         hideProgressBar: false,
