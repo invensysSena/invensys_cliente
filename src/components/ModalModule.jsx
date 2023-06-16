@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { useParams, Link } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { useGetUsers } from "../hooks/context/GetUsersContext";
 export const ModalModule = () => {
+  const [stateMode, setStateMode] = useState(false);
   const {
     getUsers,
     getUsersAdmins,
@@ -14,17 +15,18 @@ export const ModalModule = () => {
     DeleteModuleU,
   } = useGetUsers();
 
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const { id } = useParams();
 
-  useEffect(() => {
+  useMemo(() => {
+    setLoading(true);
     const initial = async () => {
       await getUsersAdmins();
       await getModule(id);
+      setLoading(false);
     };
     initial();
-    setLoading(false);
   }, []);
 
   const handleinventory = async () => {
@@ -34,7 +36,6 @@ export const ModalModule = () => {
         idAccount: id,
         module: modules,
       };
-
       let response = false;
 
       moduleUsers.map((modul) => {
@@ -65,9 +66,12 @@ export const ModalModule = () => {
 
       moduleUsers.map((modul) => {
         if (modul.titulo === modules) {
+          setStateMode(true);
           DeleteModuleU(modul.IDmodulo, modul.titulo);
           response = true;
+          setStateMode(false);
         } else {
+          setStateMode(false);
           response = false;
         }
         return response;

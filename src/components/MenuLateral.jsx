@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useCallback } from "react";
 import { NavLink } from "react-router-dom";
 import "../assets/css/fuente.css";
 import user from "../assets/icons/user-check.svg";
@@ -151,7 +151,7 @@ export const MenuLateral = () => {
     () => notify.filter((item) => item.estado === 1),
     [notify]
   );
-   document.body.style.overflowX = "hidden";
+  document.body.style.overflowX = "hidden";
 
   let fechaStateUser = localStorage.getItem("fecha");
   const endOf = moment(fechaStateUser).startOf("hour").fromNow();

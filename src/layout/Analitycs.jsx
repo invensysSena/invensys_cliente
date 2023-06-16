@@ -31,7 +31,7 @@ export const Analitycs = () => {
               Abrir Ventana
             </span>
 
-            <div className="flex justify-between flex-col md:flex-row  ">
+            <div className="flex lg:justify-between flex-col md:flex-row  ">
               <div className="container_c ">
                 <Outlet />
               </div>

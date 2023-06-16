@@ -7,15 +7,17 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import "react-toastify/dist/ReactToastify.css";
 import { lazy } from "@loadable/component";
 const App = lazy(() => import("./app/App"));
+var color = "";
 window.addEventListener("load", () => {
-  const prefersDarkMode = window.matchMedia("(prefers-color-scheme: dark)")
-    .matches;
+  const prefersDarkMode = window.matchMedia(
+    "(prefers-color-scheme: dark)"
+  ).matches;
   if (prefersDarkMode) {
     document.body.style.backgroundColor = "#162c47";
-    document.body.style.color = "white";
+    color = "white";
   } else {
     document.body.style.backgroundColor = "white";
-    document.body.style.color = "black";
+    color = "black";
   }
 });
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -35,7 +37,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
                   left: "0",
                   width: "100%",
                   height: "100%",
-                
+
                   margin: "0",
                 }}
               >
@@ -51,7 +53,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
                       height="5"
                       x="11"
                       y="1"
-                      fill="currentColor"
+                      fill={color}
                       opacity=".14"
                     />
                     <rect
@@ -59,7 +61,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
                       height="5"
                       x="11"
                       y="1"
-                      fill="currentColor"
+                      fill={color}
                       opacity=".29"
                       transform="rotate(30 12 12)"
                     />
@@ -68,7 +70,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
                       height="5"
                       x="11"
                       y="1"
-                      fill="currentColor"
+                      fill={color}
                       opacity=".43"
                       transform="rotate(60 12 12)"
                     />
@@ -77,7 +79,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
                       height="5"
                       x="11"
                       y="1"
-                      fill="currentColor"
+                      fill={color}
                       opacity=".57"
                       transform="rotate(90 12 12)"
                     />
@@ -86,7 +88,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
                       height="5"
                       x="11"
                       y="1"
-                      fill="currentColor"
+                      fill={color}
                       opacity=".71"
                       transform="rotate(120 12 12)"
                     />
@@ -95,7 +97,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
                       height="5"
                       x="11"
                       y="1"
-                      fill="currentColor"
+                      fill={color}
                       opacity=".86"
                       transform="rotate(150 12 12)"
                     />
@@ -104,7 +106,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
                       height="5"
                       x="11"
                       y="1"
-                      fill="currentColor"
+                      fill={color}
                       transform="rotate(180 12 12)"
                     />
                     <animateTransform

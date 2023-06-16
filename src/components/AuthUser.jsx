@@ -54,10 +54,13 @@ export const AuthUser = () => {
 
       window.location.href = "/perfil";
     } else {
-      toast.error("Hubo un error al iniciar sesion con tu cuenta de google, intenta nuevamente", {
-        position: toast.POSITION.TOP_RIGHT,
-        theme: "dark",
-      });
+      toast.error(
+        "Hubo un error al iniciar sesion con tu cuenta de google, intenta nuevamente",
+        {
+          position: toast.POSITION.TOP_RIGHT,
+          theme: "dark",
+        }
+      );
       setSpiner(true);
     }
   };
@@ -96,7 +99,6 @@ export const AuthUser = () => {
                   initialValues={{
                     email: "",
                     password: "",
-                   
                   }}
                   validationSchema={Yup.object({
                     email: Yup.string()
@@ -106,9 +108,7 @@ export const AuthUser = () => {
                       "El campo no puede estar vacio"
                     ),
                   })}
-                  
                   onSubmit={async (values) => {
-                    
                     setSpiner(false);
                     let response = await getPostLogin(values);
                     if (
@@ -404,7 +404,6 @@ export const AuthUser = () => {
                       )}
                     </div>
 
-                    
                     <div
                       className="ajuste-cuenta   flex justify-start mt-4 mx-2 mb-2
                             "
