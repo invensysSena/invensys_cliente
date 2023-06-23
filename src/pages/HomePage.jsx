@@ -82,7 +82,8 @@ export const HomePage = () => {
               </Link>
             </div>
             <div className="w-full">
-              <img
+              <LazyLoadImage
+                effect="blur"
                 className="mt-10 w-full animate__animated animate__fadeIn"
                 type="imagen"
                 src="https://res.cloudinary.com/dkqp3wkbi/image/upload/v1682002355/stored/Frame_1_b7ymvc.png"
@@ -129,7 +130,8 @@ export const HomePage = () => {
             <div className="circle2" data-aos="zoom-in-right"></div>
           </div>
           <div className="row hidden xl:block">
-            <img
+            <LazyLoadImage
+              effect="bl"
               src={rowFirst}
               alt=""
               className="w-[16rem] lg:w-[30rem] h-42"
@@ -193,10 +195,10 @@ export const HomePage = () => {
               <div className="relative ">
                 <div className=" ">
                   <LazyLoadImage
+                    effect="blur"
                     className="w-56 md:w-full"
                     src={imagen5}
                     alt=""
-                    effect="blur"
                   />
                 </div>
               </div>
@@ -255,7 +257,8 @@ export const HomePage = () => {
         >
           <div className=" flex flex-col lg:flex-row justify-center relative  ">
             <div className="h-3/5 hidden lg:block relative w-1 lg:ml-16 lg:mt-4  colorbgline"></div>
-            <img
+            <LazyLoadImage
+              effect="bl"
               src={curba3}
               alt=""
               className="absolute hidden lg:block top-0 left-20"

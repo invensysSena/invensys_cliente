@@ -13,7 +13,8 @@ import img5 from "../assets/invensys/mobile5.png";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { Autoplay, Pagination, Navigation } from "swiper";
-const SliderCount = () => {
+const
+  SliderCount = () => {
   const progressCircle = useRef(null);
   const progressContent = useRef(null);
   const onAutoplayTimeLeft = (s, time, progress) => {

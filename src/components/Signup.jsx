@@ -18,10 +18,10 @@ import * as Yup from "yup";
 import "animate.css";
 import { Link, useNavigate } from "react-router-dom";
 
-export const Signup = () => {
+const Signup = () => {
   const [typeInput, setTypeInput] = useState(true);
 
-  const { getPostRegister,getPostLoginAuthGoogle  } = usePostAuth();
+  const { getPostRegister, getPostLoginAuthGoogle } = usePostAuth();
 
   const Navigate = useNavigate();
   const setDataGoogl = async (data) => {
@@ -40,18 +40,19 @@ export const Signup = () => {
       localStorage.setItem("response_auth", getData.message);
       localStorage.setItem("perfil_rol", getData.rol);
       localStorage.setItem("type", getData.rol);
-     
 
       window.location.href = "/perfil";
     } else {
-      toast.error("Hubo un error al iniciar sesion con tu cuenta de google, intenta nuevamente", {
-        position: toast.POSITION.TOP_RIGHT,
-        theme: "dark",
-      });
-      
+      toast.error(
+        "Hubo un error al iniciar sesion con tu cuenta de google, intenta nuevamente",
+        {
+          position: toast.POSITION.TOP_RIGHT,
+          theme: "dark",
+        }
+      );
     }
-  }
-  
+  };
+
   return (
     <>
       <ToastContainer />
@@ -93,19 +94,19 @@ export const Signup = () => {
                                 p-2 m-2 flex items-center justify-center rounded"
               >
                 <div className="p ml-1">
-                <GoogleLogin
-                      onSuccess={(credentialResponse) => {
-                        let decode = jwt_decode(credentialResponse.credential);
-                        setDataGoogl(decode);
-                      }}
-                      onError={() => {}}
-                      useOneTap
-                      locale
-                      type="standard"
-                      shape="pill"
-                      theme="filled_black"
-                      logo_alignment="left"
-                    />
+                  <GoogleLogin
+                    onSuccess={(credentialResponse) => {
+                      let decode = jwt_decode(credentialResponse.credential);
+                      setDataGoogl(decode);
+                    }}
+                    onError={() => {}}
+                    useOneTap
+                    locale
+                    type="standard"
+                    shape="pill"
+                    theme="filled_black"
+                    logo_alignment="left"
+                  />
                 </div>
               </div>
             </div>
@@ -113,8 +114,12 @@ export const Signup = () => {
               <p className="text-center mx-4 mb-0 dark:text-white">O</p>
             </div>
             <Formik
-              initialValues={{ email: "", password: "", toggle: false,
-              checked: []}}
+              initialValues={{
+                email: "",
+                password: "",
+                toggle: false,
+                checked: [],
+              }}
               validationSchema={Yup.object({
                 email: Yup.string()
                   .email("El email no es valido")
@@ -122,13 +127,17 @@ export const Signup = () => {
                 password: Yup.string()
                   .required("El campo no puede estar vacio")
                   .min(6, "Debe tener mas de 6 caracteres")
-                  .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[%$#@])[A-Za-z\d%$#@]{6,}$/,
+                  .matches(
+                    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[%$#@])[A-Za-z\d%$#@]{6,}$/,
                     "Debe incluir al menos una letra mayuscula, un numero y un caracter especial %$#@"
                   ),
               })}
               onSubmit={async (values) => {
                 console.log(values);
-                if(values.toggle === false) return toast.info("Acepta terminos y condiciones para continuar")
+                if (values.toggle === false)
+                  return toast.info(
+                    "Acepta terminos y condiciones para continuar"
+                  );
                 let response = await getPostRegister(values);
                 if (response.status === 200) {
                   await toast.success("Usuario creado exitosamente!", {
@@ -267,7 +276,7 @@ export const Signup = () => {
                   </button>
                 </div>
                 <div className="permisos   mt-2 ml-3">
-                <Field type="checkbox" name="toggle" />
+                  <Field type="checkbox" name="toggle" />
                   <Link
                     to="/privacy"
                     className="mx-2  text-slate-900 dark:text-white hover:underline overflow-hidden
@@ -295,3 +304,5 @@ export const Signup = () => {
     </>
   );
 };
+
+export default Signup;

@@ -78,7 +78,7 @@ export const ChartHomeC3 = () => {
           />
         </div>
       ) : (
-        <div className=" grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4  ">
+        <div className=" grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3  ">
           <section className="bg-white dark:bg-[#37415197] dark:text-white  shadow-lg w-[280px] md:w-[15rem] lg:-[18rem] xl:w-[19rem] px-5 py-2 rounded-md my-1 md:my-5">
             <div className="principal flex items-center justify-between">
               <div className="text font-bold mx-2 block">Ventas</div>

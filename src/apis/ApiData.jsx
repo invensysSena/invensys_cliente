@@ -469,6 +469,13 @@ export const TodoFunctions = {
         isAllowedAccess: dataIsAllowed[0].nombre,
       },
     }),
+  getPedidoId: async (id) =>
+    await axios.get(`${urlServer}/pedidos/${id}`, {
+      headers: {
+        authorization: accessToken,
+        isAllowedAccess: dataIsAllowed[0].nombre,
+      },
+    }),
   getComprasFv: async () =>
     await axios.get(`${urlServer}/comprasfv`, {
       headers: {

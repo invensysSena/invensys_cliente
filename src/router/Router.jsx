@@ -1,27 +1,15 @@
-import Loadable from "react-loadable";
-
 import { useState, useMemo } from "react";
 import { Route, Routes } from "react-router-dom";
-import { AuthUser } from "../components/AuthUser.jsx";
-import { Signup } from "../components/Signup.jsx";
+
 import { UserContextData } from "../hooks/context/UserContextData.jsx";
-import { Admin } from "../pages/Admin/Admin.jsx";
+
 import { HomePage } from "../pages/HomePage";
 import { ProtectedRouter } from "../auth/ProtectedRouter";
 import RecoveryPass from "../pages/RecoveryPass";
 import CodePassword from "../pages/CodePassword";
 import NewPassword from "../pages/newPassword";
-import { Inventory } from "../layout/Inventory";
 import { NotFount } from "../pages/NotFount";
 import Header from "../components/Header";
-import { Category } from "../layout/Category";
-import { Usuarios } from "../layout/Usuarios";
-import { Notification } from "../layout/Notification";
-import { Product } from "../layout/Product";
-import { Provider } from "../layout/Provider";
-import { Analitycs } from "../layout/Analitycs";
-import { Perfil } from "../layout/Perfil";
-import { Shope } from "../layout/Shope";
 import { Prueba } from "../layout/Prueba";
 import { GetUsersContext } from "../hooks/context/GetUsersContext";
 import { Somos } from "../pages/Somos";
@@ -29,7 +17,6 @@ import { Contactanos } from "../pages/Contactanos";
 import { ModalModule } from "../components/ModalModule";
 import axios from "axios";
 
-import { AyudaAdmin } from "../layout/AyudaAdmin";
 import { EditarProduct } from "../components/FormProduct/EditarProduct";
 import { Ventas } from "../layout/Ventas";
 import { HomeDaboard } from "../components/screen/HomeDaboard";
@@ -52,23 +39,40 @@ import { TranslateProduct } from "../container/TranslateProduct";
 import { FormSalida } from "../components/FormSalida";
 import { DatatableVentas } from "../components/DatatableVentas";
 import { ComprasPDF } from "../pdf/ComprasPDF";
-import { Trae } from "../layout/Trae";
 import { FormPedido } from "../components/FormPedido";
 import { DataTablePedido } from "../components/DataTablePedido";
-import { ConfigAdmin } from "../layout/ConfigAdmin";
 import { ChartBodega } from "../Generator/ChartBodega";
 import { ChartHome } from "../Generator/ChartHome";
 
 import { ChartProductos } from "../Generator/ChartProductos";
 import { ProductAgotados } from "../components/NotificationsHeader/ProductAgotados";
 import { ComandsSistemA } from "../Generator/ComandsSistemA";
-import { InventoryGeneral } from "../layout/InventoryGeneral";
+
 import { urlServer } from "../urlApi/url";
 import { dataIsAllowed } from "../secure/lowed.Modules";
 import { Licence } from "../security/Licence";
 import { Privaci } from "../privacy/Privaci.jsx";
 
+//  !hjhj
 
+import AuthUserLoadable from "../components/AuthUser.jsx";
+import SignupLoadable from "../components/Signup.jsx";
+import AdminLoadable from "../pages/Admin/Admin.jsx";
+import Analitycs from "../layout/Analitycs.jsx";
+import AyudaAdmin from "../layout/AyudaAdmin.jsx";
+import Category from "../layout/Category.jsx";
+import ConfigAdmin from "../layout/ConfigAdmin.jsx";
+import Inventory from "../layout/Inventory.jsx";
+import InventoryGeneral from "../layout/InventoryGeneral.jsx";
+import Notification from "../layout/Notification.jsx";
+import Perfil from "../layout/Perfil.jsx";
+import Product from "../layout/Product.jsx";
+import Provider from "../layout/Provider.jsx";
+import Shope from "../layout/Shope.jsx";
+import Trae from "../layout/Trae.jsx";
+import Usuarios from "../layout/Usuarios.jsx";
+
+// ?? g
 export const Router = () => {
   const [usersP, setUsersP] = useState([]);
   const token = localStorage.getItem("secure_token");
@@ -137,7 +141,7 @@ export const Router = () => {
             <Route path="/prueba" element={<Prueba />} />
             <Route path="*" element={<NotFount />} />
 
-            <Route path="/login" element={<AuthUser />} />
+            <Route path="/login" element={<AuthUserLoadable />} />
             <Route path="/Header" element={<Header />} />
             <Route path="/newPassword+auth=true" element={<NewPassword />} />
             <Route
@@ -145,7 +149,7 @@ export const Router = () => {
               element={<RecoveryPass />}
             />
             <Route path="/verifyc+code/identify" element={<CodePassword />} />
-            <Route path="/signup" element={<Signup />} />
+            <Route path="/signup" element={<SignupLoadable />} />
 
             <Route index element={<HomePage />} />
             <Route
@@ -187,7 +191,7 @@ export const Router = () => {
                 <ProtectedRouter
                   isAllowed={!!users && users.permisions.includes("dasboard")}
                 >
-                  <Admin />
+                  <AdminLoadable />
                 </ProtectedRouter>
               }
             >

@@ -1,6 +1,8 @@
 import React from "react";
 import "../assets/css/somos.css";
 import Header from "../components/Header";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 export const Somos = () => {
   return (
     <>
@@ -80,7 +82,8 @@ export const Somos = () => {
           </div>
         </div>
         <div className="conten-2 flex justify-center items-center">
-          <img
+          <LazyLoadImage
+            effect="blur"
             src="https://raw.githubusercontent.com/klayngo/backendKodiar/master/public/image/contactanos.jpg"
             alt="Kodiar"
             title="Kodiar"

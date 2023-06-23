@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 import { getBusiness, getDataAll } from "../apis/ApiData";
 
+
 export const AnalitycMenuVista = () => {
   const [expand, setExpand] = useState(false);
   const [load, setLoad] = useState(false);

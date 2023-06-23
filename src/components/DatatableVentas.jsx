@@ -1,4 +1,4 @@
-import  { useRef, useState, useCallback, useEffect } from "react";
+import { useRef, useState, useCallback, useEffect } from "react";
 import moment from "moment-with-locales-es6";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
@@ -30,7 +30,6 @@ export const DatatableVentas = () => {
       setDataVentas(response.data.responseFv);
 
       await getCountData();
-    
     };
 
     initial();
@@ -137,6 +136,11 @@ export const DatatableVentas = () => {
       setDarkMode(true);
     }
   }, []);
+  const moneyDolar = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    minimumFractionDigits: 2,
+  });
   return (
     <>
       {dataVentas.length > 0 ? (
@@ -316,8 +320,8 @@ export const DatatableVentas = () => {
           <div
             className={
               darkMode
-                ? "ag-theme-alpine-dark h-[300px] w-[80%] sm:w-[550px] lg:w-[100%] md:w-[90%] md:h-[600px] shadow-2xl mx-auto rounded-lg overflow-hidden "
-                : "  h-[300px] w-[90%] sm:w-[550px] lg:w-[90%] md:w-[90%] md:h-[600px] shadow-2xl mx-auto rounded-lg overflow-hidden "
+                ? "ag-theme-alpine-dark h-[300px] w-[300px] md:w-[100%] md:h-[600px] shadow-2xl mx-auto rounded-lg overflow-hidden "
+                : " rounded-lg overflow-hidden ag-theme-alpine h-[300px] w-[300px] md:w-[100%] md:h-[600px] shadow-2xl mx-auto"
             }
             id="myGrid"
           >
@@ -331,10 +335,7 @@ export const DatatableVentas = () => {
                   numFactura: `FV ${i + 1}`,
                   change: [item.total],
                   cantidadProducts: item.cantidadProducts,
-                  total: ("$ " + item.total).replace(
-                    /(\d)(?=(\d\d\d)+(?!\d))/g,
-                    "$1,"
-                  ),
+                  total: moneyDolar.format(item.total),
                   fecha: moment(item.createdAt)
                     .startOf(item.createdAt)
                     .fromNow(),
@@ -359,7 +360,9 @@ export const DatatableVentas = () => {
           </div>
           <Outlet />
         </>
-      ) : null}
+      ) : (
+        <h1 className="mt-2 text-xl">No tienes ventas registradas</h1>
+      )}
     </>
   );
 };

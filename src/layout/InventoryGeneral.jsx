@@ -1,18 +1,30 @@
-import { MenuLateral } from '../components/MenuLateral'
-import { ContextCategory} from '../hooks/context/ContextCategory'
-import { DatatableInventory } from '../components/DatatableInventory'
-export const InventoryGeneral = () => {
-
-
+import { MenuLateral } from "../components/MenuLateral";
+import { ContextCategory } from "../hooks/context/ContextCategory";
+import { DatatableInventory } from "../components/DatatableInventory";
+import { SubMenu } from "../components/SubMenu";
+const InventoryGeneral = () => {
   return (
-    <>
+    <div
+      className="bg-gradient-to-r from-[#e3fbff] from-10% via-[#e3d1fdaa] via-30% to-[#e5fbff] to-90%  w-full block  min-h-screen
+
+        
+
+        dark:bg-gradient-to-r dark:from-[#163b59] dark:from-10%
+         dark:via-[#18324f] dark:via-30% dark:to-[#121b2e] dark:to-90%"
+    >
+      <div
+        className="sticky z-50  top-0 hidden lg:block py-3 effect_blure h-fit w-full
+      
+      "
+      >
+        <SubMenu />
+      </div>
       <div className="flex">
         <MenuLateral />
         <div
-          className=" w-full block bg-[#f4f8ffdd]
+          className=" w-full block 
         h-[100%] min-h-screen
-        dark:bg-gradient-to-r from-[#163b59] from-10%
-         via-[#18324f] via-30% to-[#121b2e] to-90%  "
+       "
         >
           <div className="content_users m-7">
             <div className="content_users_title">
@@ -32,6 +44,8 @@ export const InventoryGeneral = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
-}
+};
+
+export default InventoryGeneral;

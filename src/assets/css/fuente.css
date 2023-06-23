@@ -2,10 +2,8 @@
   font-family: "Roboto", "Arial", sans-serif;
 }
 
-
 @media (prefers-color-scheme: dark) {
   :root {
-
     --bgcolor-login: #121b2e;
     --color: #fff;
   }
@@ -14,24 +12,19 @@
 @media (prefers-color-scheme: light) {
   :root {
     --bgcolor-login: #fff;
-
+  }
 }
-}
-body::-webkit-scrollbar{
+body::-webkit-scrollbar {
   width: 13px;
   background: var(--bgcolor-login);
-  
+  padding: 3;
 }
 
-body::-webkit-scrollbar-thumb{
- 
-  
+body::-webkit-scrollbar-thumb {
   background: rgb(161, 161, 161);
   border-radius: 10px;
   border-right: 2px solid var(--bgcolor-login);
-  border-left: 0px solid var(--bgcolor-login);
-
-
+  border-left: 2px solid var(--bgcolor-login);
 }
 .todoFont {
   font-family: "Roboto", sans-serif;
@@ -556,4 +549,17 @@ body::-webkit-scrollbar-thumb{
 }
 .self-ltr {
   direction: rtl;
+}
+.hf {
+  color: #282828;
+}
+
+.sroll_p_c::-webkit-scrollbar {
+  width: 0.5rem;
+}
+.sroll_p_c::-webkit-scrollbar-thumb {
+  background: rgb(161, 161, 161);
+  border-radius: 10px;
+  border-right: 2px solid var(--bgcolor-login);
+  border-left: 2px solid var(--bgcolor-login);
 }

@@ -5,17 +5,29 @@ import { ListInventory } from "../container/ListInventory";
 import { ContextSubProducts } from "../hooks/context/ContextSubProducts";
 
 import { Outlet } from "react-router-dom";
-export const Inventory = () => {
+import { SubMenu } from "../components/SubMenu";
+const Inventory = () => {
   return (
-    <>
+    <div
+      className="bg-gradient-to-r from-[#e3fbff] from-10% via-[#e3d1fdaa] via-30% to-[#e5fbff] to-90%  w-full block  min-h-screen
+
+        
+
+        dark:bg-gradient-to-r dark:from-[#163b59] dark:from-10%
+         dark:via-[#18324f] dark:via-30% dark:to-[#121b2e] dark:to-90%"
+    >
+      <div
+        className="sticky z-50 hidden lg:block  top-0 py-3 effect_blure h-fit w-full
+      
+      "
+      >
+        <SubMenu />
+      </div>
       <div className="flex">
         <MenuLateral />
         <div
           className=" w-full block  h-[100%] min-h-screen
-        bg-[#f4f8ffdd]
-        
-        dark:bg-gradient-to-r from-[#163b59] from-10%
-         via-[#18324f] via-30% to-[#121b2e] to-90% 
+         
         "
         >
           <div className="content_users m-7">
@@ -33,10 +45,10 @@ export const Inventory = () => {
               <ContextInventario>
                 <ContextSubProducts>
                   <div className="flex flex-col md:flex-row gap- items-start md:items-end">
-                    <div className="w-[100%]">
+                    <div className="w-[90%]">
                       <FormInventory />
                     </div>
-                    <div className="w-[90%] md:w-[43%] mb-2  ml-1">
+                    <div className="w-[90%] md:w-[43%] lg:w-[40rem] mb-2  ml-1">
                       <ListInventory />
                     </div>
                   </div>
@@ -47,6 +59,8 @@ export const Inventory = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
+
+export default Inventory;

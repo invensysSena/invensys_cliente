@@ -609,7 +609,7 @@
     "parse-svg-path" "^0.1.2"
     "svg-arc-to-cubic-bezier" "^3.2.0"
 
-"@react-pdf/renderer@^3.1.9":
+"@react-pdf/renderer@^3.1.12":
   "integrity" "sha512-y4H2ELH0okJP7+ig+uNjFAfuAanWiF3mxsKsE7ZBuhF4tabbMt9fX+pQ7qn4xrzEWX0vlso6s6ebkkeGdSGWzA=="
   "resolved" "https://registry.npmjs.org/@react-pdf/renderer/-/renderer-3.1.12.tgz"
   "version" "3.1.12"

@@ -19,7 +19,7 @@ export const DataSubProducts = ({ dataInventorySubProducts, id }) => {
   const gridRef = useRef();
   const { getSubProductsContent, subProductsData } = useContextSubProducts();
 
-  useMemo(() => {
+  useEffect(() => {
     (async () => {
       await getSubProductsContent(id);
     })();
@@ -87,6 +87,18 @@ export const DataSubProducts = ({ dataInventorySubProducts, id }) => {
       filter: "agTextColumnFilter",
     },
     {
+      headerName: "Estado",
+      field: "estado",
+      chartDataType: "body",
+      cellStyle: function (params) {
+        if (params.value === "Disponible") {
+          return { color: "#11a34d" };
+        } else {
+          return { color: "red" };
+        }
+      },
+    },
+    {
       headerName: "Total",
       field: "total",
       chartDataType: "body",
@@ -140,12 +152,17 @@ export const DataSubProducts = ({ dataInventorySubProducts, id }) => {
     );
   }, []);
 
-    const [darkMode, setDarkMode] = useState(false);
-    useMemo(() => {
-      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-        setDarkMode(true);
-      }
-    }, []);
+  const [darkMode, setDarkMode] = useState(false);
+  useMemo(() => {
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      setDarkMode(true);
+    }
+  }, []);
+  const moneyDolar = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    minimumFractionDigits: 2,
+  });
   return (
     <>
       <div className="panel_opciones bg-white dark:text-white dark:bg-[#37415197] w-[90%] md:w-full md:mx-auto mt-4 mb-4  rounded-md p-2">
@@ -323,15 +340,9 @@ export const DataSubProducts = ({ dataInventorySubProducts, id }) => {
             return {
               id: item._id,
               name: item.name,
-              priceCompra: ("$ " + item.priceCompra).replace(
-                /(\d)(?=(\d\d\d)+(?!\d))/g,
-                "$1,"
-              ),
+              priceCompra: moneyDolar.format(item.priceCompra),
 
-              priceVenta: ("$ " + item.priceVenta).replace(
-                /(\d)(?=(\d\d\d)+(?!\d))/g,
-                "$1,"
-              ),
+              priceVenta: moneyDolar.format(item.priceVenta),
 
               stockMinimo: (" " + item.stockMinimo).replace(
                 /(\d)(?=(\d\d\d)+(?!\d))/g,
@@ -345,11 +356,9 @@ export const DataSubProducts = ({ dataInventorySubProducts, id }) => {
                 /(\d)(?=(\d\d\d)+(?!\d))/g,
                 "$1."
               ),
-              ganancias: ("$ " + ganancias).replace(
-                /(\d)(?=(\d\d\d)+(?!\d))/g,
-                "$1,"
-              ),
-              total: ("$ " + total).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"),
+              estado: item.unidad > 20 ? "Disponible" : "Agotado",
+              ganancias: moneyDolar.format(ganancias),
+              total: moneyDolar.format(total),
               caducidad: moment().add(diferencia, "days").calendar(),
               dateCreate: moment(item.createdAt).format("LLLL"),
             };

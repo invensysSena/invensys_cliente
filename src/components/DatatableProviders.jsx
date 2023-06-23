@@ -14,7 +14,8 @@ import { ChackSelection } from "./ChackSelection";
 import { setNormal } from "./ChackSelection";
 import { useContextProviders } from "../hooks/context/ContextProveedores";
 import OptionsProviders from "./OptionsProviders";
-
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 import { CreateProveedor } from "./providers/CreateProveedor";
 import { useMemo } from "react";
 moment.locale("es");
@@ -208,7 +209,7 @@ export const DatatableProviders = () => {
               onClick={() => setActive(!active)}
               className=" bg-[#019afa] dark:border-[#019afa] text-white flex items-center p-1 rounded-md border"
             >
-              <img src={plus} alt="" />
+              <LazyLoadImage src={plus} alt="" effect="blur" />
               <div className="whitespace-nowrap">Crear proveedor</div>
             </button>
           </section>

@@ -23,18 +23,28 @@ import { ComandoSystem } from "../cmd/ComandoSystem";
 import moment from "moment-with-locales-es6";
 import { dataIsAllowed } from "../secure/lowed.Modules";
 moment.locale("es");
-
+const token = localStorage.getItem("secure_token");
 export const MenuLateral = () => {
   const { getAdminDataAll, adminGetData } = useGetUsers();
   const [data, setData] = useState([]);
+
   useMemo(() => {
     const initial = async () => {
-      const initials = await getAdminDataAll();
+      if (
+        !token ||
+        token === null ||
+        token === undefined ||
+        adminGetData.length === 0 ||
+        adminGetData === undefined
+      ) {
+        const data = await getAdminDataAll();
+        setData(data);
+      }
+
       await TodoFunctions.SearchDismiutionUnidadProduct();
-      setData(initials);
     };
     initial();
-  }, [data]);
+  }, []);
 
   const hundleClick = () => {
     localStorage.removeItem("secure_token");
@@ -50,7 +60,7 @@ export const MenuLateral = () => {
   };
   const fecha = new Date().getFullYear();
   const [usersP, setUsersP] = useState([]);
-  const token = localStorage.getItem("secure_token");
+
   const token1 = localStorage.getItem("token_token1");
   const [notify, setNotify] = useState([]);
   let type = localStorage.getItem("type");
@@ -157,7 +167,7 @@ export const MenuLateral = () => {
   const endOf = moment(fechaStateUser).startOf("hour").fromNow();
 
   return (
-    <>
+    <div className="z-50 relative">
       <ComandoSystem />
       <>
         <ToastContainer />
@@ -177,7 +187,7 @@ export const MenuLateral = () => {
 
 selft_scroll
 fixed top-0
-  bg-white mr-[8rem] dark:bg-[#1e293b] min-h-full
+  bg-white  mr-[8rem] dark:bg-[#1e293b] min-h-full
  w-30 lg:w-52 z-50  b  overflow-x-hidden  `
                 : `
 
@@ -303,15 +313,41 @@ fixed top-0
                             />
                           </svg>
                         ) : (
-                          <img
-                            src={
-                              adminGetData.length > 0
-                                ? adminGetData[0].imgURL
-                                : ""
-                            }
-                            alt="perfil"
-                            className="w-8 rounded-full"
-                          />
+                          <>
+                            {adminGetData.length > 0 ? (
+                              <>
+                                {adminGetData[0].imgURL ? (
+                                  <img
+                                    src={
+                                      adminGetData.length > 0
+                                        ? adminGetData[0].imgURL
+                                        : ""
+                                    }
+                                    alt="perfil"
+                                    className="w-8 rounded-full"
+                                  />
+                                ) : (
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="35"
+                                    height="35"
+                                    viewBox="0 0 32 32"
+                                  >
+                                    <path
+                                      fill="white"
+                                      d="M8.007 24.93A4.996 4.996 0 0 1 13 20h6a4.996 4.996 0 0 1 4.993 4.93a11.94 11.94 0 0 1-15.986 0ZM20.5 12.5A4.5 4.5 0 1 1 16 8a4.5 4.5 0 0 1 4.5 4.5Z"
+                                    />
+                                    <path
+                                      fill="#c9ccd1"
+                                      d="M26.749 24.93A13.99 13.99 0 1 0 2 16a13.899 13.899 0 0 0 3.251 8.93l-.02.017c.07.084.15.156.222.239c.09.103.187.2.28.3c.28.304.568.596.87.87c.092.084.187.162.28.242c.32.276.649.538.99.782c.044.03.084.069.128.1v-.012a13.901 13.901 0 0 0 16 0v.012c.044-.031.083-.07.128-.1c.34-.245.67-.506.99-.782c.093-.08.188-.159.28-.242c.302-.275.59-.566.87-.87c.093-.1.189-.197.28-.3c.071-.083.152-.155.222-.24ZM16 8a4.5 4.5 0 1 1-4.5 4.5A4.5 4.5 0 0 1 16 8ZM8.007 24.93A4.996 4.996 0 0 1 13 20h6a4.996 4.996 0 0 1 4.993 4.93a11.94 11.94 0 0 1-15.986 0Z"
+                                    />
+                                  </svg>
+                                )}
+                              </>
+                            ) : (
+                              ""
+                            )}
+                          </>
                         )}
                         <div className="administrador mx-1 hidden lg:block dark:text-white">
                           {type === "user" ? "Usuario normal" : "Administrador"}
@@ -1148,6 +1184,6 @@ fixed top-0
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };

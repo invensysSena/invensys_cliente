@@ -5,6 +5,8 @@ export const ProtectedRouter = ({
   children,
   redirectTo = "/login",
 }) => {
+  const module = localStorage.getItem("module");
+  module ? (redirectTo = `/${module}`) : (redirectTo = "/login");
   if (!isAllowed) {
     return <Navigate to={redirectTo} />;
   }

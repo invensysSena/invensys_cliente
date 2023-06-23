@@ -10,6 +10,9 @@ import {
 } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { Licenciaok } from "./Licenciaok";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
+import { SubMenu } from "../components/SubMenu";
 let stripePromise = loadStripe("pk_test_6pRNASCoBOKtIshFeQd4XMUh");
 
 let moneyPrice = 950000;
@@ -154,7 +157,14 @@ const FormLicence = () => {
 const InforLicence = () => {
   return (
     <>
-      <div className="bg-gradient-to-b ">
+      <div
+        className="w-full block  min-h-screen
+
+        
+
+        dark:bg-gradient-to-r from-[#163b59] from-10%
+         via-[#18324f] via-30% to-[#121b2e] to-90%"
+      >
         <div className="container m-auto px-6  md:px-12 lg:px-20">
           <div
             className="mt-1 m-auto -space-y-4 items-center justify-center
@@ -164,7 +174,7 @@ const InforLicence = () => {
               <div
                 aria-hidden="true"
                 className="absolute top-0 w-full
-                 h-full rounded-2xl bg-white dark:bg-[#37415197] dark:text-white shadow-xl
+                 h-full rounded-2xl effect_blure dark:bg-[#37415197] dark:text-white shadow-xl
                   transition duration-500  "
               ></div>
               <div className="relative p-6 space-y-6 lg:p-8">
@@ -238,7 +248,7 @@ const InforLicence = () => {
                   <li className="space-x-2">
                     <span className="text-white">Solo pagas anual</span>
                     <div className="mt-6 flex justify-between gap-6">
-                      <img
+                      <LazyLoadImage
                         className="w-[10rem] lg:w-[22rem]"
                         src="https://res.cloudinary.com/dkqp3wkbi/image/upload/v1685721587/7769792_3236196_oqbsj3.jpg"
                         loading="lazy"
@@ -280,99 +290,115 @@ export const Licence = () => {
   }, []);
 
   return (
-    <div className="flex">
-      <MenuLateral />
-      <div
-        className=" w-full block 
+    <div
+      className="bg-gradient-to-r from-[#e3fbff] from-10% via-[#e3d1fdaa] via-30% to-[#e5fbff] to-90%  
+
         
-        d "
+
+        dark:bg-gradient-to-r dark:from-[#163b59] dark:from-10%
+         dark:via-[#18324f] dark:via-30% dark:to-[#121b2e] dark:to-90%"
+    >
+      <div
+        className="sticky z-50  top-0 py-3 effect_blure h-fit w-full
+      
+      "
       >
-        {load ? (
-          <div className=" grid place-content-center h-full w-full">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="40"
-              height="40"
-              viewBox="0 0 24 24"
-            >
-              <g stroke="currentColor">
-                <circle
-                  cx="12"
-                  cy="12"
-                  r="9.5"
-                  fill="none"
-                  strokeLinecap="round"
-                  strokeWidth="3"
-                >
-                  <animate
-                    attributeName="stroke-dasharray"
-                    calcMode="spline"
-                    dur="1.5s"
-                    keySplines="0.42,0,0.58,1;0.42,0,0.58,1;0.42,0,0.58,1"
-                    keyTimes="0;0.475;0.95;1"
-                    repeatCount="indefinite"
-                    values="0 150;42 150;42 150;42 150"
-                  />
-                  <animate
-                    attributeName="stroke-dashoffset"
-                    calcMode="spline"
-                    dur="1.5s"
-                    keySplines="0.42,0,0.58,1;0.42,0,0.58,1;0.42,0,0.58,1"
-                    keyTimes="0;0.475;0.95;1"
-                    repeatCount="indefinite"
-                    values="0;-16;-59;-59"
-                  />
-                </circle>
-                <animateTransform
-                  attributeName="transform"
-                  dur="2s"
-                  repeatCount="indefinite"
-                  type="rotate"
-                  values="0 12 12;360 12 12"
-                />
-              </g>
-            </svg>
-          </div>
-        ) : (
-          <div className="content_users m-7">
-            <div className="content_users_title ">
-              <h2 className="text-4xl dark:text-white font-bold text-gray-700 font-sans mx-0">
-                Licencia
-              </h2>
-              <p className="text-xl dark:text-white text-gray-600 mt-4 mx-0">
-                Preferencia de pago
-              </p>
-            </div>
+        <SubMenu />
+      </div>
+      <div className="flex">
+        <MenuLateral />
+        <div
+          className="  w-full block  min-h-screen
 
-            <div className="container_cont lg:min-w-7xl  ">
-              {dataLicence.length > 0 ? (
-                <Licenciaok />
-              ) : (
-                <>
-                  <div className="licendForm">
-                    <div className=" flex flex-col">
-                      <span className="text-xl dark:text-white">
-                        No se encontro ninguna licencia activa
-                      </span>
-
-                      <buttom
-                        className="bg-[#3498db] w-fit cursor-pointer  text-white p-2 my-2 inline-block"
-                        onClick={() => setState(!state)}
-                      >
-                        Comprar licencia
-                      </buttom>
-                    </div>
-                    <div className={state === false ? "hidden" : "block"}>
-                      <Elements stripe={stripePromise}>
-                        <InforLicence />
-                      </Elements>
-                    </div>
-                  </div>
-                </>
-              )}
+         "
+        >
+          {load ? (
+            <div className=" grid place-content-center h-full w-full">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="40"
+                height="40"
+                viewBox="0 0 24 24"
+              >
+                <g stroke="currentColor">
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="9.5"
+                    fill="none"
+                    strokeLinecap="round"
+                    strokeWidth="3"
+                  >
+                    <animate
+                      attributeName="stroke-dasharray"
+                      calcMode="spline"
+                      dur="1.5s"
+                      keySplines="0.42,0,0.58,1;0.42,0,0.58,1;0.42,0,0.58,1"
+                      keyTimes="0;0.475;0.95;1"
+                      repeatCount="indefinite"
+                      values="0 150;42 150;42 150;42 150"
+                    />
+                    <animate
+                      attributeName="stroke-dashoffset"
+                      calcMode="spline"
+                      dur="1.5s"
+                      keySplines="0.42,0,0.58,1;0.42,0,0.58,1;0.42,0,0.58,1"
+                      keyTimes="0;0.475;0.95;1"
+                      repeatCount="indefinite"
+                      values="0;-16;-59;-59"
+                    />
+                  </circle>
+                  <animateTransform
+                    attributeName="transform"
+                    dur="2s"
+                    repeatCount="indefinite"
+                    type="rotate"
+                    values="0 12 12;360 12 12"
+                  />
+                </g>
+              </svg>
             </div>
-          </div>
-        )}
+          ) : (
+            <div className="content_users m-7">
+              <div className="content_users_title ">
+                <h2 className="text-4xl dark:text-white font-bold text-gray-700 font-sans mx-0">
+                  Licencia
+                </h2>
+                <p className="text-xl dark:text-white text-gray-600 mt-4 mx-0">
+                  Preferencia de pago
+                </p>
+              </div>
+
+              <div className="container_cont lg:min-w-7xl  ">
+                {dataLicence.length > 0 ? (
+                  <Licenciaok />
+                ) : (
+                  <>
+                    <div className="licendForm">
+                      <div className=" flex flex-col">
+                        <span className="text-xl dark:text-white">
+                          No se encontro ninguna licencia activa
+                        </span>
+
+                        <buttom
+                          className="bg-[#3498db] w-fit cursor-pointer  text-white p-2 my-2 inline-block"
+                          onClick={() => setState(!state)}
+                        >
+                          Comprar licencia
+                        </buttom>
+                      </div>
+                      <div className={state === false ? "hidden" : "block"}>
+                        <Elements stripe={stripePromise}>
+                          <InforLicence />
+                        </Elements>
+                      </div>
+                    </div>
+                  </>
+                )}
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export const ComprasPDF = ({ ventas, totalesProducts }) => {
+export const Pedidos = ({ ventas, totalesProducts }) => {
   if (totalesProducts.length === 0) return null;
 
   const total = totalesProducts.reduce((a, b) => a + b.total, 0);

@@ -52,6 +52,9 @@ export const GetUsersContext = ({ children }) => {
 
   const getUsersAdmins = async () => {
     try {
+      if (isAllowedToken === null) {
+        return;
+      }
       const response = await getUsersAdmin(isAllowedToken);
 
       setGetUsers(response.data.data);

@@ -134,8 +134,8 @@ export const FormSalida = () => {
   return (
     <>
       <ToastContainer />
-      <div className=" border bg-white dark:bg-[#37415197] dark:text-white dark:border-none lg:flex-row flex-col h-fit p-2 mt-2 flex  ">
-        <div className="form-content  md:w-[20rem] lg:w-[70rem] w-[16rem]">
+      <div className=" border bg-white dark:bg-[#37415197] dark:text-white dark:border-none lg:flex-row flex-col  h-fit p-2 mt-2 flex  ">
+        <div className="form-content  md:w-[20rem] lg:w-[58rem] w-[16rem]">
           <div className="title">
             <h1 className="text-2xl font-bold dark:text-white text-gray-500">
               Ventas
@@ -387,7 +387,7 @@ export const FormSalida = () => {
             >
               {data.length > 0 ? (
                 <>
-                  <div className="m-2">
+                  <div className="my-2">
                     <div className="flex flex-col ">
                       <div className="bg-white dark:bg-[#374151] dark:text-white w-full flex justify-between items-center rounded-md text-lg text-black  px-1 ">
                         <div className="list flex">
@@ -516,13 +516,13 @@ export const FormSalida = () => {
               )}
             </div>
 
-            <div className="">
+            <div className="w-full">
               {pedidosList.length > 0 ? (
-                <div className="h-[18rem]  overflow-y-auto ">
+                <div className="h-[18rem]  overflow-y-auto sroll_p_c">
                   {pedidosList.map((i) => {
                     return (
                       <div className="container" key={i.idSubproducto}>
-                        <div className="bg-gray-10 dark:bg-[#374151] dark:text-white flex justify-between gap-1 mx-1 p-1 my-1 rounded ">
+                        <div className="bg-gray-10 bg-[#ebebeb] dark:bg-[#374151] dark:text-white flex justify-between gap-1 mx- p-1 my-1 rounded ">
                           <div>{i.name}</div>
                           <div>Unid...: {i.unidades}</div>
                           <div>
@@ -570,10 +570,10 @@ export const FormSalida = () => {
           </div>
         ) : null}
       </div>
-      {pedidosList.length > 0 ? (
+      {/* {pedidosList.length > 0 ? (
         <div
           className="bg-white dark:bg-[#37415197] dark:text-white
-         p-1 m-2 shadow-lg rounded-lg xl:max-w-7xl "
+         p-1 m-2 shadow-lg rounded-lg w-4/5 "
         >
           <h2 className="p-2">Resumen del Pedido</h2>
 
@@ -625,7 +625,7 @@ export const FormSalida = () => {
             </button>
           </div>
         </div>
-      ) : null}
+      ) : null} */}
     </>
   );
 };

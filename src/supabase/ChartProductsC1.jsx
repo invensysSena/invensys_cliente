@@ -78,7 +78,7 @@ export const ChartProductC1 = () => {
           />
         </div>
       ) : (
-        <div className=" flex gap-2 ">
+        <div className=" flex gap-2 flex-wrap">
           <section className="bg-white dark:bg-[#37415197] dark:text-white  shadow-lg w-[18rem] px-5 py-2 rounded-md my-5">
             <div className="principal flex items-center justify-between">
               <div className="text font-bold mx-2 block">

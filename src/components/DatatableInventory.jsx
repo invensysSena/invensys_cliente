@@ -40,8 +40,6 @@ export const DatatableInventory = () => {
     })();
   }, []);
 
-
-
   // count categorias
 
   const defaultColDef = ChackSelection();
@@ -105,6 +103,8 @@ export const DatatableInventory = () => {
       field: "no",
       filter: "agTextColumnFilter",
       chartDataType: "id",
+      cellStyle: (params) =>
+        params.value !== undefined ? { color: "#067fc0" } : { color: "red" },
     },
     {
       headerName: "Precio venta",
@@ -128,7 +128,7 @@ export const DatatableInventory = () => {
       headerName: "Unidades",
       field: "unidad",
       cellStyle: (params) =>
-        params.value > 10 ? { color: "#1daf53" } : { color: "red" },
+        params.value > 0 ? { color: "#1daf53" } : { color: "red" },
       chartDataType: "body",
       filter: "agTextColumnFilter",
     },
@@ -149,6 +149,14 @@ export const DatatableInventory = () => {
       field: "caducidad",
       chartDataType: "body",
       filter: "agTextColumnFilter",
+    },
+    {
+      headerName: "vencimiento",
+      field: "vencimiento",
+      chartDataType: "body",
+      filter: "agTextColumnFilter",
+      cellStyle: (params) =>
+        params.value !== "Vencido" ? { color: "#1daf53" } : { color: "red" },
     },
     {
       headerName: "Estado",
@@ -205,6 +213,11 @@ export const DatatableInventory = () => {
       setDarkMode(true);
     }
   }, []);
+  const moneyDolar = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    minimumFractionDigits: 2,
+  });
   return (
     <>
       {load ? (
@@ -409,7 +422,7 @@ export const DatatableInventory = () => {
               rowData={subViewProducts.map((item, i) => {
                 let ganancias = item.priceVenta - item.priceCompra;
                 let total = item.priceVenta * item.unidad;
-                console.log("----",total);
+                console.log("----", total);
                 const fechaActual = new Date();
                 const diaActual = fechaActual.getDate();
                 const mesActual = fechaActual.getMonth();
@@ -428,14 +441,8 @@ export const DatatableInventory = () => {
                   name: item.name,
                   no: "No. " + i + 1,
                   change: [total],
-                  priceCompra: ("$ " + item.priceCompra).replace(
-                    /(\d)(?=(\d\d\d)+(?!\d))/g,
-                    "$1,"
-                  ),
-                  priceVenta: ("$ " + item.priceVenta).replace(
-                    /(\d)(?=(\d\d\d)+(?!\d))/g,
-                    "$1,"
-                  ),
+                  priceCompra: moneyDolar.format(item.priceCompra),
+                  priceVenta: moneyDolar.format(item.priceVenta),
                   stockMaximo: (" " + item.stockMaximo).replace(
                     /(\d)(?=(\d\d\d)+(?!\d))/g,
                     "$1."
@@ -448,14 +455,10 @@ export const DatatableInventory = () => {
                     /(\d)(?=(\d\d\d)+(?!\d))/g,
                     "$1."
                   ),
-                  ganancias: ("$ " + ganancias).replace(
-                    /(\d)(?=(\d\d\d)+(?!\d))/g,
-                    "$1,"
-                  ),
-                  total: ("$ " + total).replace(
-                    /(\d)(?=(\d\d\d)+(?!\d))/g,
-                    "$1,"
-                  ),
+                  ganancias: moneyDolar.format(ganancias),
+                  total: moneyDolar.format(total),
+                  vencimiento:
+                    diferencia === 0 || diferencia < 0 ? "Vencido" : "Estable",
                   caducidad: moment().add(diferencia, "days").calendar(),
                   dateCreate: moment(item.createdAt).format("LLLL"),
                   Estado: "Activo",

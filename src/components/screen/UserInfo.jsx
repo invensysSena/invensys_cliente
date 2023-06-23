@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 import { Link, useParams } from "react-router-dom";
 import { getUsersAdmin, getServices } from "../../apis/ApiData";
 import sinDada from "../../assets/img/sinDada.jpg";
@@ -167,7 +169,12 @@ export const UserInfo = () => {
                           </>
                         ) : (
                           <>
-                            <img src={sinDada} alt="" />
+                              <LazyLoadImage src={sinDada} alt=""
+                              
+                                effect=""
+                            
+                            
+                              />
                             <h2 className="grig place-content-center text-center">
                               No hay datos para mostrar
                             </h2>

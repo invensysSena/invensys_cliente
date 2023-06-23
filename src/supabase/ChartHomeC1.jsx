@@ -110,7 +110,7 @@ export const ChartHomeC1 = () => {
           />
         </div>
       ) : (
-          <div className="div shadow-xl rounded-md border w-[290px] md:w-[39rem]
+          <div className="div shadow-xl rounded-md border w-[290px] md:w-[32rem]
           dark:text-white bg-white ">
           <Chart
             options={options}

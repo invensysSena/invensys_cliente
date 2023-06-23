@@ -1,22 +1,18 @@
 
-import React from 'react'
+const ConfigAdmin = () => {
+  return <div>ConfigAdmin</div>;
+};
 
-export const ConfigAdmin = () => {
-  return (
-    <div>ConfigAdmin</div>
-  )
-}
-
+export default ConfigAdmin;
 
 // import React, { useEffect, useState } from 'react'
 // import { MenuLateral } from '../components/MenuLateral';
 // import { Select, initTE,  Datepicker, Input} from "tw-elements";
 
-
 // export const ConfigAdmin = () => {
 
 //   initTE({ Select,  Datepicker, Input, });
-  
+
 //   let showdate = new Date();
 //   let displaytodaysdate = showdate.getDate()+'/'+(showdate.getMonth()+1)+'/'+showdate.getFullYear();
 //   let dt= showdate.toDateString();
@@ -124,7 +120,6 @@ export const ConfigAdmin = () => {
 //     </div>
 //     </div>
 // </div>
-
 
 //     </>
 

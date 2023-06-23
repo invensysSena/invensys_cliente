@@ -1,31 +1,44 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState } from "react";
-import { Link} from "react-router-dom";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import { usePostAuth } from "../hooks/context/UserContextData";
 import * as Yup from "yup";
 import { faAngleLeft, faUser, faKey } from "@fortawesome/free-solid-svg-icons";
 import "../index.css";
 import { ToastContainer, toast } from "react-toastify";
 import { Formik, Field, Form, ErrorMessage } from "formik";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import logo from "../assets/logo/logo peque.png";
 function NewPassword() {
   const { newPasswordL } = usePostAuth();
   const [loading, setLoading] = useState(false);
   return (
-    <div className="bg-gray-100 min-h-screen
+    <div
+      className="bg-gray-100 min-h-screen
 
     dark:bg-gradient-to-r from-[#163b59] from-10%
-     via-[#18324f] via-30% to-[#121b2e] to-90%  relative">
+     via-[#18324f] via-30% to-[#121b2e] to-90%  relative"
+    >
       <ToastContainer />
       <div className="flex dark:bg-[#37415197] dark:text-white dark:border-none  bg-white w-full border-b justify-between items-center">
         <div className="flex items-center  ">
-        <Link
-              to={"/verifyc+code/identify"}
-              className="items-center flex dark:bg-[#37415197] dark:text-white bg-gray-200 m-1 rounded text-white py-2 px-3"
-            >
-              <FontAwesomeIcon icon={faAngleLeft} className="text-2xl dark:text-white text-gray-700" />
-              <span className="pl-2 text-gray-700 dark:text-white">Volver</span>
-            </Link>
-          <span className="text-2xl text-[#0099FF] mx-2 font-bold">Stored</span>
+          <Link
+            to={"/verifyc+code/identify"}
+            className="items-center flex dark:bg-[#37415197] dark:text-white bg-gray-200 m-1 rounded text-white py-2 px-3"
+          >
+            <FontAwesomeIcon
+              icon={faAngleLeft}
+              className="text-2xl dark:text-white text-gray-700"
+            />
+            <span className="pl-2 text-gray-700 dark:text-white">Volver</span>
+          </Link>
+          <span className="text-2xl text-[#0099FF] mx-2 font-bold">
+            <div className="self_t lg:mr-4">
+              <Link to="/">
+                <LazyLoadImage src={logo} alt="" width={70} className="py-1" />
+              </Link>
+            </div>
+          </span>
         </div>
         <div className="flex items-center">
           <span className="mx-2 hidden sm:block">
@@ -48,9 +61,8 @@ function NewPassword() {
           Ingrese la nueva contraseña
         </div>
         <div className="text-gray-600 my-3 dark:text-white mx-2">
-        Ya casi terminamos ingresa tu nueva contraseña para que puedas acceder a tu
-          cuenta
-
+          Ya casi terminamos ingresa tu nueva contraseña para que puedas acceder
+          a tu cuenta
         </div>
         <Formik
           initialValues={{
@@ -70,14 +82,13 @@ function NewPassword() {
               ),
           })}
           onSubmit={async (values) => {
-            
             let cod = localStorage.getItem("codigo");
             let email = localStorage.getItem("email");
             const response = await newPasswordL({
               codigo: parseInt(cod),
               correo: email,
               newPassword: values.password2,
-            });           
+            });
             if (response.status === 204) {
               toast.success("Contraseña cambiada correctamente");
               localStorage.removeItem("codigo");
@@ -90,7 +101,6 @@ function NewPassword() {
               toast.error("Error al cambiar la contraseña");
               setLoading(!loading);
             }
-          
           }}
         >
           <Form>
@@ -158,7 +168,7 @@ function NewPassword() {
                   Confirmar
                 </button>
               </div>
-              <div className={loading ? "loadingblovk" : "loading"}>
+              {/* <div className={loading ? "loadingblovk" : "loading"}>
                 <div
                   className="lds-ellipsis
                           bg-[#0099FF] text-white rounded-full relative
@@ -170,7 +180,7 @@ function NewPassword() {
                   <div></div>
                   <div></div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </Form>
         </Formik>

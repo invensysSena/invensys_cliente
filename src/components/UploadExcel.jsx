@@ -1,4 +1,4 @@
-import  { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Formik, Form, Field } from "formik";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleQuestion } from "@fortawesome/free-solid-svg-icons";
@@ -9,6 +9,8 @@ import { Link, useNavigate } from "react-router-dom";
 import "../assets/css/styleSlider.css";
 import { useGetUsers } from "../hooks/context/GetUsersContext";
 import "./efectosCss.css";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 export const UploadExcel = ({ estado = false }) => {
   const { postUploadcsvUsuario } = useGetUsers();
   const [csv, setCsv] = useState([]);
@@ -56,7 +58,7 @@ export const UploadExcel = ({ estado = false }) => {
   });
 
   return (
-    <div className={estados ? "  h-full absolute z-30 w-4/5" : "hidden"}>
+    <div className={estados ? "  h-full absolute left-6 md:left-auto z-30 w-full md:w-4/5" : "hidden"}>
       <ToastContainer />
 
       <div className="form-signup w-4/5 sm:w-96 mx-auto sm:mx-auto mt-5 relative ">
@@ -65,7 +67,7 @@ export const UploadExcel = ({ estado = false }) => {
             className="bg-[#fe5f57] rounded-full absolute right-1 top-1"
             onClick={handleShow}
           >
-            <img src={x} alt="" />
+            <LazyLoadImage src={x} alt="" />
           </button>
           <h2 className="text-xl font-semibold mt-2 mb-5 pt-5 text-center  dark:text-white ">
             Subir archivo csv
@@ -176,7 +178,7 @@ export const UploadExcel = ({ estado = false }) => {
                     className="w-4/5 mx-2  rounded cursor-pointer  py-2 outline-none border border-[#1876F2] "
                   >
                     <option value="usuario">Selecionar</option>
-                    <option value="inventario">inventario</option>
+                    <option value="bodega">Bodega</option>
                   </Field>
                 </section>
                 <section>

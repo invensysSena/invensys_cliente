@@ -129,11 +129,11 @@ export const TranslateProduct = () => {
               </div>
             </div>
             <h2 className="dark:text-white">Selecione la bodega de destino</h2>
-            <div className="flex  ">
+            <div className="flex  max-w-[30rem] overflow-x-auto _skip_l">
               {inventario.map((item, index) => (
                 <div
                   key={index}
-                  className="bg-white dark:bg-transparent border dark:border-[#019afa] flex p-1 h- m-1 rounded-full 
+                  className="bg-white dark:bg-transparent border dark:border-[#019afa] flex p-1 h-full m-1  
                 
                 focus:bg-blue-500 focus:text-white dark:text-white
                 "
@@ -146,7 +146,7 @@ export const TranslateProduct = () => {
                     value={item.id}
                     className="m-1 block"
                   />
-                  <label htmlFor="bodega">{item.name_inventory}</label>
+                  <label htmlFor="bodega" className="truncate">{item.name_inventory}</label>
                 </div>
               ))}
             </div>
@@ -169,7 +169,7 @@ export const TranslateProduct = () => {
             }}
           >
             {products.length > 0 ? (
-              <div className="h-80 overflow-y-auto">
+              <div className="h-80 overflow-y-auto _skip_l bg-white rounded-md">
                 {products.map((item, index) => (
                   <>
                     <div>

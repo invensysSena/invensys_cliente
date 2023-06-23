@@ -1,6 +1,6 @@
 import { MenuLateral } from "../components/MenuLateral";
 
-export const AyudaAdmin = () => {
+const AyudaAdmin = () => {
   (function () {
     // DON'T EDIT BELOW THIS LINE
     var d = document,
@@ -28,3 +28,5 @@ export const AyudaAdmin = () => {
     </>
   );
 };
+
+export default AyudaAdmin;

@@ -17,6 +17,8 @@ import { useGetUsers } from "../hooks/context/GetUsersContext";
 import { useContextProduct } from "../hooks/context/ContextProduxt";
 import { FormProduct } from "./FormProduct/FormProduct";
 import OptionsProducto from "./FormProduct/OptionsProducto";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 moment.locale("es");
 
 export const DatatableProduct = () => {
@@ -208,7 +210,7 @@ export const DatatableProduct = () => {
               onClick={() => setActive(!active)}
               className=" bg-[#019afa] dark:border-[#019afa] text-white flex items-center p-1 rounded-md border whitespace-nowrap"
             >
-              <img src={plus} alt="" />
+              <LazyLoadImage src={plus} alt="" effect="blur" />
               Crear producto
             </button>
           </section>
@@ -297,8 +299,8 @@ export const DatatableProduct = () => {
       <div
         className={
           darkMode
-            ? "ag-theme-alpine-dark h-[300px] w-[300px] md:w-[100%] md:h-[600px] shadow-2xl mx-auto rounded-lg overflow-hidden "
-            : " rounded-lg overflow-hidden ag-theme-alpine h-[300px] w-[300px] md:w-[100%] md:h-[600px] shadow-2xl mx-auto"
+            ? "ag-theme-alpine-dark h-[300px] w-[200px] md:w-[100%] md:h-[600px] shadow-2xl md:mx-auto rounded-lg overflow-hidden "
+            : " rounded-lg overflow-hidden ag-theme-alpine h-[300px] w-[300px] md:w-[100%] md:h-[600px] shadow-2xl md:mx-auto"
         }
         id="myGrid"
       >

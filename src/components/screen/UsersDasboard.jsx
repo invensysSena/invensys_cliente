@@ -6,6 +6,7 @@ import { Link, Outlet } from "react-router-dom";
 import "animate.css";
 import "../../assets/css/sorteable.css";
 import moment from "moment-with-locales-es6";
+import { useMemo } from "react";
 moment.locale("es");
 export const UsersDasboard = () => {
   const [category, setCategory] = useState([]);
@@ -14,7 +15,7 @@ export const UsersDasboard = () => {
   const [provider, setProvider] = useState([]);
   const [users, setUsers] = useState([]);
 
-  useEffect(() => {
+  useMemo(() => {
     (async () => {
       getUsersAdmin().then((res) => {
         setUsers(res.data.data);
@@ -164,7 +165,7 @@ export const UsersDasboard = () => {
               </svg>{" "}
             </h2>
             <div
-              className="cards_content   flex gap-2 flex-col xl:flex-row  overflow-x-auto"
+              className="cards_content effect_blure  flex gap-2 flex-col xl:flex-row  overflow-x-auto"
               id="lista"
             >
               {spiner === true ? (

@@ -363,7 +363,7 @@ export const FormPedido = () => {
                   </div>
                 </div>
                 <div
-                  className="subProducts bg-white dark:bg-[#374151] dark:text-white max-h-[18rem] overflow-y-hidden  border rounded-md"
+                  className="subProducts bg-white dark:bg-[#374151] dark:text-white  overflow-y-hidden  border rounded-md"
                   style={{
                     boxShadow:
                       "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px",
@@ -371,7 +371,7 @@ export const FormPedido = () => {
                 >
                   {products.length > 0 ? (
                     <>
-                      {products.map((i) => {
+                      {products.slice(0,8).map((i) => {
                         return (
                           <div
                             className="flex justify-between dark:border-none items-center p-2  border-b cursor-pointer hover:bg-[#69bff80b] "
@@ -640,7 +640,7 @@ export const FormPedido = () => {
 
               <div className="">
                 {pedidosList.length > 0 ? (
-                  <div className="h-[18rem]  overflow-y-auto ">
+                  <div className="h-[18rem]  overflow-y-auto   sroll_p_c">
                     {pedidosList.map((i) => {
                       return (
                         <div className="container" key={i.idSubproducto}>

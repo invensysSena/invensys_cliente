@@ -1,11 +1,13 @@
 import { useState, useEffect, useMemo } from "react";
 import { TodoFunctions } from "../apis/ApiData";
 import image from "../assets/img/company.jpg";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 export const ListTrae = () => {
   const [data, setData] = useState([]);
   const [load, setLoad] = useState(false);
 
-  useEffect(() => {
+  useMemo(() => {
     (async () => {
       setLoad(true);
       const response = await TodoFunctions.getTrae();
@@ -24,7 +26,7 @@ export const ListTrae = () => {
       <div className=" ">
         <div
           className="relative flex flex-col dark:border-none dark:bg-[#37415197] items-center rounded-[20px] w-full lg:w-[700px]
-             border   bg-white bg-clip-border
+             border   effect_blure bg-clip-border
              shadow-3xl shadow-shadow-500 dark:!bg-navy-800  p-3"
         >
           {load ? (
@@ -177,7 +179,12 @@ export const ListTrae = () => {
               ) : (
                 <>
                   <h2>Registra tu Negocio/Empresa</h2>
-                  <img src={image} alt="" />
+                  <LazyLoadImage
+                    effect="blur"
+                    src={image}
+                    alt=""
+                    className="max-h-[61vh]"
+                  />
                 </>
               )}
             </>

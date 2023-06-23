@@ -20,7 +20,8 @@ import UploadExcel from "./UploadExcel";
 import { ContextCategory } from "../hooks/context/ContextCategory";
 
 import { useContextCategory } from "../hooks/context/ContextCategory";
-
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 moment.locale("es");
 
 export const Datatable = () => {
@@ -29,7 +30,6 @@ export const Datatable = () => {
   useEffect(() => {
     const initial = async () => {
       await getDataCategorias();
-      
     };
 
     initial();
@@ -244,7 +244,7 @@ export const Datatable = () => {
               onClick={handleShowModel}
               className=" bg-[#1daf53] text-white flex items-center p-1 rounded-md border"
             >
-              <img src={plus} alt="" />
+              <LazyLoadImage src={plus} alt="" effect="blur" />
               Crear Categoria
             </button>
           </section>

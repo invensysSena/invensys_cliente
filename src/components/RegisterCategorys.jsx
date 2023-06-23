@@ -14,7 +14,8 @@ import "animate.css";
 import { Link } from "react-router-dom";
 import "../assets/css/styleSlider.css";
 import { useContextCategory } from "../hooks/context/ContextCategory";
-
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 export const RegisterCategorys = ({ estado = false }) => {
   const { postDataCategorias } = useContextCategory();
 
@@ -43,7 +44,7 @@ export const RegisterCategorys = ({ estado = false }) => {
             className="bg-[#fe5f57] rounded-full absolute right-1 top-1"
             onClick={handleShow}
           >
-            <img src={x} alt="" />
+            <LazyLoadImage effect="blur" src={x} alt="" />
           </button>
           <h2 className="text-xl font-semibold mt-2 mb-5 pt-5 text-center  ">
             Crear categoria

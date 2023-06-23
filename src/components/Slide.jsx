@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 import pasion from "../assets/img/pasion.jpg";
 import ezfuerzo from "../assets/img/ezfuerzo.jpg";
 import crecimiento from "../assets/img/crecimiento.jpg";
@@ -16,6 +18,8 @@ export const Slide = () => {
     creatividad,
     inivacion,
   ];
+  import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
   const [imagenActaul, setImagenActual] = useState(0);
   const cantidad = imagenesGalery?.length;
   if (!Array.isArray(imagenesGalery) || cantidad === 0) return;
@@ -39,7 +43,8 @@ export const Slide = () => {
         return (
           <div className="" key={index}>
             {imagenActaul === index && (
-              <img
+              <LazyLoadImage
+                effect="blur"
                 key={index}
                 src={imagen}
                 alt="imagen"

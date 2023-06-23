@@ -16,7 +16,7 @@ import { setNormal } from "./ChackSelection";
 
 import { TodoFunctions } from "../apis/ApiData";
 import { Link, Outlet } from "react-router-dom";
-import OptionVentas from "./OptionVentas";
+import OptionPedidos from "./OptionPedidos";
 moment.locale("es");
 
 export const DataTablePedido = () => {
@@ -52,18 +52,17 @@ export const DataTablePedido = () => {
       chartDataType: "series",
     },
     {
-      headerName: "Mejores ventas",
       field: "change",
       cellRenderer: "agSparklineCellRenderer",
       cellRendererParams: {
         sparklineOptions: {
           type: "bar",
-          fill: "#019afa",
+          fill: "#5470c6",
           stroke: "#91cc75",
           highlightStyle: {
-            fill: "#5994f5",
+            fill: "#fac858",
           },
-          valueAxisDomain: [0, 1],
+          valueAxisDomain: [1, 0],
           paddingOuter: 0,
           padding: {
             top: 0,
@@ -103,7 +102,7 @@ export const DataTablePedido = () => {
     {
       headerName: "Opciones",
       field: "Settings",
-      cellRenderer: OptionVentas,
+      cellRendererFramework: OptionPedidos,
     },
   ]);
 
@@ -317,8 +316,8 @@ export const DataTablePedido = () => {
           <div
             className={
               darkMode
-                ? "ag-theme-alpine-dark h-[300px] w-[80%] sm:w-[550px] lg:w-[100%] md:w-[90%] md:h-[600px] shadow-2xl mx-auto rounded-lg overflow-hidden "
-                : "  h-[300px] w-[90%] sm:w-[550px] lg:w-[90%] md:w-[90%] md:h-[600px] shadow-2xl mx-auto rounded-lg overflow-hidden "
+                ? "ag-theme-alpine-dark h-[300px] w-[300px] md:w-[100%] md:h-[600px] shadow-2xl mx-auto rounded-lg overflow-hidden "
+                : " rounded-lg overflow-hidden ag-theme-alpine h-[300px] w-[300px] md:w-[100%] md:h-[600px] shadow-2xl mx-auto"
             }
             id="myGrid"
           >
@@ -362,7 +361,9 @@ export const DataTablePedido = () => {
           </div>
           <Outlet />
         </>
-      ) : null}
+      ) : (
+        <h1 className="mt-2 text-xl">No tienes pedidos registrados</h1>
+      )}
     </>
   );
 };

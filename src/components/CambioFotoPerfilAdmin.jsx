@@ -1,6 +1,8 @@
-import  { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "../assets/css/CambioFotoPerfilAdmin.css";
 import { useGetUsers } from "../hooks/context/GetUsersContext";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 export const CambioFotoPerfilAdmin = () => {
   const { uploadImgAdminAll } = useGetUsers();
   const [view, setView] = useState(true);
@@ -114,7 +116,7 @@ export const CambioFotoPerfilAdmin = () => {
   }
   useEffect(() => {
     dragOverHandler();
-  }, []);
+  }, [view]);
 
   const uploadImg = async () => {
     setLoad(false);
@@ -177,11 +179,11 @@ export const CambioFotoPerfilAdmin = () => {
                       y1="5.271%"
                       y2="91.793%"
                     >
-                      <stop offset="0%" stop-color="currentColor" />
+                      <stop offset="0%" stopColor="currentColor" />
                       <stop
                         offset="100%"
-                        stop-color="currentColor"
-                        stop-opacity=".55"
+                        stopColor="currentColor"
+                        stopOpacity=".55"
                       />
                     </linearGradient>
                     <linearGradient
@@ -193,13 +195,13 @@ export const CambioFotoPerfilAdmin = () => {
                     >
                       <stop
                         offset="0%"
-                        stop-color="currentColor"
-                        stop-opacity="0"
+                        stopColor="currentColor"
+                        stopOpacity="0"
                       />
                       <stop
                         offset="100%"
-                        stop-color="currentColor"
-                        stop-opacity=".55"
+                        stopColor="currentColor"
+                        stopOpacity=".55"
                       />
                     </linearGradient>
                   </defs>

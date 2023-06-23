@@ -10,7 +10,8 @@ import "../assets/css/sliderCard.css";
 
 // import required modules
 import { EffectCards } from "swiper";
-
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 export const Sled = () => {
   return (
     <>
@@ -21,28 +22,28 @@ export const Sled = () => {
         className="mySwiper sw"
       >
         <SwiperSlide>
-          <img
+          <LazyLoadImage effect="blur"
             src="https://res.cloudinary.com/dkqp3wkbi/image/upload/v1685195615/9589884_4208763_sp5zkp.jpg"
             alt="img1"
             className="h-36"
           />
         </SwiperSlide>
         <SwiperSlide>
-          <img
+          <LazyLoadImage effect="blur"
             src="https://res.cloudinary.com/dkqp3wkbi/image/upload/v1685195745/9914174_4318588_y4hup9.jpg"
             alt="img1"
             className="h-36"
           />
         </SwiperSlide>
         <SwiperSlide>
-          <img
+          <LazyLoadImage effect="blur"
             src="https://res.cloudinary.com/dkqp3wkbi/image/upload/v1685195926/11400326_4679399_kaegsi.jpg"
             alt="img1"
             className="h-36"
           />
         </SwiperSlide>
         <SwiperSlide>
-          <img
+          <LazyLoadImage effect="blur"
             src="https://res.cloudinary.com/dkqp3wkbi/image/upload/v1685195718/8356265_3896559_mw3nwv.jpg"
             alt="img1"
             className="h-36"

@@ -1,12 +1,14 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --background-n1: #374151;
+    --background-n2: #374151;
   }
 }
 
 @media (prefers-color-scheme: light) {
   :root {
     --background-n1: #ffffff66;
+    --background-n2: #ffffff9d;
   }
 }
 
@@ -17,11 +19,31 @@
 }
 .effect_blur1 {
   background: var(--background-n1);
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(20px);
   box-shadow: 0 0 10px 0 rgba(87, 179, 245, 0.5);
+}
+.effect_blure {
+  background: var(--background-n1);
+  backdrop-filter: blur(4px);
+}
+.effect_blures {
+  background: var(--background-n2);
+  backdrop-filter: blur(4px);
 }
 .effect_blur2 {
   background: var(--background-n1);
   backdrop-filter: blur(10px);
   box-shadow: 0 0 10px 0 rgba(87, 179, 245, 0.5);
+}
+._skip_l::-webkit-scrollbar {
+  width: 13px;
+  background: var(--bgcolor-login);
+  padding: 3;
+}
+
+._skip_l::-webkit-scrollbar-thumb {
+  background: rgb(161, 161, 161);
+  border-radius: 10px;
+  border-right: 2px solid var(--bgcolor-login);
+  border-left: 2px solid var(--bgcolor-login);
 }

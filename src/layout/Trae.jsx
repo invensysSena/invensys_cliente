@@ -1,17 +1,28 @@
 import { MenuLateral } from "../components/MenuLateral";
+import { SubMenu } from "../components/SubMenu";
 import { FormTrae } from "../log/FormTrae";
 import { ListTrae } from "../log/ListTrae";
-
-export const Trae = () => {
+import "../components/efectosCss.css";
+const Trae = () => {
   return (
-    <>
+    <div
+      className="bg-gradient-to-r from-[#e3fbff] from-10% via-[#dfd8feaa] via-30% to-[#e5fbff] to-90%  w-full block  min-h-screen
+
+        
+
+        dark:bg-gradient-to-r dark:from-[#163b59] dark:from-10%
+         dark:via-[#18324f] dark:via-30% dark:to-[#121b2e] dark:to-90%"
+    >
+      <div
+        className="sticky top-0 py-3 hidden lg:block effect_blure h-fit w-full
+      
+      "
+      >
+        <SubMenu />
+      </div>
       <div className="flex">
         <MenuLateral />
-        <div
-          className=" w-full h-screen block self_conte_fond
-          dark:bg-gradient-to-r from-[#163b59] from-10%
-         via-[#18324f] via-30% to-[#121b2e] to-90% "
-        >
+        <div className=" ">
           <div className="content_users m-7">
             <div className="content_users_title">
               <h2
@@ -35,6 +46,8 @@ export const Trae = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
+
+export default Trae;

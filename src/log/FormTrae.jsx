@@ -1,10 +1,20 @@
 import { useState } from "react";
 import { TodoFunctions } from "../apis/ApiData";
+import { useMemo } from "react";
 export const FormTrae = () => {
   // const [data.setData] = ({
 
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [data1, setData1] = useState([]);
+
+  console.log(data1);
+  useMemo(() => {
+    (async () => {
+      const response = await TodoFunctions.getTrae();
+      setData1(response.data.company);
+    })();
+  }, []);
 
   const handleFormTrae = async (e) => {
     try {
@@ -24,7 +34,7 @@ export const FormTrae = () => {
   };
   return (
     <>
-      <div className="bg-white dark:bg-[#37415197] dark:border-none rounded-md dark:text-white border w-full  lg:h-fit p-4 m-1">
+      <div className="effect_blure dark:bg-[#37415197] dark:border-none rounded-md dark:text-white border w-full  lg:h-fit p-4 m-1">
         <form onSubmit={handleFormTrae}>
           <div className="grid gap-6 mb-6  md:grid-cols-2 lg:grid-cols-3">
             <div>
@@ -38,7 +48,8 @@ export const FormTrae = () => {
                 type="text"
                 id="first_name"
                 name="tipoPersona"
-                className="bg-gray-50 outline-none border
+                defaultValue={data1.length > 0 ? data1[0].tipoPersona : ""}
+                className="bg-gray-50 outline-none border 
                  border-gray-300  text-sm rounded-lg dark:text-white
               focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#374151] 
                
@@ -59,10 +70,12 @@ export const FormTrae = () => {
                 type="text"
                 id="last_name"
                 className="bg-gray-50 outline-none  border border-gray-300 text-gray-900 text-sm rounded-lg
+
              focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-[#374151] dark:text-white"
                 placeholder="..."
                 name="nit"
                 onChange={HandleInput}
+                defaultValue={data1.length > 0 ? data1[0].nit : ""}
               />
             </div>
             <div>
@@ -80,6 +93,9 @@ export const FormTrae = () => {
               focus:ring-blue-500 dark:bg-[#374151] dark:text-white focus:border-blue-500 block w-full p-2.5 outline-none "
                 placeholder="..."
                 onChange={HandleInput}
+                defaultValue={
+                  data1.length > 0 ? data1[0].tipoIdentificacion : ""
+                }
               />
             </div>
             <div>
@@ -97,6 +113,7 @@ export const FormTrae = () => {
                 placeholder="..."
                 name="numero"
                 onChange={HandleInput}
+                defaultValue={data1.length > 0 ? data1[0].numero : ""}
               />
             </div>
             {/* xx */}
@@ -115,6 +132,7 @@ export const FormTrae = () => {
                 placeholder="..."
                 name="nombre"
                 onChange={HandleInput}
+                defaultValue={data1.length > 0 ? data1[0].nombre : ""}
               />
             </div>
             <div>
@@ -132,6 +150,7 @@ export const FormTrae = () => {
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
              focus:ring-blue-500 dark:bg-[#374151] dark:text-white focus:border-blue-500 block w-full p-2.5 outline-none "
                 placeholder="123-45-678"
+                defaultValue={data1.length > 0 ? data1[0].telefono : ""}
               />
             </div>
             <div>
@@ -149,6 +168,7 @@ export const FormTrae = () => {
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
              focus:ring-blue-500 dark:bg-[#374151] dark:text-white focus:border-blue-500 block w-full p-2.5 outline-none "
                 placeholder="..."
+                defaultValue={data1.length > 0 ? data1[0].pais : ""}
               />
             </div>
             <div>
@@ -166,6 +186,7 @@ export const FormTrae = () => {
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
              focus:ring-blue-500 dark:bg-[#374151] dark:text-white focus:border-blue-500 block w-full p-2.5 outline-none "
                 placeholder=""
+                defaultValue={data1.length > 0 ? data1[0].departamento : ""}
               />
             </div>
 
@@ -184,6 +205,7 @@ export const FormTrae = () => {
          focus:ring-blue-500 dark:bg-[#374151] dark:text-white focus:border-blue-500 block w-full p-2.5 outline-none "
                 placeholder="ciudad"
                 name="ciudad"
+                defaultValue={data1.length > 0 ? data1[0].ciudad : ""}
               />
             </div>
           </div>
@@ -202,6 +224,7 @@ export const FormTrae = () => {
          focus:ring-blue-500 dark:bg-[#374151] dark:text-white focus:border-blue-500 block w-full p-2.5 outline-none "
               placeholder=""
               name="direccion"
+              defaultValue={data1.length > 0 ? data1[0].direccion : ""}
             />
           </div>
           <div className="mb-6">
@@ -219,6 +242,7 @@ export const FormTrae = () => {
          focus:ring-blue-500 dark:bg-[#374151] dark:text-white focus:border-blue-500 block w-full p-2.5 outline-none  "
               placeholder="invensys@company.com"
               name="correo"
+              defaultValue={data1.length > 0 ? data1[0].correo : ""}
             />
           </div>
 

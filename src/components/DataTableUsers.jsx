@@ -16,7 +16,8 @@ import { ChackSelection } from "./ChackSelection";
 import { setNormal } from "./ChackSelection";
 import UploadExcel from "./UploadExcel";
 import { useGetUsers } from "../hooks/context/GetUsersContext";
-
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 moment.locale("es");
 
 export const DataTableUsers = () => {
@@ -135,7 +136,7 @@ export const DataTableUsers = () => {
     <>
       <UploadExcel estado={ExcelModel} />
       <UserRegister estado={stateModel} />
-      <div className="panel_opciones bg-white dark:bg-[#37415197] dark:text-white w-[100%] mx-auto mt-10 mb-1  rounded-md p-4">
+      <div className="panel_opciones effect_blure dark:bg-[#37415197] dark:text-white w-[100%] mx-auto mt-10 mb-1  rounded-md p-4">
         <div className="plus_panel flex lg:flex-row flex-col lg:justify-between lg:items-center ">
           <section className="items-center flex">
             <div className="users flex items-center mx-2">
@@ -237,7 +238,7 @@ export const DataTableUsers = () => {
               onClick={handleShowModel}
               className=" bg-[#019afa] text-white dark:border-[#019afa] flex items-center p-1 rounded-md border whitespace-nowrap"
             >
-              <img src={plus} alt="" />
+              <LazyLoadImage src={plus} alt="" effect="blur" />
               Crear usuario
             </button>
           </section>
@@ -251,7 +252,7 @@ export const DataTableUsers = () => {
         <div className="panel_analitic flex my-4">
           <div className="content flex ">
             <div className="inactive flex items-center ">
-              <div className=" bg-white p-2 rounded-lg mx-1 dark:bg-[#37415197]">
+              <div className=" effect_blure p-2 rounded-lg mx-1 dark:bg-[#37415197]">
                 <span className="text-green-500 flex items-center">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -268,7 +269,7 @@ export const DataTableUsers = () => {
                   <span>Activos {getActivosUsers} </span>
                 </span>
               </div>
-              <div className="bg-white  p-2 rounded-lg dark:bg-[#37415197]">
+              <div className="effect_blure  p-2 rounded-lg dark:bg-[#37415197]">
                 <span className="text-[red] flex items-center">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

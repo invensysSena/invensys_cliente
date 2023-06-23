@@ -9,39 +9,37 @@ import {
   faEye,
   faEyeSlash,
 } from "@fortawesome/free-solid-svg-icons";
-import x from "../assets/icons/x.svg"
+import x from "../assets/icons/x.svg";
 import { useGetUsers } from "../hooks/context/GetUsersContext";
 import { ToastContainer, toast } from "react-toastify";
 import * as Yup from "yup";
 import "animate.css";
-import { Link,useNavigate } from "react-router-dom";
-import "../assets/css/styleSlider.css"
-
-export const UserRegister = ({estado=false }) => {
-  
-  const navigate = useNavigate(); 
+import { Link, useNavigate } from "react-router-dom";
+import "../assets/css/styleSlider.css";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
+export const UserRegister = ({ estado = false }) => {
+  const navigate = useNavigate();
   const [typeInput, setTypeInput] = useState(true);
   const [estados, setEstado] = useState(false);
   const [spiner, setSpiner] = useState(false);
   const { UserRegister } = useGetUsers();
   const handleShow = () => {
-    setEstado(false) 
-  
-  }
-  
- useEffect(() => {
-  if(estado){
-    setEstado(true)
-  }
-  else{
-    setEstado(false)
-  }
- },[estado])
- 
+    setEstado(false);
+  };
 
-  
+  useEffect(() => {
+    if (estado) {
+      setEstado(true);
+    } else {
+      setEstado(false);
+    }
+  }, [estado]);
+
   return (
-    <div className={estados ? "  h-full absolute z-30 w-4/5" : "hidden"}>
+    <div
+      className={estados ? "  h-full absolute left-6  md:left-auto z-30 w-full md:w-4/5" : "hidden"}
+    >
       <ToastContainer />
 
       <div className="form-signup w-4/5 sm:w-96 mx-auto sm:mx-auto mt-5 relative ">
@@ -50,7 +48,7 @@ export const UserRegister = ({estado=false }) => {
             className="bg-[#fe5f57] rounded-full absolute right-1 top-1"
             onClick={handleShow}
           >
-            <img src={x} alt="" />
+            <img effect="blur" src={x} alt="" />
           </button>
           <h2 className="text-xl font-semibold mt-2 mb-5 pt-5 text-center dark:text-white  ">
             Crear cuenta usuario
@@ -65,9 +63,10 @@ export const UserRegister = ({estado=false }) => {
               password: Yup.string()
                 .required("El campo no puede estar vacio")
                 .min(6, "Debe tener mas de 6 caracteres")
-                .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[%$#@])[A-Za-z\d%$#@]{6,}$/,
-                    "Debe incluir al menos una letra mayuscula, un numero y un caracter especial %$#@"
-                  ),
+                .matches(
+                  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[%$#@])[A-Za-z\d%$#@]{6,}$/,
+                  "Debe incluir al menos una letra mayuscula, un numero y un caracter especial %$#@"
+                ),
             })}
             onSubmit={async (values) => {
               let response = await UserRegister(values);

@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { getDataAll, TodoFunctions } from "../apis/ApiData";
 import moment from "moment-with-locales-es6";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 moment.locale("es");
 export const Licenciaok = () => {
   const [dataAll, setDataAll] = useState([]);
@@ -75,7 +77,7 @@ export const Licenciaok = () => {
       ) : (
         <div className="font-sans bg-grey-lighter flex flex-col min-h-screenw-full">
           <div className="flex-grow container mx-auto sm:px-4 pt-6 pb-8">
-            <div className="bg-white border-t dark:bg-[#37415197] dark:text-white dark:border-[#777777]  border-b sm:border-l sm:border-r sm:rounded shadow mb-6">
+            <div className="effect_blure border-t dark:bg-[#37415197] dark:text-white dark:border-[#777777]  border-b sm:border-l sm:border-r sm:rounded shadow mb-6">
               <div className="border-b px-6">
                 <div className="flex justify-between -mb-px items-center py-2">
                   <div className=" w-[100px] sm:w-[200px] lg:w-full flex overflow-x-auto lg:flex">
@@ -111,7 +113,8 @@ export const Licenciaok = () => {
                     </span>
                   </div>
                   <div className="flex text-sm">
-                    <img
+                    <LazyLoadImage
+                      effect="blur"
                       src={dataAll.length > 0 ? dataAll[0].imgURL : null}
                       alt="Avatar"
                       className="rounded-full w-10 h-10 mr-4"
@@ -171,7 +174,7 @@ export const Licenciaok = () => {
             </div>
             <div className="flex flex-wrap -mx-4">
               <div className="w-[320px] md:w-full mb-6 lg:mb-0 lg:w-1/2 px-4 flex flex-col">
-                <div className="flex-grow flex flex-col dark:bg-[#37415197] dark:text-white dark:border-[#777777] bg-white border-t border-b sm:rounded sm:border shadow overflow-hidden">
+                <div className="flex-grow flex flex-col dark:bg-[#37415197] dark:text-white dark:border-[#777777] effect_blure border-t border-b sm:rounded sm:border shadow overflow-hidden">
                   <div className="border-b">
                     <div
                       className="flex lg:justify-between flex-col md:flex-row px-6 -mb-px
@@ -277,7 +280,7 @@ export const Licenciaok = () => {
                 </div>
               </div>
               <div className="w-full lg:w-1/2 px-4">
-                <div className="bg-white dark:bg-[#37415197] dark:text-white dark:border-[#777777] border-t border-b sm:rounded sm:border shadow">
+                <div className="effect_blure dark:bg-[#37415197] dark:text-white dark:border-[#777777] border-t border-b sm:rounded sm:border shadow">
                   <div className="border-b">
                     <div className="flex justify-between px-6 -mb-px">
                       <h3 className="text-blue-dark py-4 font-normal text-lg">

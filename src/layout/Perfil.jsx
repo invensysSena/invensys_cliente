@@ -9,9 +9,11 @@ import "react-loading-skeleton/dist/skeleton.css";
 import { useNavigate } from "react-router-dom";
 import { Fragment } from "react";
 import "../components/efectosCss.css";
+import { getDataAll, UpdateAdminAll } from "../apis/ApiData";
+import { SubMenu } from "../components/SubMenu";
 
-export const Perfil = () => {
-  const { getAdminDataAll, adminGetData, updateDataAdmin } = useGetUsers();
+const Perfil = () => {
+  const { adminGetData } = useGetUsers();
   const [btnSpand, setbtnSpand] = useState(false);
   const [modelImg, setModelImg] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -23,7 +25,7 @@ export const Perfil = () => {
 
   useMemo(() => {
     const initial = async () => {
-      await getAdminDataAll();
+      await getDataAll();
 
       setLoading(false);
     };
@@ -57,29 +59,37 @@ export const Perfil = () => {
       document: e.target.document.value,
       id: localStorage.getItem("id_admin"),
     };
-    await updateDataAdmin(data);
+    await UpdateAdminAll(data);
     setLoad(true);
 
     navigate("/perfil");
     window.location.reload();
   };
   return (
-    <>
+    <div
+      className="bg-gradient-to-r from-[#e3fbff] from-10% via-[#e3d1fdaa] via-30% to-[#e5fbff] to-90%  w-full block  min-h-screen
+
+        
+
+        dark:bg-gradient-to-r dark:from-[#163b59] dark:from-10%
+         dark:via-[#18324f] dark:via-30% dark:to-[#121b2e] dark:to-90%"
+    >
+      <div
+        className="sticky z-30  hidden lg:block  top-0 py-3 effect_blure h-fit w-full
+      
+      "
+      >
+        <SubMenu />
+      </div>
       {modelImg === true ? (
         <CambioFotoPerfilAdmin handleImg={handleImg} />
       ) : null}
 
-      <div className="flex overflow-y-hidden">
+      <div className="flex overflow-y-hidden z-50 relative">
         <MenuLateral />
 
         <div
-          className="bg-[#eef9fd]  w-full block  min-h-screen
-
-        
-
-        dark:bg-gradient-to-r from-[#163b59] from-10%
-         via-[#18324f] via-30% to-[#121b2e] to-90%
-        
+          className="  w-full block  min-h-screen
         
         "
         >
@@ -93,8 +103,8 @@ export const Perfil = () => {
                 className={
                   btnSpand
                     ? ` effect_blur
-    panel_Editar_P rounded-lg h-[36rem] absolute shadow-xl right-[33rem] shadow-gray-400
-    bg-white w-[22rem] z-20 top-6 overflow-hidden block duration-300 ease-out opacity-100
+    panel_Editar_P rounded-lg h-[36rem] absolute shadow-xl  mx-auto lg:right-[33rem] shadow-gray-400
+    bg-white w-[80%] md:w-[22rem]  top-6 overflow-hidden block duration-300 ease-out opacity-100
     `
                     : `panel_Editar_P rounded-lg h-[36rem] absolute shadow-xl right-[33rem] shadow-gray-400
     bg-white w-[22rem] z-20 top-6 overflow-hidden hidden opacity-0 effect_blur`
@@ -327,7 +337,7 @@ export const Perfil = () => {
                                 name="email"
                                 id="apellido"
                                 value={item.correo}
-                                className=" py-1 rounded-sm focus:border-1 outline-none bg-transparent
+                                className=" py-1 rounded-sm truncate focus:border-1 outline-none bg-transparent
             w-[150%]
              "
                               />
@@ -475,7 +485,7 @@ export const Perfil = () => {
                 </div>
               </div>
             ) : (
-              <div className="c_perfil  bg-white dark:bg-[#37415197] w-[84%] sm:w-[90%] md:w-96 rounded-lg relative ml-2   mt-6 ">
+              <div className="c_perfil  effect_blures dark:bg-[#37415197] w-[84%] sm:w-[90%] md:w-96 rounded-lg relative ml-2   mt-6 ">
                 <div className="edidarPerfilAdmin absolute z-40 w-full">
                   <button
                     onClick={handleBtnSpand}
@@ -511,19 +521,30 @@ export const Perfil = () => {
                               />
                             </a>
                           ) : (
-                            <img
-                              className="z-30 t-8 block absolute rounded-full top-[5rem] left-[8.30rem]"
-                              width={110}
-                              src="https://www.ecured.cu/images/thumb/a/a1/Ejemplo_de_Avatar.png/260px-Ejemplo_de_Avatar.png"
-                              alt="imagen de perfil"
-                            />
+                            <div className="z-30 t-8 block absolute rounded-full top-[5rem] left-[8.30rem]">
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="110"
+                                height="110"
+                                viewBox="0 0 32 32"
+                              >
+                                <path
+                                  fill="white"
+                                  d="M8.007 24.93A4.996 4.996 0 0 1 13 20h6a4.996 4.996 0 0 1 4.993 4.93a11.94 11.94 0 0 1-15.986 0ZM20.5 12.5A4.5 4.5 0 1 1 16 8a4.5 4.5 0 0 1 4.5 4.5Z"
+                                />
+                                <path
+                                  fill="#c9ccd1"
+                                  d="M26.749 24.93A13.99 13.99 0 1 0 2 16a13.899 13.899 0 0 0 3.251 8.93l-.02.017c.07.084.15.156.222.239c.09.103.187.2.28.3c.28.304.568.596.87.87c.092.084.187.162.28.242c.32.276.649.538.99.782c.044.03.084.069.128.1v-.012a13.901 13.901 0 0 0 16 0v.012c.044-.031.083-.07.128-.1c.34-.245.67-.506.99-.782c.093-.08.188-.159.28-.242c.302-.275.59-.566.87-.87c.093-.1.189-.197.28-.3c.071-.083.152-.155.222-.24ZM16 8a4.5 4.5 0 1 1-4.5 4.5A4.5 4.5 0 0 1 16 8ZM8.007 24.93A4.996 4.996 0 0 1 13 20h6a4.996 4.996 0 0 1 4.993 4.93a11.94 11.94 0 0 1-15.986 0Z"
+                                />
+                              </svg>
+                            </div>
                           )}
                         </div>
                       ))}
                     </picture>
                     <button
                       onClick={handleImg}
-                      className="absolute top-[10rem] z-50 inset-0 mx-auto
+                      className="absolute top-[10rem] z-40 inset-0 mx-auto
                       pl-7
                         w-6 cursor-pointer"
                     >
@@ -552,7 +573,7 @@ export const Perfil = () => {
                 </div>
                 {adminGetData.map((item) => (
                   <div className="content_contenido_p" key={item.idUsers}>
-                    <div className="bg-white dark:bg-[#37415197] dark:text-white mx-2">
+                    <div className=" dark:bg-[#37415197] dark:text-white mx-2">
                       <ul className="list-none_k">
                         <li className="flex  flex-col py-2 px-4 ">
                           <h2 className="mt-16 lg:mt-14 text-xl dark:text-white pb-3 lg:text-2xl font-sans mx-0 font-bold text-gray-700">
@@ -670,7 +691,7 @@ export const Perfil = () => {
                 <span>
                   <a
                     href="/notificaciones"
-                    className="bg-gray-100 rounded-lg
+                    className="effect_blures rounded-lg
        w-[90%] mx-auto my-2 p-2 flex
         justify-between"
                   >
@@ -680,69 +701,6 @@ export const Perfil = () => {
                     </span>
                   </a>
                 </span>
-                {/* <div className="bg-white p-3 hover:shadow lg:block hidden">
-                  <div className="flex items-center space-x-3  font-semibold text-gray-900 text-xl leading-8">
-                    <span className="text-green-500">
-                      <svg
-                        className="h-5 fill-current"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                        />
-                      </svg>
-                    </span>
-                    <span>Usuarios Creados</span>
-                  </div>
-                  <div className="grid grid-cols-3">
-                    <div className="text-center my-2">
-                      <img
-                        className="h-16 w-16 rounded-full mx-auto"
-                        src="https://newprofilepic2.photo-cdn.net//assets/images/article/profile.jpg"
-                        alt=""
-                      />
-                      <a href="/" className="text-main-color">
-                        Leidy
-                      </a>
-                    </div>
-                    <div className="text-center my-2">
-                      <img
-                        className="h-16 w-16 rounded-full mx-auto"
-                        src="https://avatars2.githubusercontent.com/u/24622175?s=60&amp;v=4"
-                        alt=""
-                      />
-                      <a href="/" className="text-main-color">
-                        Javier
-                      </a>
-                    </div>
-                    <div className="text-center my-2">
-                      <img
-                        className="h-16 w-16 rounded-full mx-auto"
-                        src="https://d2qp0siotla746.cloudfront.net/img/use-cases/profile-picture/template_0.jpg"
-                        alt=""
-                      />
-                      <a href="/" className="text-main-color">
-                        Faryd
-                      </a>
-                    </div>
-                    <div className="text-center my-2">
-                      <img
-                        className="h-16 w-16 rounded-full mx-auto"
-                        src="https://www.morganstanley.com/content/dam/msdotcom/articles/women-listicle/debashree-banerjee-circle.jpg"
-                        alt=""
-                      />
-                      <a href="/" className="text-main-color">
-                        Fernanda
-                      </a>
-                    </div>
-                  </div>
-                </div> */}
               </div>
             )}
             {loading === true ? (
@@ -813,7 +771,7 @@ export const Perfil = () => {
               <div className="w-[84%]  mx-2 md:w-9/12 mt-6 lg:mx-2 lg:h-64">
                 {adminGetData.map((items) => (
                   <div
-                    className="bg-white dark:bg-[#37415197] dark:text-white p-3 shadow-sm rounded-sm"
+                    className="effect_blure dark:bg-[#37415197] dark:text-white p-3 shadow-sm rounded-sm"
                     key={items.idUsers}
                   >
                     <div className="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
@@ -941,7 +899,7 @@ export const Perfil = () => {
                   </div>
                 ))}
 
-                <div className="contain-contraseña w-full dark:text-white dark:bg-[#37415197] bg-white my-3  p-3 rounded">
+                <div className="contain-contraseña w-full dark:text-white dark:bg-[#37415197] effect_blures my-3  p-3 rounded">
                   <h2 className="text-base mx-6  font-semibold">
                     Cambiar mi contraseña
                   </h2>
@@ -971,6 +929,8 @@ export const Perfil = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
+
+export default Perfil;

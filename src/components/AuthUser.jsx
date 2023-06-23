@@ -17,31 +17,31 @@ import { ToastContainer, toast } from "react-toastify";
 import * as Yup from "yup";
 import "animate.css";
 import { Link } from "react-router-dom";
-import { usePostAuth } from "../hooks/context/UserContextData";
+
 import "../assets/css/spiner.css";
 import { Navigate } from "react-router-dom";
 import { Header } from "../components/Header";
 import moment from "moment-with-locales-es6";
-
+import { PostDataUser, AuthGoogle } from "../apis/ApiData";
 moment.locale("es");
-export const AuthUser = () => {
+const AuthUser = () => {
   const token = localStorage.getItem("secure_token");
   const [typeInput, setTypeInput] = useState(true);
   const [spiner, setSpiner] = useState(true);
-  const { getPostLogin, getPostLoginAuthGoogle } = usePostAuth();
+
   if (token) {
     return <Navigate to="/dasboard" />;
   }
 
   const setDataGoogl = async (data) => {
     const { email, name, picture } = data;
-    const dataGoogle = {
+    const postDataUser = {
       email,
       name,
       picture,
     };
 
-    const response = await getPostLoginAuthGoogle(dataGoogle);
+    const response = await AuthGoogle(postDataUser);
 
     if (response.status === 200) {
       let getData = response.data;
@@ -110,7 +110,7 @@ export const AuthUser = () => {
                   })}
                   onSubmit={async (values) => {
                     setSpiner(false);
-                    let response = await getPostLogin(values);
+                    let response = await PostDataUser(values);
                     if (
                       response.response?.status === 401 ||
                       response.response?.status === 400
@@ -429,15 +429,7 @@ export const AuthUser = () => {
             </div>
             <div className="op-goo flex flex-rows justify-center items-center ">
               <div className=" flex  justify-center items-center">
-                <div
-                  className="authGoogle  bg-gray-200 relative
-                                p-1.5 m-2 flex items-center dark:bg-[#37415197] justify-center rounded-full"
-                >
-                  <span className="mx-1 hidden md:block">
-                    puedes usar invensys con otra cuenta
-                  </span>
-                  <span> </span>
-                </div>
+                
                 <div className="countCuenda cursor-pointer">
                   <div
                     className="authGoogle 
@@ -466,3 +458,5 @@ export const AuthUser = () => {
     </>
   );
 };
+
+export default AuthUser;

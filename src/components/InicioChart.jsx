@@ -240,7 +240,7 @@ export const InicioChart = () => {
               <section className="relative w-full md:w-auto">
                 <Link to={`users/${token}`} className="">
                   <div
-                    className="card-single bg-white dark:bg-[#37415197] rounded-md block md:inline-block p-2
+                    className="card-single effect_blure dark:bg-[#37415197] rounded-md block md:inline-block p-2
         border-b-4 border-[#00a6ed] hover:translate-y-[-3px] duration-200 hover:shadow-lg relative
         "
                   >
@@ -333,7 +333,7 @@ export const InicioChart = () => {
             <section className="relative w-full md:w-auto">
               <Link to={`productos/${token}`} className="">
                 <div
-                  className="card-single bg-white dark:bg-[#37415197] rounded-md block md:inline-block p-2
+                  className="card-single effect_blure dark:bg-[#37415197] rounded-md block md:inline-block p-2
         border-b-4 border-green-400 hover:translate-y-[-3px] duration-200 hover:shadow-lg relative
         "
                 >
@@ -423,7 +423,7 @@ export const InicioChart = () => {
             <section className="relative w-full md:w-auto">
               <Link to={`categorias/${token}`} className="">
                 <div
-                  className="card-single bg-white dark:bg-[#37415197] rounded-md block md:inline-block p-2
+                  className="card-single effect_blure dark:bg-[#37415197] rounded-md block md:inline-block p-2
         border-b-4 border-red-400 hover:translate-y-[-3px] duration-200 hover:shadow-lg relative
         "
                 >
@@ -515,7 +515,7 @@ export const InicioChart = () => {
             <section className="relative w-full md:w-auto">
               <Link to={`proveedores/${token}`} className="">
                 <div
-                  className="card-single bg-white dark:bg-[#37415197] rounded-md block md:inline-block p-2
+                  className="card-single effect_blure dark:bg-[#37415197] rounded-md block md:inline-block p-2
         border-b-4 border-purple-500 hover:translate-y-[-3px] duration-200 hover:shadow-lg relative
         "
                 >
@@ -611,7 +611,7 @@ export const InicioChart = () => {
             <section className="relative w-full md:w-auto ">
               <Link to={"/bodega"} className="">
                 <div
-                  className="card-single bg-white dark:bg-[#37415197] dar:text-white rounded-md block md:inline-block p-2
+                  className="card-single effect_blure dark:bg-[#37415197] dar:text-white rounded-md block md:inline-block p-2
         border-b-4 border-[#a21caf] hover:translate-y-[-3px] duration-200 hover:shadow-lg relative
         "
                 >
