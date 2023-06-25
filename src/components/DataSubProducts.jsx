@@ -10,10 +10,11 @@ import { AG_GRID_LOCALE_EN } from "../locale/locale";
 import { setPrinterFriendly } from "./ChackSelection";
 import { ChackSelection } from "./ChackSelection";
 import { setNormal } from "./ChackSelection";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContextSubProducts } from "../hooks/context/ContextSubProducts";
 moment.locale("es");
 export const DataSubProducts = ({ dataInventorySubProducts, id }) => {
+  const navi = useNavigate();
   // count categorias
   const defaultColDef = ChackSelection();
   const gridRef = useRef();
@@ -163,9 +164,47 @@ export const DataSubProducts = ({ dataInventorySubProducts, id }) => {
     currency: "USD",
     minimumFractionDigits: 2,
   });
+  window.addEventListener(
+    "keydown",
+    useCallback(
+      (e) => {
+        if (e.ctrlKey && e.key === "e") {
+          e.preventDefault();
+          onBtExportExel();
+        }
+        // buscar con ctrl + m
+        if (e.ctrlKey && e.key === "f") {
+          // focus en el input
+          e.preventDefault();
+          document.getElementById("filter-text-box").focus();
+        }
+        // imprimir con ctrl + p
+        if (e.ctrlKey && e.key === "p") {
+          e.preventDefault();
+          onBtPrint();
+        }
+        // descargar csv con ctrl + d
+        if (e.ctrlKey && e.key === "d") {
+          e.preventDefault();
+          onBtnExport();
+        }
+        // recargar con ctrl + r
+        if (e.ctrlKey && e.key === "r") {
+          e.preventDefault();
+          window.location.reload();
+        }
+        // trasladar producto con ctrl + v
+        if (e.ctrlKey && e.key === "v") {
+          e.preventDefault();
+          navi(`TrasladarProduct/${id}`);
+        }
+      },
+      [onBtExportExel, onFilterTextBoxChanged, onBtPrint, onBtnExport]
+    )
+  );
   return (
     <>
-      <div className="panel_opciones bg-white dark:text-white dark:bg-[#37415197] w-[90%] md:w-full md:mx-auto mt-4 mb-4  rounded-md p-2">
+      <div className="panel_opciones effect_bluresT dark:text-white dark:bg-[#37415197] w-[90%] md:w-full md:mx-auto mt-4 mb-4  rounded-md p-2">
         <div className="plus_panel flex flex-col gap-2 md:flex-row justify-between items-center">
           <section className="flex overflow-x-auto flex-col gap-2 md:flex-row ">
             <button

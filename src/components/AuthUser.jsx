@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import "../index.css";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -17,14 +17,25 @@ import { ToastContainer, toast } from "react-toastify";
 import * as Yup from "yup";
 import "animate.css";
 import { Link } from "react-router-dom";
-
+import LoadingBar from "react-top-loading-bar";
 import "../assets/css/spiner.css";
 import { Navigate } from "react-router-dom";
 import { Header } from "../components/Header";
 import moment from "moment-with-locales-es6";
 import { PostDataUser, AuthGoogle } from "../apis/ApiData";
+import ReCAPTCHA from "react-google-recaptcha";
 moment.locale("es");
 const AuthUser = () => {
+  const [LoadingProgress, setLoadingProgress] = useState(0);
+  const recaptchaRef = useRef(null);
+  function onChange() {
+    if (recaptchaRef.current.getValue()) {
+      console.log("captcha validado");
+    } else {
+      console.log(" captcha no validado");
+    }
+  }
+
   const token = localStorage.getItem("secure_token");
   const [typeInput, setTypeInput] = useState(true);
   const [spiner, setSpiner] = useState(true);
@@ -64,12 +75,28 @@ const AuthUser = () => {
       setSpiner(true);
     }
   };
+
   return (
     <>
       <ToastContainer />
+
       <Header />
       <div className="red-400">
         <div className="form_Login  dark:border-none  mx-auto rounded-md border w-[94%] dark:text-white dark:bg-[#37415197] sm:3/4 animate__animated animate__fadeIn bg-white form md:w-[50rem]   my-9 drop-shadow-2xl ">
+          <LoadingBar
+            color="#2998ff"
+            progress={LoadingProgress}
+            onLoaderFinished={() => {
+              setLoadingProgress(0);
+            }}
+            shadow={false}
+            shadowStyle={0}
+            background="#f5f5f5"
+            style={{
+              borderRadius: 10,
+              border: "2px solid #2998ff",
+            }}
+          />
           <div className="login bg-white dark:text-white dark:bg-[#37415197] z-20 relative rounded-md ">
             <div className="flex item-center justify-center flex-col">
               <div className=" absolute p-2 left-0 text-3xl dark:text-white text-gray-600 ">
@@ -109,112 +136,136 @@ const AuthUser = () => {
                     ),
                   })}
                   onSubmit={async (values) => {
-                    setSpiner(false);
-                    let response = await PostDataUser(values);
-                    if (
-                      response.response?.status === 401 ||
-                      response.response?.status === 400
-                    ) {
-                      toast.error(
-                        "Correo o contraseña incorrecta, intente nuevamente",
-                        {
-                          position: toast.POSITION.TOP_RIGHT,
-                          theme: "dark",
-                        }
-                      );
-                      setSpiner(true);
-                    }
-
-                    if (response.data.type === "user") {
-                      let arrayLocalStorageModul = response.data.module;
-
-                      if (response.status === 200) {
-                        toast.success("Cargando...", {
-                          position: toast.POSITION.TOP_RIGHT,
-                          theme: "dark",
-                          timeOut: 1000,
-                        });
-
-                        let arrayModule = "";
-
-                        for (
-                          let i = 0;
-                          i < arrayLocalStorageModul.length;
-                          i++
-                        ) {
-                          arrayModule = arrayLocalStorageModul[i].titulo;
-                        }
-                        let getData = response.data;
-                        let url = getData.module[0];
-                        localStorage.setItem("secure_token", getData.token);
-                        localStorage.setItem("auth_cuenta", getData.auth);
-                        localStorage.setItem("response_auth", getData.message);
-                        localStorage.setItem("module", arrayModule);
-                        localStorage.setItem("token_token1", getData.token1);
-                        localStorage.setItem("correo", values.email);
-                        localStorage.setItem("type", response.data.type);
-                        let now = moment().format();
-                        localStorage.setItem("fecha", now);
-                        if (response.data.type === "user") {
-                          window.location = `/${url.titulo}`;
-                        }
-                      }
-
-                      if (response.response.status === 400) {
-                        setSpiner(true);
-                        toast.error("Este usuario no existe", {
-                          position: toast.POSITION.TOP_RIGHT,
-                          theme: "dark",
-                        });
-                      } else if (response.response.status === 401) {
-                        toast.warning("La contraseña es incorrecta", {
-                          position: toast.POSITION.TOP_RIGHT,
-                          theme: "dark",
-                        });
-                        setSpiner(true);
-                      }
+                    if (!recaptchaRef.current.getValue()) {
+                      toast.info("Por favor valida el captcha", {
+                        position: toast.POSITION.TOP_RIGHT,
+                        theme: "dark",
+                      });
                     } else {
-                      toast.error(
-                        "No cuentas con acceso verifica con el administrador ",
-                        {
-                          position: toast.POSITION.TOP_RIGHT,
-                          theme: "dark",
+                      try {
+                        setSpiner(false);
+                        setLoadingProgress(50);
+                        let response = await PostDataUser(values);
+
+                        if (response.data.type === "user") {
+                          let arrayLocalStorageModul = response.data.module;
+                          if (response.status === 200) {
+                            toast.success("Cargando...", {
+                              position: toast.POSITION.TOP_RIGHT,
+                              theme: "dark",
+                              timeOut: 1000,
+                            });
+                            let arrayModule = "";
+                            for (
+                              let i = 0;
+                              i < arrayLocalStorageModul.length;
+                              i++
+                            ) {
+                              arrayModule = arrayLocalStorageModul[i].titulo;
+                            }
+                            let getData = response.data;
+                            let url = getData.module[0];
+                            localStorage.setItem("secure_token", getData.token);
+                            localStorage.setItem("auth_cuenta", getData.auth);
+                            localStorage.setItem(
+                              "response_auth",
+                              getData.message
+                            );
+                            localStorage.setItem("module", arrayModule);
+                            localStorage.setItem(
+                              "token_token1",
+                              getData.token1
+                            );
+                            localStorage.setItem("correo", values.email);
+                            localStorage.setItem("type", response.data.type);
+                            let now = moment().format();
+                            localStorage.setItem("fecha", now);
+                            if (response.data.type === "user") {
+                              window.location = `/${url.titulo}`;
+                            }
+                          }
+                          if (response.response.status === 400) {
+                            setSpiner(true);
+                            toast.error("Este usuario no existe", {
+                              position: toast.POSITION.TOP_RIGHT,
+                              theme: "dark",
+                            });
+                          } else if (response.response.status === 401) {
+                            toast.warning("La contraseña es incorrecta", {
+                              position: toast.POSITION.TOP_RIGHT,
+                              theme: "dark",
+                            });
+                            setSpiner(true);
+                          }
+                        } else {
+                          toast.error(
+                            "No cuentas con acceso verifica con el administrador ",
+                            {
+                              position: toast.POSITION.TOP_RIGHT,
+                              theme: "dark",
+                            }
+                          );
+                          setSpiner(true);
                         }
-                      );
-                      setSpiner(true);
+                        if (response.status === 200) {
+                          toast.success("Cargando...", {
+                            position: toast.POSITION.TOP_RIGHT,
+                            theme: "dark",
+                          });
+                          let getData = response.data;
+                          localStorage.setItem("secure_token", getData.token);
+                          localStorage.setItem("auth_cuenta", getData.auth);
+                          localStorage.setItem(
+                            "response_auth",
+                            getData.message
+                          );
+                          localStorage.setItem("perfil_rol", getData.rol);
+                          localStorage.setItem("type", getData.rol);
+                          setSpiner(true);
+                          window.location.href = "/perfil";
+                        }
+                        if (response.response.status === 400) {
+                          setSpiner(true);
+                          toast.error("Este usuario no existe", {
+                            position: toast.POSITION.TOP_RIGHT,
+                            theme: "dark",
+                          });
+                        } else if (response.response.status === 401) {
+                          toast.warning("La contraseña es incorrecta", {
+                            position: toast.POSITION.TOP_RIGHT,
+                            theme: "dark",
+                          });
+                          setSpiner(true);
+                        }
+                        setSpiner(true);
+                      } catch (error) {
+                        if (
+                          error.response.status == 401 ||
+                          error.response.status == 400
+                        ) {
+                          setTimeout(() => {
+                            setLoadingProgress(90);
+                          }, 1000);
+                          setTimeout(() => {
+                            setLoadingProgress(100);
+                          }, 2000);
+
+                          setTimeout(() => {
+                            toast.error(
+                              "Correo o contraseña incorrecta, intente nuevamente",
+                              {
+                                position: toast.POSITION.TOP_RIGHT,
+                                theme: "dark",
+                              }
+                            );
+                          }, 3000);
+                          setTimeout(() => {
+                            setLoadingProgress(0);
+                            setSpiner(true);
+                          }, 4000);
+                        }
+                      }
                     }
-
-                    if (response.status === 200) {
-                      toast.success("Cargando...", {
-                        position: toast.POSITION.TOP_RIGHT,
-                        theme: "dark",
-                      });
-
-                      let getData = response.data;
-                      localStorage.setItem("secure_token", getData.token);
-                      localStorage.setItem("auth_cuenta", getData.auth);
-                      localStorage.setItem("response_auth", getData.message);
-                      localStorage.setItem("perfil_rol", getData.rol);
-                      localStorage.setItem("type", getData.rol);
-
-                      setSpiner(true);
-                      window.location.href = "/perfil";
-                    }
-
-                    if (response.response.status === 400) {
-                      setSpiner(true);
-                      toast.error("Este usuario no existe", {
-                        position: toast.POSITION.TOP_RIGHT,
-                        theme: "dark",
-                      });
-                    } else if (response.response.status === 401) {
-                      toast.warning("La contraseña es incorrecta", {
-                        position: toast.POSITION.TOP_RIGHT,
-                        theme: "dark",
-                      });
-                      setSpiner(true);
-                    }
-                    setSpiner(true);
                   }}
                 >
                   <Form>
@@ -319,6 +370,15 @@ const AuthUser = () => {
                       >
                         ¿Olvidaste tu contraseña?
                       </Link>
+                    </div>
+                    <div className="flex justify-center">
+                      <ReCAPTCHA
+                        ref={recaptchaRef}
+                        sitekey="6LdqFMgmAAAAAKGltHM1IGhpmilwSX5_dCtAjIbC"
+                        onChange={onChange}
+                        // mostrar obligatoriamente el captcha
+                        required
+                      />
                     </div>
 
                     <div className="button w-full relative">
@@ -429,7 +489,6 @@ const AuthUser = () => {
             </div>
             <div className="op-goo flex flex-rows justify-center items-center ">
               <div className=" flex  justify-center items-center">
-                
                 <div className="countCuenda cursor-pointer">
                   <div
                     className="authGoogle 

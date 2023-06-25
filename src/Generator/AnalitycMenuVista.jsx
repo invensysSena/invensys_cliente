@@ -56,8 +56,8 @@ export const AnalitycMenuVista = () => {
         <div
           className={
             expand
-              ? "items_Links bg-white dark:bg-[#374151] dark:text-white p-4 sticky top-10  scale-100  rounded-md w-[280px] md:w-[20rem] transition duration-700 ease-in-out "
-              : "items_Links bg-white dark:bg-[#374151] dark:text-white scale-105 sticky top-10  rounded-md p-3 w-[280px] md:w-[14rem]  transition duration-700 ease-in-out "
+              ? "items_Links effect_blure dark:bg-[#374151] dark:text-white p-4 sticky top-10  scale-100  rounded-md w-[280px] md:w-[20rem] transition duration-700 ease-in-out "
+              : "items_Links effect_blure dark:bg-[#374151] dark:text-white scale-105 sticky top-10  rounded-md p-3 w-[280px] md:w-[14rem]  transition duration-700 ease-in-out "
           }
         >
           <div className="relative " onClick={() => setExpand(!expand)}>

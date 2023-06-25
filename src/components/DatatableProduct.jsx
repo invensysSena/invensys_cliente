@@ -102,20 +102,39 @@ export const DatatableProduct = () => {
     );
   }, []);
 
-  // comandos y atajos de teclado
-  window.addEventListener("keydown", function (e) {
-    if (e.ctrlKey && e.key === "e") {
-      e.preventDefault();
-      onBtExportExel();
-    }
-    // buscar con shift + f
-    if (e.shiftKey && e.key === "f") {
-      e.preventDefault();
-      gridRef.current.api.setQuickFilter(
-        document.getElementById("filter-text-box").value
-      );
-    }
-  });
+  window.addEventListener(
+    "keydown",
+    useCallback(
+      (e) => {
+        if (e.ctrlKey && e.key === "e") {
+          e.preventDefault();
+          onBtExportExel();
+        }
+        // buscar con ctrl + m
+        if (e.ctrlKey && e.key === "f") {
+          // focus en el input
+          e.preventDefault();
+          document.getElementById("filter-text-box").focus();
+        }
+        // imprimir con ctrl + p
+        if (e.ctrlKey && e.key === "p") {
+          e.preventDefault();
+          onBtPrint();
+        }
+        // descargar csv con ctrl + d
+        if (e.ctrlKey && e.key === "d") {
+          e.preventDefault();
+          onBtnExport();
+        }
+        // recargar con ctrl + r
+        if (e.ctrlKey && e.key === "r") {
+          e.preventDefault();
+          window.location.reload();
+        }
+      },
+      [onBtExportExel, onFilterTextBoxChanged, onBtPrint, onBtnExport]
+    )
+  );
 
   const [darkMode, setDarkMode] = useState(false);
   useMemo(() => {
@@ -127,7 +146,7 @@ export const DatatableProduct = () => {
     <>
       <UploadExcel estado={ExcelModel} />
       {active ? <FormProduct estado={stateModel} /> : null}
-      <div className="panel_opciones bg-white dark:bg-[#37415197] dark:text-white w-[100%] mx-auto mt-10 mb-1  rounded-md p-4">
+      <div className="panel_opciones effect_bluresT dark:bg-[#37415197] dark:text-white w-[100%] mx-auto mt-10 mb-1  rounded-md p-4">
         <div className="plus_panel flex lg:flex-row flex-col lg:justify-between lg:items-center">
           <section className="items-center flex">
             <div className="users flex items-center mx-2">
@@ -224,7 +243,7 @@ export const DatatableProduct = () => {
         <div className="panel_analitic block  my-2">
           <div className="content flex ">
             <div className="inactive flex items-center ">
-              <div className=" bg-white dark:bg-[#37415197] p-2 rounded-lg mx-1">
+              <div className=" effect_bluresT dark:bg-[#37415197] p-2 rounded-lg mx-1">
                 <span className="text-green-500 flex items-center">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -245,7 +264,7 @@ export const DatatableProduct = () => {
                   <span>Caducidad </span>
                 </span>
               </div>
-              <div className="bg-white dark:bg-[#37415197] p-2 rounded-lg">
+              <div className="effect_bluresT dark:bg-[#37415197] p-2 rounded-lg">
                 <span className="text-[red] flex items-center">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

@@ -1,4 +1,4 @@
-import  { useRef, useState, useCallback, useEffect } from "react";
+import { useRef, useState, useCallback, useEffect } from "react";
 import moment from "moment-with-locales-es6";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
@@ -184,7 +184,7 @@ export const ChartHomeC4 = () => {
               enableRangeSelection={true}
               icons={true}
               pagination={true}
-              paginationPageSize={5}
+              paginationPageSize={11}
               paginateChildRows={true}
               suppressRowClickSelection={true}
               groupSelectsChildren={true}

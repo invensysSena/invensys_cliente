@@ -67,15 +67,12 @@ const Perfil = () => {
   };
   return (
     <div
-      className="bg-gradient-to-r from-[#e3fbff] from-10% via-[#e3d1fdaa] via-30% to-[#e5fbff] to-90%  w-full block  min-h-screen
-
-        
-
+      className="bg-gradient-to-r from-[#cff5fb] from-10% via-[#d0b6fb87] via-30% to-[#d0e0fb] to-90%  w-full block  min-h-screen
         dark:bg-gradient-to-r dark:from-[#163b59] dark:from-10%
          dark:via-[#18324f] dark:via-30% dark:to-[#121b2e] dark:to-90%"
     >
       <div
-        className="sticky z-30  hidden lg:block  top-0 py-3 effect_blure h-fit w-full
+        className="sticky z-50   hidden lg:block  top-0 py-3 effect_blure h-fit w-full
       
       "
       >
@@ -85,7 +82,7 @@ const Perfil = () => {
         <CambioFotoPerfilAdmin handleImg={handleImg} />
       ) : null}
 
-      <div className="flex overflow-y-hidden z-50 relative">
+      <div className="flex overflow-y-hidden ">
         <MenuLateral />
 
         <div
@@ -94,7 +91,7 @@ const Perfil = () => {
         "
         >
           <div
-            className="container_perfil    mx-1 max-w-7xl
+            className="container_perfil z-30    mx-1 max-w-7xl
            md:mx-auto relative flex flex-col md:flex-row"
           >
             <div className={btnSpand ? "cubo_p block" : "hidden"}></div>
@@ -103,14 +100,16 @@ const Perfil = () => {
                 className={
                   btnSpand
                     ? ` effect_blur
-    panel_Editar_P rounded-lg h-[36rem] absolute shadow-xl  mx-auto lg:right-[33rem] shadow-gray-400
+    panel_Editar_P rounded-lg h-[36rem] z-30 absolute shadow-xl  mx-auto lg:right-[33rem] shadow-gray-400
     bg-white w-[80%] md:w-[22rem]  top-6 overflow-hidden block duration-300 ease-out opacity-100
     `
-                    : `panel_Editar_P rounded-lg h-[36rem] absolute shadow-xl right-[33rem] shadow-gray-400
-    bg-white w-[22rem] z-20 top-6 overflow-hidden hidden opacity-0 effect_blur`
+                    : `panel_Editar_P rounded-lg h-[36rem] absolute shadow-xl right-[33rem] z-30 shadow-gray-400
+    bg-white w-[22rem] top-6 overflow-hidden hidden opacity-0 effect_blur`
                 }
               >
-                <div className="editar dark:bg-[#374151] dark:text-white  p-4 flex flex-col">
+                <div
+                  className="editar bg-[#019afa] dark:bg-[#374151] text-white  p-4 flex flex-col"
+                >
                   <div className="xc flex justify-between relative">
                     <span>Editar Perfil</span>
 
@@ -425,7 +424,7 @@ const Perfil = () => {
               </div>
             </div>
             {loading === true ? (
-              <div className="c_perfil  bg-white dark:bg-[#374151] w-96 rounded-lg relative  mr-5  mt-6 overflow-hidden">
+              <div className="c_perfil z-10 bg-white dark:bg-[#374151] w-96 rounded-lg relative  mr-5  mt-6 overflow-hidden">
                 <div
                   style={{
                     display: "block",
@@ -485,7 +484,7 @@ const Perfil = () => {
                 </div>
               </div>
             ) : (
-              <div className="c_perfil  effect_blures dark:bg-[#37415197] w-[84%] sm:w-[90%] md:w-96 rounded-lg relative ml-2   mt-6 ">
+              <div className="c_perfil z-20  effect_blures dark:bg-[#37415197] w-[84%] sm:w-[90%] md:w-96 rounded-lg relative ml-2   mt-6 ">
                 <div className="edidarPerfilAdmin absolute z-40 w-full">
                   <button
                     onClick={handleBtnSpand}
@@ -771,7 +770,7 @@ const Perfil = () => {
               <div className="w-[84%]  mx-2 md:w-9/12 mt-6 lg:mx-2 lg:h-64">
                 {adminGetData.map((items) => (
                   <div
-                    className="effect_blure dark:bg-[#37415197] dark:text-white p-3 shadow-sm rounded-sm"
+                    className="effect_blure z-10  relative dark:bg-[#37415197] dark:text-white p-3 shadow-sm rounded-sm"
                     key={items.idUsers}
                   >
                     <div className="flex items-center space-x-2 font-semibold text-gray-900 leading-8">

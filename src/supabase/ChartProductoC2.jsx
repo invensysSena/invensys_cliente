@@ -17,16 +17,21 @@ export const ChartProductoC2 = () => {
       setLoad(false);
     })();
   }, []);
-
+  const moneyDolar = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    minimumFractionDigits: 2,
+  });
   const responseData = products.map((data) =>
     parseInt(data.priceCompra * data.unidad)
   );
+  const nameProduct = products.slice(0, 2).map((name) => name.name);
 
   // fechas: moment(fecha.createdAt).format('l'),
   var options = {
     series: [
       {
-        name: "Total",
+        name: nameProduct,
         data: responseData,
       },
     ],

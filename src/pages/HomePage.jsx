@@ -23,7 +23,7 @@ import { Sled } from "../components/Sled";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { ViewOne } from "../components/componentsHome/ViewOne";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { HomeEfectA } from "./homeAparience/HomeEfectA";
 import "./scrolfH.css";
 
@@ -39,22 +39,58 @@ export const HomePage = () => {
       setDarkMode(true);
     }
   }, []);
+  useEffect(() => {
+    const botoomsub = document.querySelector(".botoomsub");
+    const principal = document.querySelector("#principal");
+    var height = principal.offsetTop;
+    window.addEventListener("scroll", () => {
+      if (window.pageYOffset > height) {
+        botoomsub.classList.add("activest");
+      } else {
+        botoomsub.classList.remove("activest");
+      }
+    });
+  }, []);
+
+  const pagePrincipal = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+
 
   return (
-    <>
+    <div id="principal">
       <div
         className="w-full  overflow-x-hidden 
         
         "
       >
-        <div className="sticky top-0">
+        <div className=" top-0 relative z-50">
           <Header />
+        </div>
+        <div className=" bg-white cursor-pointer  botoomsub fixed z-50 right-0 p-3 md:p-3.5 m-7 shadow-lg rounded-full border bottom-0">
+          <span onClick={pagePrincipal}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="27"
+              height="27"
+              viewBox="0 0 24 24"
+            >
+              <path
+                fill="#777777"
+                d="M11 20V7.825l-5.6 5.6L4 12l8-8l8 8l-1.4 1.425l-5.6-5.6V20h-2Z"
+              />
+            </svg>
+          </span>
         </div>
         <div className=" colorcamb  ">
           <div className="content-home">
             <div className=" w-full  text-xl md:w-4/5  md:pl-10">
               <h2 className="h5-mktg w-full text-5xl z-50">
-                ¡Comienza a crear tu propio invetario para llevar un mejor
+                ¡Comienza a crear tu propio inventario para llevar un mejor
                 manejo de tu negocio...!
               </h2>
               <p className="text-slate-400 m-2 md:m-0 m md:text-start md:py-2 md:text-2xl text-center">
@@ -62,24 +98,26 @@ export const HomePage = () => {
                 invensys expande tu negocio! 100% gratuito
               </p>
               <p className="h-2 mx-4 md:m-0 bg-emerald-400 rounded-full animate__animated animate__bounceInLeft"></p>
-              <Link
-                to={"/login"}
-                className="
+              <div className="n hidden lg:block">
+                <Link
+                  to={"/login"}
+                  className="
         bg-white py-3 inline-block
        mt-12 mb-36 rounded-sm px-5 text-1xl hover:text-white
         duration-300 hover:bg-transparent border hover:border-emerald-400 btn-y "
-              >
-                Comienza ya{" "}
-              </Link>
-              <Link
-                to={"/"}
-                className="
+                >
+                  Comienza ya{" "}
+                </Link>
+                <Link
+                  to={"/"}
+                  className="
         bg-white ml-4 py-3 inline-block
        my-5 rounded-sm px-5 text-1xl hover:text-white
         duration-300 hover:bg-transparent border hover:border-emerald-400 btn-y "
-              >
-                Explorar más{" "}
-              </Link>
+                >
+                  Explorar más{" "}
+                </Link>
+              </div>
             </div>
             <div className="w-full">
               <LazyLoadImage
@@ -151,16 +189,16 @@ export const HomePage = () => {
             />
             <span className="text-md lg:text-xl dark:text-white  text-slate-700 fade-right">
               Invensys es una aplicación de administración para el inventario de
-              los productos de tu negocio, en la cual podras llevar un control
+              los productos de tu negocio, en la cual podrás llevar un control
               permanente de todos ellos, necesidades de abastecimiento, reporte
-              de vencimientos, rotación de productos y podras utilizarla para el
+              de vencimientos, rotación de productos y podrás utilizarla para el
               manejo administrativo y financiero de tu negocio.
             </span>
           </div>
         </div>
         <div className="text-center fuente-t1  ">
           <span className="text-2xl md:text-6xl h-36 dark:text-white">
-            Que esperas de nuestra plataforma?
+            ¿Qué esperas de nuestra plataforma?
           </span>
         </div>
         <div className="relative">
@@ -241,7 +279,7 @@ export const HomePage = () => {
             className="
       text-2xl md:text-6xl h-36 dark:text-white"
           >
-            Impulsamos en la inovacion
+            Impulsamos en la innovación
           </span>
         </div>
 
@@ -343,6 +381,6 @@ export const HomePage = () => {
 
         <Footer />
       </div>
-    </>
+    </div>
   );
 };

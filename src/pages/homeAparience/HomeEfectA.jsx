@@ -25,10 +25,10 @@ export const HomeEfectA = () => {
         <div className="div" data-aos="fade-up">
           <div className="list_data  ">
             <h2 className="text-[#019afa] text-2xl md:text-5xl mt-4 text-center">
-              Suscribete a nuestra plataforma
+              Suscríbete a nuestra plataforma
             </h2>
             <p className="text-xl md:text-2xl dark:text-white text-center mt-2">
-              Recibiras notificaciones de nuevos servicios y novedades
+              Recibirás notificaciones de nuevos servicios y novedades
             </p>
             <div className="notiEmail text-center flex justify-center">
               <svg

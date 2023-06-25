@@ -46,7 +46,7 @@ export const ListInventory = () => {
 
   console.log(CorreoRepetido);
   return (
-    <div className="notf block rounded-md bg-white dark:bg-[#37415197] px-3">
+    <div className="notf block effect_bluresT rounded-md bg-white dark:bg-[#37415197] px-3">
       <h2 className="mx-2 font-bold dark:text-white">Lista de Bodega</h2>
 
       {loading ? (

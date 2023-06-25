@@ -112,11 +112,43 @@ export const DatatableProviders = () => {
       setDarkMode(true);
     }
   }, []);
-
+window.addEventListener(
+  "keydown",
+  useCallback(
+    (e) => {
+      if (e.ctrlKey && e.key === "e") {
+        e.preventDefault();
+        onBtExportExel();
+      }
+      // buscar con ctrl + m
+      if (e.ctrlKey && e.key === "f") {
+        // focus en el input
+        e.preventDefault();
+        document.getElementById("filter-text-box").focus();
+      }
+      // imprimir con ctrl + p
+      if (e.ctrlKey && e.key === "p") {
+        e.preventDefault();
+        onBtPrint();
+      }
+      // descargar csv con ctrl + d
+      if (e.ctrlKey && e.key === "d") {
+        e.preventDefault();
+        onBtnExport();
+      }
+      // recargar con ctrl + r
+      if (e.ctrlKey && e.key === "r") {
+        e.preventDefault();
+        window.location.reload();
+      }
+    },
+    [onBtExportExel, onFilterTextBoxChanged, onBtPrint, onBtnExport]
+  )
+);
   return (
     <>
       {active === true ? <CreateProveedor /> : null}
-      <div className="panel_opciones bg-white dark:bg-[#37415197] dark:text-white w-[100%] mx-auto mt-10 mb-1  rounded-md p-4">
+      <div className=" panel_opciones effect_bluresT dark:bg-[#37415197] dark:text-white w-[100%] mx-auto mt-10 mb-1  rounded-md p-4">
         <div className="plus_panel flex lg:flex-row flex-col lg:justify-between lg:items-center">
           <section className="items-center flex">
             <div className="users flex items-center mx-2">

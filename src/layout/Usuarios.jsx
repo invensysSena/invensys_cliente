@@ -7,10 +7,7 @@ import { SubMenu } from "../components/SubMenu";
 const Usuarios = () => {
   return (
     <div
-      className="bg-gradient-to-r from-[#e3fbff] from-10% via-[#e3d1fdaa] via-30% to-[#e5fbff] to-90%  w-full block  min-h-screen
-
-        
-
+      className="bg-gradient-to-r from-[#cff5fb] from-2% via-[#beb6fb87] via-30% to-[#d7e4fabe] to-90%  w-full block  min-h-screen
         dark:bg-gradient-to-r dark:from-[#163b59] dark:from-10%
          dark:via-[#18324f] dark:via-30% dark:to-[#121b2e] dark:to-90%"
     >
@@ -22,12 +19,9 @@ const Usuarios = () => {
         <SubMenu />
       </div>
       <div
-        className="bg-gradient-to-r from-[#e3fbff] from-10% via-[#dfd8feaa] via-30% to-[#e5fbff] to-90%  w-full block  min-h-screen
+        className="  w-full block  min-h-screen
 
-        
-
-        dark:bg-gradient-to-r dark:from-[#163b59] dark:from-10%
-         dark:via-[#18324f] dark:via-30% dark:to-[#121b2e] dark:to-90%"
+        "
       >
         <div className="flex overflow-y-hidden">
           <MenuLateral />

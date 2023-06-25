@@ -570,7 +570,7 @@ export const FormSalida = () => {
           </div>
         ) : null}
       </div>
-      {/* {pedidosList.length > 0 ? (
+      {pedidosList.length > 0 ? (
         <div
           className="bg-white dark:bg-[#37415197] dark:text-white
          p-1 m-2 shadow-lg rounded-lg w-4/5 "
@@ -625,7 +625,7 @@ export const FormSalida = () => {
             </button>
           </div>
         </div>
-      ) : null} */}
+      ) : null}
     </>
   );
 };

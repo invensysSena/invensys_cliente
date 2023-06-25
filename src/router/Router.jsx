@@ -1,8 +1,8 @@
-import { useState, useMemo } from "react";
-import { Route, Routes } from "react-router-dom";
+import { useState, useMemo, useEffect } from "react";
+import { Route, Routes, useLocation } from "react-router-dom";
 
 import { UserContextData } from "../hooks/context/UserContextData.jsx";
-
+import LoadingBar from "react-top-loading-bar";
 import { HomePage } from "../pages/HomePage";
 import { ProtectedRouter } from "../auth/ProtectedRouter";
 import RecoveryPass from "../pages/RecoveryPass";
@@ -132,10 +132,33 @@ export const Router = () => {
 
   const [users, setUsers] = useState(usersData);
 
+  const [LoadingProgress, setLoadingProgress] = useState(0);
+
+  const location = useLocation();
+  useEffect(() => {
+    // Update the loading bar when the location changes
+    setLoadingProgress(0); // Reset the loading progress
+    setLoadingProgress(30); // Show initial progress
+    // Add any additional logic or API calls here if needed
+    setLoadingProgress(100); // Complete the progress
+
+    // Clean up the loading bar on component unmount
+    return () => {
+      setLoadingProgress(0); // Reset the loading progress
+    };
+  }, [location]);
+
   return (
     <>
       <UserContextData>
         <GetUsersContext>
+          <LoadingBar
+            color="#f11946"
+            progress={LoadingProgress}
+            onLoaderFinished={() => {
+              setLoadingProgress(0);
+            }}
+          />
           <Routes>
             <Route path="/privacy" element={<Privaci />} />
             <Route path="/prueba" element={<Prueba />} />

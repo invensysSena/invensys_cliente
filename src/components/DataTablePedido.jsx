@@ -138,12 +138,44 @@ export const DataTablePedido = () => {
       setDarkMode(true);
     }
   }, []);
-
+window.addEventListener(
+  "keydown",
+  useCallback(
+    (e) => {
+      if (e.ctrlKey && e.key === "e") {
+        e.preventDefault();
+        onBtExportExel();
+      }
+      // buscar con ctrl + m
+      if (e.ctrlKey && e.key === "f") {
+        // focus en el input
+        e.preventDefault();
+        document.getElementById("filter-text-box").focus();
+      }
+      // imprimir con ctrl + p
+      if (e.ctrlKey && e.key === "p") {
+        e.preventDefault();
+        onBtPrint();
+      }
+      // descargar csv con ctrl + d
+      if (e.ctrlKey && e.key === "d") {
+        e.preventDefault();
+        onBtnExport();
+      }
+      // recargar con ctrl + r
+      if (e.ctrlKey && e.key === "r") {
+        e.preventDefault();
+        window.location.reload();
+      }
+    },
+    [onBtExportExel, onFilterTextBoxChanged, onBtPrint, onBtnExport]
+  )
+);
   return (
     <>
       {data.length > 0 ? (
         <>
-          <div className="panel_opciones dark:bg-[#37415197] dark:text-white dark:border-none bg-white w-[100%] mx-auto mt-10 mb-1  rounded-md p-4">
+          <div className="panel_opciones dark:bg-[#37415197] dark:text-white dark:border-none effect_bluresT w-[100%] mx-auto mt-10 mb-1  rounded-md p-4">
             <div className="plus_panel flex lg:flex-row flex-col lg:justify-between lg:items-center">
               <section className="items-center flex">
                 <div>

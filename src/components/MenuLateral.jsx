@@ -188,7 +188,7 @@ export const MenuLateral = () => {
 selft_scroll
 fixed top-0
   bg-white  mr-[8rem] dark:bg-[#1e293b] min-h-full
- w-30 lg:w-52 z-50  b  overflow-x-hidden  `
+ w-30 lg:w-52   b  overflow-x-hidden  `
                 : `
 
 selft_scroll

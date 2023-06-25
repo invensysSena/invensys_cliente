@@ -49,11 +49,11 @@ export const ChartHomeC1 = () => {
     },
     dataLabels: {
       style: {
-        colors: ["red", "red", "red"],
+        colors: ["green", "green", "green"],
       },
     },
     markers: {
-      colors: ["red", "red", "red"],
+      colors: ["green", "green", "green"],
     },
     stroke: {
       curve: "straight",
@@ -70,13 +70,8 @@ export const ChartHomeC1 = () => {
       text: "Todos tus movimientos",
       align: "left",
     },
-    labels: compras.map((date) =>
-      moment(date.createdAt).subtract(10, "days").calendar()
-    ),
-    colors: ["#F44336", "#E91E63", "#9C27B0"],
-    fill: {
-      colors: ["red", "red", "red"],
-    },
+    // no repetir la misma fecha
+    labels: compras.map((date) => moment(date.createdAt).format("ll")),
 
     datetimeFormatter: {
       // mes
@@ -110,8 +105,10 @@ export const ChartHomeC1 = () => {
           />
         </div>
       ) : (
-          <div className="div shadow-xl rounded-md border w-[290px] md:w-[32rem]
-          dark:text-white bg-white ">
+        <div
+          className="div shadow-xl rounded-md border w-[290px] md:w-[32rem]
+          dark:text-white bg-white "
+        >
           <Chart
             options={options}
             series={options.series}

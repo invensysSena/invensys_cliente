@@ -43,6 +43,11 @@ export const ChartBodegaC1 = () => {
       setDarkMode(true);
     }
   }, []);
+    const moneyDolar = new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+      minimumFractionDigits: 2,
+    });
   return (
     <>
       {load ? (
@@ -135,10 +140,7 @@ export const ChartBodegaC1 = () => {
             </div>
             <div className="ventasNumm ">
               <span className="text-xl font-bold p-2 block">
-                {("$ " + totalProductsBodega).replace(
-                  /(\d)(?=(\d\d\d)+(?!\d))/g,
-                  "$1,"
-                )}
+                {moneyDolar.format(totalProductsBodega)}
               </span>
             </div>
             <div className="static flex">

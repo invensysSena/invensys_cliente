@@ -131,7 +131,39 @@ export const DataTableUsers = () => {
       setDarkMode(true);
     }
   }, []);
-
+  window.addEventListener(
+    "keydown",
+    useCallback(
+      (e) => {
+        if (e.ctrlKey && e.key === "e") {
+          e.preventDefault();
+          onBtExportExel();
+        }
+        // buscar con ctrl + m
+        if (e.ctrlKey && e.key === "f") {
+          // focus en el input
+          e.preventDefault();
+          document.getElementById("filter-text-box").focus();
+        }
+        // imprimir con ctrl + p
+        if (e.ctrlKey && e.key === "p") {
+          e.preventDefault();
+          onBtPrint();
+        }
+        // descargar csv con ctrl + d
+        if (e.ctrlKey && e.key === "d") {
+          e.preventDefault();
+          onBtnExport();
+        }
+        // recargar con ctrl + r
+        if (e.ctrlKey && e.key === "r") {
+          e.preventDefault();
+          window.location.reload();
+        }
+      },
+      [onBtExportExel, onFilterTextBoxChanged, onBtPrint, onBtnExport]
+    )
+  );
   return (
     <>
       <UploadExcel estado={ExcelModel} />

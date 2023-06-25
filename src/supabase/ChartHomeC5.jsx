@@ -1,4 +1,4 @@
-import { useRef, useState, useCallback, useEffect, useMemo } from "react";
+import { useRef, useState, useCallback, useMemo } from "react";
 import moment from "moment-with-locales-es6";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
@@ -23,24 +23,8 @@ moment.locale("es");
 export const ChartHomeC5 = () => {
   const { getUsersAdmins, getCountData } = useGetUsers();
 
-  const [dataVentas, setDataVentas] = useState([]);
-
-  useMemo(() => {
-    const initial = async () => {
-      await getUsersAdmins();
-      const response = await TodoFunctions.getComprasFv();
-      setDataVentas(response.data.responseFv);
-
-      await getCountData();
-
-      const bussiness = await getBusiness();
-      setCompras(bussiness.data.dataPedidos);
-    };
-
-    initial();
-  }, []);
-
   const [compras, setCompras] = useState([]);
+  console.log("dddd", compras, "}}}}");
 
   useMemo(() => {
     (async () => {
@@ -123,18 +107,18 @@ export const ChartHomeC5 = () => {
     );
   }, []);
   const [darkMode, setDarkMode] = useState(false);
-  useEffect(() => {
+  useMemo(() => {
     if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
       setDarkMode(true);
     }
   }, []);
   return (
     <>
-      {dataVentas.length > 0 ? (
+      {compras.length > 0 ? (
         <>
           <div className="panel_second_h w-[100%] mx-auto flex-col lg:flex-row flex justify-between items-center">
             <div className="buttons">
-              <h1 className="font-bold text-xl text-white">Compras</h1>
+              <h1 className="font-bold text-xl dark:text-white ">Compras</h1>
             </div>
 
             <div className="search bg-white mb-3 flex dark:bg-[#37415197] dark:text-white items-center p-2 rounded-full justify-end my-5">
@@ -179,7 +163,7 @@ export const ChartHomeC5 = () => {
               rowData={compras.map((item) => {
                 return {
                   _id: item._id,
-                  name: item.nameProduct,
+                  name: item.name,
                   cantidadProductos: item.cantidadProductos,
                   totalCompra: ("$ " + item.totalComprap).replace(
                     /(\d)(?=(\d\d\d)+(?!\d))/g,

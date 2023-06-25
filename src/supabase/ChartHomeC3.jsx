@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 
 import { getBusiness, getUsersAdmin } from "../apis/ApiData";
 import moment from "moment-with-locales-es6";
@@ -44,6 +44,11 @@ export const ChartHomeC3 = () => {
       setDarkMode(true);
     }
   }, []);
+  const moneyDolar = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    minimumFractionDigits: 2,
+  });
   return (
     <>
       {load ? (
@@ -101,12 +106,7 @@ export const ChartHomeC3 = () => {
                 {TotalVentas === 0 ? (
                   "$ 0"
                 ) : (
-                  <>
-                    {("$ " + TotalVentas).replace(
-                      /(\d)(?=(\d\d\d)+(?!\d))/g,
-                      "$1,"
-                    )}
-                  </>
+                  <>{moneyDolar.format(TotalVentas)}</>
                 )}
               </span>
             </div>
@@ -149,10 +149,7 @@ export const ChartHomeC3 = () => {
             </div>
             <div className="ventasNumm ">
               <span className="text-xl font-bold p-2 block">
-                {("$ " + TotalCompras).replace(
-                  /(\d)(?=(\d\d\d)+(?!\d))/g,
-                  "$1,"
-                )}
+                {moneyDolar.format(TotalCompras)}
               </span>
             </div>
             <div className="static flex">
@@ -211,7 +208,7 @@ export const ChartHomeC3 = () => {
                     : " truncate text-green-500 text-xl font-bold p-2 block"
                 }
               >
-                {("$ " + diferencia).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")}
+                {moneyDolar.format(diferencia)}
               </span>
             </div>
             <div className="static flex">

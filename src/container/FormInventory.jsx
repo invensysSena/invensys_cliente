@@ -20,11 +20,11 @@ export const FormInventory = () => {
     <>
       <ToastContainer />
       <div
-        className="form_Login  w-[90%]  rounded-md border 
+        className="form_Login   w-[90%]  rounded-md border 
           dark:border-none flex   animate__animated animate__fadeIn 
         form md:w-full   mt-9 mb-2 drop-shadow-md "
       >
-        <div className="login bg-white ] z-20 dark:bg-[#37415197] relative rounded-md w-full ">
+        <div className="login effect_bluresT z-20 dark:bg-[#37415197] relative rounded-md w-full ">
           <h3 className="mx-4 text-xl text-gray-500 mt-1 dark:text-white ">
             Crear bodega
           </h3>

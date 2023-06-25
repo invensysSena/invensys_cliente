@@ -156,7 +156,7 @@ export const FormPedido = () => {
   return (
     <>
       <ToastContainer />
-      <div className=" border bg-white dark:bg-[#37415197] dark:text-white dark:border-none p-2 mt-2 flex flex-col md:flex-row">
+      <div className=" border effect_bluresT dark:bg-[#37415197] dark:text-white dark:border-none p-2 mt-2 flex flex-col md:flex-row">
         <div className="form-content   w-auto">
           <div className="title">
             <h1 className="text-2xl font-bold whitespace-normal dark:text-white text-gray-500">

@@ -2,6 +2,7 @@ import { ChartHomeC1 } from "../supabase/ChartHomeC1";
 import { ChartHomeC2 } from "../supabase/ChartHomeC2";
 import { ChartHomeC3 } from "../supabase/ChartHomeC3";
 import { ChartHomeC4 } from "../supabase/ChartHomeC4";
+import { ChartHomeC5 } from "../supabase/ChartHomeC5";
 
 export const ChartHome = () => {
   return (
@@ -16,7 +17,7 @@ export const ChartHome = () => {
           <ChartHomeC2 />
         </div>
         <ChartHomeC4 />
-        {/* <ChartHomeC5 /> */}
+        <ChartHomeC5 />
       </div>
     </>
   );

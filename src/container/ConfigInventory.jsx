@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import { Outlet, useParams, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
@@ -168,6 +168,30 @@ export const ConfigInventory = () => {
       window.location.reload();
     }
   };
+  window.addEventListener(
+    "keydown",
+    useCallback((e) => {
+      // ctrl + i = abrir modal de subproductos
+      if (e.ctrlKey && e.key === "i") {
+        setSubModal(true);
+      }
+      // ctrl + u = abrir modal de subproductos
+      if (e.ctrlKey && e.key === "y") {
+        setSubModal2(true);
+      }
+
+      // esc = cerrar modales
+      if (e.key === "Escape") {
+        setSubModal(false);
+        setSubModal2(false);
+      }
+      // ctrl + m delete
+      if (e.ctrlKey && e.key === "m") {
+        validaDelete();
+      }
+    
+    }, [])
+  );
   return (
     <>
       <ToastContainer />
@@ -400,7 +424,7 @@ export const ConfigInventory = () => {
             </div>
           ) : (
             <>
-              <div className="bg-white dark:bg-[#37415197] dark:border-none dark:text-white w-[90%]  lg:w-full px-3 py-1 border overflow-x-auto  rounded-sm">
+              <div className="effect_bluresT dark:bg-[#37415197] dark:border-none dark:text-white w-[90%]  lg:w-full px-3 py-1 border overflow-x-auto  rounded-sm">
                 <div className="iconst_config lg:flex-row flex-col items-start flex lg:items-center justify-start lg:justify-between gap-4 max-7xl mx-auto">
                   <div className="sec1 flex items-center gap-4 overflow-x-auto">
                     {loading2 ? (
