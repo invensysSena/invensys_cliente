@@ -466,8 +466,8 @@ export const Header = () => {
         <div
           className={
             views
-              ? "opacity-100 duration-200 z-50 relative "
-              : " relative z-50 duration-200 opacity-0"
+              ? "opacity-100 block duration-200 z-50 relative "
+              : " relative z-50 duration-200 opacity-0 hidden"
           }
         >
           <div className="fixed bg-white w-screen top-[]  shadow-2xl">
