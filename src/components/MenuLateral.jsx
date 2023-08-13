@@ -205,7 +205,8 @@ fixed top-0
                 <h2
                   className="text-center sticky hidden  animate__animated animate__fadeIn effect  lg:block 
                 top-0 bg-white dark:bg-[#1e293b]  dark:text-white z-20 
-                 text-xl font-bold py-2 border-b text-neutral-800 dark:border-[#009afa]"
+                 text-xl font-bold py-2 border-b text-neutral-800 dark:border-[
+                  #44b2fd]"
                 >
                   {adminGetData.length > 0
                     ? type === "user"
@@ -258,7 +259,8 @@ fixed top-0
                     <>
                       <span
                         className="contenedor_perfil  rounded my-1 cursor-not-allowed
-                   border w-full mx-1 flex items-center relative p-1 border-[#009afa]"
+                   border w-full mx-1 flex items-center relative p-1 border-[
+                    #44b2fd]"
                       >
                         {type === "user" ? (
                           <svg

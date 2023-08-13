@@ -2,12 +2,10 @@ import { useState, useMemo } from "react";
 import { MenuLateral } from "../components/MenuLateral";
 import "../assets/css/styleSlider.css";
 import { CambioFotoPerfilAdmin } from "../components/CambioFotoPerfilAdmin";
-import { CambioContraseña } from "../components/CambioContraseña";
 import { useGetUsers } from "../hooks/context/GetUsersContext";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { useNavigate } from "react-router-dom";
-import { Fragment } from "react";
 import "../components/efectosCss.css";
 import { getDataAll, UpdateAdminAll } from "../apis/ApiData";
 import { SubMenu } from "../components/SubMenu";
@@ -67,33 +65,22 @@ const Perfil = () => {
   };
   return (
     <div
-      className="bg-gradient-to-r from-[#cff5fb] from-10% via-[#d0b6fb87] via-30% to-[#d0e0fb] to-90%  w-full block  min-h-screen
-        dark:bg-gradient-to-r dark:from-[#163b59] dark:from-10%
-         dark:via-[#18324f] dark:via-30% dark:to-[#121b2e] dark:to-90%"
-    >
-      <div
-        className="sticky z-50   hidden lg:block  top-0 py-3 effect_blure h-fit w-full
-      
-      "
-      >
+      className="bg-gradient-to-r from-[#e6dff4] from-10% via-[#edf4fd] via-30% to-[#d0e0fb] to-90%  w-full block  min-h-screen
+      dark:bg-gradient-to-r dark:from-[#163b59] dark:from-10%
+         dark:via-[#18324f] dark:via-30% dark:to-[#121b2e] dark:to-90%">
+      <div className="sticky z-50   hidden lg:block  top-0 py-3 bg-white h-fit w-full">
         <SubMenu />
       </div>
       {modelImg === true ? (
         <CambioFotoPerfilAdmin handleImg={handleImg} />
       ) : null}
-
       <div className="flex overflow-y-hidden ">
         <MenuLateral />
-
         <div
-          className="  w-full block  min-h-screen
-        
-        "
-        >
+          className="  w-full block  min-h-screen">
           <div
             className="container_perfil z-30    mx-1 max-w-7xl
-           md:mx-auto relative flex flex-col md:flex-row"
-          >
+           md:mx-auto relative flex flex-col md:flex-row">
             <div className={btnSpand ? "cubo_p block" : "hidden"}></div>
             <div>
               <div
@@ -108,7 +95,7 @@ const Perfil = () => {
                 }
               >
                 <div
-                  className="editar bg-[#019afa] dark:bg-[#374151] text-white  p-4 flex flex-col"
+                  className="editar bg-[#44b2fd] dark:bg-[#374151] text-white  p-4 flex flex-col"
                 >
                   <div className="xc flex justify-between relative">
                     <span>Editar Perfil</span>
@@ -348,7 +335,7 @@ const Perfil = () => {
                         {load === false ? (
                           <button
                             type="button"
-                            className="bg-[#019afa] text-white w-full rounded-sm mt-3 
+                            className="bg-[#44b2fd] text-white w-full rounded-sm mt-3 
               duration-300 hover:bg-[#019afa] hover:shadow-lg justify-center p-2
                           disabled flex items-center"
                           >
@@ -443,7 +430,7 @@ const Perfil = () => {
                   <Skeleton
                     count={1}
                     width={"50%"}
-                    className="rounded-full bg-red-600 overflow-hidden"
+                    className="rounded-full bg-gray-200 overflow-hidden"
                   />
                 </div>
 
@@ -451,14 +438,14 @@ const Perfil = () => {
                   <Skeleton
                     count={6}
                     width={"70%"}
-                    className="rounded-full bg-red-600 overflow-hidden"
+                    className="rounded-full bg-gray-200 overflow-hidden"
                   />
                 </div>
                 <div className="mx-4 my-4  ">
                   <Skeleton
                     count={1}
                     width={"50%"}
-                    className="rounded-full bg-red-600 overflow-hidden"
+                    className="rounded-full bg-gray-200 overflow-hidden"
                   />
                 </div>
                 <div className="flex ml-3 gap-1">
@@ -479,7 +466,7 @@ const Perfil = () => {
                   <Skeleton
                     count={3}
                     width={"70%"}
-                    className="rounded-full bg-red-600 overflow-hidden"
+                    className="rounded-full  overflow-hidden"
                   />
                 </div>
               </div>
@@ -489,7 +476,7 @@ const Perfil = () => {
                   <button
                     onClick={handleBtnSpand}
                     className="absolute z-10 top-0 right-1 mx-1 mt-1 cursor-pointer inline-block
-       bg-green-400
+       bg-[#283943]
        text-white rounded-md p-1"
                   >
                     Editar perfil
@@ -687,19 +674,7 @@ const Perfil = () => {
                     </div>
                   </div>
                 ))}
-                <span>
-                  <a
-                    href="/notificaciones"
-                    className="effect_blures rounded-lg
-       w-[90%] mx-auto my-2 p-2 flex
-        justify-between"
-                  >
-                    <span>Notificaciónes:</span>{" "}
-                    <span className="bg-red-500 text-white px-1  rounded-full">
-                      +9
-                    </span>
-                  </a>
-                </span>
+               
               </div>
             )}
             {loading === true ? (
@@ -719,7 +694,7 @@ const Perfil = () => {
                   <Skeleton
                     count={1}
                     width={"50%"}
-                    className="rounded-full bg-red-600 overflow-hidden"
+                    className="rounded-full . overflow-hidden"
                   />
                 </div>
 
@@ -727,14 +702,14 @@ const Perfil = () => {
                   <Skeleton
                     count={6}
                     width={"70%"}
-                    className="rounded-full bg-red-600 overflow-hidden"
+                    className="rounded-full . overflow-hidden"
                   />
                 </div>
                 <div className="mx-4 my-4  ">
                   <Skeleton
                     count={1}
                     width={"50%"}
-                    className="rounded-full bg-red-600 overflow-hidden"
+                    className="rounded-full . overflow-hidden"
                   />
                 </div>
                 <div className="flex ml-3 gap-1">
@@ -755,14 +730,14 @@ const Perfil = () => {
                   <Skeleton
                     count={3}
                     width={"70%"}
-                    className="rounded-full bg-red-600 overflow-hidden"
+                    className="rounded-full . overflow-hidden"
                   />
                 </div>
                 <div className="mx-4  ">
                   <Skeleton
                     count={3}
                     width={"50%"}
-                    className="rounded-full bg-red-600 overflow-hidden"
+                    className="rounded-full . overflow-hidden"
                   />
                 </div>
               </div>
@@ -850,7 +825,7 @@ const Perfil = () => {
                         </div>
                         <div className="grid grid-cols-2 lg:grid-cols-2">
                           <div className="px-4 py-2 font-semibold">
-                            Nombre Tienda
+                            Nombre Empresa
                           </div>
                           <div className="px-4 py-2">
                             {items.nombreTienda ? items.nombreTienda : "..."}
@@ -897,7 +872,6 @@ const Perfil = () => {
                     </div>
                   </div>
                 ))}
-
                 <div className="contain-contraseña w-full dark:text-white dark:bg-[#37415197] effect_blures my-3  p-3 rounded">
                   <h2 className="text-base mx-6  font-semibold">
                     Cambiar mi contraseña
@@ -906,22 +880,6 @@ const Perfil = () => {
                     Aqui puedes cambiar la contraseña general de tu cuenta,
                     asegurate de que sea segura
                   </p>
-                  <Fragment>
-                    <div>
-                      <button
-                        className="text-white bg-[#5994f5] rounded-full relative
-                         hover:opacity-[0.85] transition font-medium text-sm rounded-lg px-5 py-2.5 mt-5 mx-5 text-center mr-5 
-                    "
-                        onClick={() => setShowModal(true)}
-                      >
-                        Cambiar contraseña
-                      </button>
-                    </div>
-                    <CambioContraseña
-                      isVisible={showModal}
-                      onClose={() => setShowModal(false)}
-                    />
-                  </Fragment>
                 </div>
               </div>
             )}

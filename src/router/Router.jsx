@@ -1,63 +1,60 @@
-import { useState, useMemo, useEffect } from "react";
-import { Route, Routes, useLocation } from "react-router-dom";
-
-import { UserContextData } from "../hooks/context/UserContextData.jsx";
-import LoadingBar from "react-top-loading-bar";
-import { HomePage } from "../pages/HomePage";
-import { ProtectedRouter } from "../auth/ProtectedRouter";
-import RecoveryPass from "../pages/RecoveryPass";
-import CodePassword from "../pages/CodePassword";
-import NewPassword from "../pages/newPassword";
-import { NotFount } from "../pages/NotFount";
-import Header from "../components/Header";
-import { Prueba } from "../layout/Prueba";
-import { GetUsersContext } from "../hooks/context/GetUsersContext";
-import { Somos } from "../pages/Somos";
-import { Contactanos } from "../pages/Contactanos";
-import { ModalModule } from "../components/ModalModule";
 import axios from "axios";
-
-import { EditarProduct } from "../components/FormProduct/EditarProduct";
-import { Ventas } from "../layout/Ventas";
-import { HomeDaboard } from "../components/screen/HomeDaboard";
-import { ProductoDasboard } from "../components/screen/ProductoDasboard";
-import { CategoryDasboard } from "../components/screen/CategoryDasboard";
-import { ProvidersDasboard } from "../components/screen/ProvidersDasboard";
-import { GetCategoryProvider } from "../components/screen/GetCategoryProvider";
-import { UsersDasboard } from "../components/screen/UsersDasboard";
-import { UserInfo } from "../components/screen/UserInfo";
-import { UsersNotification } from "../components/NotificationsHeader/UsersNotification";
-import { HomeNotification } from "../components/NotificationsHeader/HomeNotification";
-import { ProductNotification } from "../components/NotificationsHeader/ProductNotification";
-import { InventoryNotify } from "../components/NotificationsHeader/InventoryNotify";
-import { CategoryNotify } from "../components/NotificationsHeader/CategoryNotify";
-import { ProviderNotifyc } from "../components/NotificationsHeader/ProviderNotifyc";
-import { PedidosNotify } from "../components/NotificationsHeader/PedidosNotify";
-import { VentasNotify } from "../components/NotificationsHeader/VentasNotify";
-import { ConfigInventory } from "../container/ConfigInventory";
-import { TranslateProduct } from "../container/TranslateProduct";
-import { FormSalida } from "../components/FormSalida";
-import { DatatableVentas } from "../components/DatatableVentas";
-import { ComprasPDF } from "../pdf/ComprasPDF";
-import { FormPedido } from "../components/FormPedido";
-import { DataTablePedido } from "../components/DataTablePedido";
+import { useEffect, useMemo, useState } from "react";
+import { Route, Routes, useLocation } from "react-router-dom";
+import LoadingBar from "react-top-loading-bar";
 import { ChartBodega } from "../Generator/ChartBodega";
 import { ChartHome } from "../Generator/ChartHome";
+import { ProtectedRouter } from "../auth/ProtectedRouter";
+import { DataTablePedido } from "../components/DataTablePedido";
+import { DatatableVentas } from "../components/DatatableVentas";
+import { FormPedido } from "../components/FormPedido";
+import { EditarProduct } from "../components/FormProduct/EditarProduct";
+import { FormSalida } from "../components/FormSalida";
+import Header from "../components/Header";
+import { ModalModule } from "../components/ModalModule";
+import { CategoryNotify } from "../components/NotificationsHeader/CategoryNotify";
+import { HomeNotification } from "../components/NotificationsHeader/HomeNotification";
+import { InventoryNotify } from "../components/NotificationsHeader/InventoryNotify";
+import { PedidosNotify } from "../components/NotificationsHeader/PedidosNotify";
+import { ProductNotification } from "../components/NotificationsHeader/ProductNotification";
+import { ProviderNotifyc } from "../components/NotificationsHeader/ProviderNotifyc";
+import { UsersNotification } from "../components/NotificationsHeader/UsersNotification";
+import { VentasNotify } from "../components/NotificationsHeader/VentasNotify";
+import { CategoryDasboard } from "../components/screen/CategoryDasboard";
+import { GetCategoryProvider } from "../components/screen/GetCategoryProvider";
+import { HomeDaboard } from "../components/screen/HomeDaboard";
+import { ProductoDasboard } from "../components/screen/ProductoDasboard";
+import { ProvidersDasboard } from "../components/screen/ProvidersDasboard";
+import { UserInfo } from "../components/screen/UserInfo";
+import { UsersDasboard } from "../components/screen/UsersDasboard";
+import { ConfigInventory } from "../container/ConfigInventory";
+import { TranslateProduct } from "../container/TranslateProduct";
+import { GetUsersContext } from "../hooks/context/GetUsersContext";
+import { UserContextData } from "../hooks/context/UserContextData.jsx";
+import { Prueba } from "../layout/Prueba";
+import { Ventas } from "../layout/Ventas";
+import CodePassword from "../pages/CodePassword";
+import { Contactanos } from "../pages/Contactanos";
+import { HomePage } from "../pages/HomePage";
+import { NotFount } from "../pages/NotFount";
+import RecoveryPass from "../pages/RecoveryPass";
+import { Somos } from "../pages/Somos";
+import NewPassword from "../pages/newPassword";
+import { ComprasPDF } from "../pdf/ComprasPDF";
 
 import { ChartProductos } from "../Generator/ChartProductos";
-import { ProductAgotados } from "../components/NotificationsHeader/ProductAgotados";
 import { ComandsSistemA } from "../Generator/ComandsSistemA";
+import { ProductAgotados } from "../components/NotificationsHeader/ProductAgotados";
 
-import { urlServer } from "../urlApi/url";
+import { Privaci } from "../privacy/Privaci.jsx";
 import { dataIsAllowed } from "../secure/lowed.Modules";
 import { Licence } from "../security/Licence";
-import { Privaci } from "../privacy/Privaci.jsx";
+import { urlServer } from "../urlApi/url";
 
 //  !hjhj
 
 import AuthUserLoadable from "../components/AuthUser.jsx";
 import SignupLoadable from "../components/Signup.jsx";
-import AdminLoadable from "../pages/Admin/Admin.jsx";
 import Analitycs from "../layout/Analitycs.jsx";
 import AyudaAdmin from "../layout/AyudaAdmin.jsx";
 import Category from "../layout/Category.jsx";
@@ -71,6 +68,7 @@ import Provider from "../layout/Provider.jsx";
 import Shope from "../layout/Shope.jsx";
 import Trae from "../layout/Trae.jsx";
 import Usuarios from "../layout/Usuarios.jsx";
+import AdminLoadable from "../pages/Admin/Admin.jsx";
 
 // ?? g
 export const Router = () => {
@@ -82,7 +80,6 @@ export const Router = () => {
     tokeVerify: "",
     permisions: [],
   };
-
   if (type === "user") {
     const Webk = () => {
       useMemo(() => {
@@ -151,332 +148,323 @@ export const Router = () => {
   return (
     <>
       <UserContextData>
-        <GetUsersContext>
-          <LoadingBar
-            color="#f11946"
-            progress={LoadingProgress}
-            onLoaderFinished={() => {
-              setLoadingProgress(0);
-            }}
+        <LoadingBar color="#44b2fd" progress={LoadingProgress}
+          onLoaderFinished={() => {
+            setLoadingProgress(0);
+          }}
+        />
+        <Routes>
+          <Route path="/privacy" element={<Privaci />} />
+          <Route path="/prueba" element={<Prueba />} />
+          <Route path="*" element={<NotFount />} />
+          <Route path="/login" element={<AuthUserLoadable />} />
+          <Route path="/Header" element={<Header />} />
+          <Route path="/newPassword+auth=true" element={<NewPassword />} />
+          <Route path="/recovery+password/identify" element={<RecoveryPass />}/>
+          <Route path="/verifyc+code/identify" element={<CodePassword />} />
+          <Route path="/signup" element={<UserContextData><SignupLoadable /></UserContextData>}/>
+          <Route index element={<HomePage />} />
+          <Route path={`${dataIsAllowed[1].url}/*`}
+            element={<ProtectedRouter isAllowed={!!users && users.permisions.includes("bodega")}
+                redirectTo="/bodega"><GetUsersContext><Inventory /></GetUsersContext>
+              </ProtectedRouter>}>
+            <Route path="inventory/:id/*" element={<ConfigInventory />}>
+              <Route
+                path="TrasladarProduct/:id"
+                element={<TranslateProduct />}
+              />
+            </Route>
+            <Route path="" element={<div></div>} />
+          </Route>
+          <Route
+            path={dataIsAllowed[13].url}
+            element={
+              <ProtectedRouter
+                isAllowed={
+                  !!users && users.permisions.includes(dataIsAllowed[13].nombre)
+                }
+              >
+                <AyudaAdmin />
+              </ProtectedRouter>
+            }
           />
-          <Routes>
-            <Route path="/privacy" element={<Privaci />} />
-            <Route path="/prueba" element={<Prueba />} />
-            <Route path="*" element={<NotFount />} />
 
-            <Route path="/login" element={<AuthUserLoadable />} />
-            <Route path="/Header" element={<Header />} />
-            <Route path="/newPassword+auth=true" element={<NewPassword />} />
-            <Route
-              path="/recovery+password/identify"
-              element={<RecoveryPass />}
-            />
-            <Route path="/verifyc+code/identify" element={<CodePassword />} />
-            <Route path="/signup" element={<SignupLoadable />} />
-
-            <Route index element={<HomePage />} />
-            <Route
-              path={`${dataIsAllowed[1].url}/*`}
-              element={
-                <ProtectedRouter
-                  isAllowed={!!users && users.permisions.includes("bodega")}
-                  redirectTo="/bodega"
-                >
-                  <Inventory />
-                </ProtectedRouter>
-              }
-            >
-              <Route path="inventory/:id/*" element={<ConfigInventory />}>
-                <Route
-                  path="TrasladarProduct/:id"
-                  element={<TranslateProduct />}
-                />
-              </Route>
-              <Route path="" element={<div></div>} />
-            </Route>
-            <Route
-              path={dataIsAllowed[13].url}
-              element={
-                <ProtectedRouter
-                  isAllowed={
-                    !!users &&
-                    users.permisions.includes(dataIsAllowed[13].nombre)
-                  }
-                >
-                  <AyudaAdmin />
-                </ProtectedRouter>
-              }
-            />
-
-            <Route
-              path="/dasboard/*"
-              element={
-                <ProtectedRouter
-                  isAllowed={!!users && users.permisions.includes("dasboard")}
-                >
+          <Route
+            path="/dasboard/*"
+            element={
+              <ProtectedRouter
+                isAllowed={!!users && users.permisions.includes("dasboard")}
+              >
+                <GetUsersContext>
                   <AdminLoadable />
-                </ProtectedRouter>
-              }
-            >
-              <Route path="" element={<HomeDaboard />} />
-              <Route path="users/:id/*" element={<UsersDasboard />}>
-                <Route path="usersInfo/:id" element={<UserInfo />} />
-              </Route>
-              <Route path="productos/:id" element={<ProductoDasboard />} />
-              <Route path="categorias/:id" element={<CategoryDasboard />} />
-
-              <Route path="proveedores/:id/*" element={<ProvidersDasboard />}>
-                <Route
-                  path="categoryProvider/:id"
-                  element={<GetCategoryProvider />}
-                />
-              </Route>
+                </GetUsersContext>
+              </ProtectedRouter>
+            }
+          >
+            <Route path="" element={<HomeDaboard />} />
+            <Route path="users/:id/*" element={<UsersDasboard />}>
+              <Route path="usersInfo/:id" element={<UserInfo />} />
             </Route>
-            <Route
-              path={dataIsAllowed[2].url}
-              element={
-                <ProtectedRouter
-                  isAllowed={
-                    !!users &&
-                    users.permisions.includes(dataIsAllowed[2].nombre)
-                  }
-                  redirectTo={dataIsAllowed[2].url}
-                >
+            <Route path="productos/:id" element={<ProductoDasboard />} />
+            <Route path="categorias/:id" element={<CategoryDasboard />} />
+
+            <Route path="proveedores/:id/*" element={<ProvidersDasboard />}>
+              <Route
+                path="categoryProvider/:id"
+                element={<GetCategoryProvider />}
+              />
+            </Route>
+          </Route>
+          <Route
+            path={dataIsAllowed[2].url}
+            element={
+              <ProtectedRouter
+                isAllowed={
+                  !!users && users.permisions.includes(dataIsAllowed[2].nombre)
+                }
+                redirectTo={dataIsAllowed[2].url}
+              >
+                <GetUsersContext>
                   <Usuarios />
-                </ProtectedRouter>
-              }
-            />
+                </GetUsersContext>
+              </ProtectedRouter>
+            }
+          />
 
+          <Route
+            path="/permisions/:id"
+            element={
+              <ProtectedRouter
+                isAllowed={!!users && users.permisions.includes("superAdmin")}
+                redirectTo="/bodega"
+              >
+                <ModalModule />
+              </ProtectedRouter>
+            }
+          />
+          <Route
+            path="/notificaciones/*"element={<ProtectedRouter isAllowed={
+                  !!users && users.permisions.includes("notificaciones")}redirectTo="/notificaciones"
+              >
+                <GetUsersContext>
+                <Notification />
+                </GetUsersContext>
+              </ProtectedRouter>
+            }
+          >
+            <Route path="" element={<HomeNotification />} />
+            <Route path="notification/users" element={<UsersNotification />} />
             <Route
-              path="/permisions/:id"
-              element={
-                <ProtectedRouter
-                  isAllowed={!!users && users.permisions.includes("superAdmin")}
-                  redirectTo="/bodega"
-                >
-                  <ModalModule />
-                </ProtectedRouter>
-              }
+              path="notification/product"
+              element={<ProductNotification />}
             />
+            <Route path="notification/bodega" element={<InventoryNotify />} />
+            <Route path="notification/category" element={<CategoryNotify />} />
+            <Route path="notification/provider" element={<ProviderNotifyc />} />
+            <Route path="notification/pedidos" element={<PedidosNotify />} />
+            <Route path="notification/ventas" element={<VentasNotify />} />
             <Route
-              path="/notificaciones/*"
-              element={
-                <ProtectedRouter
-                  isAllowed={
-                    !!users && users.permisions.includes("notificaciones")
-                  }
-                  redirectTo="/notificaciones"
-                >
-                  <Notification />
-                </ProtectedRouter>
-              }
-            >
-              <Route path="" element={<HomeNotification />} />
-              <Route
-                path="notification/users"
-                element={<UsersNotification />}
-              />
-              <Route
-                path="notification/product"
-                element={<ProductNotification />}
-              />
-              <Route path="notification/bodega" element={<InventoryNotify />} />
-              <Route
-                path="notification/category"
-                element={<CategoryNotify />}
-              />
-              <Route
-                path="notification/provider"
-                element={<ProviderNotifyc />}
-              />
-              <Route path="notification/pedidos" element={<PedidosNotify />} />
-              <Route path="notification/ventas" element={<VentasNotify />} />
-              <Route
-                path="notification/ProductVencer"
-                element={<ProductAgotados />}
-              />
-            </Route>
-            <Route
-              path="/admin/productos/editar/:id"
-              element={
-                <ProtectedRouter
-                  isAllowed={!!users}
-                  redirectTo={dataIsAllowed[1].url}
-                >
-                  <EditarProduct />
-                </ProtectedRouter>
-              }
+              path="notification/ProductVencer"
+              element={<ProductAgotados />}
             />
-            <Route
-              path={dataIsAllowed[5].url}
-              element={
-                <ProtectedRouter
-                  isAllowed={
-                    !!users &&
-                    users.permisions.includes(dataIsAllowed[5].nombre)
-                  }
-                  redirectTo={dataIsAllowed[5].url}
-                >
-                  <Product />
-                </ProtectedRouter>
-              }
-            />
-            <Route
-              path={dataIsAllowed[3].url}
-              element={
-                <ProtectedRouter
-                  isAllowed={
-                    !!users &&
-                    users.permisions.includes(dataIsAllowed[3].nombre)
-                  }
-                  redirectTo={dataIsAllowed[3].url}
-                >
-                  <Category />
-                </ProtectedRouter>
-              }
-            />
-            <Route
-              path={dataIsAllowed[6].url}
-              element={
-                <ProtectedRouter
-                  isAllowed={
-                    !!users &&
-                    users.permisions.includes(dataIsAllowed[6].nombre)
-                  }
-                  redirectTo={dataIsAllowed[6].url}
-                >
-                  <Provider />
-                </ProtectedRouter>
-              }
-            />
-            <Route
-              path="/analityc/*"
-              element={
-                <ProtectedRouter
-                  isAllowed={!!users && users.permisions.includes("analityc")}
-                  redirectTo="/analityc"
-                >
-                  <Analitycs />
-                </ProtectedRouter>
-              }
-            >
-              <Route path="" element={<ChartHome />}></Route>
-              <Route path="AnBodega/:id" element={<ChartBodega />}></Route>
+          </Route>
+          <Route
+            path="/admin/productos/editar/:id"
+            element={
+              <ProtectedRouter
+                isAllowed={!!users}
+                redirectTo={dataIsAllowed[1].url}
+              >
+                <EditarProduct />
+              </ProtectedRouter>
+            }
+          />
+          <Route
+            path={dataIsAllowed[5].url}
+            element={
+              <ProtectedRouter
+                isAllowed={
+                  !!users && users.permisions.includes(dataIsAllowed[5].nombre)
+                }
+                redirectTo={dataIsAllowed[5].url}
+              >
+                <GetUsersContext>
 
-              <Route
-                path="TodoComands/:id"
-                element={<ComandsSistemA />}
-              ></Route>
-              <Route
-                path="AnProductos/:id"
-                element={<ChartProductos />}
-              ></Route>
-            </Route>
-            <Route
-              path={dataIsAllowed[9].url}
-              element={
-                <ProtectedRouter
-                  isAllowed={
-                    !!users &&
-                    users.permisions.includes(dataIsAllowed[0].nombre)
-                  }
-                >
+                <Product />
+                </GetUsersContext>
+              </ProtectedRouter>
+            }
+          />
+          <Route
+            path={dataIsAllowed[3].url}
+            element={
+              <ProtectedRouter
+                isAllowed={
+                  !!users && users.permisions.includes(dataIsAllowed[3].nombre)
+                }
+                redirectTo={dataIsAllowed[3].url}
+              >
+                <GetUsersContext>
+                <Category />
+
+                </GetUsersContext>
+              </ProtectedRouter>
+            }
+          />
+          <Route
+            path={dataIsAllowed[6].url}
+            element={
+              <ProtectedRouter
+                isAllowed={
+                  !!users && users.permisions.includes(dataIsAllowed[6].nombre)
+                }
+                redirectTo={dataIsAllowed[6].url}
+              >
+                <GetUsersContext>
+                <Provider />
+
+                </GetUsersContext>
+              </ProtectedRouter>
+            }
+          />
+          <Route
+            path="/analityc/*"
+            element={
+              <ProtectedRouter
+                isAllowed={!!users && users.permisions.includes("analityc")}
+                redirectTo="/analityc"
+              >
+                <GetUsersContext>
+                <Analitycs />
+
+                </GetUsersContext>
+              </ProtectedRouter>
+            }
+          >
+            <Route path="" element={<ChartHome />}></Route>
+            <Route path="AnBodega/:id" element={<ChartBodega />}></Route>
+
+            <Route path="TodoComands/:id" element={<ComandsSistemA />}></Route>
+            <Route path="AnProductos/:id" element={<ChartProductos />}></Route>
+          </Route>
+          <Route
+            path={dataIsAllowed[9].url}
+            element={
+              <ProtectedRouter
+                isAllowed={
+                  !!users && users.permisions.includes(dataIsAllowed[0].nombre)
+                }
+              >
+                <GetUsersContext>
                   <Perfil />
-                </ProtectedRouter>
-              }
-            />
-            <Route
-              path={dataIsAllowed[18].url}
-              element={
-                <ProtectedRouter
-                  isAllowed={
-                    !!users &&
-                    users.permisions.includes(dataIsAllowed[18].nombre)
-                  }
-                >
+                </GetUsersContext>
+              </ProtectedRouter>
+            }
+          />
+          <Route
+            path={dataIsAllowed[18].url}
+            element={
+              <ProtectedRouter
+                isAllowed={
+                  !!users && users.permisions.includes(dataIsAllowed[18].nombre)
+                }
+              >
+                <GetUsersContext>
                   <Trae />
-                </ProtectedRouter>
-              }
-            />
-            <Route
-              path="/pedidos/*"
-              element={
-                <ProtectedRouter
-                  isAllowed={!!users && users.permisions.includes("pedidos")}
-                  redirectTo="/pedidos"
-                >
-                  <Shope />
-                </ProtectedRouter>
-              }
-            >
-              <Route path="ListPedidos" element={<DataTablePedido />} />
-              <Route path="" element={<FormPedido />}>
-                <Route path="bodega/:id" element={<h1>Hola mundo</h1>} />
-              </Route>
+                </GetUsersContext>
+              </ProtectedRouter>
+            }
+          />
+          <Route
+            path="/pedidos/*"
+            element={
+              <ProtectedRouter
+                isAllowed={!!users && users.permisions.includes("pedidos")}
+                redirectTo="/pedidos"
+              >
+                <GetUsersContext>
+                <Shope />
+                </GetUsersContext>
+              </ProtectedRouter>
+            }
+          >
+            <Route path="ListPedidos" element={<DataTablePedido />} />
+            <Route path="" element={<FormPedido />}>
+              <Route path="bodega/:id" element={<h1>Hola mundo</h1>} />
             </Route>
+          </Route>
 
-            <Route
-              path="/venta/*"
-              element={
-                <ProtectedRouter
-                  isAllowed={!!users && users.permisions.includes("venta")}
-                  redirectTo="/venta"
-                >
-                  <Ventas />
-                </ProtectedRouter>
-              }
-            >
-              <Route path="" element={<FormSalida />}>
-                <Route path="bodega/:id" element={<h1>Hola mundo</h1>} />
-              </Route>
-              <Route path="AllVentas/*" element={<DatatableVentas />}>
-                <Route path="viewPdf" element={<ComprasPDF />} />
-              </Route>
+          <Route
+            path="/venta/*"
+            element={
+              <ProtectedRouter
+                isAllowed={!!users && users.permisions.includes("venta")}
+                redirectTo="/venta"
+              >
+                <GetUsersContext>
+                <Ventas />
+
+                </GetUsersContext>
+              </ProtectedRouter>
+            }
+          >
+            <Route path="" element={<FormSalida />}>
+              <Route path="bodega/:id" element={<h1>Hola mundo</h1>} />
             </Route>
-            <Route path="/somos" element={<Somos />} />
-            <Route path="/contactanos" element={<Contactanos />} />
+            <Route path="AllVentas/*" element={<DatatableVentas />}>
+              <Route path="viewPdf" element={<ComprasPDF />} />
+            </Route>
+          </Route>
+          <Route path="/somos" element={<Somos />} />
+          <Route path="/contactanos" element={<Contactanos />} />
 
-            <Route
-              path="/settings"
-              element={
-                <ProtectedRouter
-                  isAllowed={!!users && users.permisions.includes("config")}
-                  redirectTo="/config"
-                >
-                  <ConfigAdmin />
-                </ProtectedRouter>
-              }
-            />
-            <Route
-              path={dataIsAllowed[17].url}
-              element={
-                <ProtectedRouter
-                  isAllowed={
-                    !!users &&
-                    users.permisions.includes(dataIsAllowed[17].nombre)
-                  }
-                  redirectTo={dataIsAllowed[17].url}
-                >
-                  <InventoryGeneral />
-                </ProtectedRouter>
-              }
-            />
-            <Route
-              path={dataIsAllowed[19].url}
-              element={
-                <ProtectedRouter
-                  isAllowed={
-                    !!users &&
-                    users.permisions.includes(dataIsAllowed[19].nombre)
-                  }
-                  redirectTo={dataIsAllowed[19].url}
-                >
-                  <Licence />
-                </ProtectedRouter>
-              }
-            />
-          </Routes>
-        </GetUsersContext>
+          <Route
+            path="/settings"
+            element={
+              <ProtectedRouter
+                isAllowed={!!users && users.permisions.includes("config")}
+                redirectTo="/config"
+              >
+                <GetUsersContext>
+
+                <ConfigAdmin />
+                </GetUsersContext>
+              </ProtectedRouter>
+            }
+          />
+          <Route
+            path={dataIsAllowed[17].url}
+            element={
+              <ProtectedRouter
+                isAllowed={
+                  !!users && users.permisions.includes(dataIsAllowed[17].nombre)
+                }
+                redirectTo={dataIsAllowed[17].url}
+              >
+                <GetUsersContext>
+                <InventoryGeneral />
+                </GetUsersContext>
+              </ProtectedRouter>
+            }
+          />
+          <Route
+            path={dataIsAllowed[19].url}
+            element={
+              <ProtectedRouter
+                isAllowed={
+                  !!users && users.permisions.includes(dataIsAllowed[19].nombre)
+                }
+                redirectTo={dataIsAllowed[19].url}
+              >
+                <GetUsersContext>
+                <Licence />
+
+                </GetUsersContext>
+              </ProtectedRouter>
+            }
+          />
+        </Routes>
+        {/* </GetUsersContext> */}
       </UserContextData>
     </>
   );
