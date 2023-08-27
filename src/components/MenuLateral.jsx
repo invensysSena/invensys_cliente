@@ -41,7 +41,7 @@ export const MenuLateral = () => {
         setData(data);
       }
 
-      await TodoFunctions.SearchDismiutionUnidadProduct();
+      // await TodoFunctions.SearchDismiutionUnidadProduct();
     };
     initial();
   }, []);
@@ -157,10 +157,14 @@ export const MenuLateral = () => {
 
   const handleMouse = () => {};
 
-  const notifyFilterEstado = useMemo(
-    () => notify.filter((item) => item.estado === 1),
-    [notify]
-  );
+  // const notifyFilterEstado = useMemo(
+  //   () => notify.length > 0 && notify.filter((item) => item.estado >1),
+  //   [notify]
+  // );
+
+  // console.log(notifyFilterEstado)
+  // console.log(notify)
+  
   document.body.style.overflowX = "hidden";
 
   let fechaStateUser = localStorage.getItem("fecha");
@@ -211,8 +215,8 @@ fixed top-0
                   {adminGetData.length > 0
                     ? type === "user"
                       ? "Usuario"
-                      : adminGetData[0].name !== null
-                      ? adminGetData[0].name
+                      : adminGetData[0].nameadmin !== null
+                      ? adminGetData[0].nameadmin
                       : "Identificate"
                     : "Identicate"}
                 </h2>
@@ -280,7 +284,7 @@ fixed top-0
                           <img
                             src={
                               adminGetData.length > 0
-                                ? adminGetData[0].imgURL
+                                ? adminGetData[0].imgurl
                                 : ""
                             }
                             alt="perfil"
@@ -318,11 +322,11 @@ fixed top-0
                           <>
                             {adminGetData.length > 0 ? (
                               <>
-                                {adminGetData[0].imgURL ? (
+                                {adminGetData[0].imgurl ? (
                                   <img
                                     src={
                                       adminGetData.length > 0
-                                        ? adminGetData[0].imgURL
+                                        ? adminGetData[0].imgurl
                                         : ""
                                     }
                                     alt="perfil"
@@ -541,13 +545,13 @@ fixed top-0
                             }
                           >
                             Notificaciones{" "}
-                            {notifyFilterEstado.length > 0 ? (
+                            {/* {notifyFilterEstado.length > 0 ? (
                               <span className="bg-red-500 text-white rounded-full px-1 text-xs">
                                 {notifyFilterEstado.length > 9
                                   ? "9+"
                                   : notifyFilterEstado.length}
                               </span>
-                            ) : null}
+                            ) : null} */}
                           </div>
                         </NavLink>
                       </li>

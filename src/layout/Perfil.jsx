@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import "../components/efectosCss.css";
 import { getDataAll, UpdateAdminAll } from "../apis/ApiData";
 import { SubMenu } from "../components/SubMenu";
-
+import moment from "moment-with-locales-es6";
 const Perfil = () => {
   const { adminGetData } = useGetUsers();
   const [btnSpand, setbtnSpand] = useState(false);
@@ -129,7 +129,7 @@ const Perfil = () => {
                     <form
                       className="flex flex-col dark:text-white dark:bg-[#374151] "
                       onSubmit={handleData}
-                      key={item.idUsers}
+                      key={item.idadmin}
                     >
                       <h2
                         className="text-gray-600
@@ -178,7 +178,7 @@ const Perfil = () => {
                                 type="text"
                                 name="name"
                                 id="apellido"
-                                defaultValue={item.name}
+                                defaultValue={item.nameadmin}
                                 className=" py-1 rounded-sm focus:border-1 outline-none bg-transparent
             w-[150%]
              "
@@ -211,7 +211,7 @@ const Perfil = () => {
                                 type="text"
                                 name="empresa"
                                 id="apellido"
-                                defaultValue={item.nombreTienda}
+                                defaultValue={item.nombrenegocio}
                                 className=" py-1 rounded-sm focus:border-1 outline-none bg-transparent
                                 
             w-[150%]
@@ -322,7 +322,7 @@ const Perfil = () => {
                                 type="text"
                                 name="email"
                                 id="apellido"
-                                value={item.correo}
+                                defaultValue={item.email}
                                 className=" py-1 rounded-sm truncate focus:border-1 outline-none bg-transparent
             w-[150%]
              "
@@ -494,15 +494,15 @@ const Perfil = () => {
                   <div className="avater">
                     <picture className="skew-y-12 rounded-full ">
                       {adminGetData.map((item) => (
-                        <div key={item.idUsers}>
-                          {item.imgURL ? (
-                            <a href={item.imgURL} className="">
+                        <div  key={item.idadmin}>
+                          {item.imgurl ? (
+                            <a href={item.imgurl} className="">
                               <img
                                 key={item.id}
                                 className="z-30 bg-clound t-8 block 
                               absolute rounded-full top-[5rem] inset-0 mx-auto "
                                 width={110}
-                                src={item.imgURL}
+                                src={item.imgurl}
                                 alt="imagen de perfil"
                               />
                             </a>
@@ -558,7 +558,7 @@ const Perfil = () => {
                   </div>
                 </div>
                 {adminGetData.map((item) => (
-                  <div className="content_contenido_p" key={item.idUsers}>
+                  <div className="content_contenido_p"  key={item.idadmin}>
                     <div className=" dark:bg-[#37415197] dark:text-white mx-2">
                       <ul className="list-none_k">
                         <li className="flex  flex-col py-2 px-4 ">
@@ -584,7 +584,7 @@ const Perfil = () => {
                                   <div className="mr-1">Nombre completo: </div>
                                 ) : null}
 
-                                {item.name ? item.name : "..."}
+                                {item.nameadmin ? item.nameadmin : "..."}
                               </span>
                             )}
                           </span>
@@ -613,16 +613,16 @@ const Perfil = () => {
                           </span>
                           <span className="text-lg  font-sans mx-0 flex items-center">
                             Cuenta:
-                            {item.authCuenta === "OK" ? (
+                            {item.authcuenta == "true" ? (
                               <>
                                 <img
                                   className="w-5 ml-2 block"
                                   src="https://img.icons8.com/ios/50/40C057/ok--v1.png"
                                   alt=""
                                 />
-                                <span className="text-green-400">
+                                <span className="text-green-400 mx-0.5">
                                   {" "}
-                                  verificado
+                                   verificado
                                 </span>
                               </>
                             ) : (
@@ -651,8 +651,8 @@ const Perfil = () => {
                               }}
                               className="ml-2"
                             >
-                              {item.correo ? item.correo : "..."}
-                            </span>
+                              {item.email ? item.email : "..."}
+                            </span> 
                           </span>
                           <span className="text-lg  font-sans mx-0">
                             Rol:{" "}
@@ -746,7 +746,7 @@ const Perfil = () => {
                 {adminGetData.map((items) => (
                   <div
                     className="effect_blure z-10  relative dark:bg-[#37415197] dark:text-white p-3 shadow-sm rounded-sm"
-                    key={items.idUsers}
+                    key={items.idadmin}
                   >
                     <div className="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
                       <span className="text-green-500">
@@ -774,7 +774,7 @@ const Perfil = () => {
                         <div className="grid grid-cols-2 lg:grid-cols-2">
                           <div className="px-4 py-2 font-semibold">Nombre</div>
                           <div className="px-4 py-2">
-                            {items.name ? items.name : "..."}
+                            {items.nameadmin ? items.nameadmin : "..."}
                           </div>
                         </div>
                         <div className="grid grid-cols-2 lg:grid-cols-2">
@@ -828,7 +828,7 @@ const Perfil = () => {
                             Nombre Empresa
                           </div>
                           <div className="px-4 py-2">
-                            {items.nombreTienda ? items.nombreTienda : "..."}
+                            {items.nombrenegocio ? items.nombrenegocio : "..."}
                           </div>
                         </div>
                         <div className="grid grid-cols-2 lg:grid-cols-2">
@@ -858,13 +858,9 @@ const Perfil = () => {
                           </div>
                           <div className="flex">
                             <div className="px-4 py-2">
-                              {items.fechaCreacion
-                                ? items.fechaCreacion
+                              {items.fechacreacion
+                                ? moment(items.fechacreacion).startOf('hour').fromNow()
                                 : "..."}
-                            </div>
-
-                            <div className=" py-2 hidden lg:block">
-                              {items.hora ? items.hora : "..."}
                             </div>
                           </div>
                         </div>
