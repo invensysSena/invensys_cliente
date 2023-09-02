@@ -516,15 +516,7 @@ body::-webkit-scrollbar-thumb {
 .selft_scroll::-webkit-scrollbar {
   width: 0.5rem;
 }
-.ag-theme-alpine {
-  border-radius: 15px;
-  overflow: hidden;
-  border: 1px solid #b9bfc7;
-  --ag-header-foreground-color: white;
-  --ag-header-background-color: black;
-  --ag-header-cell-hover-background-color: rgb(80, 40, 140);
-  --ag-header-cell-moving-background-color: rgb(80, 40, 140);
-}
+
 .ag-theme-alpine .ag-header {
   font-family: cursive;
 }

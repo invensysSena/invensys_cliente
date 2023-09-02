@@ -25,9 +25,7 @@ export const DataTableUsers = () => {
     getUsersAdmins,
     getUsers,
     getCountData,
-    getCountDateUsers,
-    getActivosUsers,
-    getInactivosUsers,
+   
   } = useGetUsers();
 
   useMemo(() => {
@@ -55,7 +53,7 @@ export const DataTableUsers = () => {
       headerCheckboxSelection: headerCheckboxSelection,
 
       filter: "agTextColumnFilter",
-      chartDataType: "correo",
+      chartDataType: "email",
     },
     {
       headerName: "Contraseña",
@@ -65,19 +63,19 @@ export const DataTableUsers = () => {
     },
     {
       headerName: "Identificador",
-      field: "idAccount",
+      field: "iduser",
       filter: "agTextColumnFilter",
       chartDataType: "id",
     },
     {
-      headerName: "Hora de creacion de cuenta",
-      field: "hora",
+      headerName: "ultima hora de inicio de sesión",
+      field: "dateupdate",
       chartDataType: "body",
       filter: "agTextColumnFilter",
     },
     {
       headerName: "Fecha de creación",
-      field: "fecha",
+      field: "datecreate",
       chartDataType: "postId",
       filter: "agTextColumnFilter",
     },
@@ -85,7 +83,7 @@ export const DataTableUsers = () => {
       headerName: "Estado",
       field: "estado",
       cellStyle: (params) =>
-        params.value === "Activo" ? { color: "green" } : { color: "red" },
+        params.value === "activo" ? { color: "#19c37d" } : { color: "red" },
       chartDataType: "postId",
       filter: "agTextColumnFilter",
     },
@@ -186,7 +184,7 @@ export const DataTableUsers = () => {
                 </svg>
               </span>
               <span className="text-[#3498DB] mx-1"> Usuarios</span>
-              <span className="text-[#3498DB] mx-1">{getCountDateUsers}</span>
+              <span className="text-[#3498DB] mx-1">{getUsers.length}</span>
             </div>
           </section>
 
@@ -298,7 +296,10 @@ export const DataTableUsers = () => {
                     />
                   </svg>
 
-                  <span>Activos {getActivosUsers} </span>
+                  <span>Activos {
+                    getUsers.length > 0 ? getUsers.filter((item) => item.estado === "activo").length : 0
+                    
+                    } </span>
                 </span>
               </div>
               <div className="effect_blure  p-2 rounded-lg dark:bg-[#37415197]">
@@ -314,7 +315,9 @@ export const DataTableUsers = () => {
                       d="M10 4a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H2v-2c0-2.21 3.58-4 8-4m10-2V7h2v6h-2m0 4v-2h2v2h-2Z"
                     />
                   </svg>
-                  <div className="span mx-1">Inactivos {getInactivosUsers}</div>
+                  <div className="span mx-1">Inactivos {
+                    getUsers.length > 0 ? getUsers.filter((item) => item.estado === "inactivo").length : 0
+                  }</div>
                 </span>
               </div>
             </div>
@@ -360,7 +363,21 @@ export const DataTableUsers = () => {
           ref={gridRef}
           localeText={AG_GRID_LOCALE_EN}
           columnDefs={columnDefs}
-          rowData={getUsers}
+          rowData={
+            getUsers.map((item) => {
+              
+              return {
+                correo: item.email,
+                password: item.password,
+                iduser: item.iduser,
+                dateupdate: moment(item.dateupdate).format("LLLL"),
+                datecreate: moment(item.datecreate).format("LLLL"),
+                estado: item.estado,
+                
+               
+              };
+            }) || []
+          }
           defaultColDef={defaultColDef}
           animateRows={true}
           rowGroupPanelShow="always"

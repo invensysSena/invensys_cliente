@@ -67,7 +67,7 @@ export const UploadcsvUsuario = async (formDataCsv, archivousuariocsv) =>
   );
 
 export const getUsersAdmin = async () =>
-  await axios.get(`${urlServer}/getUsersData/${accessToken}`, {
+  await axios.get(`${urlServer}/getUsersData`, {
     headers: {
       isAllowedAccess: dataIsAllowed[0].nombre,
       authorization: accessToken,
@@ -93,10 +93,10 @@ export const DeleteuserPost = async (deleteData) =>
     }
   );
 
-export const setModule = async (data) =>
+export const setModule = async (path,iduser,idmodule) =>
   await axios.post(
     `${urlServer}/setModule`,
-    { data },
+    { path,iduser,idmodule },
     {
       headers: {
         authorization: accessToken,

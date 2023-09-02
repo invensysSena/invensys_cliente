@@ -166,7 +166,7 @@ function OpcionTabledCrud(e) {
     });
   };
   const isAlowedId = () => {
-    navigate(`/permisions/${e.data.idAccount}`);
+    navigate(`/permisions/${e.data.iduser}`);
   };
 
   const editPassword = () => {

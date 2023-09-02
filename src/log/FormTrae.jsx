@@ -55,7 +55,7 @@ export const FormTrae = () => {
                
                
                 "
-                placeholder="..."
+                placeholder="Ejm: Natural o Juridica"
                 onChange={HandleInput}
               />
             </div>
@@ -72,7 +72,7 @@ export const FormTrae = () => {
                 className="bg-gray-50 outline-none  border border-gray-300 text-gray-900 text-sm rounded-lg
 
              focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-[#374151] dark:text-white"
-                placeholder="..."
+                placeholder=" identificación tributaria"
                 name="nit"
                 onChange={HandleInput}
                 defaultValue={data1.length > 0 ? data1[0].nit : ""}
@@ -83,7 +83,7 @@ export const FormTrae = () => {
                 htmlFor="first_name"
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
               >
-                Identificación
+                Identificación(Tipo)
               </label>
               <input
                 type="text"
@@ -91,7 +91,7 @@ export const FormTrae = () => {
                 name="tipoIdentificacion"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
               focus:ring-blue-500 dark:bg-[#374151] dark:text-white focus:border-blue-500 block w-full p-2.5 outline-none "
-                placeholder="..."
+                placeholder="Ejm: CC, CE, NIT, TI, PA, RC, NUIP, RU"
                 onChange={HandleInput}
                 defaultValue={
                   data1.length > 0 ? data1[0].tipoIdentificacion : ""
@@ -103,14 +103,14 @@ export const FormTrae = () => {
                 htmlFor="last_name"
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300 outline-none "
               >
-                No.
+                Numero de identificación
               </label>
               <input
                 type="text"
                 id="last_name"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
              focus:ring-blue-500 dark:bg-[#374151] dark:text-white focus:border-blue-500 block w-full p-2.5 outline-none "
-                placeholder="..."
+                placeholder="Ejm: 7564433"
                 name="numero"
                 onChange={HandleInput}
                 defaultValue={data1.length > 0 ? data1[0].numero : ""}

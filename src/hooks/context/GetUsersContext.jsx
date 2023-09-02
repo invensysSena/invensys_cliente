@@ -52,11 +52,11 @@ export const GetUsersContext = ({ children }) => {
 
   const getUsersAdmins = async () => {
     try {
-      if (isAllowedToken === null) {
-        return;
-      }
-      const response = await getUsersAdmin(isAllowedToken);
-
+      // if (isAllowedToken === null) {
+      //   return;
+      // }
+      const response = await getUsersAdmin();
+        console.log(response)
       setGetUsers(response.data.data);
     } catch (error) {
       return error;
@@ -89,13 +89,8 @@ export const GetUsersContext = ({ children }) => {
       const response = await PostDataUserRegister(postDataUserRegister);
 
       setGetUsers([...getUsers, response.data.data[0][0]]);
+      console.log(response)
 
-      if (response.data.data[0].estado === "Activo") {
-        setGetActivosUsers(getActivosUsers + 1);
-      } else {
-        setGetInactivosUsers(getInactivosUsers + 1);
-      }
-      setGetCountDateUsers(getCountDateUsers + 1);
       return response;
     } catch (error) {
       return error;
@@ -110,10 +105,10 @@ export const GetUsersContext = ({ children }) => {
       return error;
     }
   };
-  const userModuleRegister = async (postDataUserRegister) => {
+  const userModuleRegister = async (path,users,idmodule) => {
     try {
-      const response = await setModule(postDataUserRegister);
-      setModuleUsers([...moduleUsers, response.data.data[0]]);
+      const response = await setModule(path,users,idmodule);
+      // setModuleUsers([...moduleUsers, response.data.data[0]]);
 
       return response;
     } catch (error) {
@@ -124,7 +119,7 @@ export const GetUsersContext = ({ children }) => {
     try {
       const response = await GetModule(id);
       setModuleUsers(response.data.data);
-      return response;
+      return JSON.parse(response.data);
     } catch (error) {
       return error;
     }
@@ -192,6 +187,7 @@ export const GetUsersContext = ({ children }) => {
         adminGetData,
         uploadImgAdminAll,
         updateDataAdmin,
+       
       }}
     >
       {children}

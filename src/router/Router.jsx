@@ -238,7 +238,10 @@ export const Router = () => {
                 isAllowed={!!users && users.permisions.includes("superAdmin")}
                 redirectTo="/bodega"
               >
+                 <GetUsersContext>
                 <ModalModule />
+
+                 </GetUsersContext>
               </ProtectedRouter>
             }
           />

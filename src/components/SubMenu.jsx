@@ -5,12 +5,11 @@ moment.locale("es");
 export const SubMenu = () => {
   const [data, setData] = useState([]);
   useMemo(() => {
-    const initial = async () => {
-      const res = await getDataAll();
-      console.log("dubtrae", res.data.data);
-      setData(res.data.data);
-    };
-    initial();
+    (async ()=>{
+        const res = await getDataAll();
+        console.log("dubtrae", res.data.data);
+        setData(res.data.data);
+    })();
   }, []);
 
   const handleCloseSesion = () => {

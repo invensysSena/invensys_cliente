@@ -69,10 +69,12 @@ export const UserRegister = ({ estado = false }) => {
                 ),
             })}
             onSubmit={async (values) => {
-              let response = await UserRegister(values);
-              if (response.status === 201) {
+              
+              try {
+                let response = await UserRegister(values);
+                console.log(response);
                 await toast.success("Usuario creado con exito", {
-                  position: "top-right",
+                  position: "bottom-right",
                   autoClose: 1000,
                   hideProgressBar: false,
                   closeOnClick: true,
@@ -85,7 +87,7 @@ export const UserRegister = ({ estado = false }) => {
                 setTimeout(() => {
                   navigate("/usuarios");
                 }, 2000);
-              } else {
+              } catch (error) {
                 await toast.warning(
                   "!Ups! Hubo un error inesperado o el correo ya existe",
                   {
@@ -99,8 +101,7 @@ export const UserRegister = ({ estado = false }) => {
                   }
                 );
                 await setSpiner(false);
-              }
-            }}
+              }}}
           >
             <Form>
               <div
@@ -195,7 +196,7 @@ export const UserRegister = ({ estado = false }) => {
                     className="w-4/5 mx-2  rounded cursor-pointer  py-2 outline-none border border-[#1876F2] "
                   >
                     <option value="select">Selecionar</option>
-                    <option value="bodega">Bodega</option>
+                    <option value="/bodega">Bodega</option>
                   </Field>
                 </section>
                 <section>

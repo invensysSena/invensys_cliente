@@ -1,6 +1,4 @@
 import { MenuLateral } from "../components/MenuLateral";
-import "ag-grid-community/styles/ag-grid.css"; // Core grid CSS, always needed
-import "ag-grid-community/styles/ag-theme-alpine.css"; // Optional theme CSS
 import { DataTableUsers } from "../components/DataTableUsers";
 import "../assets/css/fuente.css";
 import { SubMenu } from "../components/SubMenu";
@@ -9,13 +7,8 @@ const Usuarios = () => {
     <div
       className="bg-gradient-to-r from-[#cff5fb] from-2% via-[#beb6fb87] via-30% to-[#d7e4fabe] to-90%  w-full block  min-h-screen
         dark:bg-gradient-to-r dark:from-[#163b59] dark:from-10%
-         dark:via-[#18324f] dark:via-30% dark:to-[#121b2e] dark:to-90%"
-    >
-      <div
-        className="sticky z-50  hidden lg:block top-0 py-3 effect_blure h-fit w-full
-      
-      "
-      >
+         dark:via-[#18324f] dark:via-30% dark:to-[#121b2e] dark:to-90%">
+      <div className="sticky z-50  hidden lg:block top-0 py-3 effect_blure h-fit w-full">
         <SubMenu />
       </div>
       <div
