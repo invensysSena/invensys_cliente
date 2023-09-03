@@ -20,7 +20,7 @@ import { getBusiness, getUsersAdmin } from "../apis/ApiData";
 moment.locale("es");
 
 export const ChartHomeC4 = () => {
-  const { getUsersAdmins, getCountData } = useGetUsers();
+  const { getUsersAdmins,  } = useGetUsers();
 
   const [dataVentas, setDataVentas] = useState([]);
 
@@ -30,7 +30,7 @@ export const ChartHomeC4 = () => {
       const response = await TodoFunctions.getComprasFv();
       setDataVentas(response.data.responseFv);
 
-      await getCountData();
+     
     };
 
     initial();

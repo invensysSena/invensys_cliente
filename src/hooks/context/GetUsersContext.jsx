@@ -4,7 +4,6 @@ import {
   DeleteuserPost,
   UploadcsvUsuario,
   PostDataUserRegister,
-  getDataCountUsersAdmin,
   getDataAdmin,
   setModule,
   GetModule,
@@ -13,6 +12,7 @@ import {
   uploadImg,
   UpdateAdminAll,
 } from "../../apis/ApiData";
+import { TodoFunctions } from "../../apis/ApiData";
 
 let isAllowedToken = localStorage.getItem("secure_token");
 export const GetUsersDataAdmin = createContext();
@@ -39,16 +39,22 @@ export const GetUsersContext = ({ children }) => {
       return error;
     }
   };
-  const getCountData = async () => {
+  const typePermissionsModul = async (id,path,mthod) => {
     try {
-      const response = await getDataCountUsersAdmin(isAllowedToken);
-      setGetCountDateUsers(response.data.countUsers);
-      setGetActivosUsers(response.data.stateActive);
-      setGetInactivosUsers(response.data.stateInactive);
+      const response = await TodoFunctions.typePermissionsModules(id,path,mthod);
+      return response;
     } catch (error) {
       return error;
     }
-  };
+  }
+  const getPermissionsModul = async () => {
+    try {
+      const response = await TodoFunctions.getPermissions();
+      return response;
+    } catch (error) {
+      return error;
+    }
+  }
 
   const getUsersAdmins = async () => {
     try {
@@ -119,7 +125,7 @@ export const GetUsersContext = ({ children }) => {
     try {
       const response = await GetModule(id);
       setModuleUsers(response.data.data);
-      return JSON.parse(response.data);
+      return JSON.parse(response);
     } catch (error) {
       return error;
     }
@@ -170,7 +176,6 @@ export const GetUsersContext = ({ children }) => {
         usersDeleteData,
         postUploadcsvUsuario,
         UserRegister,
-        getCountData,
         getCountDateUsers,
         getActivosUsers,
         getInactivosUsers,
@@ -181,12 +186,14 @@ export const GetUsersContext = ({ children }) => {
         moduleUsers,
         getModule,
         getModuleU,
+        typePermissionsModul,
         setGetModuleU,
         DeleteModuleU,
         getAdminDataAll,
         adminGetData,
         uploadImgAdminAll,
         updateDataAdmin,
+        getPermissionsModul,
        
       }}
     >

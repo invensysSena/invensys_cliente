@@ -20,7 +20,7 @@ import OptionVentas from "./OptionVentas";
 moment.locale("es");
 
 export const DatatableVentas = () => {
-  const { getUsersAdmins, getCountData } = useGetUsers();
+  const { getUsersAdmins,  } = useGetUsers();
   const [dataVentas, setDataVentas] = useState([]);
 
   useEffect(() => {
@@ -29,7 +29,7 @@ export const DatatableVentas = () => {
       const response = await TodoFunctions.getComprasFv();
       setDataVentas(response.data.responseFv);
 
-      await getCountData();
+
     };
 
     initial();
