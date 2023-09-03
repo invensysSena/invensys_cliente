@@ -658,7 +658,7 @@ const Perfil = () => {
                             Rol:{" "}
                             <span>
                               {item.rol
-                                ? item.rol === "superAdmin"
+                                ? item.rol === "administrador"
                                   ? "Administrador"
                                   : ""
                                 : "..."}

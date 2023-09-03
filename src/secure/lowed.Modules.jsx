@@ -1,7 +1,7 @@
 export const dataIsAllowed = [
   {
     id_modulo: 1,
-    nombre: "superAdmin",
+    nombre: "administrador",
     icono: "fa fa-users",
     url: "/perfil",
     id_padre: 0,

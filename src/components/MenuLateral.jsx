@@ -69,37 +69,37 @@ export const MenuLateral = () => {
     permisions: [],
   };
   const [expand, setExpand] = useState(false);
-  useMemo(() => {
-    (async () => {
-      try {
-        const data = await getNotification();
+  // useMemo(() => {
+  //   (async () => {
+  //     try {
+  //       const data = await getNotification();
 
-        setNotify(data.data.responseNotification);
-      } catch (error) {
-        toast.error("La sesión ha expirado vuelva a iniciar sesión", {
-          position: "top-left",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: 1,
-          theme: "colored",
-        });
+  //       setNotify(data.data.responseNotification);
+  //     } catch (error) {
+  //       toast.error("La sesión ha expirado vuelva a iniciar sesión", {
+  //         position: "top-left",
+  //         autoClose: 3000,
+  //         hideProgressBar: false,
+  //         closeOnClick: true,
+  //         pauseOnHover: true,
+  //         draggable: true,
+  //         progress: 1,
+  //         theme: "colored",
+  //       });
 
-        setTimeout(() => {
-          localStorage.removeItem("secure_token");
-          localStorage.removeItem("perfil_rol");
-          localStorage.removeItem("auth_cuenta");
-          localStorage.removeItem("response_auth");
-          localStorage.removeItem("type");
-          localStorage.removeItem("module");
-          localStorage.removeItem("token_token1");
-          window.location.href = "/login";
-        }, 3000);
-      }
-    })();
-  }, []);
+  //       setTimeout(() => {
+  //         localStorage.removeItem("secure_token");
+  //         localStorage.removeItem("perfil_rol");
+  //         localStorage.removeItem("auth_cuenta");
+  //         localStorage.removeItem("response_auth");
+  //         localStorage.removeItem("type");
+  //         localStorage.removeItem("module");
+  //         localStorage.removeItem("token_token1");
+  //         window.location.href = "/login";
+  //       }, 3000);
+  //     }
+  //   })();
+  // }, []);
   if (type === "user") {
     const Webk = () => {
       useMemo(() => {
@@ -126,7 +126,7 @@ export const MenuLateral = () => {
     Webk();
   }
 
-  if (type === "superAdmin") {
+  if (type === "administrador") {
     let tokeVerify = token ? token : null;
     usersData.permisions = [
       dataIsAllowed[0].nombre,
