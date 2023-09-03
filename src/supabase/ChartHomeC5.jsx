@@ -21,7 +21,7 @@ import { getBusiness, getUsersAdmin } from "../apis/ApiData";
 moment.locale("es");
 
 export const ChartHomeC5 = () => {
-  const { getUsersAdmins, getCountData } = useGetUsers();
+  const { getUsersAdmins } = useGetUsers();
 
   const [compras, setCompras] = useState([]);
   console.log("dddd", compras, "}}}}");

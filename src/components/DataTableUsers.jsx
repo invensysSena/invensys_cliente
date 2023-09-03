@@ -24,14 +24,13 @@ export const DataTableUsers = () => {
   const {
     getUsersAdmins,
     getUsers,
-    getCountData,
    
   } = useGetUsers();
 
   useMemo(() => {
     const initial = async () => {
       await getUsersAdmins();
-      await getCountData();
+  
     };
 
     initial();

@@ -27,13 +27,12 @@ export const DatatableProduct = () => {
     getProductsAll();
   }, []);
 
-  const { getUsersAdmins, getCountData } = useGetUsers();
+  const { getUsersAdmins,  } = useGetUsers();
 
   const [active, setActive] = useState(false);
   useEffect(() => {
     const initial = async () => {
       await getUsersAdmins();
-      await getCountData();
     };
 
     initial();

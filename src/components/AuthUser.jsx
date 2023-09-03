@@ -62,8 +62,7 @@ const AuthUser = () => {
       localStorage.setItem("perfil_rol", getData.rol);
       localStorage.setItem("type", getData.rol);
       setSpiner(!spiner);
-
-      window.location.href = "/perfil";
+       window.location.href = "/perfil";
     } else {
       toast.error(
         "Hubo un error al iniciar sesion con tu cuenta de google, intenta nuevamente",

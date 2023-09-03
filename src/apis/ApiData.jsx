@@ -4,6 +4,7 @@ import { dataIsAllowed } from "../secure/lowed.Modules";
 let accessToken = localStorage.getItem("secure_token");
 let accesToken1 = localStorage.getItem("token_token1");
 let type = localStorage.getItem("type");
+
 export const PostDataUser = async (postDataUser) =>
   await axios.post(`${urlServer}/login`, { postDataUser });
 export const postRecoveryEmail = async (email) =>
@@ -12,10 +13,20 @@ export const recoverycode = async (data) =>
   await axios.post(`${urlServer}/recoverycode`, { data });
 export const newPassword = async (data) =>
   await axios.post(`${urlServer}/newPass`, { data });
-export const AuthGoogle = async (data) =>
-  await axios.post(`${urlServer}/authgoogleAccount`, { data });
-export const PostDataAdmin = async (postDataAdmin) =>
-  await axios.post(`${urlServer}/register`, { postDataAdmin });
+export const AuthGoogle = async (data) =>{
+  const queryParams = new URLSearchParams(data).toString();
+  const url = `${urlServer}/authgoogleAccount?${queryParams}`;
+  return await axios.post(url);
+}
+
+
+export const PostDataAdmin = async (data) =>{
+
+  const queryParams = new URLSearchParams(data).toString();
+  const url = `${urlServer}/register?${queryParams}`;
+  return await axios.post(url);
+}
+
 export const getDataAdmin = async (tokenData) =>
   await axios.post(`${urlServer}/getsataAdminr/${tokenData}`, {
     headers: {
@@ -73,13 +84,7 @@ export const getUsersAdmin = async () =>
       authorization: accessToken,
     },
   });
-export const getDataCountUsersAdmin = async (isAllowedToken) =>
-  await axios.get(`${urlServer}/countUsers/${isAllowedToken}`, {
-    headers: {
-      isAllowedAccess: dataIsAllowed[0].nombre,
-      authorization: isAllowedToken,
-    },
-  });
+
 
 export const DeleteuserPost = async (deleteData) =>
   await axios.post(
@@ -516,6 +521,28 @@ export const TodoFunctions = {
         isAllowedAccess: dataIsAllowed[0].nombre,
       },
     }),
+   
+    
+    typePermissionsModules: async (id,path, method) => {
+      try {
+        let {pathrouter} = path
+
+        let {idmodule} = id
+        const query = { idmodule,pathrouter, method };
+        const queryParams = new URLSearchParams(query).toString();
+        const response = await axios.post(`${urlServer}/typePermissionsModulesUser?${queryParams}`, null, {
+          headers: {
+            Authorization: `${accessToken}`, // Asegúrate de que 'accessToken' contenga el token adecuado.
+            isAllowedAccess: dataIsAllowed[0].nombre,
+          },
+        });
+        return response.data; // Devuelve los datos de la respuesta si es necesario.
+      } catch (error) {
+        // Maneja cualquier error aquí
+        console.error('Error en la solicitud:', error);
+        throw error; // Puedes relanzar el error o manejarlo según tus necesidades.
+      }
+    },
   SearchDismiutionUnidadProduct: async () =>
     await axios.get(`${urlServer}/disminucionUnidades`, {
       headers: {
@@ -541,6 +568,13 @@ export const TodoFunctions = {
 
   getLicenceSoftware: async () =>
     await axios.get(`${urlServer}/getLicence/${accessToken}`, {
+      headers: {
+        authorization: accessToken,
+        isAllowedAccess: dataIsAllowed[0].nombre,
+      },
+    }),
+  getPermissions: async () =>
+    await axios.get(`${urlServer}/getPermisions`, {
       headers: {
         authorization: accessToken,
         isAllowedAccess: dataIsAllowed[0].nombre,
