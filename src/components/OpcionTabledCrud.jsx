@@ -114,7 +114,6 @@ function OpcionTabledCrud(e) {
     });
   };
   const editId = () => {
-    console.log(e.data);
     Swal.fire({
       title: "Actualizar correo",
       color: darkMode ? "white" : "black",
@@ -160,8 +159,9 @@ function OpcionTabledCrud(e) {
           email: result.value.correo,
         };
 
-        TodoFunctions.putEmailUser(e.data.idAccount, data);
-        window.location.reload();
+       TodoFunctions.putEmailUser(e.data.iduser, data);
+        return window.location.reload()
+        
       }
     });
   };
@@ -174,19 +174,7 @@ function OpcionTabledCrud(e) {
       title: "Editar contraseña",
       color: darkMode ? "white" : "black",
       background: darkMode ? "#374151" : "white",
-      html: `<input id="swal-input1"
-            style="margin-bottom: 10px; background-color: #FFF; color:${
-              darkMode ? "black" : "black"
-            };
-            display: block;
-            width: 350px;
-            height: 40px;
-            focus: none;
-            "
-            class="swal2-input"
-            
-            placeholder="Ingrese la contraseña actual" value="">
-
+      html: `
             <input id="swal-input2"
             style="margin-bottom: 10px; background-color: #FFF; color:${
               darkMode ? "black" : "black"
@@ -213,26 +201,22 @@ function OpcionTabledCrud(e) {
       },
       showLoaderOnConfirm: true,
       preConfirm: () => {
-        const password = Swal.getPopup().querySelector("#swal-input1").value;
         const newPassword = Swal.getPopup().querySelector("#swal-input2").value;
 
-        if (!password || !newPassword) {
+        if (!newPassword) {
           Swal.showValidationMessage(`Los campos son requeridos`);
         }
-        return { password, newPassword };
+        return {  newPassword };
       },
       allowOutsideClick: () => !Swal.isLoading(),
     }).then((result) => {
       if (result.isConfirmed) {
         let data = {
-          password: result.value.password,
           newPassword: result.value.newPassword,
         };
 
-        const res = TodoFunctions.putPassUser(e.data.idAccount, data);
-        // window.location.reload()
-
-        console.log(res, "{{{{{{}}}}}}");
+       TodoFunctions.putPassUser(e.data.iduser, data);
+        window.location.reload()
       }
     });
   };

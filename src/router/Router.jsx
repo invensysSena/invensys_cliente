@@ -100,7 +100,7 @@ export const Router = () => {
     usersData.permisions = usersP;
   }
 
-  if (type === "superAdmin") {
+  if (type === "administrador") {
     let tokeVerify = token ? token : null;
     usersData.permisions = [
       dataIsAllowed[0].nombre,
@@ -235,7 +235,7 @@ export const Router = () => {
             path="/permisions/:id"
             element={
               <ProtectedRouter
-                isAllowed={!!users && users.permisions.includes("superAdmin")}
+                isAllowed={!!users && users.permisions.includes("administrador")}
                 redirectTo="/bodega"
               >
                  <GetUsersContext>
