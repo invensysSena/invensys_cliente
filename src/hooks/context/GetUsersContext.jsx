@@ -14,7 +14,7 @@ import {
 } from "../../apis/ApiData";
 import { TodoFunctions } from "../../apis/ApiData";
 
-let isAllowedToken = localStorage.getItem("secure_token");
+let isAllowedToken = sessionStorage.getItem("secure_token");
 export const GetUsersDataAdmin = createContext();
 
 export const useGetUsers = () => {

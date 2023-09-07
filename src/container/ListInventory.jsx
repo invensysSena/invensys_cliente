@@ -36,8 +36,8 @@ export const ListInventory = () => {
       setDarkMode(true);
     }
   }, []);
-  let getEmail = localStorage.getItem("correo");
-  let getRol = localStorage.getItem("type");
+  let getEmail = sessionStorage.getItem("correo");
+  let getRol = sessionStorage.getItem("type");
   const CorreoRepetido = useMemo(
     () =>
       inventario.filter((item) => item.responsableInventory.includes(getEmail)),

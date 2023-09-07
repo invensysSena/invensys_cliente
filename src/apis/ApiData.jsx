@@ -1,9 +1,9 @@
 import axios from "axios";
 import { urlServer } from "../urlApi/url";
 import { dataIsAllowed } from "../secure/lowed.Modules";
-let accessToken = localStorage.getItem("secure_token");
-let accesToken1 = localStorage.getItem("token_token1");
-let type = localStorage.getItem("type");
+let accessToken = sessionStorage.getItem("secure_token");
+let accesToken1 = sessionStorage.getItem("token_token1");
+let type = sessionStorage.getItem("type");
 import { getTokenAuth } from "../auth/verifyAuth";
 export const PostDataUser = async (postDataUser) =>
   await axios.post(`${urlServer}/login`, { postDataUser });

@@ -23,7 +23,9 @@ import { ComandoSystem } from "../cmd/ComandoSystem";
 import moment from "moment-with-locales-es6";
 import { dataIsAllowed } from "../secure/lowed.Modules";
 moment.locale("es");
-const token = localStorage.getItem("secure_token");
+const token = sessionStorage.getItem("secure_token");
+
+import { logoutAuth } from "../utils/AuthCount";
 export const MenuLateral = () => {
   const { getAdminDataAll, adminGetData } = useGetUsers();
   const [data, setData] = useState([]);
@@ -45,25 +47,12 @@ export const MenuLateral = () => {
     };
     initial();
   }, []);
-
-  const hundleClick = () => {
-    localStorage.removeItem("secure_token");
-    localStorage.removeItem("perfil_rol");
-    localStorage.removeItem("auth_cuenta");
-    localStorage.removeItem("response_auth");
-    localStorage.removeItem("type");
-    localStorage.removeItem("module");
-    localStorage.removeItem("token_token1");
-    localStorage.removeItem("fecha");
-    localStorage.removeItem("correo");
-    window.location.href = "/login";
-  };
   const fecha = new Date().getFullYear();
   const [usersP, setUsersP] = useState([]);
 
-  const token1 = localStorage.getItem("token_token1");
+  const token1 = sessionStorage.getItem("token_token1");
   const [notify, setNotify] = useState([]);
-  let type = localStorage.getItem("type");
+  let type = sessionStorage.getItem("type");
   let usersData = {
     tokeVerify: "",
     permisions: [],
@@ -88,13 +77,13 @@ export const MenuLateral = () => {
   //       });
 
   //       setTimeout(() => {
-  //         localStorage.removeItem("secure_token");
-  //         localStorage.removeItem("perfil_rol");
-  //         localStorage.removeItem("auth_cuenta");
-  //         localStorage.removeItem("response_auth");
-  //         localStorage.removeItem("type");
-  //         localStorage.removeItem("module");
-  //         localStorage.removeItem("token_token1");
+  //         sessionStorage.removeItem("secure_token");
+  //         sessionStorage.removeItem("perfil_rol");
+  //         sessionStorage.removeItem("auth_cuenta");
+  //         sessionStorage.removeItem("response_auth");
+  //         sessionStorage.removeItem("type");
+  //         sessionStorage.removeItem("module");
+  //         sessionStorage.removeItem("token_token1");
   //         window.location.href = "/login";
   //       }, 3000);
   //     }
@@ -167,7 +156,7 @@ export const MenuLateral = () => {
   
   document.body.style.overflowX = "hidden";
 
-  let fechaStateUser = localStorage.getItem("fecha");
+  let fechaStateUser = sessionStorage.getItem("fecha");
   const endOf = moment(fechaStateUser).startOf("hour").fromNow();
 
   return (
@@ -951,7 +940,7 @@ fixed top-0
                         }
                       >
                         <button
-                          onClick={hundleClick}
+                          onClick={()=> logoutAuth()}
                           className="flex 
                      hover:bg-gray-100
                      items-center 
@@ -1132,7 +1121,7 @@ fixed top-0
                     </div>
                     <div className="email dark:text-[#4ade80] ml-3">
                       {type === "user" ? (
-                        <>{localStorage.getItem("correo")}</>
+                        <>{sessionStorage.getItem("correo")}</>
                       ) : null}
                     </div>
                     <div className="email  ml-3">

@@ -11,7 +11,7 @@ import logo from "../assets/logo/logo peque.png";
 function CodePassword() {
   const { verifyCodeUser } = usePostAuth();
 
-  let getEmal = localStorage.getItem("email");
+  let getEmal = sessionStorage.getItem("email");
 
   function handleVerifyCode() {
     const inputs = document.querySelectorAll(".formClick > *[class]");
@@ -61,7 +61,7 @@ function CodePassword() {
         parseInt(code6),
       ];
       let codigo = arrayCode.join("");
-      let email = localStorage.getItem("email");
+      let email = sessionStorage.getItem("email");
       let data = {
         codigo,
         email,
@@ -69,7 +69,7 @@ function CodePassword() {
       const response = await verifyCodeUser(data);
       if (response.status === 200) {
         return (
-          localStorage.setItem("codigo", parseInt(codigo)),
+          sessionStorage.setItem("codigo", parseInt(codigo)),
           toast.success("Verificación exitosa", {
             autoClose: 3000,
           }),

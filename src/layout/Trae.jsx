@@ -19,7 +19,7 @@ const Trae = () => {
       </div>
       <div className="flex">
         <MenuLateral />
-        <div className=" ">
+        <div className="w-full ">
           <div className="content_users m-7">
             <div className="content_users_title">
               <h2
@@ -32,13 +32,13 @@ const Trae = () => {
             </div>
 
             <div
-              className="container_c flex
+              className="container_c flex 
               gap-2 justify-between flex-col md:flex-row  max-w-7xl w-auto mx-auto"
             >
-              <div className="g hidden md:block">
+              <ListTrae />
+              <div className="  md:block">
                 <FormTrae />
               </div>
-              <ListTrae />
             </div>
           </div>
         </div>

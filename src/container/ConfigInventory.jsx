@@ -43,7 +43,7 @@ export const ConfigInventory = () => {
   } = useInventario();
   const navigate = useNavigate();
 
-  const geType = localStorage.getItem("type");
+  const geType = sessionStorage.getItem("type");
   const validaDelete = () => {
     Swal.fire({
       background: darkMode ? "#374151" : "white",
