@@ -1,7 +1,5 @@
-import { useCallback, useEffect, useState } from "react";
-
+import { useEffect, useState } from "react";
 import { Outlet, useParams, useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { useInventario } from "../hooks/context/ContextInventario";
 import moment from "moment-with-locales-es6";
@@ -10,6 +8,7 @@ import "../components/efectosCss.css";
 import { getSubProducts, TodoFunctions, getUsersAdmin } from "../apis/ApiData";
 import Swal from "sweetalert2";
 import { DataSubProducts } from "../components/DataSubProducts";
+import { messageError, messageSuccess } from "../utils/alertsAplication";
 moment.locale("es");
 export const ConfigInventory = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -103,33 +102,12 @@ export const ConfigInventory = () => {
       const response = await DeleteInventario(id);
 
       if (response.status === 200) {
-        await toast.success(" se elimino el inventario con exito ", {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
+        messageSuccess("Se elimino la bodega con exito");
         navigate("/bodega");
         setLoading2(false);
       }
     } catch (error) {
-      await toast.warning(
-        " No se puede eliminar esta bodega por que existen productos, traslados o subproductos asociados a ella ",
-        {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        }
-      );
+      messageError("Error al eliminar la bodega, o no tienes permisos para eliminarla"); 
       setLoading2(false);
     }
   };
@@ -153,10 +131,9 @@ export const ConfigInventory = () => {
           (item) => item._id !== id
         );
         setSubProductsTranslate(newSubProductsTranslate);
-
-        await toast.success("la ejecucion fue exitosa");
+        messageSuccess("la ejecucion fue exitosa");
       } else {
-        return toast.error("Error al eliminar");
+        return messageError("Error al eliminar");
       }
     })();
   };
@@ -164,37 +141,13 @@ export const ConfigInventory = () => {
   const handleUpdateBodega = async (correo) => {
     const response = await TodoFunctions.updateBodegaEmail(id, correo);
     if (response.status === 200) {
-      await toast.success("Se asigno el usuario a la bodega con exito");
+      await messageSuccess("Se asigno el usuario a la bodega con exito");
       window.location.reload();
     }
   };
-  window.addEventListener(
-    "keydown",
-    useCallback((e) => {
-      // ctrl + i = abrir modal de subproductos
-      if (e.ctrlKey && e.key === "i") {
-        setSubModal(true);
-      }
-      // ctrl + u = abrir modal de subproductos
-      if (e.ctrlKey && e.key === "y") {
-        setSubModal2(true);
-      }
-
-      // esc = cerrar modales
-      if (e.key === "Escape") {
-        setSubModal(false);
-        setSubModal2(false);
-      }
-      // ctrl + m delete
-      if (e.ctrlKey && e.key === "m") {
-        validaDelete();
-      }
-    
-    }, [])
-  );
+  
   return (
     <>
-      <ToastContainer />
       {load3 ? (
         <h1>Espere</h1>
       ) : (
@@ -516,29 +469,10 @@ export const ConfigInventory = () => {
 
                                       setLoading(false);
                                       if (data.status === 200) {
-                                        toast.success("Bodega Actualizado", {
-                                          position: "top-right",
-                                          autoClose: 2000,
-                                          hideProgressBar: false,
-                                          closeOnClick: true,
-                                          pauseOnHover: true,
-                                          draggable: true,
-                                          progress: undefined,
-                                        });
+                                        messageSuccess("Bodega Actualizado");
                                         navigate(`/bodega/inventory/${id}`);
                                       } else {
-                                        toast.error(
-                                          "Error al actualizar bodega ",
-                                          {
-                                            position: "top-right",
-                                            autoClose: 2000,
-                                            hideProgressBar: false,
-                                            closeOnClick: true,
-                                            pauseOnHover: true,
-                                            draggable: true,
-                                            progress: undefined,
-                                          }
-                                        );
+                                        messageError("Error al actualizar bodega ",);
                                       }
                                     })();
                                   }}

@@ -3,7 +3,6 @@ import { Formik, Form, Field } from "formik";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleQuestion } from "@fortawesome/free-solid-svg-icons";
 import x from "../assets/icons/x.svg";
-import { ToastContainer, toast } from "react-toastify";
 import "animate.css";
 import { Link, useNavigate } from "react-router-dom";
 import "../assets/css/styleSlider.css";
@@ -11,6 +10,7 @@ import { useGetUsers } from "../hooks/context/GetUsersContext";
 import "./efectosCss.css";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import { messageSuccess, messageWarding } from "../utils/alertsAplication";
 export const UploadExcel = ({ estado = false }) => {
   const { postUploadcsvUsuario } = useGetUsers();
   const [csv, setCsv] = useState([]);
@@ -59,8 +59,6 @@ export const UploadExcel = ({ estado = false }) => {
 
   return (
     <div className={estados ? "  h-full absolute left-6 md:left-auto z-30 w-full md:w-4/5" : "hidden"}>
-      <ToastContainer />
-
       <div className="form-signup w-4/5 sm:w-96 mx-auto sm:mx-auto mt-5 relative ">
         <div className="container-signup dark:border-none border shadow-2xl pb-1 rounded-lg effect_blur1 ">
           <button
@@ -87,15 +85,7 @@ export const UploadExcel = ({ estado = false }) => {
               );
 
               if (response.status === 201) {
-                await toast.success("se subio la lista de usuarios con exito", {
-                  position: "top-right",
-                  autoClose: 1000,
-                  hideProgressBar: false,
-                  closeOnClick: true,
-                  pauseOnHover: true,
-                  draggable: true,
-                  progress: undefined,
-                });
+                messageSuccess("Se subio el archivo");
                 await setSpiner(false);
                 setEstado(false);
                 setTimeout(() => {
@@ -103,16 +93,8 @@ export const UploadExcel = ({ estado = false }) => {
                   navigate("/usuarios");
                 }, 2000);
               } else {
-                await toast.error("Debes de elegir un archivo valido", {
-                  position: "top-right",
-                  autoClose: 5000,
-                  hideProgressBar: false,
-                  closeOnClick: true,
-                  pauseOnHover: true,
-                  draggable: true,
-                  progress: undefined,
-                });
-                await setSpiner(false);
+                messageWarding("Ocurrio un error al subir el archivo o el archivo no es valido");
+                 setSpiner(false);
                 //
               }
             }}

@@ -2,8 +2,8 @@ import  { useEffect, useState } from "react";
 import { deleteNotification, getNotification } from "../../apis/ApiData";
 import moment from "moment-with-locales-es6";
 import Skeleton from "react-loading-skeleton";
-import { ToastContainer, toast } from "react-toastify";
 import { useMemo } from "react";
+import { messageError, messageSuccess } from "../../utils/alertsAplication";
 moment.locale("es");
 export const PedidosNotify = () => {
   const [pedido, setPedido] = useState([]);
@@ -27,28 +27,12 @@ export const PedidosNotify = () => {
     setLoading2(true);
     let response = await deleteNotification(id);
     if (response.status === 200) {
-      toast.success("Notificación eliminada exisosamente", {
-        position: "top-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      messageSuccess("Se elimino la notificación");
       const data = await getNotification();
       setPedido(data.data.responseNotification);
       setLoading2(false);
     } else {
-      toast.error("Error al eliminar la notificación", {
-        position: "top-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+     messageError("No se pudo eliminar la notificación");
     }
   };
   const [darkMode, setDarkMode] = useState(false);
@@ -59,7 +43,6 @@ export const PedidosNotify = () => {
   }, []);
   return (
     <>
-      <ToastContainer />
       {loading === true ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 mx-auto gap-4 p-4">
           <Skeleton

@@ -1,16 +1,12 @@
 import  { useState } from "react";
 import "../index.css";
 import { Formik, Field, Form, ErrorMessage } from "formik";
-
 import "../assets/css/fuente.css";
-
-import { ToastContainer, toast } from "react-toastify";
 import * as Yup from "yup";
 import "animate.css";
-
 import "../assets/css/spiner.css";
-
 import { useInventario } from "../hooks/context/ContextInventario";
+import { messageError, messageSuccess } from "../utils/alertsAplication";
 export const FormInventory = () => {
   const { PostInventario } = useInventario();
 
@@ -18,7 +14,6 @@ export const FormInventory = () => {
 
   return (
     <>
-      <ToastContainer />
       <div
         className="form_Login   w-[90%]  rounded-md border 
           dark:border-none flex   animate__animated animate__fadeIn 
@@ -45,25 +40,9 @@ export const FormInventory = () => {
                     const data = await PostInventario(values);
                     loading(false);
                     if (data.status === 200) {
-                      toast.success("Bodega creada con exito", {
-                        position: "top-right",
-                        autoClose: 2000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                      });
+                      messageSuccess("Bodega creada con exito");
                     } else {
-                      toast.error("Error al crear la bodega", {
-                        position: "top-right",
-                        autoClose: 2000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                      });
+                      messageError("Error al crear la bodega");
                     }
                   })();
                 }}

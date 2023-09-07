@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState } from "react";
+import  { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { usePostAuth } from "../hooks/context/UserContextData";
 import * as Yup from "yup";
@@ -9,10 +9,10 @@ import {
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import "../index.css";
-import { ToastContainer, toast } from "react-toastify";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import logo from "../assets/logo/logo peque.png";
+import { messageError, messageSuccess } from "../utils/alertsAplication";
 function RecoveryPass() {
   const { recoveryPasssword } = usePostAuth();
   const [loading, setLoading] = useState(false);
@@ -24,7 +24,6 @@ function RecoveryPass() {
 
     dark:bg-gradient-to-r from-[#163b59] from-10%
      via-[#18324f] via-30% to-[#121b2e] to-90%  relative">
-      <ToastContainer />
       <div className="flex dark:bg-[#37415197] dark:text-white dark:border-none  bg-white w-full border-b justify-between items-center">
         <div className="flex items-center  ">
           <Link
@@ -83,16 +82,13 @@ function RecoveryPass() {
             const response = await recoveryPasssword(values.email);
           
             if (response.status === 200) {
-              toast.success("Correo enviado");
+              messageSuccess("Se ha enviado un correo electronico");
               sessionStorage.setItem("email", values.email);
               setLoading(!loading);
               navigate("/verifyc+code/identify");
             }
             if (response.response.status === 401) {
-              toast.error("Este correo no existe", {
-                position: toast.POSITION.TOP_RIGHT,
-                theme: "dark",
-              });
+              messageError("El correo no existe");
               setLoading(!loading);
             }
           }}

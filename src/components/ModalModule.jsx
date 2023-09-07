@@ -4,7 +4,6 @@ import { useParams, Link } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { useGetUsers } from "../hooks/context/GetUsersContext";
-import { ToastContainer } from "react-toastify";
 import {messageWarding} from "../utils/alertsAplication"
 import { messages } from "../utils/messageinvensys";
 export const ModalModule = () => {
@@ -66,7 +65,6 @@ export const ModalModule = () => {
   
   return (
     <>
-       <ToastContainer />
       {getUsers
         .filter((getuser) => getuser.iduser === id)
         .map((getuse) => (
