@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { ToastContainer, toast } from "react-toastify";
 import { useContextProviders } from "../../hooks/context/ContextProveedores";
 import { useContextCategory } from "../../hooks/context/ContextCategory";
+import { messageError, messageInfo, messageSuccess } from "../../utils/alertsAplication";
 
 export const CreateProveedor = () => {
   const { dataGategorias, getDataCategorias } = useContextCategory();
@@ -18,7 +18,7 @@ export const CreateProveedor = () => {
 
   return (
     <>
-      <ToastContainer />
+
       <div className={active2 ? "hidden" : "block"}>
         <div className="Formulario fixed bg-white rounded-lg dark:bg-[#374151] dark:text-white inset-0 drop-shadow-2xl w-6/12 m-auto  h-fit z-50">
           <div className="sec1 w-full p-2 flex justify-between">
@@ -78,41 +78,18 @@ export const CreateProveedor = () => {
                 };
                 if (category.length === 0) {
                   setLoading(true);
-                  return await toast.warning("Selecione una categoria", {
-                    position: "top-right",
-                    autoClose: 1000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                  });
+                  messageInfo("Seleccione una categoria");
                 }
 
                 const response = await postProviders(data);
 
                 if (response.status === 201) {
                   setLoading(true);
-                  return await toast.success("Producto creado", {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                  });
+                  return messageSuccess("Producto creado con exito");
                 } else {
                   setLoading(true);
-                  return await toast.error("Error al crear el proveedor", {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                  });
+                  messageError("Error al crear el proveedor");
+                 
                 }
               }}
             >

@@ -11,13 +11,12 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import x from "../assets/icons/x.svg";
 import { useGetUsers } from "../hooks/context/GetUsersContext";
-import { ToastContainer, toast } from "react-toastify";
 import * as Yup from "yup";
 import "animate.css";
 import { Link, useNavigate } from "react-router-dom";
 import "../assets/css/styleSlider.css";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import { messageError, messageSuccess } from "../utils/alertsAplication";
 export const UserRegister = ({ estado = false }) => {
   const navigate = useNavigate();
   const [typeInput, setTypeInput] = useState(true);
@@ -40,7 +39,6 @@ export const UserRegister = ({ estado = false }) => {
     <div
       className={estados ? "  h-full absolute left-6  md:left-auto z-30 w-full md:w-4/5" : "hidden"}
     >
-      <ToastContainer />
 
       <div className="form-signup w-4/5 sm:w-96 mx-auto sm:mx-auto mt-5 relative ">
         <div className="container-signup dark:border-none  border shadow-2xl pb-1 rounded-lg  effect_blur1 ">
@@ -48,7 +46,7 @@ export const UserRegister = ({ estado = false }) => {
             className="bg-[#fe5f57] rounded-full absolute right-1 top-1"
             onClick={handleShow}
           >
-            <img effect="blur" src={x} alt="" />
+            <img  src={x} alt="" />
           </button>
           <h2 className="text-xl font-semibold mt-2 mb-5 pt-5 text-center dark:text-white  ">
             Crear cuenta usuario
@@ -71,35 +69,15 @@ export const UserRegister = ({ estado = false }) => {
             onSubmit={async (values) => {
               
               try {
-                let response = await UserRegister(values);
-                console.log(response);
-                await toast.success("Usuario creado con exito", {
-                  position: "bottom-right",
-                  autoClose: 1000,
-                  hideProgressBar: false,
-                  closeOnClick: true,
-                  pauseOnHover: true,
-                  draggable: true,
-                  progress: undefined,
-                });
+                 await UserRegister(values);
+                messageSuccess("Usuario creado correctamente");
                 await setSpiner(false);
                 setEstado(false);
                 setTimeout(() => {
                   navigate("/usuarios");
                 }, 2000);
               } catch (error) {
-                await toast.warning(
-                  "!Ups! Hubo un error inesperado o el correo ya existe",
-                  {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                  }
-                );
+                messageError("Ocurrio un error al crear el usuario");
                 await setSpiner(false);
               }}}
           >

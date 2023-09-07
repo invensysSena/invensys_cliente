@@ -5,14 +5,13 @@ import "aos/dist/aos.css";
 import { Form, Formik, Field, ErrorMessage } from "formik";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import * as Yup from "yup";
-import { ToastContainer, toast } from "react-toastify";
+import { messageSuccess } from "../../utils/alertsAplication";
 export const HomeEfectA = () => {
   AOS.init({
     duration: 3000,
   });
   return (
     <>
-      <ToastContainer />
       <div className="container_f flex justify-center lg:justify-between mt-10">
         <div className="img1 hidden lg:block" data-aos="fade-right">
           <LazyLoadImage
@@ -66,7 +65,7 @@ export const HomeEfectA = () => {
                     .required("El campo no puede estar vacio"),
                 })}
                 onSubmit={() => {
-                  toast.success("Gracias por suscribirte");
+                  messageSuccess("Gracias por suscribirte");
                 }}
               >
                 <Form className="flex justify-center flex-col mx-1">

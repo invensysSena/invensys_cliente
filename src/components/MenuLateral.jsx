@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo} from "react";
 import { NavLink } from "react-router-dom";
 import "../assets/css/fuente.css";
 import user from "../assets/icons/user-check.svg";
@@ -14,10 +14,8 @@ import grid from "../assets/icons/grid.svg";
 import harddrive from "../assets/icons/hard-drive.svg";
 import truck from "../assets/icons/truck.svg";
 import cloceSession from "../assets/icons/log-out.svg";
-import { ToastContainer, toast } from "react-toastify";
 import { useGetUsers } from "../hooks/context/GetUsersContext";
 import axios from "axios";
-import { getNotification, TodoFunctions } from "../apis/ApiData";
 import { urlServer } from "../urlApi/url";
 import { ComandoSystem } from "../cmd/ComandoSystem";
 import moment from "moment-with-locales-es6";
@@ -51,7 +49,6 @@ export const MenuLateral = () => {
   const [usersP, setUsersP] = useState([]);
 
   const token1 = sessionStorage.getItem("token_token1");
-  const [notify, setNotify] = useState([]);
   let type = sessionStorage.getItem("type");
   let usersData = {
     tokeVerify: "",
@@ -163,7 +160,6 @@ export const MenuLateral = () => {
     <div className="z-50 relative">
       <ComandoSystem />
       <>
-        <ToastContainer />
       </>
       <div
         className={

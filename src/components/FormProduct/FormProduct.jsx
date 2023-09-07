@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { ToastContainer, toast } from "react-toastify";
 import { useContextCategory } from "../../hooks/context/ContextCategory";
 import { useContextProduct } from "../../hooks/context/ContextProduxt";
+import { messageSuccess, messageWarding } from "../../utils/alertsAplication";
 export const FormProduct = () => {
   const { postProducts } = useContextProduct();
   const { dataGategorias, getDataCategorias } = useContextCategory();
@@ -20,7 +20,6 @@ export const FormProduct = () => {
 
   return (
     <>
-      <ToastContainer />
       <div className={active2 ? "hidden" : "block"}>
         <div className="Formulario fixed bg-white dark:bg-[#374151] dark:text-white rounded-lg inset-0 drop-shadow-2xl w-6/12 m-auto  h-fit z-50">
           <div className="sec1 w-full p-2 flex justify-between">
@@ -72,29 +71,13 @@ export const FormProduct = () => {
 
                 if (category.length === 0) {
                   setLoading(true);
-                  return await toast.warning("Selecione una categoria", {
-                    position: "top-right",
-                    autoClose: 1000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                  });
+                  return messageWarding("Seleccione una categoria");
                 } else {
                   const response = await postProducts(data);
 
                   if (response.status === 200) {
                     setLoading(true);
-                    return await toast.success("Producto creado", {
-                      position: "top-right",
-                      autoClose: 5000,
-                      hideProgressBar: false,
-                      closeOnClick: true,
-                      pauseOnHover: true,
-                      draggable: true,
-                      progress: undefined,
-                    });
+                    return messageSuccess("Producto creado correctamente");
                   }
                 }
               }}

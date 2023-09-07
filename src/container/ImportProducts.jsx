@@ -4,8 +4,8 @@ import { Formik, Field, Form } from "formik";
 import { DatePicker } from "antd";
 import moment from "moment-with-locales-es6";
 import { useParams } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
 import { getSubProducts } from "../apis/ApiData";
+import { messageError, messageSuccess, messageWarding } from "../utils/alertsAplication";
 
 const { RangePicker } = DatePicker;
 moment.locale("es");
@@ -55,7 +55,6 @@ export const ImportProducts = ({ idCategorias }) => {
   }, []);
   return (
     <>
-      <ToastContainer />
       {productsFilter.length > 0 ? (
         <div
           className="bg-white dark:bg-[#37415197] dark:border-[#777777] dark:text-white shadow-md border lg:mx-auto rounded-md w-[90%]
@@ -181,26 +180,12 @@ export const ImportProducts = ({ idCategorias }) => {
                         values.stockMaximo === "" ||
                         values.unidad === ""
                       ) {
-                        toast.warning("Todos los campos son oblogatorios", {
-                          position: "top-right",
-                          autoClose: 3000,
-                          hideProgressBar: false,
-                          closeOnClick: true,
-                          pauseOnHover: true,
-                          draggable: true,
-                          progress: undefined,
-                        });
+
+                        messageWarding("Todos los campos son oblogatorios")
+                       
                       } else {
                         if (fecha[1] === undefined) {
-                          toast.warning("Selecciona la fecha de caducidad", {
-                            position: "top-right",
-                            autoClose: 3000,
-                            hideProgressBar: false,
-                            closeOnClick: true,
-                            pauseOnHover: true,
-                            draggable: true,
-                            progress: undefined,
-                          });
+                          messageWarding("Selecciona la fecha de caducidad")
                         } else {
                           const data = {
                             name: product.name,
@@ -219,33 +204,11 @@ export const ImportProducts = ({ idCategorias }) => {
                             let response = await UploadSubProducts(id, data);
 
                             if (response.status === 200) {
-                              toast.success(
-                                "Producto agregado a la bodega con exito",
-                                {
-                                  position: "top-right",
-                                  autoClose: 3000,
-                                  hideProgressBar: false,
-                                  closeOnClick: true,
-                                  pauseOnHover: true,
-                                  draggable: true,
-                                  progress: undefined,
-                                }
-                              );
-
+                              messageSuccess("Producto agregado a la bodega con exito");
                               setLoadSub(false);
                             } else {
-                              toast.error(
-                                "Error al agregar el producto al bodega o el producto ya existe",
-                                {
-                                  position: "top-right",
-                                  autoClose: 3000,
-                                  hideProgressBar: false,
-                                  closeOnClick: true,
-                                  pauseOnHover: true,
-                                  draggable: true,
-                                  progress: undefined,
-                                }
-                              );
+                              messageError("Error al agregar el producto al bodega o el producto ya existe")
+                              
                               setLoadSub(false);
                             }
                           })();

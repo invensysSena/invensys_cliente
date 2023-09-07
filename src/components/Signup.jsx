@@ -13,10 +13,10 @@ import {
   faAngleLeft,
 } from "@fortawesome/free-solid-svg-icons";
 import { usePostAuth } from "../hooks/context/UserContextData";
-import { ToastContainer, toast } from "react-toastify";
 import * as Yup from "yup";
 import "animate.css";
 import { Link, useNavigate } from "react-router-dom";
+import { messageError, messageInfo, messageSuccess, messageWarding } from "../utils/alertsAplication";
 
 const Signup = () => {
   const [typeInput, setTypeInput] = useState(true);
@@ -43,19 +43,12 @@ const Signup = () => {
 
       window.location.href = "/perfil";
     } else {
-      toast.error(
-        "Hubo un error al iniciar sesion con tu cuenta de google, intenta nuevamente",
-        {
-          position: toast.POSITION.TOP_RIGHT,
-          theme: "dark",
-        }
-      );
+      messageError("Hubo un error al iniciar sesion con tu cuenta de google");
     }
   };
 
   return (
     <>
-      <ToastContainer />
       <Header />
 
       <div className="form-signup w-[94%]  dark:border-[#777777] mx-auto rounded-md dark:bg-[#37415197] border animate__animated animate__fadeIn bg-white form md:w-[50rem]  sm:3/4 my-9 drop-shadow-2xl">
@@ -134,44 +127,26 @@ const Signup = () => {
               })}
               onSubmit={async (values) => {
                 console.log(values);
-                if (values.toggle === false)
-                  return toast.info(
-                    "Acepta terminos y condiciones para continuar"
-                  );
+                if (values.toggle === false) return messageInfo("Acepta terminos y condiciones para continuar");
+                  
                 let response = await getPostRegister(values);
                 if (response.status === 200) {
-                  await toast.success("Usuario creado exitosamente!", {
-                    position: toast.POSITION.TOP_RIGHT,
-                    theme: "dark",
-                  });
+                  messageSuccess("Usuario creado exitosamente!");
+                 
                   setTimeout(() => {
                     Navigate("/login");
                   }, 2000);
                 }
                 if (response.response.status === 400) {
-                  toast.warning("El correo ya existe!", {
-                    position: toast.POSITION.TOP_RIGHT,
-                    theme: "dark",
-                  });
+                  messageWarding("El correo ya existe!");
                 }
 
                 if (response.response.status === 401) {
-                  toast.warning(
-                    "Hubo un problema al registrar sus datos, intente nuevamente",
-                    {
-                      position: toast.POSITION.TOP_RIGHT,
-                      theme: "dark",
-                    }
-                  );
+                  messageError("Hubo un error al registrar sus datos");
+                  
                 }
                 if (response.response.status === 500) {
-                  toast.error(
-                    "Ocurrio un error inesperado, intente nuevamente",
-                    {
-                      position: toast.POSITION.TOP_RIGHT,
-                      theme: "dark",
-                    }
-                  );
+                  messageError("Hubo un error al registrar sus datos");
                 }
               }}
             >

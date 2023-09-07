@@ -9,8 +9,8 @@ import {
 import * as Yup from "yup";
 import "animate.css";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
 import moment from "moment-with-locales-es6";
+import { messageError, messageSuccess } from "../utils/alertsAplication";
 moment.locale("es");
 export const FormPedido = () => {
   const navigate = useNavigate();
@@ -125,37 +125,18 @@ export const FormPedido = () => {
         const response = await TodoFunctions.postPedidos(pedidosList);
         setLoading(false);
         if (response.status === 200) {
-          toast.success("Pedido realizado con exito", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
-          toast.success();
+          messageSuccess("Pedido realizado con exito");
           setPedidosList([]);
         }
       } catch (error) {
         setLoading(false);
-        toast.error("Error al realizar el pedido", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
+        messageError("Ocurrio un error al realizar el pedido");
       }
     })();
   };
   return (
     <>
-      <ToastContainer />
+
       <div className=" border effect_bluresT dark:bg-[#37415197] dark:text-white dark:border-none p-2 mt-2 flex flex-col md:flex-row">
         <div className="form-content   w-auto">
           <div className="title">

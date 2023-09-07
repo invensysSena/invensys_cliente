@@ -2,17 +2,8 @@ import { useState, useRef } from "react";
 import "../index.css";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { AuthLogin } from "../utils/AuthCount";
-import {
-  faEnvelope,
-  faKey,
-  faCircleQuestion,
-  faEye,
-  faEyeSlash,
-  faAngleLeft,
-} from "@fortawesome/free-solid-svg-icons";
+import {faEnvelope,faKey,faCircleQuestion, faEye,faEyeSlash,faAngleLeft,} from "@fortawesome/free-solid-svg-icons";
 import "../assets/css/fuente.css";
-import { ToastContainer, toast } from "react-toastify";
 import * as Yup from "yup";
 import "animate.css";
 import { Link } from "react-router-dom";
@@ -21,10 +12,10 @@ import "../assets/css/spiner.css";
 import { Navigate } from "react-router-dom";
 import { Header } from "../components/Header";
 import moment from "moment-with-locales-es6";
-import { PostDataUser} from "../apis/ApiData";
 import ReCAPTCHA from "react-google-recaptcha";
 import { AuthGoogleA } from "../auth/AuthGoogleA";
 import { IconsSvgLoading } from "../svg/IconsSvgLoading";
+import { messageInfo } from "../utils/alertsAplication";
 moment.locale("es");
 const AuthUser = () => {
   const [LoadingProgress, setLoadingProgress] = useState(0);
@@ -39,7 +30,7 @@ const AuthUser = () => {
 
   const token = sessionStorage.getItem("secure_token");
   const [typeInput, setTypeInput] = useState(true);
-  const [spiner, setSpiner] = useState(true);
+  const [spiner, _setSpiner] = useState(true);
 
  setTimeout(() => {
   if (token) {
@@ -50,7 +41,7 @@ const AuthUser = () => {
 
   return (
     <>
-      <ToastContainer />
+     
 
       <Header />
       <div className="red-400">
@@ -107,11 +98,10 @@ const AuthUser = () => {
                       "El campo no puede estar vacio"
                     ),
                   })}
-                  onSubmit={async (values) => {
+                  onSubmit={async () => {
                     if (!recaptchaRef.current.getValue()) {
-                      toast.info("Por favor valida el captcha", {
-                        position: toast.POSITION.TOP_RIGHT,
-                        theme: "dark",});}}}
+                      messageInfo("Debes resolver el captcha para continuar");
+                      }}}
                 >
                   <Form>
                     <div

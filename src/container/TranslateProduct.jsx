@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getSubProducts } from "../apis/ApiData";
 import { useInventario } from "../hooks/context/ContextInventario";
-import { ToastContainer, toast } from "react-toastify";
 import "../assets/css/fuente.css";
 import "../components/efectosCss.css";
 import { useContextSubProducts } from "../hooks/context/ContextSubProducts";
+import { messageError, messageSuccess, messageWarding } from "../utils/alertsAplication";
 export const TranslateProduct = () => {
   const [products, setProducts] = React.useState([]);
   const [idB, setIdB] = useState([]);
@@ -47,16 +47,16 @@ export const TranslateProduct = () => {
     e.preventDefault();
 
     if (idB === id) {
-      return toast.error("No se puede trasladar a la misma bodega");
+      return messageWarding("No se puede trasladar a la misma bodega");
     } else {
       if (e.target.cantidad.value === "") {
-        return toast.error("Ingrese la cantidad");
+        return messageWarding("Ingrese la cantidad");
       } else {
         if (idB.length === 0) {
-          return toast.error("Seleccione la bodega de destino");
+          return messageWarding("Seleccione la bodega de destino");
         } else {
           if (isNaN(e.target.cantidad.value)) {
-            return toast.error("Solo se permiten numeros");
+            return messageWarding("Solo se permiten numeros");
           } else {
             let pedidos = {
               idDestino: idB,
@@ -66,25 +66,23 @@ export const TranslateProduct = () => {
               userCorreo: e.target.name.value,
             };
             if (pedidos.cantidad === 0) {
-              return toast.error("Ingrese una cantidad mayor a 0");
+              return messageWarding("Ingrese una cantidad mayor a 0");
             } else if (pedidos.cantidad < 0) {
-              return toast.error("Ingrese una cantidad mayor a 0");
+              return messageWarding("Ingrese una cantidad mayor a 0");
             } else {
               products.map(async (item) => {
                 if (item._id === pedidos.idSubProducto) {
                   if (item.unidad < pedidos.cantidad) {
-                    return toast.error(
-                      "No se puede trasladar mas de lo que hay en la bodega"
-                    );
+                    return messageWarding("No se puede trasladar mas de lo que hay en la bodega");
                   } else {
                     const response = await updateSubProductsContent(
                       pedidos.idSubProducto,
                       pedidos
                     );
                     if (response.status === 200) {
-                      toast.success("Producto trasladado");
+                      messageSuccess("Producto trasladado");
                     } else {
-                      return toast.error("Error al trasladar");
+                      return messageError("Error al trasladar");
                     }
                   }
                 }
@@ -106,7 +104,6 @@ export const TranslateProduct = () => {
 
   return (
     <>
-      <ToastContainer />
       <div className="rounded border  w-fit p-1  mt-4 max-w-5xl  h-full z-50 mx-auto dark:bg-[#37415197]">
         <div className="container absolute inset-0 my-auto h-fit shadow-2xl effect_blur2 z-50  mx-auto w-fit border rounded-md p-">
           <div className="d effect_blur2 border mb-1 p-1 ">

@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { MenuLateral } from "../components/MenuLateral";
-import { ToastContainer, toast } from "react-toastify";
 import { TodoFunctions } from "../apis/ApiData";
 import {
   Elements,
@@ -13,6 +12,7 @@ import { Licenciaok } from "./Licenciaok";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { SubMenu } from "../components/SubMenu";
+import { messageError, messageSuccess } from "../utils/alertsAplication";
 let stripePromise = loadStripe("pk_test_6pRNASCoBOKtIshFeQd4XMUh");
 
 let moneyPrice = 950000;
@@ -45,35 +45,16 @@ const FormLicence = () => {
           paymentMethod
         );
         setLoad(false);
+        messageSuccess("Se registro tu pago con exito");
 
-        toast.success(
-          "Se registro tu pago con exito, ya tienes tu licencia activa  ",
-          {
-            position: "top-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          }
-        );
 
         setTimeout(() => {
           window.location.reload();
         }, 3000);
       } catch (error) {
         setLoad(false);
-        toast.error("Error al registrar tu pago, intenta de nuevo", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          theme: "light",
-        });
+        messageError("Error al registrar tu pago, intenta de nuevo");
+       
       }
     }
   };
@@ -86,7 +67,6 @@ const FormLicence = () => {
   };
   return (
     <>
-      <ToastContainer />
       <form onSubmit={handleSubmit} className="dark:text-white">
         <CardElement
           className="border p-4 mt-4 dark:text-white"

@@ -2,12 +2,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { usePostAuth } from "../hooks/context/UserContextData";
-
 import { faAngleLeft, faUser } from "@fortawesome/free-solid-svg-icons";
 import "../index.css";
-import { ToastContainer, toast } from "react-toastify";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import logo from "../assets/logo/logo peque.png";
+import { messageError, messageSuccess, messageWarding } from "../utils/alertsAplication";
 function CodePassword() {
   const { verifyCodeUser } = usePostAuth();
 
@@ -50,7 +49,7 @@ function CodePassword() {
       code5 === "" ||
       code6 === ""
     ) {
-      return toast.error("Por favor ingrese todos los campos");
+      return messageWarding("Por favor ingrese todos los campos");
     } else {
       let arrayCode = [
         parseInt(code1),
@@ -70,16 +69,15 @@ function CodePassword() {
       if (response.status === 200) {
         return (
           sessionStorage.setItem("codigo", parseInt(codigo)),
-          toast.success("Verificación exitosa", {
-            autoClose: 3000,
-          }),
+          messageSuccess("Verificación exitosa código correcto",),
+         
           setTimeout(() => {
             window.location.href = "/newPassword+auth=true";
           }, 3000)
         );
       }
       if (response.response.status === 400) {
-        return toast.error("El código ingresado es incorrecto");
+        messageError("El código ingresado es incorrecto");
       }
     }
   };
@@ -94,7 +92,6 @@ function CodePassword() {
 dark:bg-gradient-to-r from-[#163b59] from-10%
  via-[#18324f] via-30% to-[#121b2e] to-90%   relative"
       >
-        <ToastContainer />
         <div className="flex dark:bg-[#37415197] dark:text-white dark:border-none  bg-white w-full border-b justify-between items-center">
           <div className="flex items-center  ">
             <Link

@@ -5,10 +5,10 @@ import { usePostAuth } from "../hooks/context/UserContextData";
 import * as Yup from "yup";
 import { faAngleLeft, faUser, faKey } from "@fortawesome/free-solid-svg-icons";
 import "../index.css";
-import { ToastContainer, toast } from "react-toastify";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import logo from "../assets/logo/logo peque.png";
+import { messageError, messageSuccess } from "../utils/alertsAplication";
 function NewPassword() {
   const { newPasswordL } = usePostAuth();
   const [loading, setLoading] = useState(false);
@@ -19,7 +19,7 @@ function NewPassword() {
     dark:bg-gradient-to-r from-[#163b59] from-10%
      via-[#18324f] via-30% to-[#121b2e] to-90%  relative"
     >
-      <ToastContainer />
+   
       <div className="flex dark:bg-[#37415197] dark:text-white dark:border-none  bg-white w-full border-b justify-between items-center">
         <div className="flex items-center  ">
           <Link
@@ -90,7 +90,7 @@ function NewPassword() {
               newPassword: values.password2,
             });
             if (response.status === 204) {
-              toast.success("Contraseña cambiada correctamente");
+              messageSuccess("Contraseña cambiada correctamente");
               sessionStorage.removeItem("codigo");
               sessionStorage.removeItem("email");
               setLoading(!loading);
@@ -98,7 +98,7 @@ function NewPassword() {
                 window.location.href = "/login";
               }, 2000);
             } else {
-              toast.error("Error al cambiar la contraseña");
+              messageError("Error al cambiar la contraseña");
               setLoading(!loading);
             }
           }}

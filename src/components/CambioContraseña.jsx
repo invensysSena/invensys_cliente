@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLock, faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import * as Yup from "yup";
 import { TodoFunctions } from "../apis/ApiData";
-import { ToastContainer, toast } from "react-toastify";
+import { messageError, messageSuccess } from "../utils/alertsAplication";
 
 export const CambioContraseña = ({ isVisible, onClose }) => {
   const [confirmPassword, setConfirmPassword] = useState(true);
@@ -22,7 +22,6 @@ export const CambioContraseña = ({ isVisible, onClose }) => {
       id="wrapper"
       onClick={handleClose}
     >
-      <ToastContainer />
       <div className="w-[450px] flex flex-col">
         <button
           className="text-white text-xl place-self-end"
@@ -56,26 +55,10 @@ export const CambioContraseña = ({ isVisible, onClose }) => {
                 try {
                   setEffect(true);
                   await TodoFunctions.putAdminPass(values);
-                  toast.success("Contraseña actualizada", {
-                    position: "top-right",
-                    autoClose: 2000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                  });
+                  messageSuccess("Contraseña actualizada correctamente")
                   setEffect(false);
                 } catch (error) {
-                  toast.error("Error al actuaalizar la contraseña", {
-                    position: "top-right",
-                    autoClose: 2000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                  });
+                  messageError("Ocurrio un error al actualizar la contraseña")
                   setEffect(false);
                 }
               }}

@@ -7,8 +7,6 @@ import {
   faCircleQuestion,
 } from "@fortawesome/free-solid-svg-icons";
 import x from "../assets/icons/x.svg";
-
-import { ToastContainer, toast } from "react-toastify";
 import * as Yup from "yup";
 import "animate.css";
 import { Link } from "react-router-dom";
@@ -16,6 +14,7 @@ import "../assets/css/styleSlider.css";
 import { useContextCategory } from "../hooks/context/ContextCategory";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import { messageError, messageSuccess } from "../utils/alertsAplication";
 export const RegisterCategorys = ({ estado = false }) => {
   const { postDataCategorias } = useContextCategory();
 
@@ -36,7 +35,6 @@ export const RegisterCategorys = ({ estado = false }) => {
 
   return (
     <div className={estados ? "  h-full absolute z-30 w-4/5" : "hidden"}>
-      <ToastContainer />
 
       <div className="form-signup w-4/5 sm:w-96 mx-auto sm:mx-auto mt-5 fixed inset-0 my-auto ">
         <div className="container-signup dark:bg-[#374151] dark:border-none dark:text-white  border shadow-2xl pb-1 rounded-lg bg-white ">
@@ -64,32 +62,13 @@ export const RegisterCategorys = ({ estado = false }) => {
               let response = await postDataCategorias(values);
 
               if (response.status === 201) {
-                await toast.success("Exito", {
-                  position: "top-right",
-                  autoClose: 1000,
-                  hideProgressBar: false,
-                  closeOnClick: true,
-                  pauseOnHover: true,
-                  draggable: true,
-                  progress: undefined,
-                });
-                await setSpiner(false);
+                messageSuccess("Se creo la categoria");
+                setSpiner(false);
                 setEstado(false);
                 window.location.reload();
               } else {
-                await toast.warning(
-                  "!Ups! Hubo un error inesperado verifique que estes conectado a internet o que la categoria ya exista",
-                  {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                  }
-                );
-                await setSpiner(false);
+                messageError("Ocurrio un error al crear la categoria");
+                 setSpiner(false);
               }
             }}
           >

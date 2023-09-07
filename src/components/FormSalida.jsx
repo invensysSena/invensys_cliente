@@ -4,8 +4,8 @@ import { getInventario, getSubProducts, TodoFunctions } from "../apis/ApiData";
 import * as Yup from "yup";
 import "animate.css";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
 import moment from "moment-with-locales-es6";
+import { messageError, messageSuccess } from "../utils/alertsAplication";
 moment.locale("es");
 export const FormSalida = () => {
   const navigate = useNavigate();
@@ -103,37 +103,17 @@ export const FormSalida = () => {
         const response = await TodoFunctions.postCompras(pedidosList);
 
         if (response.status === 200) {
-          toast.success("Compra realizado con exito", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
-          toast.success();
+          messageSuccess("Compra realizada con exito");
           setPedidosList([]);
         }
       } catch (error) {
-        toast.error("Error al realizar la compra", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
+        messageError("Ocurrio un error al realizar la compra");
       }
     })();
   };
 
   return (
     <>
-      <ToastContainer />
       <div className=" border bg-white dark:bg-[#37415197] dark:text-white dark:border-none lg:flex-row flex-col  h-fit p-2 mt-2 flex  ">
         <div className="form-content  md:w-[20rem] lg:w-[58rem] w-[16rem]">
           <div className="title">

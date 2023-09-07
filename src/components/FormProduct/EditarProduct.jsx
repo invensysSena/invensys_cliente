@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
-import { ToastContainer, toast } from "react-toastify";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import {
   getProductsId,
   getCategorias,
   updateProducto,
 } from "../../apis/ApiData";
+import { messageError, messageWarding } from "../../utils/alertsAplication";
+import { messages } from "../../utils/messageinvensys";
 export const EditarProduct = () => {
   const navigate = useNavigate();
   const id = useParams();
@@ -40,7 +41,7 @@ export const EditarProduct = () => {
 
   return (
     <>
-      <ToastContainer />
+ 
       <div
         className=" min-h-screen
 
@@ -89,41 +90,16 @@ dark:bg-gradient-to-r from-[#163b59] from-10%
 
                 if (category.length === 0) {
                   setLoading(true);
-                  return await toast.warning("Selecione una categoria", {
-                    position: "top-right",
-                    autoClose: 1000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                  });
+                  return messageWarding(messages.MESSAGE_PRODUCTO_WARNING)
                 } else {
                   const response = await updateProducto(id.id, data);
-
                   if (response.status === 200) {
                     setLoading(true);
-                    await toast.success("Producto actualizado", {
-                      position: "top-right",
-                      autoClose: 5000,
-                      hideProgressBar: false,
-                      closeOnClick: true,
-                      pauseOnHover: true,
-                      draggable: true,
-                      progress: undefined,
-                    });
+                     messageWarding(messages.MESSAGE_PRODUCTO_OK)
                     return navigate("/producto");
                   } else {
                     setLoading(true);
-                    return await toast.error("Error al actualizar", {
-                      position: "top-right",
-                      autoClose: 5000,
-                      hideProgressBar: false,
-                      closeOnClick: true,
-                      pauseOnHover: true,
-                      draggable: true,
-                      progress: undefined,
-                    });
+                    return messageError(messages.MESSAGE_PRODUCTOE_RROR)
                   }
                 }
               }}
@@ -235,23 +211,6 @@ dark:bg-gradient-to-r from-[#163b59] from-10%
                     />
                   </div>
                 </div>
-                {/* <div className="name border border-gray-300 rounded-lg relative">
-                  <label htmlFor="price" className="mx-2 my-2 text-sm ">
-                    Fecha de caducidad
-                  </label>
-                  <div className="input flex items-center">
-                    <div className="fecha w-full">
-                      <RangePicker
-                        disabledDate={disabledDate}
-                        onChange={onChange}
-                        className="w-full p-2 outline-none border border-white rounded-lg
-                    
-                    focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent
-                    "
-                      />
-                    </div>
-                  </div>
-                </div> */}
 
                 <div>
                   <div
