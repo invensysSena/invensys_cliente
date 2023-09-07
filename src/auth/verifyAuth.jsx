@@ -1,11 +1,6 @@
-let accessToken = localStorage.getItem("secure_token");
-// let accesToken1 = localStorage.getItem("token_token1");
+let accessToken = sessionStorage.getItem("secure_token");
 import { dataIsAllowed } from "../secure/lowed.Modules";
-
-
-
 export const getTokenAuth = () => {
-
     let headers = {
         Authorization: `Bearer ${accessToken}`,
         Action: "$BNDsjds5438594",

@@ -34,9 +34,11 @@ export const FormTrae = () => {
   };
   return (
     <>
-      <div className="effect_blure dark:bg-[#37415197] dark:border-none rounded-md dark:text-white border w-full  lg:h-fit p-4 m-1">
+      <div className="effect_blure dark:bg-[#37415197]
+       dark:border-none rounded-md dark:text-white border w-full 
+        lg:h-fit p-4 m-1">
         <form onSubmit={handleFormTrae}>
-          <div className="grid gap-6 mb-6  md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-6 mb-6 grid-cols-2  md:grid-cols-2 lg:grid-cols-3">
             <div>
               <label
                 htmlFor="first_name"

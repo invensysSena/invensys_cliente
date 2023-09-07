@@ -5,6 +5,7 @@ import { faGlobe } from "@fortawesome/free-solid-svg-icons";
 import "../assets/css/fuente.css";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import { NavLinkCustomenFooter } from "./navLinkCustomen/NavLinkCustomenFooter";
 export const Footer = () => {
   const fecha = new Date().getFullYear();
 
@@ -29,157 +30,32 @@ export const Footer = () => {
               </div>
               <div className="serviceSection m-3">
                 <ul>
-                  <li className="md:my-1">
-                    <span className="circle-f"></span>
-                    <Link
-                      to={"/"}
-                      className="flex justify-between  items-center md:py-1 hover:underline text-gray-800 dark:text-white"
-                    >
-                      {" "}
-                      Servicios{" "}
-                    </Link>
-                  </li>
+                
+                  <NavLinkCustomenFooter to={"/"} name={"Servicios"} />
+                  <NavLinkCustomenFooter to={"/"} name={"Documentación"} />
+                  <NavLinkCustomenFooter to={"/"} name={"Recursos"} />
+                  <NavLinkCustomenFooter to={"/"} name={"Certificaciones"} />
+                  <NavLinkCustomenFooter to={"/"} name={"Blogs"} />
+                  <NavLinkCustomenFooter to={"/"} name={"Compañia"} />
 
-                  <li className="md:my-1">
-                    <span className="circle-f"></span>
-                    <Link
-                      to={"/"}
-                      className="flex justify-between  items-center md:py-1 hover:underline text-gray-800 dark:text-white"
-                    >
-                      {" "}
-                      Servicios{" "}
-                    </Link>
-                  </li>
-                  <li className="md:my-1">
-                    <span className="circle-f"></span>
-                    <Link
-                      to={"/"}
-                      className="flex justify-between  items-center md:py-1 hover:underline text-gray-800 dark:text-white"
-                    >
-                      {" "}
-                      Documentación{" "}
-                    </Link>
-                  </li>
-                  <li className="md:my-1">
-                    <span className="circle-f"></span>
-                    <Link
-                      to={"/"}
-                      className="flex justify-between  items-center md:py-1 hover:underline text-gray-800 dark:text-white "
-                    >
-                      {" "}
-                      Recursos para desarroladores{" "}
-                    </Link>
-                  </li>
-                  <li className="md:my-1">
-                    <span className="circle-f"></span>
-                    <Link
-                      to={"/"}
-                      className="flex justify-between  items-center md:py-1 hover:underline text-gray-800 dark:text-white"
-                    >
-                      {" "}
-                      Certificaciones{" "}
-                    </Link>
-                  </li>
-                  <li className="md:my-1">
-                    <span className="circle-f"></span>
-                    <Link
-                      to={"/"}
-                      className="flex justify-between  items-center md:py-1 hover:underline text-gray-800 dark:text-white"
-                    >
-                      {" "}
-                      Blogs{" "}
-                    </Link>
-                  </li>
-                  <li className="md:my-1">
-                    <span className="circle-f"></span>
-                    <Link
-                      to={"/"}
-                      className="flex justify-between  items-center md:py-1 hover:underline text-gray-800 dark:text-white"
-                    >
-                      {" "}
-                      Compañia{" "}
-                    </Link>
-                  </li>
                 </ul>
               </div>
               <div className="div md:hidden mx-4 h-[2px] bg-white w-full block rounded-full"></div>
               <div className="layautSection m-3">
                 <ul>
-                  <li className="md:my-1">
-                    <span className="circle-f"></span>
-                    <Link
-                      to={"/"}
-                      className="flex justify-between  items-center md:py-1 hover:underline text-gray-800 dark:text-white"
-                    >
-                      {" "}
-                      Quienes somos{" "}
-                    </Link>
-                  </li>
-                  <li className="md:my-1">
-                    <span className="circle-f"></span>
-                    <Link
-                      to={"/"}
-                      className="flex justify-between  items-center md:py-1 hover:underline text-gray-800 dark:text-white"
-                    >
-                      {" "}
-                      Ayuda{" "}
-                    </Link>
-                  </li>
-                  <li className="md:my-1">
-                    <span className="circle-f"></span>
-                    <Link
-                      to={"/"}
-                      className="flex justify-between  items-center md:py-1 hover:underline text-gray-800 dark:text-white"
-                    >
-                      {" "}
-                      Como funciona stored{" "}
-                    </Link>
-                  </li>
-                  <li className="md:my-1">
-                    <span className="circle-f"></span>
-                    <Link
-                      to={"/"}
-                      className="flex justify-between  items-center md:py-1 hover:underline text-gray-800 dark:text-white"
-                    >
-                      {" "}
-                      Privacidad de datos{" "}
-                    </Link>
-                  </li>
-                  <li className="md:my-1">
-                    <span className="circle-f"></span>
-                    <Link
-                      to={"/"}
-                      className="flex justify-between  items-center md:py-1 hover:underline text-gray-800 dark:text-white"
-                    >
-                      {" "}
-                      Información legal{" "}
-                    </Link>
-                  </li>
-                  <li className="md:my-1">
-                    <span className="circle-f"></span>
-                    <Link
-                      to={"/"}
-                      className="flex justify-between  items-center md:py-1 hover:underline text-gray-800 dark:text-white"
-                    >
-                      {" "}
-                      Terminos Y condiciones{" "}
-                    </Link>
-                  </li>
-                  <li className="md:my-1">
-                    <span className="circle-f"></span>
-                    <Link
-                      to={"/"}
-                      className="flex justify-between  items-center md:py-1 hover:underline text-gray-800 dark:text-white"
-                    >
-                      {" "}
-                      Hola{" "}
-                    </Link>
-                  </li>
+                  <NavLinkCustomenFooter to={"/"} name={"Quienes somos"} />
+                  <NavLinkCustomenFooter to={"/"} name={"Ayuda"} />
+                  <NavLinkCustomenFooter to={"/"} name={"Como funciona stored"} />
+                  <NavLinkCustomenFooter to={"/"} name={"Privacidad de datos"} />
+                  <NavLinkCustomenFooter to={"/"} name={"Información legal"} />
+                  <NavLinkCustomenFooter to={"/"} name={"Terminos Y condiciones"} />
+                  <NavLinkCustomenFooter to={"/"} name={"Hola"} />
+
                 </ul>
               </div>
               <div className="div md:hidden mx-4 h-[2px] bg-white w-full block rounded-full"></div>
 
-              <div className="w-48 mx-4 mt-4 md:mt-0">
+              <div className="w-48 mx-4 mt-10 md:mt-0">
                 <article>
                   <strong>Suscríbete a nuestro plataforma</strong>
                   <p>
@@ -227,61 +103,7 @@ export const Footer = () => {
                 </li>
               </ul>
             </div>
-            <div className="redes_Link flex">
-              <span>
-                <Link to="/instagram">
-                  <LazyLoadImage
-                    effect="blur"
-                    width={"50px"}
-                    src="https://img.icons8.com/cute-clipart/64/null/instagram-new.png"
-                    alt="redes"
-                  />
-                </Link>
-              </span>
-              <span>
-                <Link to="/tittwe">
-                  <LazyLoadImage
-                    effect="blur"
-                    width={"50px"}
-                    src="https://img.icons8.com/cute-clipart/64/null/twitter.png"
-                    alt="redes"
-                  />
-                </Link>
-              </span>
-              <span>
-                <Link
-                  to
-                  href="https://web.facebook.com/profile.php?id=100090067700904"
-                >
-                  <LazyLoadImage
-                    effect="blur"
-                    width={"50px"}
-                    src="https://img.icons8.com/cute-clipart/64/null/facebook.png"
-                    alt="redes"
-                  />
-                </Link>
-              </span>
-              <span>
-                <Link to="https://www.linkedin.com/in/stored-proyecto-84a285266/">
-                  <LazyLoadImage
-                    effect="blur"
-                    width={"50px"}
-                    src="https://img.icons8.com/cute-clipart/64/null/linkedin.png"
-                    alt="redes"
-                  />
-                </Link>
-              </span>
-              <span>
-                <Link to="https://github.com/Stored1223">
-                  <LazyLoadImage
-                    effect="blur"
-                    width={"50px"}
-                    src="https://img.icons8.com/cute-clipart/64/null/github.png"
-                    alt="redes"
-                  />
-                </Link>
-              </span>
-            </div>
+            
           </div>
         </div>
       </footer>

@@ -13,19 +13,19 @@ export const SubMenu = () => {
   }, []);
 
   const handleCloseSesion = () => {
-    localStorage.removeItem("secure_token");
-    localStorage.removeItem("perfil_rol");
-    localStorage.removeItem("auth_cuenta");
-    localStorage.removeItem("response_auth");
-    localStorage.removeItem("type");
-    localStorage.removeItem("module");
-    localStorage.removeItem("token_token1");
-    localStorage.removeItem("fecha");
-    localStorage.removeItem("correo");
+    sessionStorage.removeItem("secure_token");
+    sessionStorage.removeItem("perfil_rol");
+    sessionStorage.removeItem("auth_cuenta");
+    sessionStorage.removeItem("response_auth");
+    sessionStorage.removeItem("type");
+    sessionStorage.removeItem("module");
+    sessionStorage.removeItem("token_token1");
+    sessionStorage.removeItem("fecha");
+    sessionStorage.removeItem("correo");
     window.location.href = "/login";
   };
 
-  const type = localStorage.getItem("type");
+  const type = sessionStorage.getItem("type");
   return (
     <div className="">
       <div className="data_f flex justify-between">

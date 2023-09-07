@@ -14,7 +14,7 @@ export const InicioChart = () => {
       setDarkMode(true);
     }
   }, []);
-  const type = localStorage.getItem("type");
+  const type = sessionStorage.getItem("type");
   const { getUsersAdmins, getUsers } = useGetUsers();
   const { getModulesTodo, dataproductM, dataCategory, dataProviderM } =
     useContextModules();
@@ -179,7 +179,7 @@ export const InicioChart = () => {
     }
     counterNumberVentas();
   }, [countP]);
-  const token = localStorage.getItem("secure_token");
+  const token = sessionStorage.getItem("secure_token");
   if (!token) {
     return <Navigate to="/login" />;
   }
