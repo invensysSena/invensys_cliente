@@ -10,21 +10,26 @@ import "../components/efectosCss.css";
 import { getDataAll, UpdateAdminAll } from "../apis/ApiData";
 import { SubMenu } from "../components/SubMenu";
 import moment from "moment-with-locales-es6";
+import {
+  svgEmail,
+  svgName,
+  svgUser,
+  svgUserEnterpreses,
+  svgphone,
+} from "../svg/iconsSvg";
+import { IconsSvgLoading } from "../svg/IconsSvgLoading";
+import { LoadingSkeleton } from "../components/LoadingSkeleton";
+import { SkeletonCustomenTwo } from "../components/skeletonCustomenTwo";
 const Perfil = () => {
   const { adminGetData } = useGetUsers();
   const [btnSpand, setbtnSpand] = useState(false);
   const [modelImg, setModelImg] = useState(false);
   const [loading, setLoading] = useState(true);
-
   const [load, setLoad] = useState(true);
   const navigate = useNavigate();
-
-  const [showModal, setShowModal] = useState(false);
-
   useMemo(() => {
     const initial = async () => {
       await getDataAll();
-
       setLoading(false);
     };
     initial();
@@ -33,29 +38,27 @@ const Perfil = () => {
   const handleBtnSpand = () => {
     setbtnSpand(true);
   };
-
   const handleImg = () => {
-    setModelImg(!modelImg);
-  };
 
-  if (modelImg === true) {
-    setTimeout(() => {
+    if (modelImg === true) {
       setModelImg(false);
-    }, 22000);
-  }
+    }
 
+    if (modelImg === false) {
+      setModelImg(true);
+    }
+   
+  };
   const handleData = async (e) => {
     e.preventDefault();
-
     setLoad(false);
-
     let data = {
       name: e.target.name.value,
       empresa: e.target.empresa.value,
       email: e.target.email.value,
       telefono: e.target.telefono.value,
       document: e.target.document.value,
-      id: localStorage.getItem("id_admin"),
+      id: sessionStorage.getItem("id_admin"),
     };
     await UpdateAdminAll(data);
     setLoad(true);
@@ -64,23 +67,20 @@ const Perfil = () => {
     window.location.reload();
   };
   return (
-    <div
-      className="bg-gradient-to-r from-[#e6dff4] from-10% via-[#edf4fd] via-30% to-[#d0e0fb] to-90%  w-full block  min-h-screen
-      dark:bg-gradient-to-r dark:from-[#163b59] dark:from-10%
-         dark:via-[#18324f] dark:via-30% dark:to-[#121b2e] dark:to-90%">
+    <div className="DarkModePages">
       <div className="sticky z-50   hidden lg:block  top-0 py-3 bg-white h-fit w-full">
         <SubMenu />
       </div>
-      {modelImg === true ? (
-        <CambioFotoPerfilAdmin handleImg={handleImg} />
-      ) : null}
+     
+        <CambioFotoPerfilAdmin handleImg={handleImg} stateView={modelImg} />
+  
       <div className="flex overflow-y-hidden ">
         <MenuLateral />
-        <div
-          className="  w-full block  min-h-screen">
+        <div className="  w-full block  min-h-screen">
           <div
             className="container_perfil z-30    mx-1 max-w-7xl
-           md:mx-auto relative flex flex-col md:flex-row">
+           md:mx-auto relative flex flex-col md:flex-row"
+          >
             <div className={btnSpand ? "cubo_p block" : "hidden"}></div>
             <div>
               <div
@@ -94,9 +94,7 @@ const Perfil = () => {
     bg-white w-[22rem] top-6 overflow-hidden hidden opacity-0 effect_blur`
                 }
               >
-                <div
-                  className="editar bg-[#44b2fd] dark:bg-[#374151] text-white  p-4 flex flex-col"
-                >
+                <div className="editar bg-[#44b2fd] dark:bg-[#374151] text-white  p-4 flex flex-col">
                   <div className="xc flex justify-between relative">
                     <span>Editar Perfil</span>
 
@@ -143,45 +141,14 @@ const Perfil = () => {
                         </label>
                         <div className="inpusts flex border ">
                           <div className="input1 flex items-center">
-                            <div className="icon w-10 mx-1">
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
-                                viewBox="0 0 48 48"
-                              >
-                                <mask id="ipSEditName0">
-                                  <g
-                                    fill="none"
-                                    stroke="#fff"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="2"
-                                  >
-                                    <circle cx="24" cy="11" r="7" fill="#fff" />
-                                    <path d="M4 41c0-8.837 8.059-16 18-16" />
-                                    <path
-                                      fill="#fff"
-                                      d="m31 42l10-10l-4-4l-10 10v4h4Z"
-                                    />
-                                  </g>
-                                </mask>
-                                <path
-                                  fill="#ccc"
-                                  d="M0 0h48v48H0z"
-                                  mask="url(#ipSEditName0)"
-                                />
-                              </svg>
-                            </div>
+                            <div className="icon w-10 mx-1">{svgName()}</div>
                             <div className="inp w-full">
                               <input
                                 type="text"
                                 name="name"
                                 id="apellido"
                                 defaultValue={item.nameadmin}
-                                className=" py-1 rounded-sm focus:border-1 outline-none bg-transparent
-            w-[150%]
-             "
+                                className=" py-1 rounded-sm focus:border-1 outline-none bg-transparent w-[150%]"
                               />
                             </div>
                           </div>
@@ -194,17 +161,7 @@ const Perfil = () => {
                         <div className="inpusts flex border">
                           <div className="input1 flex items-center">
                             <div className="icon w-10 mx-1">
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                              >
-                                <path
-                                  fill="#ccc"
-                                  d="M18 15h-2v2h2m0-6h-2v2h2m2 6h-8v-2h2v-2h-2v-2h2v-2h-2V9h8M10 7H8V5h2m0 6H8V9h2m0 6H8v-2h2m0 6H8v-2h2M6 7H4V5h2m0 6H4V9h2m0 6H4v-2h2m0 6H4v-2h2m6-10V3H2v18h20V7H12Z"
-                                />
-                              </svg>
+                              {svgUserEnterpreses()}
                             </div>
                             <div className="inp w-full">
                               <input
@@ -212,10 +169,7 @@ const Perfil = () => {
                                 name="empresa"
                                 id="apellido"
                                 defaultValue={item.nombrenegocio}
-                                className=" py-1 rounded-sm focus:border-1 outline-none bg-transparent
-                                
-            w-[150%]
-             "
+                                className=" py-1 rounded-sm focus:border-1 outline-none bg-transparent w-[150%]"
                               />
                             </div>
                           </div>
@@ -227,34 +181,14 @@ const Perfil = () => {
                         </label>
                         <div className="inpusts flex border">
                           <div className="input1 flex items-center">
-                            <div className="icon w-10 mx-1">
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                              >
-                                <g
-                                  fill="none"
-                                  stroke="#ccc"
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  strokeWidth="2"
-                                >
-                                  <path d="M19 20H5c-1.6 0-2-1.333-2-2V6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v6m2 8c-.667 0-2-.4-2-2v-6m2 8c1.6 0 2-1.333 2-2v-6h-4" />
-                                  <path d="M7 16h6m-1-6a2 2 0 1 1-4 0a2 2 0 0 1 4 0z" />
-                                </g>
-                              </svg>
-                            </div>
+                            <div className="icon w-10 mx-1">{svgUser()}</div>
                             <div className="inp w-full">
                               <input
                                 type="text"
                                 name="document"
                                 defaultValue={item.document}
                                 id="apellido"
-                                className=" py-1 rounded-sm focus:border-1 outline-none bg-transparent
-            w-[150%]
-             "
+                                className=" py-1 rounded-sm focus:border-1 outline-none bg-transparent w-[150%]"
                               />
                             </div>
                           </div>
@@ -266,19 +200,7 @@ const Perfil = () => {
                         </label>
                         <div className="inpusts flex border">
                           <div className="input1 flex items-center">
-                            <div className="icon w-10 mx-1">
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                              >
-                                <path
-                                  fill="#ccc"
-                                  d="m19.23 15.26l-2.54-.29a1.99 1.99 0 0 0-1.64.57l-1.84 1.84a15.045 15.045 0 0 1-6.59-6.59l1.85-1.85c.43-.43.64-1.03.57-1.64l-.29-2.52a2.001 2.001 0 0 0-1.99-1.77H5.03c-1.13 0-2.07.94-2 2.07c.53 8.54 7.36 15.36 15.89 15.89c1.13.07 2.07-.87 2.07-2v-1.73c.01-1.01-.75-1.86-1.76-1.98z"
-                                />
-                              </svg>
-                            </div>
+                            <div className="icon w-10 mx-1">{svgphone()}</div>
                             <div className="inp w-full">
                               <input
                                 type="text"
@@ -304,28 +226,14 @@ const Perfil = () => {
                           bg-gray100/30 top-0"
                           ></div>
                           <div className="input1 flex items-center dark:bg-[#272a3d">
-                            <div className="icon w-10 mx-1">
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                              >
-                                <path
-                                  fill="#ccc"
-                                  d="M12 18.2c0-.96.5-1.86 1.2-2.46v-.24c0-2.44 2.2-4.5 4.8-4.5c1.65 0 3.13.83 4 2.06V6a2 2 0 0 0-2-2H4c-1.11 0-2 .89-2 2v12a2 2 0 0 0 2 2h8v-1.8M4 6l8 5l8-5v2l-8 5l-8-5V6m16.8 11v-1.5c0-1.4-1.4-2.5-2.8-2.5s-2.8 1.1-2.8 2.5V17c-.6 0-1.2.6-1.2 1.2v3.5c0 .7.6 1.3 1.2 1.3h5.5c.7 0 1.3-.6 1.3-1.2v-3.5c0-.7-.6-1.3-1.2-1.3m-1.3 0h-3v-1.5c0-.8.7-1.3 1.5-1.3s1.5.5 1.5 1.3V17Z"
-                                />
-                              </svg>
-                            </div>
+                            <div className="icon w-10 mx-1">{svgEmail()}</div>
                             <div className="inp w-full">
                               <input
                                 type="text"
                                 name="email"
                                 id="apellido"
                                 defaultValue={item.email}
-                                className=" py-1 rounded-sm truncate focus:border-1 outline-none bg-transparent
-            w-[150%]
-             "
+                                className=" py-1 rounded-sm truncate focus:border-1 outline-none bg-transparent w-[150%]"
                               />
                             </div>
                           </div>
@@ -333,74 +241,17 @@ const Perfil = () => {
                       </div>
                       <div className="input mx-2">
                         {load === false ? (
-                          <button
+                          <span
                             type="button"
                             className="bg-[#44b2fd] text-white w-full rounded-sm mt-3 
-              duration-300 hover:bg-[#019afa] hover:shadow-lg justify-center p-2
+                            duration-300 hover:bg-[#019afa] hover:shadow-lg justify-center p-2
                           disabled flex items-center"
                           >
-                            <svg
-                              className="animate-spin mr-1 flex justify-center"
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="24"
-                              height="24"
-                              viewBox="0 0 24 24"
-                            >
-                              <defs>
-                                <linearGradient
-                                  id="mingcuteLoadingFill0"
-                                  x1="50%"
-                                  x2="50%"
-                                  y1="5.271%"
-                                  y2="91.793%"
-                                >
-                                  <stop offset="0%" stopColor="currentColor" />
-                                  <stop
-                                    offset="100%"
-                                    stopColor="currentColor"
-                                    stopOpacity=".55"
-                                  />
-                                </linearGradient>
-                                <linearGradient
-                                  id="mingcuteLoadingFill1"
-                                  x1="50%"
-                                  x2="50%"
-                                  y1="15.24%"
-                                  y2="87.15%"
-                                >
-                                  <stop
-                                    offset="0%"
-                                    stopColor="currentColor"
-                                    stopOpacity="0"
-                                  />
-                                  <stop
-                                    offset="100%"
-                                    stopColor="currentColor"
-                                    stopOpacity=".55"
-                                  />
-                                </linearGradient>
-                              </defs>
-                              <g fill="none">
-                                <path d="M24 0v24H0V0h24ZM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035c-.01-.004-.019-.001-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427c-.002-.01-.009-.017-.017-.018Zm.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093c.012.004.023 0 .029-.008l.004-.014l-.034-.614c-.003-.012-.01-.02-.02-.022Zm-.715.002a.023.023 0 0 0-.027.006l-.006.014l-.034.614c0 .012.007.02.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01l-.184-.092Z" />
-                                <path
-                                  fill="url(#mingcuteLoadingFill0)"
-                                  d="M8.749.021a1.5 1.5 0 0 1 .497 2.958A7.502 7.502 0 0 0 3 10.375a7.5 7.5 0 0 0 7.5 7.5v3c-5.799 0-10.5-4.7-10.5-10.5C0 5.23 3.726.865 8.749.021Z"
-                                  transform="translate(1.5 1.625)"
-                                />
-                                <path
-                                  fill="url(#mingcuteLoadingFill1)"
-                                  d="M15.392 2.673a1.5 1.5 0 0 1 2.119-.115A10.475 10.475 0 0 1 21 10.375c0 5.8-4.701 10.5-10.5 10.5v-3a7.5 7.5 0 0 0 5.007-13.084a1.5 1.5 0 0 1-.115-2.118Z"
-                                  transform="translate(1.5 1.625)"
-                                />
-                              </g>
-                            </svg>
-                            Espere un momento...
-                          </button>
+                            <IconsSvgLoading w={20} h={20} />
+                            <span className="mx-1"> Espere un momento...</span>
+                          </span>
                         ) : (
-                          <button
-                            className="bg-[#019afa] text-white block w-full rounded-sm mt-3 p-2
-              duration-300 hover:bg-[#019afa] hover:shadow-lg "
-                          >
+                          <button className="bg-[#019afa] text-white block w-full rounded-sm mt-3 p-2  duration-300 hover:bg-[#019afa] hover:shadow-lg ">
                             <div className="span">Actualizar Datos</div>
                           </button>
                         )}
@@ -411,73 +262,14 @@ const Perfil = () => {
               </div>
             </div>
             {loading === true ? (
-              <div className="c_perfil z-10 bg-white dark:bg-[#374151] w-96 rounded-lg relative  mr-5  mt-6 overflow-hidden">
-                <div
-                  style={{
-                    display: "block",
-
-                    width: "100%",
-                    height: "8rem",
-                  }}
-                >
-                  <Skeleton height={"100%"} width={"100%"} />
-                </div>
-
-                <div className="text-center mb-4 mt-[-3rem] ">
-                  <Skeleton height={100} width={100} circle={true} />
-                </div>
-                <div className="mx-4 my-4  ">
-                  <Skeleton
-                    count={1}
-                    width={"50%"}
-                    className="rounded-full bg-gray-200 overflow-hidden"
-                  />
-                </div>
-
-                <div className="mx-4  ">
-                  <Skeleton
-                    count={6}
-                    width={"70%"}
-                    className="rounded-full bg-gray-200 overflow-hidden"
-                  />
-                </div>
-                <div className="mx-4 my-4  ">
-                  <Skeleton
-                    count={1}
-                    width={"50%"}
-                    className="rounded-full bg-gray-200 overflow-hidden"
-                  />
-                </div>
-                <div className="flex ml-3 gap-1">
-                  <div className="text-center mb-4  ">
-                    <Skeleton height={50} width={50} circle={true} />
-                  </div>
-                  <div className="text-center mb-4  ">
-                    <Skeleton height={50} width={50} circle={true} />
-                  </div>
-                  <div className="text-center mb-4  ">
-                    <Skeleton height={50} width={50} circle={true} />
-                  </div>
-                  <div className="text-center mb-4  ">
-                    <Skeleton height={50} width={50} circle={true} />
-                  </div>
-                </div>
-                <div className="mx-4  ">
-                  <Skeleton
-                    count={3}
-                    width={"70%"}
-                    className="rounded-full  overflow-hidden"
-                  />
-                </div>
-              </div>
+              <LoadingSkeleton />
             ) : (
               <div className="c_perfil z-20  effect_blures dark:bg-[#37415197] w-[84%] sm:w-[90%] md:w-96 rounded-lg relative ml-2   mt-6 ">
                 <div className="edidarPerfilAdmin absolute z-40 w-full">
                   <button
                     onClick={handleBtnSpand}
-                    className="absolute z-10 top-0 right-1 mx-1 mt-1 cursor-pointer inline-block
-       bg-[#283943]
-       text-white rounded-md p-1"
+                    className="absolute z-10 top-0 right-1 mx-1 mt-1 cursor-pointer inline-block bg-[#283943]
+                    text-white rounded-md p-1"
                   >
                     Editar perfil
                   </button>
@@ -494,7 +286,7 @@ const Perfil = () => {
                   <div className="avater">
                     <picture className="skew-y-12 rounded-full ">
                       {adminGetData.map((item) => (
-                        <div  key={item.idadmin}>
+                        <div key={item.idadmin}>
                           {item.imgurl ? (
                             <a href={item.imgurl} className="">
                               <img
@@ -558,7 +350,7 @@ const Perfil = () => {
                   </div>
                 </div>
                 {adminGetData.map((item) => (
-                  <div className="content_contenido_p"  key={item.idadmin}>
+                  <div className="content_contenido_p" key={item.idadmin}>
                     <div className=" dark:bg-[#37415197] dark:text-white mx-2">
                       <ul className="list-none_k">
                         <li className="flex  flex-col py-2 px-4 ">
@@ -622,7 +414,7 @@ const Perfil = () => {
                                 />
                                 <span className="text-green-400 mx-0.5">
                                   {" "}
-                                   verificado
+                                  verificado
                                 </span>
                               </>
                             ) : (
@@ -652,13 +444,13 @@ const Perfil = () => {
                               className="ml-2"
                             >
                               {item.email ? item.email : "..."}
-                            </span> 
+                            </span>
                           </span>
                           <span className="text-lg  font-sans mx-0">
                             Rol:{" "}
                             <span>
                               {item.rol
-                                ? item.rol === "superAdmin"
+                                ? item.rol === "administrador"
                                   ? "Administrador"
                                   : ""
                                 : "..."}
@@ -674,73 +466,10 @@ const Perfil = () => {
                     </div>
                   </div>
                 ))}
-               
               </div>
             )}
             {loading === true ? (
-              <div className="w-full md:w-9/12 mt-6 mx-2 h-full bg-white">
-                <div
-                  style={{
-                    display: "block",
-
-                    width: "100%",
-                    height: "8rem",
-                  }}
-                >
-                  <Skeleton height={"100%"} width={"100%"} />
-                </div>
-
-                <div className="mx-4 my-4  ">
-                  <Skeleton
-                    count={1}
-                    width={"50%"}
-                    className="rounded-full . overflow-hidden"
-                  />
-                </div>
-
-                <div className="mx-4  ">
-                  <Skeleton
-                    count={6}
-                    width={"70%"}
-                    className="rounded-full . overflow-hidden"
-                  />
-                </div>
-                <div className="mx-4 my-4  ">
-                  <Skeleton
-                    count={1}
-                    width={"50%"}
-                    className="rounded-full . overflow-hidden"
-                  />
-                </div>
-                <div className="flex ml-3 gap-1">
-                  <div className="text-center mb-4  ">
-                    <Skeleton height={10} width={100} />
-                  </div>
-                  <div className="text-center mb-4  ">
-                    <Skeleton height={10} width={100} />
-                  </div>
-                  <div className="text-center mb-4  ">
-                    <Skeleton height={10} width={100} />
-                  </div>
-                  <div className="text-center mb-4  ">
-                    <Skeleton height={10} width={100} />
-                  </div>
-                </div>
-                <div className="mx-4  ">
-                  <Skeleton
-                    count={3}
-                    width={"70%"}
-                    className="rounded-full . overflow-hidden"
-                  />
-                </div>
-                <div className="mx-4  ">
-                  <Skeleton
-                    count={3}
-                    width={"50%"}
-                    className="rounded-full . overflow-hidden"
-                  />
-                </div>
-              </div>
+              <SkeletonCustomenTwo />
             ) : (
               <div className="w-[84%]  mx-2 md:w-9/12 mt-6 lg:mx-2 lg:h-64">
                 {adminGetData.map((items) => (
@@ -859,7 +588,9 @@ const Perfil = () => {
                           <div className="flex">
                             <div className="px-4 py-2">
                               {items.fechacreacion
-                                ? moment(items.fechacreacion).startOf('hour').fromNow()
+                                ? moment(items.fechacreacion)
+                                    .startOf("hour")
+                                    .fromNow()
                                 : "..."}
                             </div>
                           </div>

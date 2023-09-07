@@ -43,7 +43,7 @@ export const ConfigInventory = () => {
   } = useInventario();
   const navigate = useNavigate();
 
-  const geType = localStorage.getItem("type");
+  const geType = sessionStorage.getItem("type");
   const validaDelete = () => {
     Swal.fire({
       background: darkMode ? "#374151" : "white",
@@ -748,7 +748,7 @@ export const ConfigInventory = () => {
                       <span className="truncate">{inventarioSelect.type}</span>
                     </div>
                     <span className="truncate">
-                      {geType === "superAdmin" ? (
+                      {geType === "administrador" ? (
                         <button
                           className="bg-[#369fe6] mx-1 py-1 text-white px-2 rounded-md"
                           onClick={() => setSubModal2(!subModal2)}

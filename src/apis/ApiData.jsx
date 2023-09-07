@@ -1,10 +1,10 @@
 import axios from "axios";
 import { urlServer } from "../urlApi/url";
 import { dataIsAllowed } from "../secure/lowed.Modules";
-let accessToken = localStorage.getItem("secure_token");
-let accesToken1 = localStorage.getItem("token_token1");
-let type = localStorage.getItem("type");
-
+let accessToken = sessionStorage.getItem("secure_token");
+let accesToken1 = sessionStorage.getItem("token_token1");
+let type = sessionStorage.getItem("type");
+import { getTokenAuth } from "../auth/verifyAuth";
 export const PostDataUser = async (postDataUser) =>
   await axios.post(`${urlServer}/login`, { postDataUser });
 export const postRecoveryEmail = async (email) =>
@@ -29,17 +29,11 @@ export const PostDataAdmin = async (data) =>{
 
 export const getDataAdmin = async (tokenData) =>
   await axios.post(`${urlServer}/getsataAdminr/${tokenData}`, {
-    headers: {
-      authorization: tokenData,
-      isAllowedAccess: dataIsAllowed[0].nombre,
-    },
+    headers:getTokenAuth(),
   });
 export const getDataAll = async () =>
   await axios.get(`${urlServer}/getAdminAll/${accessToken}`, {
-    headers: {
-      authorization: accessToken,
-      isAllowedAccess: dataIsAllowed[0].nombre,
-    },
+    headers:getTokenAuth(),
   });
 
 export const tokenData = async (tokenData, token) =>
@@ -47,10 +41,7 @@ export const tokenData = async (tokenData, token) =>
     `${urlServer}/register`,
     { tokenData },
     {
-      headers: {
-        authorization: token,
-        isAllowedAccess: dataIsAllowed[0].nombre,
-      },
+      headers:getTokenAuth(),
     }
   );
 export const PostDataUserRegister = async (postDataUserRegister) =>
@@ -58,10 +49,7 @@ export const PostDataUserRegister = async (postDataUserRegister) =>
     `${urlServer}/registerUser`,
     { postDataUserRegister },
     {
-      headers: {
-        authorization: accessToken,
-        isAllowedAccess: dataIsAllowed[0].nombre,
-      },
+     headers:getTokenAuth(),
     }
   );
 export const UploadcsvUsuario = async (formDataCsv, archivousuariocsv) =>
@@ -71,7 +59,7 @@ export const UploadcsvUsuario = async (formDataCsv, archivousuariocsv) =>
     {
       headers: {
         authorization: accessToken,
-        isAllowedAccess: dataIsAllowed[0].nombre,
+        role: dataIsAllowed[0].nombre,
         "Content-Type": "multipart/form-data",
       },
     }
@@ -79,10 +67,7 @@ export const UploadcsvUsuario = async (formDataCsv, archivousuariocsv) =>
 
 export const getUsersAdmin = async () =>
   await axios.get(`${urlServer}/getUsersData`, {
-    headers: {
-      isAllowedAccess: dataIsAllowed[0].nombre,
-      authorization: accessToken,
-    },
+    headers:getTokenAuth(),
   });
 
 
@@ -91,10 +76,7 @@ export const DeleteuserPost = async (deleteData) =>
     `${urlServer}/deleteUser`,
     { deleteData },
     {
-      headers: {
-        isAllowedAccess: dataIsAllowed[0].nombre,
-        authorization: accessToken,
-      },
+     headers:getTokenAuth(),
     }
   );
 
@@ -103,28 +85,19 @@ export const setModule = async (path,iduser,idmodule) =>
     `${urlServer}/setModule`,
     { path,iduser,idmodule },
     {
-      headers: {
-        authorization: accessToken,
-        isAllowedAccess: dataIsAllowed[0].nombre,
-      },
+     headers:getTokenAuth(),
     }
   );
 export const GetModule = async (id) =>
   await axios.get(`${urlServer}/getModuleUsers/${id}`, {
-    headers: {
-      authorization: accessToken,
-      isAllowedAccess: dataIsAllowed[0].nombre,
-    },
+    headers:getTokenAuth(),
   });
 export const DeleteModule = async (id) =>
   await axios.post(
     `${urlServer}/deleteModuleUser`,
     { id },
     {
-      headers: {
-        authorization: accessToken,
-        isAllowedAccess: dataIsAllowed[0].nombre,
-      },
+     headers:getTokenAuth(),
     }
   );
 // ? Path: src\apis\ApiData.jsx subir imagen ADMINISTRADORE
@@ -135,7 +108,7 @@ export const uploadImg = async (imgData) =>
     {
       headers: {
         authorization: accessToken,
-        isAllowedAccess: dataIsAllowed[0].nombre,
+        role: dataIsAllowed[0].nombre,
         "Content-Type": "multipart/form-data",
         // application/x-www-form-urlencoded
 
@@ -151,10 +124,7 @@ export const UpdateAdminAll = async (data) =>
     `${urlServer}/updateAdminALL`,
     { data },
     {
-      headers: {
-        authorization: accessToken,
-        isAllowedAccess: dataIsAllowed[0].nombre,
-      },
+     headers:getTokenAuth(),
     }
   );
 
@@ -164,29 +134,20 @@ export const postCategorias = async (data) =>
     `${urlServer}/category`,
     { data },
     {
-      headers: {
-        authorization: accessToken,
-        isAllowedAccess: dataIsAllowed[0].nombre,
-      },
+      headers:getTokenAuth(),
     }
   );
 
 // ? delete category
 export const deleteCategory = async (id) =>
   await axios.delete(`${urlServer}/category/${id}`, {
-    headers: {
-      authorization: accessToken,
-      isAllowedAccess: dataIsAllowed[0].nombre,
-    },
+    headers:getTokenAuth(),
   });
 
 // ? Path: src\apis\ApiData.jsx obtener todas la categorias
 export const getCategorias = async () =>
   await axios.get(`${urlServer}/category/${accessToken}`, {
-    headers: {
-      authorization: accessToken,
-      isAllowedAccess: dataIsAllowed[0].nombre,
-    },
+    headers:getTokenAuth(),
   });
 
 // ? Path: src\apis\ApiData.jsx actualizar categorias
@@ -195,19 +156,13 @@ export const updateCategorias = async (id, data) =>
     `${urlServer}/category/${id}`,
     { data },
     {
-      headers: {
-        authorization: accessToken,
-        isAllowedAccess: dataIsAllowed[0].nombre,
-      },
+     headers:getTokenAuth(),
     }
   );
 // ? obtiene todos los productos
 export const getProducts = async () =>
   await axios.get(`${urlServer}/getProducts/${accessToken}`, {
-    headers: {
-      authorization: accessToken,
-      isAllowedAccess: dataIsAllowed[0].nombre,
-    },
+    headers:getTokenAuth(),
   });
 // ? insertar productos validación del token
 export const postProductos = async (data) =>
@@ -215,19 +170,13 @@ export const postProductos = async (data) =>
     `${urlServer}/createProducts`,
     { data },
     {
-      headers: {
-        authorization: accessToken,
-        isAllowedAccess: dataIsAllowed[0].nombre,
-      },
+     headers:getTokenAuth(),
     }
   );
 
 export const deleteproducto = async (id) =>
   await axios.delete(`${urlServer}/deleteProducts/${id}`, {
-    headers: {
-      authorization: accessToken,
-      isAllowedAccess: dataIsAllowed[0].nombre,
-    },
+    headers:getTokenAuth(),
   });
 // ? Update product
 export const updateProducto = async (id, data) =>
@@ -235,28 +184,19 @@ export const updateProducto = async (id, data) =>
     `${urlServer}/updateProducts/${id}`,
     { data },
     {
-      headers: {
-        authorization: accessToken,
-        isAllowedAccess: dataIsAllowed[0].nombre,
-      },
+     headers:getTokenAuth(),
     }
   );
 
 export const getProductsId = async (id) =>
   await axios.get(`${urlServer}/getProductsId/${id}`, {
-    headers: {
-      authorization: accessToken,
-      isAllowedAccess: dataIsAllowed[0].nombre,
-    },
+    headers:getTokenAuth(),
   });
 
 // ? Path: src\apis\ApiData.jsx get Proveedores
 export const getProveedores = async () =>
   await axios.get(`${urlServer}/providers/${accessToken}`, {
-    headers: {
-      authorization: accessToken,
-      isAllowedAccess: dataIsAllowed[0].nombre,
-    },
+    headers:getTokenAuth(),
   });
 
 // ? Path: src\apis\ApiData.jsx post Proveedores
@@ -265,20 +205,14 @@ export const postProveedores = async (data) =>
     `${urlServer}/providers`,
     { data },
     {
-      headers: {
-        authorization: accessToken,
-        isAllowedAccess: dataIsAllowed[0].nombre,
-      },
+     headers:getTokenAuth(),
     }
   );
 
 // ? Path: src\apis\ApiData.jsx delete Proveedores
 export const deleteProveedores = async (id) =>
   await axios.delete(`${urlServer}/providers/${id}`, {
-    headers: {
-      authorization: accessToken,
-      isAllowedAccess: dataIsAllowed[0].nombre,
-    },
+    headers:getTokenAuth(),
   });
 
 // ? Path: src\apis\ApiData.jsx update Proveedores
@@ -287,56 +221,38 @@ export const updateProveedores = async (id, data) =>
     `${urlServer}/providers/${id}`,
     { data },
     {
-      headers: {
-        authorization: accessToken,
-        isAllowedAccess: dataIsAllowed[0].nombre,
-      },
+     headers:getTokenAuth(),
     }
   );
 
 // ? Path: src\apis\ApiData.jsx get datos de su negocio
 export const getBusiness = async () =>
   await axios.get(`${urlServer}/modules/${accessToken}`, {
-    headers: {
-      authorization: accessToken,
-      isAllowedAccess: dataIsAllowed[0].nombre,
-    },
+    headers:getTokenAuth(),
   });
 
 // ? Path: src\apis\ApiData.jsx obtiene todos los servicios datos dek usuario
 export const getServices = async (id) =>
   await axios.get(`${urlServer}/serviceId/${id}`, {
-    headers: {
-      authorization: accessToken,
-      isAllowedAccess: dataIsAllowed[0].nombre,
-    },
+    headers:getTokenAuth(),
   });
 
 //  ? Path: src\apis\ApiData.jsx obtine todas las motificaciones
 export const getNotification = async () =>
   await axios.get(`${urlServer}/notification/${accessToken}`, {
-    headers: {
-      authorization: accessToken,
-      isAllowedAccess: dataIsAllowed[0].nombre,
-    },
+    headers:getTokenAuth(),
   });
 
 // ? Path: src\apis\ApiData.jsx DELETE motificaciones
 export const deleteNotification = async (id) =>
   await axios.delete(`${urlServer}/notification/${id}`, {
-    headers: {
-      authorization: accessToken,
-      isAllowedAccess: dataIsAllowed[0].nombre,
-    },
+    headers:getTokenAuth(),
   });
 
 // ? Path: src\apis\ApiData.jsx get inventario
 export const getInventario = async () =>
   await axios.get(`${urlServer}/inventory/${accessToken}`, {
-    headers: {
-      authorization: accessToken,
-      isAllowedAccess: dataIsAllowed[0].nombre,
-    },
+    headers:getTokenAuth(),
   });
 
 // ? Path: src\apis\ApiData.jsx post inventario
@@ -345,22 +261,14 @@ export const postInventario = async (data) =>
     `${urlServer}/inventory`,
     { data },
     {
-      headers: {
-        authorization: accessToken,
-        typeAutorization: type,
-        authorization1: accesToken1,
-        isAllowedAccess: dataIsAllowed[0].nombre,
-      },
+     headers:getTokenAuth(),
     }
   );
 
 // ? Path: src\apis\ApiData.jsx delete inventario
 export const deleteInventario = async (id) =>
   await axios.delete(`${urlServer}/inventory/${id}`, {
-    headers: {
-      authorization: accessToken,
-      isAllowedAccess: dataIsAllowed[0].nombre,
-    },
+    headers:getTokenAuth(),
   });
 // ? Path: src\apis\ApiData.jsx update inventario
 export const updateInventario = async (id, data) =>
@@ -368,10 +276,7 @@ export const updateInventario = async (id, data) =>
     `${urlServer}/inventory/${id}`,
     { data },
     {
-      headers: {
-        authorization: accessToken,
-        isAllowedAccess: dataIsAllowed[0].nombre,
-      },
+     headers:getTokenAuth(),
     }
   );
 
@@ -381,19 +286,13 @@ export const UploadSubProducts = async (id, data) =>
     `${urlServer}/subProducts`,
     { data },
     {
-      headers: {
-        authorization: accessToken,
-        isAllowedAccess: dataIsAllowed[0].nombre,
-      },
+     headers:getTokenAuth(),
     }
   );
 
 export const getSubProducts = async (id) =>
   await axios.get(`${urlServer}/subProducts/${id}`, {
-    headers: {
-      authorization: accessToken,
-      isAllowedAccess: dataIsAllowed[0].nombre,
-    },
+    headers:getTokenAuth(),
   });
 
 export const TodoFunctions = {
@@ -403,20 +302,14 @@ export const TodoFunctions = {
       `${urlServer}/translateProducts`,
       { data },
       {
-        headers: {
-          authorization: accessToken,
-          isAllowedAccess: dataIsAllowed[0].nombre,
-        },
+        headers:getTokenAuth(),
       }
     ),
 
   // ? Path: src\apis\ApiData.jsx Get Translate Products
   getTranslateProducts: async (id) =>
     await axios.get(`${urlServer}/translateProducts/${id}`, {
-      headers: {
-        authorization: accessToken,
-        isAllowedAccess: dataIsAllowed[0].nombre,
-      },
+     headers:getTokenAuth(),
     }),
 
   // ? Path: src\apis\ApiData.jsx updateSubproduct with TranslateProduct
@@ -426,10 +319,7 @@ export const TodoFunctions = {
       `${urlServer}/translateSubProducts/${id}`,
       { data },
       {
-        headers: {
-          authorization: accessToken,
-          isAllowedAccess: dataIsAllowed[0].nombre,
-        },
+        headers:getTokenAuth(),
       }
     ),
 
@@ -438,10 +328,7 @@ export const TodoFunctions = {
       `${urlServer}/updateEmailBodega/${id}`,
       { data },
       {
-        headers: {
-          authorization: accessToken,
-          isAllowedAccess: dataIsAllowed[0].nombre,
-        },
+        headers:getTokenAuth(),
       }
     ),
 
@@ -450,10 +337,7 @@ export const TodoFunctions = {
       `${urlServer}/pedidos`,
       { data },
       {
-        headers: {
-          authorization: accessToken,
-          isAllowedAccess: dataIsAllowed[0].nombre,
-        },
+        headers:getTokenAuth(),
       }
     ),
   postCompras: async (data) =>
@@ -461,65 +345,41 @@ export const TodoFunctions = {
       `${urlServer}/compras`,
       { data },
       {
-        headers: {
-          authorization: accessToken,
-          isAllowedAccess: dataIsAllowed[0].nombre,
-        },
+        headers:getTokenAuth(),
       }
     ),
   getCompras: async (id) =>
     await axios.get(`${urlServer}/compras/${id}`, {
-      headers: {
-        authorization: accessToken,
-        isAllowedAccess: dataIsAllowed[0].nombre,
-      },
+     headers:getTokenAuth(),
     }),
   getPedidoId: async (id) =>
     await axios.get(`${urlServer}/pedidos/${id}`, {
-      headers: {
-        authorization: accessToken,
-        isAllowedAccess: dataIsAllowed[0].nombre,
-      },
+     headers:getTokenAuth(),
     }),
   getComprasFv: async () =>
     await axios.get(`${urlServer}/comprasfv`, {
-      headers: {
-        authorization: accessToken,
-        isAllowedAccess: dataIsAllowed[0].nombre,
-      },
+     headers:getTokenAuth(),
     }),
   postTrae: async (data) =>
     await axios.post(
       `${urlServer}/company`,
       { data },
       {
-        headers: {
-          authorization: accessToken,
-          isAllowedAccess: dataIsAllowed[0].nombre,
-        },
+        headers:getTokenAuth(),
       }
     ),
   getTrae: async () =>
     await axios.get(`${urlServer}/company`, {
-      headers: {
-        authorization: accessToken,
-        isAllowedAccess: dataIsAllowed[0].nombre,
-      },
+     headers:getTokenAuth(),
     }),
   getPedidos: async () =>
     await axios.get(`${urlServer}/pedidos`, {
-      headers: {
-        authorization: accessToken,
-        isAllowedAccess: dataIsAllowed[0].nombre,
-      },
+     headers:getTokenAuth(),
     }),
 
   deleteEstadoNotificacion: async () =>
     await axios.delete(`${urlServer}/notificationTodoEstado`, {
-      headers: {
-        authorization: accessToken,
-        isAllowedAccess: dataIsAllowed[0].nombre,
-      },
+     headers:getTokenAuth(),
     }),
    
     
@@ -531,10 +391,7 @@ export const TodoFunctions = {
         const query = { idmodule,pathrouter, method };
         const queryParams = new URLSearchParams(query).toString();
         const response = await axios.post(`${urlServer}/typePermissionsModulesUser?${queryParams}`, null, {
-          headers: {
-            Authorization: `${accessToken}`, // Asegúrate de que 'accessToken' contenga el token adecuado.
-            isAllowedAccess: dataIsAllowed[0].nombre,
-          },
+         headers:getTokenAuth(),
         });
         return response.data; // Devuelve los datos de la respuesta si es necesario.
       } catch (error) {
@@ -545,10 +402,7 @@ export const TodoFunctions = {
     },
   SearchDismiutionUnidadProduct: async () =>
     await axios.get(`${urlServer}/disminucionUnidades`, {
-      headers: {
-        authorization: accessToken,
-        isAllowedAccess: dataIsAllowed[0].nombre,
-      },
+     headers:getTokenAuth(),
     }),
   licenceSoftwareCreate: async (id, moneyPrice, data) =>
     await axios.post(
@@ -559,26 +413,17 @@ export const TodoFunctions = {
         data,
       },
       {
-        headers: {
-          authorization: accessToken,
-          isAllowedAccess: dataIsAllowed[0].nombre,
-        },
+        headers:getTokenAuth(),
       }
     ),
 
   getLicenceSoftware: async () =>
     await axios.get(`${urlServer}/getLicence/${accessToken}`, {
-      headers: {
-        authorization: accessToken,
-        isAllowedAccess: dataIsAllowed[0].nombre,
-      },
+     headers:getTokenAuth(),
     }),
   getPermissions: async () =>
     await axios.get(`${urlServer}/getPermisions`, {
-      headers: {
-        authorization: accessToken,
-        isAllowedAccess: dataIsAllowed[0].nombre,
-      },
+     headers:getTokenAuth(),
     }),
 
   putProviders: async (id, data) =>
@@ -586,10 +431,7 @@ export const TodoFunctions = {
       `${urlServer}/providers/${id}`,
       { data },
       {
-        headers: {
-          authorization: accessToken,
-          isAllowedAccess: dataIsAllowed[0].nombre,
-        },
+        headers:getTokenAuth(),
       }
     ),
 
@@ -598,10 +440,7 @@ export const TodoFunctions = {
       `${urlServer}/updateEmailUser/${id}`,
       { data },
       {
-        headers: {
-          authorization: accessToken,
-          isAllowedAccess: dataIsAllowed[0].nombre,
-        },
+        headers:getTokenAuth(),
       }
     ),
   putPassUser: async (id, data) =>
@@ -609,18 +448,12 @@ export const TodoFunctions = {
       `${urlServer}/updatePassUser/${id}`,
       { data },
       {
-        headers: {
-          authorization: accessToken,
-          isAllowedAccess: dataIsAllowed[0].nombre,
-        },
+        headers:getTokenAuth(),
       }
     ),
 
   putAdminPass: async () =>
     await axios.put(`${urlServer}/updateAdminPass`, {
-      headers: {
-        authorization: accessToken,
-        isAllowedAccess: dataIsAllowed[0].nombre,
-      },
+     headers:getTokenAuth(),
     }),
 };

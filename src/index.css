@@ -1,3 +1,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Path: src/App.css */
+@layer components {
+  .home {
+    @apply flex flex-col lg:flex-row  items-center justify-center lg:justify-around 
+        bg-gradient-to-r from-[#fff] from-10%
+      via-[#fff] dark:via-30% to-[#a1c9ff] to-90%
+      dark:bg-gradient-to-r dark:from-[#163b59] dark:from-10%
+      dark:via-[#18324f] via-30% dark:to-[#121b2e] dark:to-90%;
+      
+  }
+
+  .gridHome {
+    @apply grid grid-cols-1   max-w-7xl md:mx-auto  grid-flow-dense gap-5  mx-5 ;
+  }
+
+  .DarkModePages{
+    @apply  bg-gradient-to-r from-[#e6dff4] from-10% via-[#edf4fd] via-30% to-[#d0e0fb] to-90%  w-full block  min-h-screen
+    dark:bg-gradient-to-r dark:from-[#163b59] dark:from-10%
+       dark:via-[#18324f] dark:via-30% dark:to-[#121b2e] dark:to-90%
+  }
+
+  .colorTextGlobal{
+    @apply text-[#009afa] 
+  }
+}

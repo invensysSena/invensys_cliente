@@ -35,11 +35,11 @@ const Signup = () => {
 
     if (response.status === 200) {
       let getData = response.data;
-      localStorage.setItem("secure_token", getData.token);
-      localStorage.setItem("auth_cuenta", getData.auth);
-      localStorage.setItem("response_auth", getData.message);
-      localStorage.setItem("perfil_rol", getData.rol);
-      localStorage.setItem("type", getData.rol);
+      sessionStorage.setItem("secure_token", getData.token);
+      sessionStorage.setItem("auth_cuenta", getData.auth);
+      sessionStorage.setItem("response_auth", getData.message);
+      sessionStorage.setItem("perfil_rol", getData.rol);
+      sessionStorage.setItem("type", getData.rol);
 
       window.location.href = "/perfil";
     } else {

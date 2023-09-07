@@ -82,8 +82,8 @@ function NewPassword() {
               ),
           })}
           onSubmit={async (values) => {
-            let cod = localStorage.getItem("codigo");
-            let email = localStorage.getItem("email");
+            let cod = sessionStorage.getItem("codigo");
+            let email = sessionStorage.getItem("email");
             const response = await newPasswordL({
               codigo: parseInt(cod),
               correo: email,
@@ -91,8 +91,8 @@ function NewPassword() {
             });
             if (response.status === 204) {
               toast.success("Contraseña cambiada correctamente");
-              localStorage.removeItem("codigo");
-              localStorage.removeItem("email");
+              sessionStorage.removeItem("codigo");
+              sessionStorage.removeItem("email");
               setLoading(!loading);
               setTimeout(() => {
                 window.location.href = "/login";

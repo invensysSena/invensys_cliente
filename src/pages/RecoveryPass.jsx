@@ -84,7 +84,7 @@ function RecoveryPass() {
           
             if (response.status === 200) {
               toast.success("Correo enviado");
-              localStorage.setItem("email", values.email);
+              sessionStorage.setItem("email", values.email);
               setLoading(!loading);
               navigate("/verifyc+code/identify");
             }

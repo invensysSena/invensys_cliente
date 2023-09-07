@@ -33,7 +33,7 @@ export const AnalitycMenuVista = () => {
     })();
   }, []);
 
-  let token = localStorage.getItem("secure_token");
+  let token = sessionStorage.getItem("secure_token");
   const [darkMode, setDarkMode] = useState(false);
   useEffect(() => {
     if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
