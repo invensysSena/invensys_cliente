@@ -3,7 +3,7 @@ import {  toast } from "react-toastify";
 
 export  const messageWarding = (message)=>{
     return toast.warn(`${message}' `, {
-     position: "bottom-right",
+     position: "top-right",
      autoClose: true,
      hideProgressBar: true,
      closeOnClick: true,
@@ -18,7 +18,7 @@ export  const messageWarding = (message)=>{
     return toast.success(`
      ${message}' 
    `, {
-     position: "bottom-right",
+     position: "top-right",
      autoClose: true,
      hideProgressBar: true,
      closeOnClick: true,
@@ -33,7 +33,7 @@ export  const messageWarding = (message)=>{
     return toast.error(`
      ${message}'
     `, {
-        position: "bottom-right",
+        position: "top-right",
         autoClose: true,
         hideProgressBar: true,
         closeOnClick: true,
@@ -45,7 +45,7 @@ export  const messageWarding = (message)=>{
     }
     export const messageInfo = (message)=>{
     return toast.info(`${message}'`, {
-        position: "bottom-right",
+        position: "top-right",
         autoClose: true,
         hideProgressBar: true,
         closeOnClick: true,

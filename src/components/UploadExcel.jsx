@@ -2,13 +2,12 @@ import { useEffect, useState } from "react";
 import { Formik, Form, Field } from "formik";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleQuestion } from "@fortawesome/free-solid-svg-icons";
-import x from "../assets/icons/x.svg";
+
 import "animate.css";
 import { Link, useNavigate } from "react-router-dom";
 import "../assets/css/styleSlider.css";
 import { useGetUsers } from "../hooks/context/GetUsersContext";
 import "./efectosCss.css";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { messageSuccess, messageWarding } from "../utils/alertsAplication";
 export const UploadExcel = ({ estado = false }) => {
@@ -65,7 +64,7 @@ export const UploadExcel = ({ estado = false }) => {
             className="bg-[#fe5f57] rounded-full absolute right-1 top-1"
             onClick={handleShow}
           >
-            <LazyLoadImage src={x} alt="" />
+        
           </button>
           <h2 className="text-xl font-semibold mt-2 mb-5 pt-5 text-center  dark:text-white ">
             Subir archivo csv

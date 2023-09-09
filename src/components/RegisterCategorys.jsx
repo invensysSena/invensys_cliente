@@ -6,7 +6,7 @@ import {
   faLock,
   faCircleQuestion,
 } from "@fortawesome/free-solid-svg-icons";
-import x from "../assets/icons/x.svg";
+
 import * as Yup from "yup";
 import "animate.css";
 import { Link } from "react-router-dom";
@@ -42,7 +42,6 @@ export const RegisterCategorys = ({ estado = false }) => {
             className="bg-[#fe5f57] rounded-full absolute right-1 top-1"
             onClick={handleShow}
           >
-            <LazyLoadImage effect="blur" src={x} alt="" />
           </button>
           <h2 className="text-xl font-semibold mt-2 mb-5 pt-5 text-center  ">
             Crear categoria

@@ -5,7 +5,7 @@ import "ag-grid-community/styles/ag-theme-alpine.css";
 import "react-loading-skeleton/dist/skeleton.css";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-enterprise";
-import plus from "../assets/icons/plus.svg";
+
 import { AG_GRID_LOCALE_EN } from "../locale/locale";
 import OpcionesCategory from "./OpcionesCategory";
 import { RegisterCategorys } from "./RegisterCategorys";
@@ -234,7 +234,7 @@ window.addEventListener(
               onClick={handleShowModel}
               className=" bg-[#019afa] dark:border-[#019afa] text-white flex items-center p-1 rounded-md border whitespace-nowrap"
             >
-              <img src={plus} alt="" />
+      
               Crear Categoria
             </button>
           </section>

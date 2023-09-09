@@ -9,7 +9,7 @@ const Usuarios = () => {
         dark:bg-gradient-to-r dark:from-[#163b59] dark:from-10%
          dark:via-[#18324f] dark:via-30% dark:to-[#121b2e] dark:to-90%">
       <div className="sticky z-50  hidden lg:block top-0 py-3 effect_blure h-fit w-full">
-        <SubMenu />
+        {/* <SubMenu /> */}
       </div>
       <div
         className="  w-full block  min-h-screen

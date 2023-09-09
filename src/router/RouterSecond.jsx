@@ -44,75 +44,7 @@ export const RouterSecond = () => {
           }}
         />
         <Routes>
-        <Route
-            path="/venta/*"
-            element={
-              <ProtectedRouter
-                isAllowed={!!permissionsPages && permissionsPages.permisions.includes("venta")}
-                redirectTo="/venta"
-              >
-                <GetUsersContext>
-                <Ventas />
-
-                </GetUsersContext>
-              </ProtectedRouter>
-            }
-          >
-            <Route path="" element={<FormSalida />}>
-              <Route path="bodega/:id" element={<h1>Hola mundo</h1>} />
-            </Route>
-            <Route path="AllVentas/*" element={<DatatableVentas />}>
-              <Route path="viewPdf" element={<ComprasPDF />} />
-            </Route>
-          </Route>
-          <Route path="/somos" element={<Somos />} />
-          <Route path="/contactanos" element={<Contactanos />} />
-
-          <Route
-            path="/settings"
-            element={
-              <ProtectedRouter
-                isAllowed={!!permissionsPages && permissionsPages.permisions.includes("config")}
-                redirectTo="/config"
-              >
-                <GetUsersContext>
-
-                <ConfigAdmin />
-                </GetUsersContext>
-              </ProtectedRouter>
-            }
-          />
-          <Route
-            path={dataIsAllowed[17].url}
-            element={
-              <ProtectedRouter
-                isAllowed={
-                  !!permissionsPages && permissionsPages.permisions.includes(dataIsAllowed[17].nombre)
-                }
-                redirectTo={dataIsAllowed[17].url}
-              >
-                <GetUsersContext>
-                <InventoryGeneral />
-                </GetUsersContext>
-              </ProtectedRouter>
-            }
-          />
-          <Route
-            path={dataIsAllowed[19].url}
-            element={
-              <ProtectedRouter
-                isAllowed={
-                  !!permissionsPages && permissionsPages.permisions.includes(dataIsAllowed[19].nombre)
-                }
-                redirectTo={dataIsAllowed[19].url}
-              >
-                <GetUsersContext>
-                <Licence />
-
-                </GetUsersContext>
-              </ProtectedRouter>
-            }
-          />
+        
         </Routes>
       </UserContextData>
     </>

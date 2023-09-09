@@ -2,6 +2,7 @@ export const dataIsAllowed = [
   {
     id_modulo: 1,
     nombre: "administrador",
+    text: "Administrador",
     icono: "fa fa-users",
     url: "/perfil",
     id_padre: 0,
@@ -36,6 +37,7 @@ export const dataIsAllowed = [
   {
     id_modulo: 2,
     nombre: "bodega",
+    text: "Bodega",
     icono: "fa fa-users",
     url: "/bodega",
     id_padre: 0,
@@ -70,6 +72,7 @@ export const dataIsAllowed = [
   {
     id_modulo: 3,
     nombre: "usuarios",
+    text: "Usuarios",
     icono: "fa fa-users",
     url: "/usuarios",
     id_padre: 0,
@@ -104,6 +107,7 @@ export const dataIsAllowed = [
   {
     id_modulo: 4,
     nombre: "categorias",
+    text: "Categorías",
     icono: "fa fa-users",
     url: "/categorias",
     id_padre: 0,
@@ -138,6 +142,7 @@ export const dataIsAllowed = [
   {
     id_modulo: 5,
     nombre: "notificaciones",
+    text: "Notificaciones",
     icono: "fa fa-users",
     url: "/notificaciones",
     id_padre: 0,
@@ -172,6 +177,7 @@ export const dataIsAllowed = [
   {
     id_modulo: 6,
     nombre: "producto",
+    text: "Productos",
     icono: "fa fa-users",
     url: "/producto",
     id_padre: 0,
@@ -206,6 +212,7 @@ export const dataIsAllowed = [
   {
     id_modulo: 7,
     nombre: "proveedor",
+    text: "Proveedores",
     icono: "fa fa-users",
     url: "/proveedor",
     id_padre: 0,
@@ -240,6 +247,7 @@ export const dataIsAllowed = [
   {
     id_modulo: 8,
     nombre: "pedidos",
+    text: "Pedidos",
     icono: "fa fa-users",
     url: "/pedidos",
     id_padre: 0,
@@ -274,6 +282,7 @@ export const dataIsAllowed = [
   {
     id_modulo: 9,
     nombre: "analityc",
+    text: "Estadísticas",
     icono: "fa fa-users",
     url: "/analityc",
     id_padre: 0,
@@ -308,6 +317,7 @@ export const dataIsAllowed = [
   {
     id_modulo: 10,
     nombre: "perfil",
+    text: "Perfil",
     icono: "fa fa-users",
     url: "/perfil",
     id_padre: 0,
@@ -342,6 +352,7 @@ export const dataIsAllowed = [
   {
     id_modulo: 11,
     nombre: "dasboard",
+    text: "Inicio",
     icono: "fa fa-users",
     url: "/dasboard",
     id_padre: 0,
@@ -546,6 +557,7 @@ export const dataIsAllowed = [
   {
     id_modulo: 17,
     nombre: "venta",
+    text: "P. venta",
     icono: "fa fa-users",
     url: "/venta",
     id_padre: 0,
@@ -580,6 +592,7 @@ export const dataIsAllowed = [
   {
     id_modulo: 18,
     nombre: "inventoryGeneral",
+    text: "Inventario",
     icono: "fa fa-users",
     url: "/inventoryGeneral",
     id_padre: 0,
@@ -614,6 +627,7 @@ export const dataIsAllowed = [
   {
     id_modulo: 19,
     nombre: "trae",
+    text: "Empresa",
     icono: "fa fa-users",
     url: "/trae",
     id_padre: 0,
@@ -648,6 +662,7 @@ export const dataIsAllowed = [
   {
     id_modulo: 20,
     nombre: "LicenceSoftware/state",
+    text: "Licencia",
     icono: "fa fa-users",
     url: "/LicenceSoftware/state",
     id_padre: 0,

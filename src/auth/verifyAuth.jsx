@@ -4,7 +4,7 @@ export const getTokenAuth = () => {
     let headers = {
         Authorization: `Bearer ${accessToken}`,
         Action: "$BNDsjds5438594",
-        date: new Date().getTime(),
+        dateAction: new Date().getTime(),
         role: dataIsAllowed[0].nombre,
     };
     return headers;

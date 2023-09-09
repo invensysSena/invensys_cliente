@@ -45,27 +45,17 @@ export const CategoryInventory = () => {
         >
           <h2 className="font-bold  m-4 text-xl dark:text-white">Categorias</h2>
           {category.length > 0 ? (
-            <p className="mx-4 dark:text-white">
+            <span className="mx-4 dark:text-white">
               Seleciona las categorias para la importacion de los productos
-            </p>
+            </span>
           ) : (
-            <p className="mx-4 my-4 dark:text-white">
+            <span className="mx-4 my-4 dark:text-white">
               No se encontraron categorias, crea tu primer categoria
-              <Link
-                className="
-                    
-                    text-blue-500
-                    font-bold
-                    hover:text-blue-600
-                    text-sm
-                    ml-2
-
-                    "
-                to={`/categorias`}
-              >
+              <Link className=" text-blue-500 font-bold hover:text-blue-600 text-sm  ml-2 "
+                to={`/categorias`}>
                 Crear categoria
               </Link>
-            </p>
+            </span>
           )}
           {loading ? (
             <div className="m-4 block">
@@ -91,7 +81,7 @@ export const CategoryInventory = () => {
             </div>
           ) : (
             <>
-              <div className="flex flex-wrap gap-1 mxmd:w-[500px]">
+              <div className="flex flex-wrap gap-1  md:w-[500px]">
                 {arrayName.map((item) => (
                   <div
                     className="bg-blue-100  rounded-md flex items-center mx-1 px-2 py-1 "

@@ -40,38 +40,8 @@ export const RouterFirst = () => {
           }}
         />
         <Routes>
-        <Route
-            path={dataIsAllowed[18].url}
-            element={
-              <ProtectedRouter
-                isAllowed={
-                  !!permissionsPages && permissionsPages.permisions.includes(dataIsAllowed[18].nombre)
-                }
-              >
-                <GetUsersContext>
-                  <Trae />
-                </GetUsersContext>
-              </ProtectedRouter>
-            }
-          />
-          <Route
-            path="/pedidos/*"
-            element={
-              <ProtectedRouter
-                isAllowed={!!permissionsPages && permissionsPages.permisions.includes("pedidos")}
-                redirectTo="/pedidos"
-              >
-                <GetUsersContext>
-                <Shope />
-                </GetUsersContext>
-              </ProtectedRouter>
-            }
-          >
-            <Route path="ListPedidos" element={<DataTablePedido />} />
-            <Route path="" element={<FormPedido />}>
-              <Route path="bodega/:id" element={<h1>Hola mundo</h1>} />
-            </Route>
-          </Route>
+       
+          
 
           </Routes>
         {/* </GetUsersContext> */}

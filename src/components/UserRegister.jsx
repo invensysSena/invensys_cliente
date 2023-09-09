@@ -9,7 +9,6 @@ import {
   faEye,
   faEyeSlash,
 } from "@fortawesome/free-solid-svg-icons";
-import x from "../assets/icons/x.svg";
 import { useGetUsers } from "../hooks/context/GetUsersContext";
 import * as Yup from "yup";
 import "animate.css";
@@ -36,17 +35,14 @@ export const UserRegister = ({ estado = false }) => {
   }, [estado]);
 
   return (
-    <div
-      className={estados ? "  h-full absolute left-6  md:left-auto z-30 w-full md:w-4/5" : "hidden"}
+    <div className={estados ? "  h-full absolute left-6  md:left-auto z-30 w-full md:w-4/5" : "hidden"}
     >
-
       <div className="form-signup w-4/5 sm:w-96 mx-auto sm:mx-auto mt-5 relative ">
         <div className="container-signup dark:border-none  border shadow-2xl pb-1 rounded-lg  effect_blur1 ">
           <button
             className="bg-[#fe5f57] rounded-full absolute right-1 top-1"
             onClick={handleShow}
           >
-            <img  src={x} alt="" />
           </button>
           <h2 className="text-xl font-semibold mt-2 mb-5 pt-5 text-center dark:text-white  ">
             Crear cuenta usuario

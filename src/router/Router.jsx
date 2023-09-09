@@ -42,13 +42,14 @@ export const Router = () => {
           <Route path="/recovery+password/identify" element={<RecoveryPass />}/>
           <Route path="/verifyc+code/identify" element={<CodePassword />} />
           <Route path="/signup" element={<UserContextData><SignupLoadable /></UserContextData>}/>
+          <Route path="/*" element={<RouterDasboard />} />
           <Route index element={<HomePage />} />
          </Routes>
-     <RouterDasboard/>
-     <RouterFirst/>
+     
+     {/* <RouterFirst/>
      <RouterFive/>
      <RouterSecond/>
-     <RouterFour/>
+     <RouterFour/> */}
 
     </>
   );

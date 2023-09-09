@@ -64,27 +64,11 @@ export const ImportProducts = ({ idCategorias }) => {
           <div className="flex justify-between flex-col lg:flex-row items-center">
             <div className="des">
               <h1
-                className="
-        
-        font-bold text-2xl
-        mx-3
-        mt-4
-        
-
-        "
-              >
+                className="font-bold text-2xl mx-3  mt-4 ">
                 Importando productos
               </h1>
               <p
-                className="
-                  
-                    mx-3
-                    mt-2
-                    mb-4
-                    text-gray-500 dark:text-white
-
-                  "
-              >
+                className="mx-3 mt-2 mb-4 text-gray-500 dark:text-white " >
                 Selecciona los productos que deseas importar y agrega los
                 precios
               </p>
@@ -220,10 +204,7 @@ export const ImportProducts = ({ idCategorias }) => {
                       <div className="content-fit md:flex-row flex flex-col gap-2">
                         <div className="input flex flex-col w-full  lg:w-36">
                           <label
-                            htmlFor="
-                                Nombre del producto
-
-                                "
+                            htmlFor="Nombre del producto"
                           >
                             Nombre
                           </label>
