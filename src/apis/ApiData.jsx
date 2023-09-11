@@ -4,7 +4,7 @@ import { dataIsAllowed } from "../secure/lowed.Modules";
 let accessToken = sessionStorage.getItem("secure_token");
 let accesToken1 = sessionStorage.getItem("token_token1");
 let type = sessionStorage.getItem("type");
-import { getTokenAuth } from "../auth/verifyAuth";
+import { getTokenAuth, getTokenAuthImg } from "../auth/verifyAuth";
 export const PostDataUser = async (postDataUser) =>
   await axios.post(`${urlServer}/login`, { postDataUser });
 export const postRecoveryEmail = async (email) =>
@@ -106,14 +106,7 @@ export const uploadImg = async (imgData) =>
     `${urlServer}/AuploadImageA`,
     { imgData },
     {
-      headers: {
-        authorization: accessToken,
-        role: dataIsAllowed[0].nombre,
-        "Content-Type": "multipart/form-data",
-        // application/x-www-form-urlencoded
-
-        // "Content-Type": "application/x-www-form-urlencoded",
-      },
+      headers: getTokenAuthImg()
     }
   );
 

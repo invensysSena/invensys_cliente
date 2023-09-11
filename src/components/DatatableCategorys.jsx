@@ -1,11 +1,10 @@
-import React, { useRef, useState, useCallback, useEffect } from "react";
+import  { useRef, useState, useCallback, useEffect } from "react";
 import moment from "moment-with-locales-es6";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
 import "react-loading-skeleton/dist/skeleton.css";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-enterprise";
-
 import { AG_GRID_LOCALE_EN } from "../locale/locale";
 import OpcionesCategory from "./OpcionesCategory";
 import { RegisterCategorys } from "./RegisterCategorys";
@@ -18,6 +17,7 @@ import { setNormal } from "./ChackSelection";
 import { ContextCategory } from "../hooks/context/ContextCategory";
 
 import { useContextCategory } from "../hooks/context/ContextCategory";
+import { svgCsv, svgExcel, svgPrints } from "../svg/IconsSvg";
 
 moment.locale("es");
 
@@ -30,6 +30,7 @@ export const DatatableCategorys = () => {
     };
 
     initial();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // count categorias
@@ -39,7 +40,7 @@ export const DatatableCategorys = () => {
 
   const [stateModel, StateModel] = useState(false);
 
-  const [columnDefs, setColumnDefs] = useState([
+  const columnDefs = [
     {
       headerName: "Identificador",
       field: "_id",
@@ -78,19 +79,24 @@ export const DatatableCategorys = () => {
       field: "Settings",
       cellRenderer: OpcionesCategory,
     },
-  ]);
+  ];
 
   const handleShowModel = () => {
     StateModel(!stateModel);
   };
-
+  let title = "Reportes de inventario";
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  let params = {
+    fileName: title,
+    sheetName: title,
+  };
   const onBtnExport = useCallback(() => {
-    gridRef.current.api.exportDataAsCsv();
-  }, []);
+    gridRef.current.api.exportDataAsCsv(params);
+  }, [params]);
 
   const onBtExportExel = useCallback(() => {
-    gridRef.current.api.exportDataAsExcel();
-  }, []);
+    gridRef.current.api.exportDataAsExcel(params);
+  }, [params]);
   const onBtPrint = useCallback(() => {
     const api = gridRef.current.api;
     setPrinterFriendly(api);
@@ -105,45 +111,7 @@ export const DatatableCategorys = () => {
       document.getElementById("filter-text-box").value
     );
   }, []);
-  const [darkMode, setDarkMode] = useState(false);
-  useEffect(() => {
-    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      setDarkMode(true);
-    }
-  }, []);
-window.addEventListener(
-  "keydown",
-  useCallback(
-    (e) => {
-      if (e.ctrlKey && e.key === "e") {
-        e.preventDefault();
-        onBtExportExel();
-      }
-      // buscar con ctrl + m
-      if (e.ctrlKey && e.key === "f") {
-        // focus en el input
-        e.preventDefault();
-        document.getElementById("filter-text-box").focus();
-      }
-      // imprimir con ctrl + p
-      if (e.ctrlKey && e.key === "p") {
-        e.preventDefault();
-        onBtPrint();
-      }
-      // descargar csv con ctrl + d
-      if (e.ctrlKey && e.key === "d") {
-        e.preventDefault();
-        onBtnExport();
-      }
-      // recargar con ctrl + r
-      if (e.ctrlKey && e.key === "r") {
-        e.preventDefault();
-        window.location.reload();
-      }
-    },
-    [onBtExportExel, onFilterTextBoxChanged, onBtPrint, onBtnExport]
-  )
-);
+
   return (
     <>
       <ContextCategory>
@@ -179,17 +147,7 @@ window.addEventListener(
               className="flex items-center dark:border-[#019afa] border mx-1 p-1 rounded-md"
             >
               <span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    fill="green"
-                    d="M5 21q-.825 0-1.413-.588T3 19V6.5q0-.375.125-.675t.325-.575l1.4-1.7q.2-.275.5-.413T6 3h12q.35 0 .65.137t.5.413l1.4 1.7q.2.275.325.575T21 6.5V19q0 .825-.588 1.413T19 21H5Zm.4-15h13.2l-.85-1H6.25L5.4 6ZM5 8v11h14V8H5Zm7 10l4-4l-1.4-1.4l-1.6 1.6V10h-2v4.2l-1.6-1.6L8 14l4 4Zm-7 1h14H5Z"
-                  />
-                </svg>
+                {svgCsv()}
               </span>
               <span className="whitespace-nowrap">Descargar archivo scv</span>
             </button>
@@ -198,17 +156,7 @@ window.addEventListener(
               className="flex items-center dark:border-[#019afa] border mx-1 p-1 rounded-md whitespace-nowrap"
             >
               <span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    fill="#158c51"
-                    d="m2.859 2.877l12.57-1.795a.5.5 0 0 1 .571.495v20.846a.5.5 0 0 1-.57.495L2.858 21.123a1 1 0 0 1-.859-.99V3.867a1 1 0 0 1 .859-.99zM17 3h4a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1h-4V3zm-6.8 9L13 8h-2.4L9 10.286L7.4 8H5l2.8 4L5 16h2.4L9 13.714L10.6 16H13l-2.8-4z"
-                  />
-                </svg>
+                {svgExcel()}
               </span>
               <span className="whitespace-nowrap">Exportar a excel</span>
             </button>
@@ -217,17 +165,7 @@ window.addEventListener(
               onClick={onBtPrint}
               className="flex items-center dark:border-[#019afa] border mx-1 p-1 rounded-md whitespace-nowrap"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  fill="currentColor"
-                  d="M18 7H6V3h12v4Zm0 5.5q.425 0 .713-.288T19 11.5q0-.425-.288-.713T18 10.5q-.425 0-.713.288T17 11.5q0 .425.288.713T18 12.5ZM16 19v-4H8v4h8Zm2 2H6v-4H2v-6q0-1.275.875-2.138T5 8h14q1.275 0 2.138.863T22 11v6h-4v4Z"
-                />
-              </svg>
+              {svgPrints()}
               <span className="whitespace-nowrap">Imprimir</span>
             </button>
             <button
@@ -329,11 +267,7 @@ window.addEventListener(
         </div>
       </div>
       <div
-        className={
-          darkMode
-            ? "ag-theme-alpine-dark h-[300px] w-[300px] md:w-[100%] md:h-[600px] shadow-2xl mx-auto rounded-lg overflow-hidden "
-            : " rounded-lg overflow-hidden ag-theme-alpine h-[300px] w-[300px] md:w-[100%] md:h-[600px] shadow-2xl mx-auto"
-        }
+        className={" rounded-lg overflow-hidden ag-theme-alpine h-[300px] w-[300px] md:w-[100%] md:h-[600px] shadow-2xl mx-auto"}
         id="myGrid"
       >
         <AgGridReact

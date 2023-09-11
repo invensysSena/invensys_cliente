@@ -178,3 +178,49 @@ export const svgPrints = () => {
   </svg>
   )
 }
+
+export  const svgSearch = () => {
+  return(
+    <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="21"
+    height="21"
+    viewBox="0 0 16 16"
+  >
+    <g transform="translate(16 0) scale(-1 1)">
+      <path
+        fill="#ABB2B9"
+        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0a5.5 5.5 0 0 1 11 0z"
+      />
+    </g>
+  </svg>
+  )
+}
+
+export const svgX = (h,w,color) => {
+
+  return (
+    <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={w}
+    height={h}
+    viewBox="0 0 24 24"
+  >
+    <path
+      fill={color}
+      d="M12 2c5.53 0 10 4.47 10 10s-4.47 10-10 10S2 17.53 2 12S6.47 2 12 2m3.59 5L12 10.59L8.41 7L7 8.41L10.59 12L7 15.59L8.41 17L12 13.41L15.59 17L17 15.59L13.41 12L17 8.41L15.59 7Z"
+    />
+  </svg>
+  )
+}
+
+export const  loadingColor = (w,h) => {
+  return(
+    <svg xmlns="http://www.w3.org/2000/svg" width={w} height={h} viewBox="0 0 24 24">
+        <g stroke="#fff"><circle cx="12" cy="12" r="9.5" fill="none" strokeLinecap="round" strokeWidth="1">
+        <animate attributeName="stroke-dasharray" calcMode="spline" dur="1.5s" keySplines="0.42,0,0.58,1;0.42,0,0.58,1;0.42,0,0.58,1" keyTimes="0;0.475;0.95;1" repeatCount="indefinite" values="0 150;42 150;42 150;42 150"/>
+        <animate attributeName="stroke-dashoffset" calcMode="spline" dur="1.5s" keySplines="0.42,0,0.58,1;0.42,0,0.58,1;0.42,0,0.58,1" keyTimes="0;0.475;0.95;1" repeatCount="indefinite" values="0;-16;-59;-59"/></circle><animateTransform attributeName="transform" dur="2s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/></g></svg>
+  )
+
+
+}

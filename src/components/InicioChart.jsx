@@ -6,6 +6,7 @@ import { Link, Outlet, Navigate } from "react-router-dom";
 import { useContextModules } from "../hooks/context/ContextModules";
 import { useGetUsers } from "../hooks/context/GetUsersContext";
 import { getBusiness } from "../apis/ApiData";
+import { IconsSvgLoading } from "../svg/IconsSvgLoading";
 
 export const InicioChart = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -188,50 +189,7 @@ export const InicioChart = () => {
     <>
       {state ? (
         <div className="skeleton flex flex-col flex-wrap lg:flex-row mt-10 justify-center gap-1">
-          <Skeleton
-            count={1}
-            width={225}
-            height={120}
-            baseColor={darkMode ? "#374151" : ""}
-            highlightColor={darkMode ? "#293a4f" : ""}
-            className="rounded-full bg-red-600 overflow-hidden"
-          />
-          <Skeleton
-            count={1}
-            width={225}
-            height={120}
-            baseColor={darkMode ? "#374151" : ""}
-            highlightColor={darkMode ? "#293a4f" : ""}
-            backgroundColor="#122640"
-            foregroundColor="#ecebeb"
-            // darkmode
-
-            className="rounded-full bg-red-600 overflow-hidden"
-          />
-          <Skeleton
-            count={1}
-            width={225}
-            height={120}
-            baseColor={darkMode ? "#374151" : ""}
-            highlightColor={darkMode ? "#293a4f" : ""}
-            className="rounded-full bg-red-600 overflow-hidden"
-          />
-          <Skeleton
-            count={1}
-            width={225}
-            baseColor={darkMode ? "#374151" : ""}
-            highlightColor={darkMode ? "#293a4f" : ""}
-            height={120}
-            className="rounded-full bg-red-600 overflow-hidden"
-          />
-          <Skeleton
-            count={1}
-            width={225}
-            baseColor={darkMode ? "#374151" : ""}
-            highlightColor={darkMode ? "#293a4f" : ""}
-            height={120}
-            className="rounded-full bg-red-600 overflow-hidden"
-          />
+          <IconsSvgLoading w={60} h={60} />
         </div>
       ) : (
         <div className="help">

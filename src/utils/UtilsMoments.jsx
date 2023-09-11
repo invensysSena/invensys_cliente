@@ -8,7 +8,7 @@ import moment from "moment-with-locales-es6";
 
 export let formatDate = {
     getFormatDateComplete: (date) => {
-        return moment(date).format('MMMM  YYYY, h:mm:ss a');
+        return moment(date).format('D MMMM  YYYY, h:mm a');
     },
     getFormatDateday: (date) => {
         return moment(date).format('dddd');

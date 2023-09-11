@@ -2,19 +2,14 @@ import { useState, useEffect, useMemo } from "react";
 import { NavLink } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 import { getBusiness, getDataAll } from "../apis/ApiData";
-
-
 export const AnalitycMenuVista = () => {
   const [expand, setExpand] = useState(false);
-  const [load, setLoad] = useState(false);
   const [modules, setModules] = useState([]);
   const [admin, setAdmin] = useState([]);
   useMemo(() => {
     (async () => {
       const data = await getDataAll();
       setAdmin(data.data.data);
-
-      setLoad(true);
       const bussiness = await getBusiness();
       setModules([
         bussiness.data.dataCategory,
@@ -29,30 +24,13 @@ export const AnalitycMenuVista = () => {
         bussiness.data.dataProvider,
         bussiness.data.dataSubProduct,
       ]);
-      setLoad(false);
     })();
   }, []);
 
   let token = sessionStorage.getItem("secure_token");
-  const [darkMode, setDarkMode] = useState(false);
-  useEffect(() => {
-    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      setDarkMode(true);
-    }
-  }, []);
   return (
     <>
-      {load ? (
-        <div className="skeletton flex gap-4 m-5">
-          <Skeleton
-            height={400}
-            width={240}
-            baseColor={darkMode ? "#374151" : ""}
-            highlightColor={darkMode ? "#293a4f" : ""}
-            className="rounded-full bg-red-600 flex overflow-hidden"
-          />
-        </div>
-      ) : (
+     
         <div
           className={
             expand
@@ -178,36 +156,6 @@ export const AnalitycMenuVista = () => {
                 <span className="mx-5 block dark:text-white">Bodegas</span>
               </NavLink>
             </li>
-            {/* <li>
-              <NavLink
-                to={`AnInventario/${token}`}
-                className={({ isActive }) =>
-                  isActive
-                    ? `flex items-center  bg-gradient-to-r from-cyan-500 to-blue-500
-            text-white
-            rounded-full p-1`
-                    : `flex items-center text-black hover:bg-gradient-to-r from-cyan-500 to-blue-500
-            hover:text-white
-            rounded-full p-1`
-                }
-              >
-                <span className="bg-gray-100 rounded-full p-1">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="35"
-                    height="35"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fill="#20c4d9"
-                      d="M3 4.5A1.5 1.5 0 0 1 4.5 3h2A1.5 1.5 0 0 1 8 4.5v2A1.5 1.5 0 0 1 6.5 8H6v3.84a.999.999 0 0 1 .207.16L8 13.793c.063.063.116.133.16.207H12v-.5a1.5 1.5 0 0 1 1.5-1.5h2a1.5 1.5 0 0 1 1.5 1.5v2a1.5 1.5 0 0 1-1.5 1.5h-2a1.5 1.5 0 0 1-1.5-1.5V15H8.16a1.001 1.001 0 0 1-.16.207L6.207 17a1 1 0 0 1-1.414 0L3 15.207a1 1 0 0 1 0-1.414L4.793 12c.063-.063.133-.117.207-.16V8h-.5A1.5 1.5 0 0 1 3 6.5v-2Z"
-                    />
-                  </svg>
-                </span>
-
-                <span className="mx-5 block">Inventario</span>
-              </NavLink>
-            </li> */}
             <li>
               <NavLink
                 to={`AnProductos/${token}`}
@@ -238,115 +186,6 @@ export const AnalitycMenuVista = () => {
                 <span className="mx-5 block dark:text-white">Productos</span>
               </NavLink>
             </li>
-            {/* <li>
-              <NavLink
-                to={`AnPedidos/${token}`}
-                className={({ isActive }) =>
-                  isActive
-                    ? `flex items-center  bg-gradient-to-r from-cyan-500 to-blue-500
-            text-white
-            rounded-full p-1`
-                    : `flex items-center text-black hover:bg-gradient-to-r from-cyan-500 to-blue-500
-            hover:text-white
-            rounded-full p-1`
-                }
-              >
-                <span className="bg-gray-100 rounded-full p-1">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="35"
-                    height="35"
-                    viewBox="0 0 48 48"
-                  >
-                    <g fill="#3F51B5">
-                      <circle cx="8" cy="38" r="3" />
-                      <circle cx="16" cy="40" r="3" />
-                      <circle cx="24" cy="33" r="3" />
-                      <circle cx="32" cy="35" r="3" />
-                      <circle cx="40" cy="31" r="3" />
-                      <path d="m39.1 29.2l-7.3 3.7l-8.3-2.1l-8 7l-7-1.7l-1 3.8l9 2.3l8-7l7.7 1.9l8.7-4.3z" />
-                    </g>
-                    <g fill="#00BCD4">
-                      <circle cx="8" cy="20" r="3" />
-                      <circle cx="16" cy="22" r="3" />
-                      <circle cx="24" cy="15" r="3" />
-                      <circle cx="32" cy="20" r="3" />
-                      <circle cx="40" cy="8" r="3" />
-                      <path d="M38.3 6.9c-2.1 3.2-5.3 8-6.9 10.4c-1.2-.7-3.1-2-6.4-4l-1.3-.8l-8.3 7.3l-7-1.7l-1 3.9l9 2.3l7.7-6.7c2.6 1.6 5.8 3.6 6.5 4.1l.5.5l.9-.1c1.1-.1 1.1-.1 9.5-12.9l-3.2-2.3z" />
-                    </g>
-                  </svg>
-                </span>
-
-                <span className="mx-5 block">Pedidos</span>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to={`AnVentas/${token}`}
-                className={({ isActive }) =>
-                  isActive
-                    ? `flex items-center  bg-gradient-to-r from-cyan-500 to-blue-500
-            text-white
-            rounded-full p-1`
-                    : `flex items-center text-black hover:bg-gradient-to-r from-cyan-500 to-blue-500
-            hover:text-white
-            rounded-full p-1`
-                }
-              >
-                <span className="bg-gray-100 rounded-full p-1">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="35"
-                    height="35"
-                    viewBox="0 0 48 48"
-                  >
-                    <path
-                      fill="#00BCD4"
-                      d="M37 18h6v24h-6zm-8 8h6v16h-6zm-8-4h6v20h-6zm-8 10h6v10h-6zm-8-4h6v14H5z"
-                    />
-                    <g fill="#3F51B5">
-                      <circle cx="8" cy="16" r="3" />
-                      <circle cx="16" cy="18" r="3" />
-                      <circle cx="24" cy="11" r="3" />
-                      <circle cx="32" cy="13" r="3" />
-                      <circle cx="40" cy="9" r="3" />
-                      <path d="m39.1 7.2l-7.3 3.7l-8.3-2.1l-8 7l-7-1.7l-1 3.8l9 2.3l8-7l7.7 1.9l8.7-4.3z" />
-                    </g>
-                  </svg>
-                </span>
-
-                <span className="mx-5 block">Ventas</span>
-              </NavLink>
-            </li> */}
-            {/* <li>
-              <NavLink
-                to={`AnUsuarios/${token}`}
-                className={({ isActive }) =>
-                  isActive
-                    ? `flex items-center  bg-gradient-to-r from-cyan-500 to-blue-500
-            text-white
-            rounded-full p-1`
-                    : `flex items-center text-black hover:bg-gradient-to-r from-cyan-500 to-blue-500
-            hover:text-white
-            rounded-full p-1`
-                }
-              >
-                <span className="bg-gray-100 rounded-full p-1">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="32"
-                    height="32"
-                    viewBox="0 0 32 32"
-                  >
-                    <path
-                      fill="#20c4d9"
-                      d="M3.625 25.062a1 1 0 0 1-.77-1.187L6.51 6.585l2.267 9.258l1.923-5.188l3.58 3.74l3.884-13.102l2.934 11.734l1.96-1.51l5.27 11.74a1 1 0 1 1-1.826.817l-4.23-9.428l-2.374 1.826l-1.896-7.596l-2.783 9.393l-3.755-3.924l-3.08 8.314l-1.73-7.083l-1.843 8.71a1 1 0 0 1-1.187.775z"
-                    />
-                  </svg>
-                </span>
-                <span className="mx-5 block">Usuarios</span>
-              </NavLink>
-            </li> */}
           </ul>
           <ul>
             <span className="mt-5 block font-bold mb-4 text-xl dark:text-white ">
@@ -383,11 +222,9 @@ export const AnalitycMenuVista = () => {
                 </span>
               </NavLink>
             </li>
-            <li></li>
-            <li></li>
           </ul>
         </div>
-      )}
+    
     </>
   );
 };

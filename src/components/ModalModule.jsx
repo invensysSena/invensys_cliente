@@ -6,12 +6,14 @@ import "react-loading-skeleton/dist/skeleton.css";
 import { useGetUsers } from "../hooks/context/GetUsersContext";
 import {messageWarding} from "../utils/alertsAplication"
 import { messages } from "../utils/messageinvensys";
+import { IconsSvgLoading } from "../svg/IconsSvgLoading";
 export const ModalModule = () => {
 
   const {getUsers,getUsersAdmins,userModuleRegister,getModule,moduleUsers,typePermissionsModul,getPermissionsModul} = useGetUsers();
 
   const [loading, setLoading] = useState(false);
   const [permissions, setPermissions] = useState([]);
+  const [stateGlobal, setStateGlobal] = useState(false);
   const { id } = useParams();
 
 
@@ -27,24 +29,22 @@ export const ModalModule = () => {
       setLoading(false);
     };
     initial();
-  }, [id]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [stateGlobal]);
   const PostModuleaPath = async (path,iduser) => {
 
       try {
 
         if(moduleUsers.filter((moduleUser) => moduleUser.pathrouter === path).length > 0){
-          
           let idmodule = moduleUsers.filter((moduleUser) => moduleUser.pathrouter === path)[0].idmodule;
-         
           let res = await  userModuleRegister(path,iduser,idmodule);
+          setStateGlobal(!stateGlobal);
           if (res.status !== 201) return messageWarding(messages.MESSAGE_MODULES);
-          window.location.reload();
-
+   
         }else{
           let res = await userModuleRegister(path,iduser,"");
-
           if (res.status !== 201) return messageWarding(messages.MESSAGE_MODULES);
-          window.location.reload();
+          setStateGlobal(!stateGlobal);
         }
       } catch (error) {
             
@@ -56,7 +56,7 @@ export const ModalModule = () => {
     
    try {
       await typePermissionsModul(idModule,path,method);
-      window.location.reload();
+      setStateGlobal(!stateGlobal);
    } catch (error) {
       return error;
     
@@ -76,158 +76,7 @@ export const ModalModule = () => {
               dark:bg-gradient-to-r from-[#163b59] from-10%
                via-[#18324f] via-30% to-[#121b2e] to-90%    w-full h-full top-0"
             >
-              {loading === true ? (
-                <div className="contenedor p-3 border-b dark:bg-[#37415197] dark:text-white bg-white border rounded-lg shadow-xl max-w-6xl mx-auto mt-20">
-                  <div className="container items-center flex justify-between">
-                    <span className="w-36 ">
-                      <Skeleton height={16} />
-                    </span>
-                    <span className="w-56 ">
-                      <Skeleton height={36} />
-                    </span>
-                    <span className="w-36 ">
-                      <Skeleton height={16} />
-                    </span>
-                  </div>
-
-                  <div className="section1 flex justify-around items-center mt-16">
-                    <span className="w-36 ">
-                      <Skeleton height={20} />
-                    </span>
-                    <span className="w-20 ">
-                      <Skeleton height={20} />
-                    </span>
-                    <span className="w-20 ">
-                      <Skeleton height={20} />
-                    </span>
-                    <span className="w-20 ">
-                      <Skeleton height={20} />
-                    </span>
-                    <span className="w-20 ">
-                      <Skeleton height={20} />
-                    </span>
-                  </div>
-                  <div className="section1 flex justify-around items-center mt-8">
-                    <span className="w-36 ">
-                      <Skeleton height={20} />
-                    </span>
-                    <span className="w-20 ">
-                      <Skeleton height={20} />
-                    </span>
-                    <span className="w-20 ">
-                      <Skeleton height={20} />
-                    </span>
-                    <span className="w-20 ">
-                      <Skeleton height={20} />
-                    </span>
-                    <span className="w-20 ">
-                      <Skeleton height={20} />
-                    </span>
-                  </div>
-                  <div className="section1 flex justify-around items-center mt-8">
-                    <span className="w-36 ">
-                      <Skeleton height={20} />
-                    </span>
-                    <span className="w-20 ">
-                      <Skeleton height={20} />
-                    </span>
-                    <span className="w-20 ">
-                      <Skeleton height={20} />
-                    </span>
-                    <span className="w-20 ">
-                      <Skeleton height={20} />
-                    </span>
-                    <span className="w-20 ">
-                      <Skeleton height={20} />
-                    </span>
-                  </div>
-                  <div className="section1 flex justify-around items-center mt-8">
-                    <span className="w-36 ">
-                      <Skeleton height={20} />
-                    </span>
-                    <span className="w-20 ">
-                      <Skeleton height={20} />
-                    </span>
-                    <span className="w-20 ">
-                      <Skeleton height={20} />
-                    </span>
-                    <span className="w-20 ">
-                      <Skeleton height={20} />
-                    </span>
-                    <span className="w-20 ">
-                      <Skeleton height={20} />
-                    </span>
-                  </div>
-                  <div className="section1 flex justify-around items-center mt-8">
-                    <span className="w-36 ">
-                      <Skeleton height={20} />
-                    </span>
-                    <span className="w-20 ">
-                      <Skeleton height={20} />
-                    </span>
-                    <span className="w-20 ">
-                      <Skeleton height={20} />
-                    </span>
-                    <span className="w-20 ">
-                      <Skeleton height={20} />
-                    </span>
-                    <span className="w-20 ">
-                      <Skeleton height={20} />
-                    </span>
-                  </div>
-                  <div className="section1 flex justify-around items-center mt-8">
-                    <span className="w-36 ">
-                      <Skeleton height={20} />
-                    </span>
-                    <span className="w-20 ">
-                      <Skeleton height={20} />
-                    </span>
-                    <span className="w-20 ">
-                      <Skeleton height={20} />
-                    </span>
-                    <span className="w-20 ">
-                      <Skeleton height={20} />
-                    </span>
-                    <span className="w-20 ">
-                      <Skeleton height={20} />
-                    </span>
-                  </div>
-                  <div className="section1 flex justify-around items-center mt-8">
-                    <span className="w-36 ">
-                      <Skeleton height={20} />
-                    </span>
-                    <span className="w-20 ">
-                      <Skeleton height={20} />
-                    </span>
-                    <span className="w-20 ">
-                      <Skeleton height={20} />
-                    </span>
-                    <span className="w-20 ">
-                      <Skeleton height={20} />
-                    </span>
-                    <span className="w-20 ">
-                      <Skeleton height={20} />
-                    </span>
-                  </div>
-                  <div className="section1 flex justify-around items-center mt-8">
-                    <span className="w-36 ">
-                      <Skeleton height={20} />
-                    </span>
-                    <span className="w-20 ">
-                      <Skeleton height={20} />
-                    </span>
-                    <span className="w-20 ">
-                      <Skeleton height={20} />
-                    </span>
-                    <span className="w-20 ">
-                      <Skeleton height={20} />
-                    </span>
-                    <span className="w-20 ">
-                      <Skeleton height={20} />
-                    </span>
-                  </div>
-                </div>
-              ) : (
+             
                 <div className="contenedor dark:bg-[#37415197] dark:text-white dark:border-none p-3 border-b bg-white border rounded-lg shadow-xl max-w-6xl mx-auto mt-20 ">
                   
                   <div className="head_p relative flex items-center justify-between">
@@ -907,7 +756,7 @@ export const ModalModule = () => {
                     </div> 
                   </div>
                 </div>
-              )}
+            
             </div>
           </>
         ))}

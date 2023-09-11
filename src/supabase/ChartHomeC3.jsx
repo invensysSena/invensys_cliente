@@ -1,8 +1,7 @@
-import { useCallback, useMemo, useState } from "react";
-
+import {useMemo, useState } from "react";
 import { getBusiness, getUsersAdmin } from "../apis/ApiData";
 import moment from "moment-with-locales-es6";
-import Skeleton from "react-loading-skeleton";
+import { IconsSvgLoading } from "../svg/IconsSvgLoading";
 moment.locale("es");
 export const ChartHomeC3 = () => {
   const [ventas, setVentas] = useState([]);
@@ -53,34 +52,7 @@ export const ChartHomeC3 = () => {
     <>
       {load ? (
         <div className="skeletton grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 m-5">
-          <Skeleton
-            height={140}
-            width={270}
-            baseColor={darkMode ? "#374151" : ""}
-            highlightColor={darkMode ? "#293a4f" : ""}
-            className="rounded-full bg-red-600 flex overflow-hidden"
-          />
-          <Skeleton
-            height={140}
-            width={270}
-            baseColor={darkMode ? "#374151" : ""}
-            highlightColor={darkMode ? "#293a4f" : ""}
-            className="rounded-full bg-red-600 flex overflow-hidden"
-          />
-          <Skeleton
-            height={140}
-            width={270}
-            baseColor={darkMode ? "#374151" : ""}
-            highlightColor={darkMode ? "#293a4f" : ""}
-            className="rounded-full bg-red-600 flex overflow-hidden"
-          />
-          <Skeleton
-            height={140}
-            width={270}
-            baseColor={darkMode ? "#374151" : ""}
-            highlightColor={darkMode ? "#293a4f" : ""}
-            className="rounded-full bg-red-600 flex overflow-hidden"
-          />
+          <IconsSvgLoading w={60} h={60} />
         </div>
       ) : (
         <div className=" grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3  ">

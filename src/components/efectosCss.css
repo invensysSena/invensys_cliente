@@ -70,3 +70,32 @@ body {
 }
 
 
+.contenedor_pages{
+
+  width: 100%;
+  min-height: 100vh;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 100px auto;
+  grid-template-rows: auto auto;
+  grid-template-areas: "header header"
+                       "menu contenido";
+}
+.contenedor_pages.activess {
+  grid-template-columns: 170px auto;
+ 
+
+}
+.header_dasboard{
+  grid-area: header;
+ 
+}
+
+.menu-lateral{
+  grid-area: menu;
+
+}
+
+.contenido{
+  grid-area: contenido;;
+}

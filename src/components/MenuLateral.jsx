@@ -12,6 +12,7 @@ import NavlinkCuatomLink from "./navLinkCustomen/NavlinkCuatomLink";
 import { svgAnalityc, svgBell, svgBodega, svgCategory, svgHome, svgInventory, svgLicence, svgPedidos, svgProduct, svgProfile, svgProvider, svgTraer, svgUsers, svgVentas } from "../svg/iconsMenuLateral";
 import { rolesPemissionsRouter } from "../utils/RolesRouter";
 import { permissionsPages } from "../utils/RolesRouter";
+import { SvgSignup } from "../svg/iconsSubmenu";
 export const MenuLateral = () => {
   const { getAdminDataAll, adminGetData } = useGetUsers();
   let type = sessionStorage.getItem("type");
@@ -21,6 +22,7 @@ export const MenuLateral = () => {
       await getAdminDataAll();
     };
     initial();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const fecha = new Date().getFullYear();
 
@@ -33,26 +35,12 @@ export const MenuLateral = () => {
   const endOf = moment(fechaStateUser).startOf("hour").fromNow();
 
   return (
-    <div className="z-50 relative">
-      <ComandoSystem />
-      <>
-      </>
-      <div
-        className={
-          expand
-            ? "mr-[3rem]  lg:mr-[20rem] dark:bg-[#1e293b] effect "
-            : " effect mr-[3rem] dark:bg-[#1e293b]  lg:mr-[13rem]"
-        }
-      >
-        <div className="min-h-screen">
-          <div
-            className={
-              expand
-                ? ` effect selft_scroll fixed top-0 bg-white  mr-[8rem] dark:bg-[#1e293b] min-h-fullw-30 lg:w-52   b  overflow-x-hidden  `
-                : `selft_scroll fixed top-0 bg-white mr-[8rem] dark:bg-[#1e293b] min-h-screen
-                    w-14 lg:w-52   b  overflow-x-hidden effect  `}>
+  
+   
+     
+        <div className="sticky top-0 selft_scroll">
             <div
-              className="  effect flex flex-col gap-1  justify-between" onMouseMove={handleMouse} >
+              className="  effect flex flex-col  justify-between" onMouseMove={handleMouse} >
               <div className="section-1 effect">
                 <h2 className="text-center sticky hidden  animate__animated animate__fadeIn effect  lg:block  top-0 bg-white dark:bg-[#1e293b]  dark:text-white z-20 
                  text-xl font-bold py-2 border-b text-neutral-800 dark:border-[#44b2fd]">
@@ -205,20 +193,22 @@ export const MenuLateral = () => {
                 </div>
                 <div className="items_list_roles">
                   <ul className="p-0 m-0">
-                  <NavlinkCuatomLink dataIsAllowed={dataIsAllowed} index={9} expand={true} icon={svgProfile(24,24)} />
-                  <NavlinkCuatomLink dataIsAllowed={dataIsAllowed} index={18} expand={true} icon={svgTraer(24,24)} />
-                  <NavlinkCuatomLink dataIsAllowed={dataIsAllowed} index={10} expand={true} icon={svgHome(24,24)} />
-                  <NavlinkCuatomLink dataIsAllowed={dataIsAllowed} index={2} expand={true} icon={svgUsers(24,24)} />
-                  <NavlinkCuatomLink dataIsAllowed={dataIsAllowed} index={4} expand={true} icon={svgBell(24,24)} />
-                  <NavlinkCuatomLink dataIsAllowed={dataIsAllowed} index={1} expand={true} icon={svgBodega(24,24)} />
-                  <NavlinkCuatomLink dataIsAllowed={dataIsAllowed} index={17} expand={true} icon={svgInventory(24,24)} />
-                  <NavlinkCuatomLink dataIsAllowed={dataIsAllowed} index={5} expand={true} icon={svgProduct(24,24)} />
-                  <NavlinkCuatomLink dataIsAllowed={dataIsAllowed} index={3} expand={true} icon={svgCategory(24,24)} />
-                  <NavlinkCuatomLink dataIsAllowed={dataIsAllowed} index={6} expand={true} icon={svgProvider(24,24)} />
-                  <NavlinkCuatomLink dataIsAllowed={dataIsAllowed} index={7} expand={true} icon={svgPedidos(24,24)} />
-                  <NavlinkCuatomLink dataIsAllowed={dataIsAllowed} index={16} expand={true} icon={svgVentas(24,24)} />
-                  <NavlinkCuatomLink dataIsAllowed={dataIsAllowed} index={8} expand={true} icon={svgAnalityc(24,24)} />
+                  <NavlinkCuatomLink dataIsAllowed={dataIsAllowed} index={9} expand={true} icon={svgProfile(22,22)} />
+                  <NavlinkCuatomLink dataIsAllowed={dataIsAllowed} index={18} expand={true} icon={svgTraer(22,22)} />
+                  <NavlinkCuatomLink dataIsAllowed={dataIsAllowed} index={10} expand={true} icon={svgHome(22,22)} />
+                  <NavlinkCuatomLink dataIsAllowed={dataIsAllowed} index={2} expand={true} icon={svgUsers(22,22)} />
+                  <NavlinkCuatomLink dataIsAllowed={dataIsAllowed} index={4} expand={true} icon={svgBell(22,22)} />
+                  <NavlinkCuatomLink dataIsAllowed={dataIsAllowed} index={1} expand={true} icon={svgBodega(22,22)} />
+                  <NavlinkCuatomLink dataIsAllowed={dataIsAllowed} index={17} expand={true} icon={svgInventory(22,22)} />
+                  <NavlinkCuatomLink dataIsAllowed={dataIsAllowed} index={5} expand={true} icon={svgProduct(22,22)} />
+                  <NavlinkCuatomLink dataIsAllowed={dataIsAllowed} index={3} expand={true} icon={svgCategory(22,22)} />
+                  <NavlinkCuatomLink dataIsAllowed={dataIsAllowed} index={6} expand={true} icon={svgProvider(22,22)} />
+                  <NavlinkCuatomLink dataIsAllowed={dataIsAllowed} index={7} expand={true} icon={svgPedidos(22,22)} />
+                  <NavlinkCuatomLink dataIsAllowed={dataIsAllowed} index={16} expand={true} icon={svgVentas(22,22)} />
+                  <NavlinkCuatomLink dataIsAllowed={dataIsAllowed} index={8} expand={true} icon={svgAnalityc(22,22)} />
                   <NavlinkCuatomLink dataIsAllowed={dataIsAllowed} index={19} expand={true} icon={svgLicence(100,100)} />
+                    {/* dgfg */}
+               
                     <li>
                       <NavLink
                         to="/login"
@@ -246,7 +236,7 @@ export const MenuLateral = () => {
                         font-medium text-black
                       rounded dark:hover:bg-gray-700 "
                         >
-                       
+                       {SvgSignup(22,22,"#000")}
                           <div
                             className={
                               expand
@@ -345,9 +335,9 @@ export const MenuLateral = () => {
                 </div>
               </div>
             </div>
-          </div>
+        
         </div>
-      </div>
-    </div>
+  
+   
   );
 };

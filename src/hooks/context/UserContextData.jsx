@@ -58,6 +58,7 @@ export const UserContextData = ({ children }) => {
   };
   const getPostRegister = async (postDataAdmin) => {
     try {
+      console.log(postDataAdmin,"sssssss")
       const response = await PostDataAdmin(postDataAdmin);
       return response;
     } catch (error) {

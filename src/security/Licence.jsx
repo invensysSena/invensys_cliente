@@ -271,26 +271,18 @@ export const Licence = () => {
 
   return (
     <div
-      className="bg-gradient-to-r from-[#cff5fb] from-2% via-[#beb6fb87] via-30% to-[#d7e4fabe] to-90%  w-full block  min-h-screen
-        dark:bg-gradient-to-r dark:from-[#163b59] dark:from-10%
-         dark:via-[#18324f] dark:via-30% dark:to-[#121b2e] dark:to-90%"
-    >
-      <div
-        className="sticky z-50  top-0 py-3 effect_blure h-fit w-full
-      
-      "
-      >
+      className="contenedor_pages activess darkMode" >
+      <div className="header_dasboard bg-[#283943] text-white sticky top-0 z-50" >
         <SubMenu />
       </div>
-      <div className="flex">
+      <div className="menu-lateral bg-white">
         <MenuLateral />
-        <div
-          className="  w-full block  min-h-screen
 
-         "
-        >
+      </div>
+      <div className="contendido   h-[100%] min-h-screen">
+        <div className="w-full block  min-h-screen " >
           {load ? (
-            <div className=" grid place-content-center h-full w-full">
+            <div className="grid place-content-center h-full w-full">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="40"

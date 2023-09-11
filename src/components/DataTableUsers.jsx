@@ -17,23 +17,25 @@ import { setNormal } from "./ChackSelection";
 import UploadExcel from "./UploadExcel";
 import { useGetUsers } from "../hooks/context/GetUsersContext";
 import "react-lazy-load-image-component/src/effects/blur.css";
-import { svgCsv, svgExcel, svgImportExcel, svgPrints, svgUsersTable } from "../svg/IconsSvg";
+import { svgCsv, svgExcel, svgImportExcel, svgPrints, svgSearch, svgUsersTable } from "../svg/IconsSvg";
 import { getFormatTimeLocale } from "../utils/UtilsMoments";
+import { useEffect } from "react";
 moment.locale("es");
 export const DataTableUsers = () => {
+  
+  const defaultColDef = ChackSelection();
+  const gridRef = useRef();
+  const [estadoUser,setEstadoUser] = useState(false)
+  const [estadoExcel,setEstadoExcel] = useState(false)
+  const [estadoGlobal, setEstadoGlobal] = useState(false);
   const { getUsersAdmins, getUsers, } = useGetUsers();
-  useMemo(() => {
+  useEffect(() => {
     const initial = async () => {
       await getUsersAdmins();
     };
-
     initial();
-  }, []);
+  }, [estadoGlobal]);
 
-  const defaultColDef = ChackSelection();
-  const gridRef = useRef();
-  const [stateModel, StateModel] = useState(false);
-  const [ExcelModel, setExcelModel] = useState(false);
 
   const columnDefs = [
     {
@@ -91,13 +93,12 @@ export const DataTableUsers = () => {
     fileName: title,
     sheetName: title,
   };
-  
-  const handleShowModel = () => {
-    StateModel(!stateModel);
-  };
-  const handleModelExcel = () => {
-    setExcelModel(!ExcelModel);
-  };
+  const onFilterTextBoxChanged = useCallback(() => {
+    gridRef.current.api.setQuickFilter(
+      document.getElementById("filter-text-box").value
+    );
+  }, [estadoUser]);
+
   const onBtnExport = useCallback(() => {
     gridRef.current.api.exportDataAsCsv(params);
   }, [params]);
@@ -116,8 +117,8 @@ export const DataTableUsers = () => {
 
   return (
     <>
-      <UploadExcel estado={ExcelModel} />
-      <UserRegister estado={stateModel} />
+      <UploadExcel estado={estadoExcel} cambiarEstadoExcel={setEstadoExcel} />
+      <UserRegister estado={estadoUser} cambiarEstadoUser={setEstadoUser} stateGlobal={setEstadoGlobal} />
       <main className="panel_opciones effect_blure dark:bg-[#37415197] dark:text-white w-[100%] mx-auto mt-10 mb-1  rounded-md p-4">
         <div className="plus_panel flex lg:flex-row flex-col lg:justify-between lg:items-center ">
           <section className="items-center flex">
@@ -151,7 +152,7 @@ export const DataTableUsers = () => {
             </button>
             <button
               className="flex items-center dark:border-[#019afa] border mx-1 p-1 rounded-md whitespace-nowrap "
-              onClick={handleModelExcel}
+              onClick={()=> setEstadoExcel(!estadoExcel)}
             >
               <span>
                 {svgImportExcel()}
@@ -162,7 +163,7 @@ export const DataTableUsers = () => {
              {svgPrints()}
               <span>Imprimir</span>
             </button>
-            <button onClick={handleShowModel} className=" bg-[#019afa] text-white dark:border-[#019afa] flex items-center p-1 rounded-md border whitespace-nowrap" >
+            <button onClick={()=> setEstadoUser(!estadoUser)} className=" bg-[#019afa] text-white dark:border-[#019afa] flex items-center p-1 rounded-md border whitespace-nowrap" >
               Crear usuario
             </button>
           </section>
@@ -220,26 +221,14 @@ export const DataTableUsers = () => {
 
         <div className="search bg-white dark:bg-[#37415197]  flex mb-2 items-center p-2 rounded-full">
           <div className="icon_search mx-1">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="21"
-              height="21"
-              viewBox="0 0 16 16"
-            >
-              <g transform="translate(16 0) scale(-1 1)">
-                <path
-                  fill="#ABB2B9"
-                  d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0a5.5 5.5 0 0 1 11 0z"
-                />
-              </g>
-            </svg>
+          {svgSearch()}
           </div>
           <div className="input_panel">
             <input
               type="text"
               id="filter-text-box"
               placeholder="Buscar..."
-              // onInput={onFilterTextBoxChanged}
+               onInput={onFilterTextBoxChanged}
               className="outline-none dark:bg-transparent dark:text-white"
             />
           </div>

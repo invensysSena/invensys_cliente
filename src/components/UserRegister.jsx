@@ -12,37 +12,27 @@ import {
 import { useGetUsers } from "../hooks/context/GetUsersContext";
 import * as Yup from "yup";
 import "animate.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link} from "react-router-dom";
 import "../assets/css/styleSlider.css";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { messageError, messageSuccess } from "../utils/alertsAplication";
-export const UserRegister = ({ estado = false }) => {
-  const navigate = useNavigate();
+import { svgX } from "../svg/iconsSvg";
+export const UserRegister = ({ estado,  cambiarEstadoUser,stateGlobal}) => {
+ 
   const [typeInput, setTypeInput] = useState(true);
-  const [estados, setEstado] = useState(false);
   const [spiner, setSpiner] = useState(false);
   const { UserRegister } = useGetUsers();
-  const handleShow = () => {
-    setEstado(false);
-  };
-
-  useEffect(() => {
-    if (estado) {
-      setEstado(true);
-    } else {
-      setEstado(false);
-    }
-  }, [estado]);
 
   return (
-    <div className={estados ? "  h-full absolute left-6  md:left-auto z-30 w-full md:w-4/5" : "hidden"}
+    <div className={estado ? "  h-full absolute left-6  md:left-auto z-30 w-full md:w-4/5" : "hidden"}
     >
       <div className="form-signup w-4/5 sm:w-96 mx-auto sm:mx-auto mt-5 relative ">
         <div className="container-signup dark:border-none  border shadow-2xl pb-1 rounded-lg  effect_blur1 ">
           <button
-            className="bg-[#fe5f57] rounded-full absolute right-1 top-1"
-            onClick={handleShow}
+            className="bg-[#fff] rounded-full absolute right-1 top-1"
+            onClick={() => cambiarEstadoUser(false)}
           >
+            {svgX(25, 25, "#fe5f57")}
           </button>
           <h2 className="text-xl font-semibold mt-2 mb-5 pt-5 text-center dark:text-white  ">
             Crear cuenta usuario
@@ -63,18 +53,16 @@ export const UserRegister = ({ estado = false }) => {
                 ),
             })}
             onSubmit={async (values) => {
-              
               try {
-                 await UserRegister(values);
-                messageSuccess("Usuario creado correctamente");
-                await setSpiner(false);
-                setEstado(false);
-                setTimeout(() => {
-                  navigate("/usuarios");
-                }, 2000);
+                setSpiner(true);
+                await UserRegister(values);
+                stateGlobal(true)
+                setSpiner(false);
+                return messageSuccess("Usuario creado correctamente");
               } catch (error) {
-                messageError("Ocurrio un error al crear el usuario");
-                await setSpiner(false);
+                stateGlobal(true)
+                setSpiner(false);
+                return messageError("Ocurrio un error al crear el usuario");
               }}}
           >
             <Form>

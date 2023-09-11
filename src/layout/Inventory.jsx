@@ -9,24 +9,15 @@ import { SubMenu } from "../components/SubMenu";
 const Inventory = () => {
   return (
     <div
-      className="bg-gradient-to-r from-[#cff5fb] from-2% via-[#beb6fb87] via-30% to-[#d7e4fabe] to-90%  w-full block  min-h-screen
-        dark:bg-gradient-to-r dark:from-[#163b59] dark:from-10%
-         dark:via-[#18324f] dark:via-30% dark:to-[#121b2e] dark:to-90%"
-    >
-      <div
-        className="sticky z-50 hidden lg:block  top-0 py-3 effect_blure h-fit w-full
-      
-      "
-      >
+      className="contenedor_pages activess darkMode" >
+      <div className="header_dasboard  bg-white sticky top-0 z-50" >
         <SubMenu />
       </div>
-      <div className="flex">
+        <div className="menu-lateral bg-white">
         <MenuLateral />
-        <div
-          className=" w-full block  h-[100%] min-h-screen
-         
-        "
-        >
+        </div>
+
+        <div  className="   contendido   h-[100%] min-h-screen" >
           <div className="content_users m-7">
             <div className="content_users_title">
               <h2 className="text-4xl font-bold dark:text-white text-gray-700 font-sans mx-0">
@@ -55,7 +46,7 @@ const Inventory = () => {
             </div>
           </div>
         </div>
-      </div>
+     
     </div>
   );
 };

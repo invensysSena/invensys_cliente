@@ -20,35 +20,26 @@ import {
 import { IconsSvgLoading } from "../svg/IconsSvgLoading";
 import { LoadingSkeleton } from "../components/LoadingSkeleton";
 import { SkeletonCustomenTwo } from "../components/skeletonCustomenTwo";
+import { useEffect } from "react";
 const Perfil = () => {
   const { adminGetData } = useGetUsers();
   const [btnSpand, setbtnSpand] = useState(false);
-  const [modelImg, setModelImg] = useState(false);
+  const  [estado,setCambiarEstado] = useState(false)
   const [loading, setLoading] = useState(true);
   const [load, setLoad] = useState(true);
   const navigate = useNavigate();
-  useMemo(() => {
+  useEffect(() => {
     const initial = async () => {
       await getDataAll();
       setLoading(false);
     };
     initial();
-  }, []);
+  }, [estado]);
 
   const handleBtnSpand = () => {
     setbtnSpand(true);
   };
-  const handleImg = () => {
-
-    if (modelImg === true) {
-      setModelImg(false);
-    }
-
-    if (modelImg === false) {
-      setModelImg(true);
-    }
-   
-  };
+  
   const handleData = async (e) => {
     e.preventDefault();
     setLoad(false);
@@ -66,17 +57,18 @@ const Perfil = () => {
     navigate("/perfil");
     window.location.reload();
   };
+
   return (
-    <div className="DarkModePages">
-      <div className="sticky z-50   hidden lg:block  top-0 py-3 bg-white h-fit w-full">
+    <div className=" contenedor_pages activess darkMode">
+         <CambioFotoPerfilAdmin estado={estado} cambiarEstado={setCambiarEstado} />
+       <div  className=" header_dasboard bg-[#fff]  sticky top-0 z-50 " >
         <SubMenu />
       </div>
      
-        <CambioFotoPerfilAdmin handleImg={handleImg} stateView={modelImg} />
-  
-      <div className="flex overflow-y-hidden ">
-        <MenuLateral />
-        <div className="  w-full block  min-h-screen">
+  <div className="menu-lateral bg-white  ">
+    <MenuLateral />
+  </div>
+        <div className=" contendido  w-full block contenido min-h-screen">
           <div
             className="container_perfil z-30    mx-1 max-w-7xl
            md:mx-auto relative flex flex-col md:flex-row"
@@ -321,7 +313,7 @@ const Perfil = () => {
                       ))}
                     </picture>
                     <button
-                      onClick={handleImg}
+                      onClick={()=>setCambiarEstado(!estado)}
                       className="absolute top-[10rem] z-40 inset-0 mx-auto
                       pl-7
                         w-6 cursor-pointer"
@@ -613,7 +605,7 @@ const Perfil = () => {
           </div>
         </div>
       </div>
-    </div>
+   
   );
 };
 

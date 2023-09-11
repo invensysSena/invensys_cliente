@@ -3,6 +3,7 @@ import Skeleton from "react-loading-skeleton";
 import { getBusiness } from "../apis/ApiData";
 import Chart from "react-apexcharts";
 import moment from "moment-with-locales-es6";
+import { IconsSvgLoading } from "../svg/IconsSvgLoading";
 moment.locale("es");
 export const ChartHomeC1 = () => {
   const [compras, setCompras] = useState([]);
@@ -96,13 +97,7 @@ export const ChartHomeC1 = () => {
     <>
       {load ? (
         <div className="skeletton flex w-[280px] gap-4 m-1 md:m-5">
-          <Skeleton
-            height={250}
-            width={280}
-            baseColor={darkMode ? "#374151" : ""}
-            highlightColor={darkMode ? "#293a4f" : ""}
-            className="rounded-full bg-red-600 flex overflow-hidden"
-          />
+          <IconsSvgLoading w={60} h={60} />
         </div>
       ) : (
         <div

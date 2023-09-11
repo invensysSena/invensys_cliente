@@ -4,6 +4,7 @@ import { getBusiness, getUsersAdmin } from "../apis/ApiData";
 
 import moment from "moment-with-locales-es6";
 import Skeleton from "react-loading-skeleton";
+import { IconsSvgLoading } from "../svg/IconsSvgLoading";
 moment.locale("es");
 export const ChartProductC1 = () => {
   const [ventas, setVentas] = useState([]);
@@ -48,34 +49,7 @@ export const ChartProductC1 = () => {
     <>
       {load ? (
         <div className="skeletton flex gap-4 m-5">
-          <Skeleton
-            height={140}
-            width={270}
-            baseColor={darkMode ? "#374151" : ""}
-            highlightColor={darkMode ? "#293a4f" : ""}
-            className="rounded-full bg-red-600 flex overflow-hidden"
-          />
-          <Skeleton
-            height={140}
-            width={270}
-            baseColor={darkMode ? "#374151" : ""}
-            highlightColor={darkMode ? "#293a4f" : ""}
-            className="rounded-full bg-red-600 flex overflow-hidden"
-          />
-          <Skeleton
-            height={140}
-            width={270}
-            baseColor={darkMode ? "#374151" : ""}
-            highlightColor={darkMode ? "#293a4f" : ""}
-            className="rounded-full bg-red-600 flex overflow-hidden"
-          />
-          <Skeleton
-            height={140}
-            width={270}
-            baseColor={darkMode ? "#374151" : ""}
-            highlightColor={darkMode ? "#293a4f" : ""}
-            className="rounded-full bg-red-600 flex overflow-hidden"
-          />
+          <IconsSvgLoading w={60} h={60} />
         </div>
       ) : (
         <div className=" flex gap-2 flex-wrap">

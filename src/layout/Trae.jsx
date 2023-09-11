@@ -6,19 +6,15 @@ import "../components/efectosCss.css";
 const Trae = () => {
   return (
     <div
-      className="bg-gradient-to-r from-[#cff5fb] from-2% via-[#beb6fb87] via-30% to-[#d7e4fabe] to-90%  w-full block  min-h-screen
-        dark:bg-gradient-to-r dark:from-[#163b59] dark:from-10%
-         dark:via-[#18324f] dark:via-30% dark:to-[#121b2e] dark:to-90%"
+      className="darkMode contenedor_pages activess"
     >
-      <div
-        className="sticky top-0 py-3 hidden lg:block effect_blure h-fit w-full
-      
-      "
-      >
+      <div  className="header_dasboard bg-white sticky top-0 z-50" >
         <SubMenu />
       </div>
-      <div className="flex">
+        <div className="menu-lateral bg-white">
         <MenuLateral />
+        </div>
+      <div className="flex contenido">
         <div className="w-full ">
           <div className="content_users m-7">
             <div className="content_users_title">

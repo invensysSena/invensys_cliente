@@ -1,4 +1,4 @@
-import { useRef, useState, useCallback, useEffect, useMemo } from "react";
+import { useRef, useState, useCallback,  useMemo } from "react";
 import moment from "moment-with-locales-es6";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
@@ -15,6 +15,8 @@ import { setNormal } from "./ChackSelection";
 import { getBusiness } from "../apis/ApiData";
 import { ContextCategory } from "../hooks/context/ContextCategory";
 import { useContextCategory } from "../hooks/context/ContextCategory";
+import { svgCsv, svgExcel, svgSearch } from "../svg/IconsSvg";
+import { IconsSvgLoading } from "../svg/IconsSvgLoading";
 
 moment.locale("es");
 export const DatatableInventory = () => {
@@ -28,6 +30,7 @@ export const DatatableInventory = () => {
     };
 
     initial();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useMemo(() => {
@@ -47,7 +50,7 @@ export const DatatableInventory = () => {
 
   const [stateModel, StateModel] = useState(false);
 
-  const [columnDefs, setColumnDefs] = useState([
+  const columnDefs = [
     {
       headerName: "Identificador",
       field: "_id",
@@ -179,15 +182,22 @@ export const DatatableInventory = () => {
       chartDataType: "body",
       filter: "agTextColumnFilter",
     },
-  ]);
+  ]
+  
+  let title = "Reportes de inventario";
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  let params = {
+    fileName: title,
+    sheetName: title,
+  };
 
   const onBtnExport = useCallback(() => {
-    gridRef.current.api.exportDataAsCsv();
-  }, []);
+    gridRef.current.api.exportDataAsCsv(params);
+  }, [params]);
 
   const onBtExportExel = useCallback(() => {
-    gridRef.current.api.exportDataAsExcel();
-  }, []);
+    gridRef.current.api.exportDataAsExcel(params);
+  }, [params]);
   const onBtPrint = useCallback(() => {
     const api = gridRef.current.api;
     setPrinterFriendly(api);
@@ -213,76 +223,18 @@ export const DatatableInventory = () => {
   }, []);
 
   const totalUnidades = subViewProducts.reduce((a, b) => a + b.unidad, 0);
-  const [darkMode, setDarkMode] = useState(false);
-  useMemo(() => {
-    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      setDarkMode(true);
-    }
-  }, []);
   const moneyDolar = new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
     minimumFractionDigits: 2,
   });
-  window.addEventListener(
-    "keydown",
-    useCallback(
-      (e) => {
-        if (e.ctrlKey && e.key === "e") {
-          e.preventDefault();
-          onBtExportExel();
-        }
-        // buscar con ctrl + m
-        if (e.ctrlKey && e.key === "f") {
-          // focus en el input
-          e.preventDefault();
-          document.getElementById("filter-text-box").focus();
-        }
-        // imprimir con ctrl + p
-        if (e.ctrlKey && e.key === "p") {
-          e.preventDefault();
-          onBtPrint();
-        }
-        // descargar csv con ctrl + d
-        if (e.ctrlKey && e.key === "d") {
-          e.preventDefault();
-          onBtnExport();
-        }
-        // recargar con ctrl + r
-        if (e.ctrlKey && e.key === "r") {
-          e.preventDefault();
-          window.location.reload();
-        }
-      },
-      [onBtExportExel, onFilterTextBoxChanged, onBtPrint, onBtnExport]
-    )
-  );
+ 
   return (
     <>
       {load ? (
         <>
           <div className="container h-screen animate__animated animate__fadeInDown rounded-md grid place-content-center mt-[-4rem] ">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="100"
-              height="100"
-              viewBox="0 0 24 24"
-            >
-              <path
-                fill="#777777"
-                d="M19 8l-4 4h3c0 3.31-2.69 6-6 6c-1.01 0-1.97-.25-2.8-.7l-1.46 1.46C8.97 19.54 10.43 20 12 20c4.42 0 8-3.58 8-8h3l-4-4zM6 12c0-3.31 2.69-6 6-6c1.01 0 1.97.25 2.8.7l1.46-1.46C15.03 4.46 13.57 4 12 4c-4.42 0-8 3.58-8 8H1l4 4l4-4H6z"
-              >
-                <animateTransform
-                  attributeName="transform"
-                  attributeType="XML"
-                  dur="5s"
-                  from="360 12 12"
-                  repeatCount="indefinite"
-                  to="0 12 12"
-                  type="rotate"
-                />
-              </path>
-            </svg>
+            {<IconsSvgLoading W={80} h={80} />}
           </div>
         </>
       ) : (
@@ -322,17 +274,7 @@ export const DatatableInventory = () => {
                   className="flex items-center dark:border-[#019afa] border mx-1 p-1 rounded-md"
                 >
                   <span>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        fill="green"
-                        d="M5 21q-.825 0-1.413-.588T3 19V6.5q0-.375.125-.675t.325-.575l1.4-1.7q.2-.275.5-.413T6 3h12q.35 0 .65.137t.5.413l1.4 1.7q.2.275.325.575T21 6.5V19q0 .825-.588 1.413T19 21H5Zm.4-15h13.2l-.85-1H6.25L5.4 6ZM5 8v11h14V8H5Zm7 10l4-4l-1.4-1.4l-1.6 1.6V10h-2v4.2l-1.6-1.6L8 14l4 4Zm-7 1h14H5Z"
-                      />
-                    </svg>
+                   {svgCsv()}
                   </span>
                   <span className="whitespace-nowrap">
                     Descargar archivo scv
@@ -343,17 +285,7 @@ export const DatatableInventory = () => {
                   className="flex items-center dark:border-[#019afa] border mx-1 p-1 rounded-md whitespace-nowrap"
                 >
                   <span>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        fill="#158c51"
-                        d="m2.859 2.877l12.57-1.795a.5.5 0 0 1 .571.495v20.846a.5.5 0 0 1-.57.495L2.858 21.123a1 1 0 0 1-.859-.99V3.867a1 1 0 0 1 .859-.99zM17 3h4a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1h-4V3zm-6.8 9L13 8h-2.4L9 10.286L7.4 8H5l2.8 4L5 16h2.4L9 13.714L10.6 16H13l-2.8-4z"
-                      />
-                    </svg>
+                   {svgExcel()}
                   </span>
                   <span className="whitespace-nowrap">Exportar a excel</span>
                 </button>
@@ -421,19 +353,7 @@ export const DatatableInventory = () => {
 
             <div className="search bg-white dark:bg-[#37415197] mb-2 flex items-center p-2 rounded-full">
               <div className="icon_search mx-1">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="21"
-                  height="21"
-                  viewBox="0 0 16 16"
-                >
-                  <g transform="translate(16 0) scale(-1 1)">
-                    <path
-                      fill="#ABB2B9"
-                      d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0a5.5 5.5 0 0 1 11 0z"
-                    />
-                  </g>
-                </svg>
+                {svgSearch()}
               </div>
               <div className="input_panel">
                 <input
@@ -447,11 +367,7 @@ export const DatatableInventory = () => {
             </div>
           </div>
           <div
-            className={
-              darkMode
-                ? "ag-theme-alpine-dark h-[300px] w-[300px] md:w-[100%] md:h-[600px] shadow-2xl mx-auto rounded-lg overflow-hidden "
-                : " rounded-lg overflow-hidden ag-theme-alpine h-[300px] w-[300px] md:w-[100%] md:h-[600px] shadow-2xl mx-auto"
-            }
+            className={" rounded-lg overflow-hidden ag-theme-alpine h-[300px] w-[300px] md:w-[100%] md:h-[600px] shadow-2xl mx-auto"}
             id="myGrid"
           >
             <AgGridReact

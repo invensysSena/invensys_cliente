@@ -8,19 +8,16 @@ const Analitycs = () => {
   const [open, setOpen] = useState(false);
   return (
     <div
-      className="bg-gradient-to-r from-[#cff5fb] from-2% via-[#beb6fb87] via-30% to-[#d7e4fabe] to-90%  w-full block  min-h-screen
-        dark:bg-gradient-to-r dark:from-[#163b59] dark:from-10%
-         dark:via-[#18324f] dark:via-30% dark:to-[#121b2e] dark:to-90%"
-    >
+      className="contenedor_pages activess darkMode" >
       <div
-        className="sticky z-50 hidden lg:block  top-0 py-3 effect_blure h-fit w-full
-      
-      "
-      >
+        className="header_dasboard bg-white sticky top-0 z-50">
         <SubMenu />
       </div>
-      <div className="flex overflow-y-hidden">
+      <div className="menu-lateral bg-white">
+
         <MenuLateral />
+      </div>
+      <div className="contendido   h-[100%] min-h-screen">
         <div className=" w-full  block  ">
           <div className="content_users m-7">
             <div className="content_users_title">
