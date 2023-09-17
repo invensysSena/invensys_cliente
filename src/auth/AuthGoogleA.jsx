@@ -11,7 +11,7 @@ export const AuthGoogleA = () => {
     const response = await AuthGoogle(postDataUser);
     if (response.status === 200) {
       await AuthGoogleAdmin(response.data);
-      window.location.href = "/perfil";
+       window.location.href = "/perfil";
     } else {
       messageError(messages.MESSAGE_AUTH_GOOGLE_ERROR);
     }

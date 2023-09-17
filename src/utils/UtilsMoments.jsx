@@ -129,4 +129,10 @@ export const getFormatTimeLocale = {
         return moment(date).format('llll');
     }
 }
-    
+
+export const typeMonetFormat = {
+    IntlNumberFormatCOP:"en-CO",
+    IntlNumberFormatEUR:"es-CO",
+    IntlNumberFormatUSD:"en-US",
+    IntlNumberFormatMXN:"es-MX",
+}

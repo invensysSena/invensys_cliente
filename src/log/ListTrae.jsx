@@ -1,22 +1,23 @@
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import { TodoFunctions } from "../apis/ApiData";
 import image from "../assets/img/company.jpg";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { IconsSvgLoading } from "../svg/IconsSvgLoading";
 import { NavlinkCustomenTrae } from "../components/navLinkCustomen/NavlinkCustomenTrae";
-export const ListTrae = () => {
+import { useEffect } from "react";
+export const ListTrae = (state) => {
   const [data, setData] = useState([]);
   const [load, setLoad] = useState(false);
 
-  useMemo(() => {
+  useEffect(() => {
     (async () => {
       setLoad(true);
       const response = await TodoFunctions.getTrae();
       setLoad(false);
       setData(response.data.company);
     })();
-  }, []);
+  }, [state]);
 
   return (
     <>

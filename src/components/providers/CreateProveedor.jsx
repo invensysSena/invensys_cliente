@@ -36,7 +36,7 @@ export const CreateProveedor = ({estado, cambiarEstado }) => {
               className="x cursor-pointer"
               onClick={() => cambiarEstado(false)}
             >
-              {svgX(32,32,"#3498DB")}
+               {svgX(28,28,"#fe5f57")}
             </div>
           </div>
           <div className="formulario">
@@ -76,7 +76,6 @@ export const CreateProveedor = ({estado, cambiarEstado }) => {
 
                 if (response.status === 201) {
                   setLoading(true);
-                  return messageSuccess("Producto creado con exito");
                 } else {
                   setLoading(true);
                   messageError("Error al crear el proveedor");

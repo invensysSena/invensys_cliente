@@ -31,13 +31,10 @@ export const ListInventory = () => {
       setLoading(false);
     })();
   }, []);
-  const [darkMode, setDarkMode] = useState(false);
-  useMemo(() => {
-    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      setDarkMode(true);
-    }
-  }, []);
-  let getEmail = sessionStorage.getItem("correo");
+
+  console.log(inventario)
+
+  let getEmail = sessionStorage.getItem("email");
   let getRol = sessionStorage.getItem("type");
   const CorreoRepetido = useMemo(
     () =>

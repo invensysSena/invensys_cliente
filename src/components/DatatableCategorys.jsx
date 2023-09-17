@@ -24,6 +24,8 @@ moment.locale("es");
 export const DatatableCategorys = () => {
   const { dataGategorias, getDataCategorias } = useContextCategory();
 
+  const [estado,SetcambiarEstado] = useState(false);
+
   useEffect(() => {
     const initial = async () => {
       await getDataCategorias();
@@ -31,14 +33,12 @@ export const DatatableCategorys = () => {
 
     initial();
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [estado]);
 
   // count categorias
 
   const defaultColDef = ChackSelection();
   const gridRef = useRef();
-
-  const [stateModel, StateModel] = useState(false);
 
   const columnDefs = [
     {
@@ -56,10 +56,6 @@ export const DatatableCategorys = () => {
       field: "name_category",
       chartDataType: "email",
       filter: "agTextColumnFilter",
-
-      cellEditorParams: (params) => {
-        return {};
-      },
     },
     {
       headerName: "Descripción",
@@ -81,9 +77,7 @@ export const DatatableCategorys = () => {
     },
   ];
 
-  const handleShowModel = () => {
-    StateModel(!stateModel);
-  };
+ 
   let title = "Reportes de inventario";
   // eslint-disable-next-line react-hooks/exhaustive-deps
   let params = {
@@ -115,7 +109,7 @@ export const DatatableCategorys = () => {
   return (
     <>
       <ContextCategory>
-        <RegisterCategorys estado={stateModel} />
+        <RegisterCategorys estado={estado} cambiarEstado={SetcambiarEstado} />
       </ContextCategory>
       <div className="panel_opciones effect_bluresT dark:bg-[#37415197] dark:text-white w-[100%] mx-auto mt-10 mb-1  rounded-md p-4">
         <div className="plus_panel flex lg:flex-row flex-col lg:justify-between lg:items-center">
@@ -169,7 +163,7 @@ export const DatatableCategorys = () => {
               <span className="whitespace-nowrap">Imprimir</span>
             </button>
             <button
-              onClick={handleShowModel}
+              onClick={()=>SetcambiarEstado(!estado)}
               className=" bg-[#019afa] dark:border-[#019afa] text-white flex items-center p-1 rounded-md border whitespace-nowrap"
             >
       
@@ -186,55 +180,7 @@ export const DatatableCategorys = () => {
         <div className="panel_analitic my-1 flex">
           <div className="content flex ">
             <div className="inactive flex items-center ">
-              <div className=" bg-white dark:bg-[#37415197] p-2 rounded-lg mx-1">
-                <span className="text-green-500 flex items-center">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 48 48"
-                  >
-                    <g
-                      fill="none"
-                      stroke="currentColor"
-                      strokeLinejoin="round"
-                      strokeWidth="4"
-                    >
-                      <path d="M44 14L24 4L4 14v20l20 10l20-10V14Z" />
-                      <path
-                        strokeLinecap="round"
-                        d="m4 14l20 10m0 20V24m20-10L24 24M34 9L14 19"
-                      />
-                    </g>
-                  </svg>
-
-                  <span> Activos </span>
-                </span>
-              </div>
-              <div className="bg-white dark:bg-[#37415197] p-2 rounded-lg">
-                <span className="text-[red] flex items-center">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 48 48"
-                  >
-                    <g
-                      fill="none"
-                      stroke="currentColor"
-                      strokeLinejoin="round"
-                      strokeWidth="4"
-                    >
-                      <path d="M44 14L24 4L4 14v20l20 10l20-10V14Z" />
-                      <path
-                        strokeLinecap="round"
-                        d="m4 14l20 10m0 20V24m20-10L24 24M34 9L14 19"
-                      />
-                    </g>
-                  </svg>
-                  <div className="span mx-1">Inactivos </div>
-                </span>
-              </div>
+              
             </div>
           </div>
         </div>

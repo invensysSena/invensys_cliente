@@ -37,12 +37,10 @@ const AuthUser = () => {
     return <Navigate to="/dasboard" />;
   }
   }, 2000);
- 
+
 
   return (
     <>
-     
-
       <Header />
       <div className="red-400">
         <div className="form_Login  dark:border-none  mx-auto rounded-md border w-[94%] dark:text-white dark:bg-[#37415197] sm:3/4 animate__animated animate__fadeIn bg-white form md:w-[50rem]   my-9 drop-shadow-2xl ">

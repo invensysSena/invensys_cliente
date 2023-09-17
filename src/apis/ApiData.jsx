@@ -361,6 +361,14 @@ export const TodoFunctions = {
         headers:getTokenAuth(),
       }
     ),
+    updateCompany: async (_id, data) =>
+    await axios.put(
+      `${urlServer}/company/${_id}`,
+      { data },
+      {
+        headers:getTokenAuth(),
+      }
+    ),
   getTrae: async () =>
     await axios.get(`${urlServer}/company`, {
      headers:getTokenAuth(),

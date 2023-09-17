@@ -3,7 +3,10 @@ import { SubMenu } from "../components/SubMenu";
 import { FormTrae } from "../log/FormTrae";
 import { ListTrae } from "../log/ListTrae";
 import "../components/efectosCss.css";
+import { useState } from "react";
 const Trae = () => {
+
+  let [estado, setEstado] = useState(false)
   return (
     <div
       className="darkMode contenedor_pages activess"
@@ -31,9 +34,9 @@ const Trae = () => {
               className="container_c flex 
               gap-2 justify-between flex-col md:flex-row  max-w-7xl w-auto mx-auto"
             >
-              <ListTrae />
+              <ListTrae state={estado}/>
               <div className="  md:block">
-                <FormTrae />
+                <FormTrae state={estado} cambiarState={setEstado} />
               </div>
             </div>
           </div>

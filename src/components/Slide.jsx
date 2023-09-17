@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import "../assets/css/fuente.css";
 import "animate.css";
+import "react-lazy-load-image-component/src/effects/blur.css";
 export const Slide = () => {
   const imagenesGalery = [
     pasion,
@@ -18,8 +19,6 @@ export const Slide = () => {
     creatividad,
     inivacion,
   ];
-  import { LazyLoadImage } from "react-lazy-load-image-component";
-import "react-lazy-load-image-component/src/effects/blur.css";
   const [imagenActaul, setImagenActual] = useState(0);
   const cantidad = imagenesGalery?.length;
   if (!Array.isArray(imagenesGalery) || cantidad === 0) return;

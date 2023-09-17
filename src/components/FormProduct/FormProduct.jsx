@@ -39,7 +39,7 @@ export const FormProduct = ({estado, cambiarEstadoProduct}) => {
               className="x cursor-pointer"
               onClick={() => cambiarEstadoProduct(false)}
             >
-              {svgX(32,32,"#3498DB")}
+              {svgX(28,28,"#fe5f57")}
             </button>
             </div>
           </div>

@@ -3,19 +3,12 @@ export const svgProfile = (w, h) => {
         <svg xmlns="http://www.w3.org/2000/svg" width={w} height={h} viewBox="0 0 24 24">
             <path fill="#777777" fillRule="evenodd" d="M8 7a4 4 0 1 1 8 0a4 4 0 0 1-8 0Zm0 6a5 5 0 0 0-5 5a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3a5 5 0 0 0-5-5H8Z" clipRule="evenodd" /></svg>
     );
-
-
-
 }
-
 export const svgHome = (w, h) => {
     return (
         <svg xmlns="http://www.w3.org/2000/svg" width={w} height={h} viewBox="0 0 512 512"><path fill="#777777" d="M416 174.74V48h-80v58.45L256 32L0 272h64v208h144V320h96v160h144V272h64l-96-97.26z" /></svg>
-
     );
-
 }
-
 export const svgTraer = (w, h) => {
     return (
         <svg
