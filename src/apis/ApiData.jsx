@@ -4,7 +4,7 @@ import { dataIsAllowed } from "../secure/lowed.Modules";
 let accessToken = sessionStorage.getItem("secure_token");
 let accesToken1 = sessionStorage.getItem("token_token1");
 let type = sessionStorage.getItem("type");
-import { getTokenAuth, getTokenAuthImg } from "../auth/verifyAuth";
+import { getTokenAuth, getTokenAuthFile } from "../auth/verifyAuth";
 export const PostDataUser = async (postDataUser) =>
   await axios.post(`${urlServer}/login`, { postDataUser });
 export const postRecoveryEmail = async (email) =>
@@ -106,7 +106,7 @@ export const uploadImg = async (imgData) =>
     `${urlServer}/AuploadImageA`,
     { imgData },
     {
-      headers: getTokenAuthImg()
+      headers: getTokenAuthFile()
     }
   );
 

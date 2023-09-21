@@ -13,6 +13,7 @@ import {
   UpdateAdminAll,
 } from "../../apis/ApiData";
 import { TodoFunctions } from "../../apis/ApiData";
+import { serviceUsers } from "../../services/usersService";
 
 let isAllowedToken = sessionStorage.getItem("secure_token");
 export const GetUsersDataAdmin = createContext();
@@ -31,9 +32,9 @@ export const GetUsersContext = ({ children }) => {
   const [moduleUsers, setModuleUsers] = useState([]);
   const [adminGetData, setAdminGetData] = useState([]);
 
-  const getAdminDataAll = async () => {
+  const getAdminDataAll = async (action) => {
     try {
-      const response = await getDataAll();
+      const response = await serviceUsers.getDataAll(action);
       setAdminGetData(response.data.data);
     } catch (error) {
       return error;

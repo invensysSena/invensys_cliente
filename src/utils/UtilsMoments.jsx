@@ -68,7 +68,7 @@ export const getFormatTimeCalendar = {
         return moment(date).calendar();
     },
     getFormatTimeAddDays: (date) => {
-        return moment(date).add(1, 'days').calendar();
+        return moment(date).add(date, 'days').calendar();
     },
     getFormatTimeAddDaysTwo: (date) => {
         return moment(date).add(3, 'days').calendar();

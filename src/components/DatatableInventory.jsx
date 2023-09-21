@@ -17,6 +17,8 @@ import { ContextCategory } from "../hooks/context/ContextCategory";
 import { useContextCategory } from "../hooks/context/ContextCategory";
 import { svgCsv, svgExcel, svgSearch } from "../svg/IconsSvg";
 import { IconsSvgLoading } from "../svg/IconsSvgLoading";
+import { moneyExp } from "../utils/Utils";
+import { getFormatTimeCalendar, getFormatTimeLocale } from "../utils/UtilsMoments";
 
 moment.locale("es");
 export const DatatableInventory = () => {
@@ -77,44 +79,14 @@ export const DatatableInventory = () => {
         return {};
       },
     },
-    {
-      headerName: "Mejores ventas",
-      field: "change",
-      cellRenderer: "agSparklineCellRenderer",
-      cellRendererParams: {
-        sparklineOptions: {
-          type: "bar",
-          fill: "#019afa",
-          stroke: "#91cc75",
-          highlightStyle: {
-            fill: "#5994f5",
-          },
-          valueAxisDomain: [0, 1],
-          paddingOuter: 0,
-          padding: {
-            top: 0,
-            bottom: 0,
-          },
-          axis: {
-            strokeWidth: 0,
-          },
-        },
-      },
-    },
+    
     {
       headerName: "Precio compra",
       field: "priceCompra",
       filter: "agTextColumnFilter",
       chartDataType: "id",
     },
-    {
-      headerName: "No.",
-      field: "no",
-      filter: "agTextColumnFilter",
-      chartDataType: "id",
-      cellStyle: (params) =>
-        params.value !== undefined ? { color: "#067fc0" } : { color: "red" },
-    },
+    
     {
       headerName: "Precio venta",
       field: "priceVenta",
@@ -316,7 +288,7 @@ export const DatatableInventory = () => {
           <div className="buttons"></div>
           <div className="panel_second_h w-[100%] mx-auto flex-col lg:flex-row flex justify-between items-center">
             <div className="panel_analitic my-1 flex">
-              <div className="flex items-center border dark:border-[#019afa] mx-1 p-1 rounded-md">
+              <div className="flex items-center bg-white  border dark:border-[#019afa] mx-1 p-2 rounded-md">
                 <span>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -343,10 +315,7 @@ export const DatatableInventory = () => {
                 </span>
                 <span className="dark:text-white">
                   Total de unidades :{" "}
-                  {("+ " + totalUnidades).replace(
-                    /(\d)(?=(\d\d\d)+(?!\d))/g,
-                    "$1."
-                  )}{" "}
+                  {"+ " + moneyExp.numberFormatTwho(totalUnidades)}
                 </span>
               </div>
             </div>
@@ -374,10 +343,9 @@ export const DatatableInventory = () => {
               ref={gridRef}
               localeText={AG_GRID_LOCALE_EN}
               columnDefs={columnDefs}
-              rowData={subViewProducts.map((item, i) => {
+              rowData={subViewProducts.map((item) => {
                 let ganancias = item.priceVenta - item.priceCompra;
                 let total = item.priceVenta * item.unidad;
-                console.log("----", total);
                 const fechaActual = new Date();
                 const diaActual = fechaActual.getDate();
                 const mesActual = fechaActual.getMonth();
@@ -395,28 +363,17 @@ export const DatatableInventory = () => {
                   _id: item._id,
                   idBodega: item.idInventory,
                   name: item.name,
-                  no: "No. " + i + 1,
-                  change: [total],
-                  priceCompra: moneyDolar.format(item.priceCompra),
-                  priceVenta: moneyDolar.format(item.priceVenta),
-                  stockMaximo: (" " + item.stockMaximo).replace(
-                    /(\d)(?=(\d\d\d)+(?!\d))/g,
-                    "$1."
-                  ),
-                  stockMinimo: (" " + item.stockMinimo).replace(
-                    /(\d)(?=(\d\d\d)+(?!\d))/g,
-                    "$1."
-                  ),
-                  unidad: (" " + item.unidad).replace(
-                    /(\d)(?=(\d\d\d)+(?!\d))/g,
-                    "$1."
-                  ),
-                  ganancias: moneyDolar.format(ganancias),
-                  total: moneyDolar.format(total),
+                  priceCompra: moneyExp.numberFormat(item.priceCompra),
+                  priceVenta: moneyExp.numberFormat(item.priceVenta),
+                  stockMaximo: moneyExp.numberFormatTwho(item.stockMaximo),
+                  stockMinimo: moneyExp.numberFormatTwho(item.stockMinimo),
+                  unidad: moneyExp.numberFormatTwho(item.unidad),
+                  ganancias: moneyExp.numberFormat(ganancias),
+                  total: moneyExp.numberFormat(total),
                   vencimiento:
                     diferencia === 0 || diferencia < 0 ? "Vencido" : "Estable",
-                  caducidad: moment().add(diferencia, "days").calendar(),
-                  dateCreate: moment(item.createdAt).format("LLLL"),
+                  caducidad: getFormatTimeCalendar.getFormatTimeAddDays(diferencia),
+                  dateCreate: getFormatTimeLocale.getFormatTimeLLLL(item.createdAt),
                   Estado: "Activo",
                 };
               })}

@@ -5,28 +5,30 @@ import "ag-grid-community/styles/ag-theme-alpine.css";
 import "ag-grid-enterprise";
 import "react-loading-skeleton/dist/skeleton.css";
 import { AgGridReact } from "ag-grid-react";
-
 import { AG_GRID_LOCALE_EN } from "../locale/locale";
 import { setPrinterFriendly } from "./ChackSelection";
 import { ChackSelection } from "./ChackSelection";
 import { setNormal } from "./ChackSelection";
-import { Link, useNavigate } from "react-router-dom";
+import { Link,} from "react-router-dom";
 import { useContextSubProducts } from "../hooks/context/ContextSubProducts";
+import { moneyExp} from "../utils/Utils";
+import { getFormatTimeCalendar, getFormatTimeLocale } from "../utils/UtilsMoments";
 moment.locale("es");
 export const DataSubProducts = ({ dataInventorySubProducts, id }) => {
-  const navi = useNavigate();
   // count categorias
   const defaultColDef = ChackSelection();
   const gridRef = useRef();
   const { getSubProductsContent, subProductsData } = useContextSubProducts();
+ 
 
   useEffect(() => {
     (async () => {
       await getSubProductsContent(id);
     })();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const [columnDefs, setColumnDefs] = useState([
+  const columnDefs =[
     {
       headerName: "Identificador",
       field: "id",
@@ -111,7 +113,7 @@ export const DataSubProducts = ({ dataInventorySubProducts, id }) => {
       chartDataType: "body",
       filter: "agTextColumnFilter",
     },
-  ]);
+  ];
 
   const onBtnExport = useCallback(() => {
     gridRef.current.api.exportDataAsCsv();
@@ -134,74 +136,23 @@ export const DataSubProducts = ({ dataInventorySubProducts, id }) => {
   );
 
   const sumaTotal = () => {
-    const money = new Intl.NumberFormat("en-CO", {
-      style: "currency",
-      currency: "COP",
-      minimumFractionDigits: 2,
-    });
-
     let total = 0;
     for (let i = 0; i < totalSuma.length; i++) {
       total += totalSuma[i];
     }
-    return money.format(total);
+    return moneyExp.numberMoney(total);
   };
-
   const onFilterTextBoxChanged = useCallback(() => {
     gridRef.current.api.setQuickFilter(
       document.getElementById("filter-text-box").value
     );
   }, []);
-
   const [darkMode, setDarkMode] = useState(false);
   useMemo(() => {
     if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
       setDarkMode(true);
     }
   }, []);
-  const moneyDolar = new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-    minimumFractionDigits: 2,
-  });
-  window.addEventListener(
-    "keydown",
-    useCallback(
-      (e) => {
-        if (e.ctrlKey && e.key === "e") {
-          e.preventDefault();
-          onBtExportExel();
-        }
-        // buscar con ctrl + m
-        if (e.ctrlKey && e.key === "f") {
-          // focus en el input
-          e.preventDefault();
-          document.getElementById("filter-text-box").focus();
-        }
-        // imprimir con ctrl + p
-        if (e.ctrlKey && e.key === "p") {
-          e.preventDefault();
-          onBtPrint();
-        }
-        // descargar csv con ctrl + d
-        if (e.ctrlKey && e.key === "d") {
-          e.preventDefault();
-          onBtnExport();
-        }
-        // recargar con ctrl + r
-        if (e.ctrlKey && e.key === "r") {
-          e.preventDefault();
-          window.location.reload();
-        }
-        // trasladar producto con ctrl + v
-        if (e.ctrlKey && e.key === "v") {
-          e.preventDefault();
-          navi(`TrasladarProduct/${id}`);
-        }
-      },
-      [onBtExportExel, onFilterTextBoxChanged, onBtPrint, onBtnExport]
-    )
-  );
   return (
     <>
       <div className="panel_opciones effect_bluresT dark:text-white dark:bg-[#37415197] w-[90%] md:w-full md:mx-auto mt-4 mb-4  rounded-md p-2">
@@ -379,27 +330,16 @@ export const DataSubProducts = ({ dataInventorySubProducts, id }) => {
             return {
               id: item._id,
               name: item.name,
-              priceCompra: moneyDolar.format(item.priceCompra),
-
-              priceVenta: moneyDolar.format(item.priceVenta),
-
-              stockMinimo: (" " + item.stockMinimo).replace(
-                /(\d)(?=(\d\d\d)+(?!\d))/g,
-                "$1."
-              ),
-              stockMaximo: (" " + item.stockMaximo).replace(
-                /(\d)(?=(\d\d\d)+(?!\d))/g,
-                "$1."
-              ),
-              unidad: (" " + item.unidad).replace(
-                /(\d)(?=(\d\d\d)+(?!\d))/g,
-                "$1."
-              ),
+              priceCompra: moneyExp.numberFormat(item.priceCompra),
+              priceVenta: moneyExp.numberFormat(item.priceVenta),
+              stockMinimo: moneyExp.numberFormatTwho(item.stockMinimo),
+              stockMaximo: moneyExp.numberFormatTwho(item.stockMaximo),
+              unidad: moneyExp.numberFormatTwho(item.unidad),
               estado: item.unidad > 20 ? "Disponible" : "Agotado",
-              ganancias: moneyDolar.format(ganancias),
-              total: moneyDolar.format(total),
-              caducidad: moment().add(diferencia, "days").calendar(),
-              dateCreate: moment(item.createdAt).format("LLLL"),
+              ganancias: moneyExp.numberFormat(ganancias),
+              total: moneyExp.numberFormat(total),
+              caducidad: getFormatTimeCalendar.getFormatTimeAddDays(diferencia, "days"),
+              dateCreate: getFormatTimeLocale.getFormatTimeLLLL(item.createdAt),
             };
           })}
           defaultColDef={defaultColDef}

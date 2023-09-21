@@ -4,11 +4,13 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import { useInventario } from "../hooks/context/ContextInventario";
 import moment from "moment-with-locales-es6";
 import { CategoryInventory } from "./CategoryInventory";
+import "../assets/css/fuente.css"
 import "../components/efectosCss.css";
 import { getSubProducts, TodoFunctions, getUsersAdmin } from "../apis/ApiData";
 import Swal from "sweetalert2";
 import { DataSubProducts } from "../components/DataSubProducts";
 import { messageError, messageSuccess } from "../utils/alertsAplication";
+import { getFormatTimeLocale } from "../utils/UtilsMoments";
 moment.locale("es");
 export const ConfigInventory = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -153,10 +155,10 @@ export const ConfigInventory = () => {
       ) : (
         <>
           <div className={subModal2 ? "block" : "hidden"}>
-            <div className="notifyTranslate absolute z-50  w-screen h-full  inset-0">
+            <div className="notifyTranslate absolute z-50  w-screen  inset-0">
               <div
-                className="content effect_blur absolute inset-0 rounded border shadow-xl my-20
-         mx-auto w-fit h-fit "
+                className="content sroll_p_c overflow-y-scroll h-[40rem] effect_blur absolute inset-0 rounded border shadow-xl my-20
+         mx-auto w-fit  "
               >
                 <div className="flex justify-between">
                   <h1 className="text-xl m-2 dark:text-white">
@@ -190,7 +192,7 @@ export const ConfigInventory = () => {
                         <div className="" key={item._id}>
                           <span
                             className="flex border gap-1 dark:bg-[#374151f2] dark:border-none  dark:text-white m-2 p-1 rounded cursor-pointer hover:bg-[#7bbce7] hover:text-white"
-                            onClick={() => handleUpdateBodega(item.correo)}
+                            onClick={() => handleUpdateBodega(item.email)}
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
@@ -203,7 +205,7 @@ export const ConfigInventory = () => {
                                 d="M19 17v2H7v-2s0-4 6-4s6 4 6 4m-3-9a3 3 0 1 0-3 3a3 3 0 0 0 3-3m3.2 5.06A5.6 5.6 0 0 1 21 17v2h3v-2s0-3.45-4.8-3.94M18 5a2.91 2.91 0 0 0-.89.14a5 5 0 0 1 0 5.72A2.91 2.91 0 0 0 18 11a3 3 0 0 0 0-6M8 10H5V7H3v3H0v2h3v3h2v-3h3Z"
                               />
                             </svg>
-                            {item.correo}
+                            {item.email}
                           </span>
                         </div>
                       ))}
@@ -263,7 +265,7 @@ export const ConfigInventory = () => {
                             {" "}
                             <span>
                               {moment(item.createdAt).calendar({
-                                sameDay: "[Hoy][ las] h:mm:ss a",
+                                sameDay: "[Hoy][ a las] h:mm:ss a",
                                 nextDay: "[Mañana] [ las] h:mm:ss a",
                                 nextWeek: "dddd",
                                 lastDay: "[Ayer]",
@@ -717,7 +719,7 @@ export const ConfigInventory = () => {
                       <>
                         <div className="flex">
                           <div className="text-gray-500 mx-1  truncate">
-                            {moment(inventarioSelect.createdAt).format("llll")}{" "}
+                            {getFormatTimeLocale.getFormatTimellll(inventarioSelect.createdAt)}
                           </div>
                           <div className="truncate">
                             {" "}

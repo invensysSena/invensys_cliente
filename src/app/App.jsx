@@ -2,12 +2,13 @@ import { Router } from "../router/Router";
 import "./scrollX.css";
 import "../components/efectosCss.css";
 import { ToastContainer } from "react-toastify";
-import RouterDasboard from "../router/RouterDasboard";
+import { Flip} from 'react-toastify';
+
 function App() {
   return (
     <>
     <div>
-      <ToastContainer />
+      <ToastContainer transition={Flip} />
       
         <Router />
       </div>

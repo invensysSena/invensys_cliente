@@ -96,7 +96,6 @@ export const AuthLogin = async(response) => {
 }
 
 export const  AuthGoogleAdmin = async (response) => {
-    console.log(response,'ggg')
     let getData = response;
     sessionStorage.setItem("secure_token", getData.token);
     sessionStorage.setItem("auth_cuenta", getData.auth);

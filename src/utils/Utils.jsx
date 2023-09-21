@@ -4,12 +4,21 @@ export const typeCurrency = {
     currencyUSD:"USD",
     CurrencyMXN:"MXN",
 }
+
+export const typeMonetFormat = {
+    formatCOP:"es-CO",
+    formatEUR:"es-ES",
+    formatUSD:"en-US",
+    formatMXN:"es-MX",
+}
  
 export const moneyExp = {
     numberFormat: (number) => ("$ " + number).replace(/(\d)(?=(\d\d\d)+(?!\d))/g,"$1,"), 
-    numberMoney: (numberMoney,typeMonetFormat,currency) => new Intl.NumberFormat(typeMonetFormat, {
+    numberFormatTwho: (number)=>(" " + number).replace(/(\d)(?=(\d\d\d)+(?!\d))/g,"$1."),
+    numberMoney: (numberMoney) => new Intl.NumberFormat(typeMonetFormat.formatUSD, {
         style: "currency",
-        currency: currency,
+        currency: typeCurrency.currencyUSD,
         minimumFractionDigits: 2,
       }).format(numberMoney),
 }
+

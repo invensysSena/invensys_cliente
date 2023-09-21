@@ -272,7 +272,7 @@ export const Licence = () => {
   return (
     <div
       className="contenedor_pages activess darkMode" >
-      <div className="header_dasboard bg-[#283943] text-white sticky top-0 z-50" >
+      <div className="header_dasboard bg-white  sticky top-0 z-50" >
         <SubMenu />
       </div>
       <div className="menu-lateral bg-white">

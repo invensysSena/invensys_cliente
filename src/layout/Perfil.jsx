@@ -5,45 +5,45 @@ import { CambioFotoPerfilAdmin } from "../components/CambioFotoPerfilAdmin";
 import { useGetUsers } from "../hooks/context/GetUsersContext";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams,useLocation } from "react-router-dom";
 import "../components/efectosCss.css";
-import { getDataAll, UpdateAdminAll } from "../apis/ApiData";
 import { SubMenu } from "../components/SubMenu";
 import moment from "moment-with-locales-es6";
-import {
-  svgEmail,
-  svgName,
-  svgUser,
-  svgUserEnterpreses,
-  svgphone,
-} from "../svg/iconsSvg";
+import {svgEmail,svgName,svgUser,svgUserEnterpreses,svgphone,} from "../svg/iconsSvg";
 import { IconsSvgLoading } from "../svg/IconsSvgLoading";
 import { LoadingSkeleton } from "../components/LoadingSkeleton";
 import { SkeletonCustomenTwo } from "../components/skeletonCustomenTwo";
 import { useEffect } from "react";
+import { ActionUser } from "../utils/Constant";
+import { serviceUsers } from "../services/usersService";
 const Perfil = () => {
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const updateImg = params.get('updateImg');
+  console.log(updateImg)
   const { adminGetData } = useGetUsers();
   const [btnSpand, setbtnSpand] = useState(false);
   const  [estado,setCambiarEstado] = useState(false)
   const [loading, setLoading] = useState(true);
   const [load, setLoad] = useState(true);
   const navigate = useNavigate();
+
   useEffect(() => {
     const initial = async () => {
-      await getDataAll();
-      setLoading(false);
+    await serviceUsers.getDataAll(ActionUser.GETALLADMIN_PERMISSIONS);
+    setLoading(false);
     };
-    initial();
-  }, [estado]);
+    
+      initial();
+  }, [estado,updateImg]);
 
   const handleBtnSpand = () => {
     setbtnSpand(true);
   };
-  
   const handleData = async (e) => {
-    e.preventDefault();
-    setLoad(false);
-    let data = {
+      e.preventDefault();
+      setLoad(false);
+      let data = {
       name: e.target.name.value,
       empresa: e.target.empresa.value,
       email: e.target.email.value,
@@ -51,11 +51,12 @@ const Perfil = () => {
       document: e.target.document.value,
       id: sessionStorage.getItem("id_admin"),
     };
-    await UpdateAdminAll(data);
-    setLoad(true);
-
-    navigate("/perfil");
-    window.location.reload();
+      let action = ActionUser.GETALLADMIN_UPDATE
+      await serviceUsers.UpdateAdminAll(action,data);
+      setLoad(true);
+      navigate("/perfil?data=true");
+      window.location.reload();
+     
   };
 
   return (
@@ -71,7 +72,7 @@ const Perfil = () => {
         <div className=" contendido  w-full block contenido min-h-screen">
           <div
             className="container_perfil z-30    mx-1 max-w-7xl
-           md:mx-auto relative flex flex-col md:flex-row"
+            md:mx-auto relative flex flex-col md:flex-row"
           >
             <div className={btnSpand ? "cubo_p block" : "hidden"}></div>
             <div>
@@ -79,11 +80,11 @@ const Perfil = () => {
                 className={
                   btnSpand
                     ? ` effect_blur
-    panel_Editar_P rounded-lg h-[36rem] z-30 absolute shadow-xl  mx-auto lg:right-[33rem] shadow-gray-400
-    bg-white w-[80%] md:w-[22rem]  top-6 overflow-hidden block duration-300 ease-out opacity-100
+                        panel_Editar_P rounded-lg h-[36rem] z-30 absolute shadow-xl  mx-auto lg:right-[33rem] shadow-gray-400
+                      bg-white w-[80%] md:w-[22rem]  top-6 overflow-hidden block duration-300 ease-out opacity-100
     `
                     : `panel_Editar_P rounded-lg h-[36rem] absolute shadow-xl right-[33rem] z-30 shadow-gray-400
-    bg-white w-[22rem] top-6 overflow-hidden hidden opacity-0 effect_blur`
+                      bg-white w-[22rem] top-6 overflow-hidden hidden opacity-0 effect_blur`
                 }
               >
                 <div className="editar bg-[#44b2fd] dark:bg-[#374151] text-white  p-4 flex flex-col">

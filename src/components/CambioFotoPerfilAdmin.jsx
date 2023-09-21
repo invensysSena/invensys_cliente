@@ -1,18 +1,20 @@
 import { useEffect, useState } from "react";
 import "../assets/css/CambioFotoPerfilAdmin.css";
-import { useGetUsers } from "../hooks/context/GetUsersContext";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { IconsSvgLoading } from "../svg/IconsSvgLoading";
 import { useRef } from "react";
 import { svgX } from "../svg/iconsSvg";
 import { messageError, messageSuccess } from "../utils/alertsAplication";
+import { serviceUsers } from "../services/usersService";
+import { ActionUser } from "../utils/Constant";
+import { useNavigate } from "react-router-dom";
 export const CambioFotoPerfilAdmin = ({estado,cambiarEstado}) => {
+  let navigate = useNavigate();
 
-  const { uploadImgAdminAll } = useGetUsers();
   const [view, setView] = useState(true);
   const [Image, setImage] = useState([]);
   const [load, setLoad] = useState(true);
+
   const hasEffectRun = useRef(false);
   function dragOverHandler() {
     const dropArea = document.querySelector(".drag-area");
@@ -127,20 +129,23 @@ export const CambioFotoPerfilAdmin = ({estado,cambiarEstado}) => {
     dragOverHandler();
   },[view]);
 
-  const uploadImg = async () => {
+const uploadImg = async () => {
     setLoad(false);
- try {
-  
-  await uploadImgAdminAll(Image);
-  messageSuccess("Imagen subida correctamente")
-  cambiarEstado(false)
-  setLoad(true);
-} catch (error) {
-   messageError("Error al subir la imagen")
-   cambiarEstado(false)
-   setLoad(true);
-  
- }
+    try {
+      let action = ActionUser.GETALLADMIN_UPDATE_IMG
+      await serviceUsers.uploadImg(action,Image);
+      messageSuccess("Imagen subida correctamente")
+      cambiarEstado(false)
+      setLoad(true);
+
+      let roundedNumber = Math.round(Math.random() * 100);
+      navigate("/perfil?updateImg=" + roundedNumber + "&true");
+      window.location.reload();
+      
+    }catch (error) {
+      messageError("Error al subir la imagen")
+      cambiarEstado(false)
+      setLoad(true); }
   };
 
  
