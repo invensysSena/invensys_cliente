@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
-import { permissionsUser } from "../services/permisionsUser";
+import { permissionsUser } from "../auth/permisionsUser";
 import { useParams, Link } from "react-router-dom";
-import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { useGetUsers } from "../hooks/context/GetUsersContext";
 import {messageWarding} from "../utils/alertsAplication"
 import { messages } from "../utils/messageinvensys";
-import { IconsSvgLoading } from "../svg/IconsSvgLoading";
 export const ModalModule = () => {
 
   const {getUsers,getUsersAdmins,userModuleRegister,getModule,moduleUsers,typePermissionsModul,getPermissionsModul} = useGetUsers();
@@ -23,6 +21,7 @@ export const ModalModule = () => {
       await getUsersAdmins();
       await getModule(id);
       let response = await getPermissionsModul();
+      console.log(response)
        if(response.status == 200){
         setPermissions(response.data.data);
        }

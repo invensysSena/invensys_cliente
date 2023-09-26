@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Formik, Field, Form } from "formik";
-import {
-  getProveedores,
-  getInventario,
-  getSubProducts,
-  TodoFunctions,
-} from "../apis/ApiData";
 import * as Yup from "yup";
 import "animate.css";
 import { useNavigate } from "react-router-dom";
 import moment from "moment-with-locales-es6";
 import { messageError, messageSuccess } from "../utils/alertsAplication";
+import { servicesInventory } from "../services/servicesInventory";
+import { servicesProveedor } from "../services/servicesProveedor";
+import { servecesProduct } from "../services/servicesProduct";
+import { servecesPedidos } from "../services/servecesPedidos";
 moment.locale("es");
 export const FormPedido = () => {
   const navigate = useNavigate();
@@ -32,16 +30,16 @@ export const FormPedido = () => {
 
   useEffect(() => {
     (async () => {
-      const data = await getProveedores();
-      const response = await getInventario();
+      const data = await servicesProveedor.getProveedores({path: "providers",method: "get", date: new Date()});
+      const response = await servicesInventory.getInventario({path: "inventory",method: "get", date: new Date()});
       setInventario(response.data.response);
       setProveedores(data.data);
     })();
   }, []);
+
   useEffect(() => {
     (async () => {
-      const subProducts = await getSubProducts(idInventario);
-
+      const subProducts = await servecesProduct.getSubProducts({path: "subProducts",method: "get", date: new Date()},idInventario);
       setSubProducts(subProducts.data.response);
     })();
   }, [idInventario]);
@@ -84,7 +82,7 @@ export const FormPedido = () => {
     if (value === "") {
       value = "";
     }
-    const data = await getSubProducts(idInventario);
+    const data =  await servecesProduct.getSubProducts({path: "subProducts",method: "get", date: new Date()},idInventario);
     return setProducts(data.data.response);
   };
   const habdleSave = (i) => {
@@ -122,7 +120,7 @@ export const FormPedido = () => {
     (async () => {
       setLoading(true);
       try {
-        const response = await TodoFunctions.postPedidos(pedidosList);
+        const response = await servecesPedidos.postPedidos( {path: "pedidos",method: "post", date: new Date()},pedidosList);
         setLoading(false);
         if (response.status === 200) {
           messageSuccess("Pedido realizado con exito");

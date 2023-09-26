@@ -4,7 +4,7 @@ import "../assets/css/styleSlider.css";
 import { TodoFunctions, getBusiness } from "../apis/ApiData";
 
 import { PDFDownloadLink } from "@react-pdf/renderer";
-import { ComprasPDF } from "../pdf/ComprasPDF";
+import { ComprasPDF } from "./pdf/ComprasPDF";
 
 function OptionVentas(e) {
   const [business, setBusiness] = useState([]);

@@ -1,27 +1,12 @@
 import { useState, createContext, useContext } from "react";
-import {
-  getUsersAdmin,
-  DeleteuserPost,
-  UploadcsvUsuario,
-  PostDataUserRegister,
-  getDataAdmin,
-  setModule,
-  GetModule,
-  DeleteModule,
-  getDataAll,
-  uploadImg,
-  UpdateAdminAll,
-} from "../../apis/ApiData";
-import { TodoFunctions } from "../../apis/ApiData";
 import { serviceUsers } from "../../services/usersService";
-
 let isAllowedToken = sessionStorage.getItem("secure_token");
 export const GetUsersDataAdmin = createContext();
-
 export const useGetUsers = () => {
   const contextUser = useContext(GetUsersDataAdmin);
   return contextUser;
 };
+
 
 export const GetUsersContext = ({ children }) => {
   const [getUsers, setGetUsers] = useState([]);
@@ -40,9 +25,9 @@ export const GetUsersContext = ({ children }) => {
       return error;
     }
   };
-  const typePermissionsModul = async (id,path,mthod) => {
+  const typePermissionsModul = async (id,path,method) => {
     try {
-      const response = await TodoFunctions.typePermissionsModules(id,path,mthod);
+      const response = await serviceUsers.typePermissionsModules({n:1},{id,path,method});
       return response;
     } catch (error) {
       return error;
@@ -50,7 +35,7 @@ export const GetUsersContext = ({ children }) => {
   }
   const getPermissionsModul = async () => {
     try {
-      const response = await TodoFunctions.getPermissions();
+      const response = await serviceUsers.getPermissions({n:1});
       return response;
     } catch (error) {
       return error;
@@ -59,10 +44,8 @@ export const GetUsersContext = ({ children }) => {
 
   const getUsersAdmins = async () => {
     try {
-      // if (isAllowedToken === null) {
-      //   return;
-      // }
-      const response = await getUsersAdmin();
+   
+      const response = await serviceUsers.getUsersAdmin();
         console.log(response)
       setGetUsers(response.data.data);
     } catch (error) {
@@ -72,7 +55,7 @@ export const GetUsersContext = ({ children }) => {
 
   const usersDeleteData = async (id) => {
     try {
-      await DeleteuserPost(id);
+      await serviceUsers.DeleteuserPost({path: "deleteUser",method: "post", date: new Date()},id);
       setGetCountDateUsers(getCountDateUsers - 1);
       return setGetUsers(
         getUsers.filter((getuser) => getuser.idAccount !== id)
@@ -83,7 +66,7 @@ export const GetUsersContext = ({ children }) => {
   };
   const postUploadcsvUsuario = async (formDataCsv, archivousuariocsv) => {
     try {
-      const response = await UploadcsvUsuario(formDataCsv, archivousuariocsv);
+      const response = await serviceUsers.UploadcsvUsuario({path: "uploadcsvUsers",method: "post", date: new Date()},{formDataCsv, archivousuariocsv});
 
       setGetUsers([...getUsers, response.data.data]);
       return response;
@@ -93,7 +76,11 @@ export const GetUsersContext = ({ children }) => {
   };
   const UserRegister = async (postDataUserRegister) => {
     try {
-      const response = await PostDataUserRegister(postDataUserRegister);
+      const response = await serviceUsers.PostDataUserRegister({
+      path: "registerUser",
+      method: "post",
+      date: new Date()},
+      postDataUserRegister);
 
       setGetUsers([...getUsers, response.data.data[0][0]]);
       console.log(response)
@@ -106,16 +93,15 @@ export const GetUsersContext = ({ children }) => {
 
   const getAdminData = async () => {
     try {
-      const response = await getDataAdmin(isAllowedToken);
+      const response = await serviceUsers.getDataAdmin({path: "getsataAdminr",method: "post", date: new Date()},isAllowedToken);
       setGetUsers(response.data.data);
     } catch (error) {
       return error;
     }
   };
-  const userModuleRegister = async (path,users,idmodule) => {
+  const userModuleRegister = async (path,iduser,idmodule) => {
     try {
-      const response = await setModule(path,users,idmodule);
-      // setModuleUsers([...moduleUsers, response.data.data[0]]);
+      const response = await serviceUsers.setModule({path: "setModule",method: "post", date: new Date()},{path,iduser,idmodule});
 
       return response;
     } catch (error) {
@@ -124,7 +110,7 @@ export const GetUsersContext = ({ children }) => {
   };
   const getModule = async (id) => {
     try {
-      const response = await GetModule(id);
+      const response = await serviceUsers.GetModule({path: "getModuleUsers",method: "get", date: new Date()},id);
       setModuleUsers(response.data.data);
       return JSON.parse(response);
     } catch (error) {
@@ -134,7 +120,7 @@ export const GetUsersContext = ({ children }) => {
 
   const DeleteModuleU = async (id) => {
     try {
-      await DeleteModule(id);
+      await serviceUsers.DeleteModule({path: "deleteModuleUser",method: "post", date: new Date()},id);
 
       setModuleUsers(moduleUsers.filter((getuser) => getuser.IDmodulo !== id));
     } catch (error) {
@@ -143,7 +129,7 @@ export const GetUsersContext = ({ children }) => {
   };
   const uploadImgAdminAll = async (imgData) => {
     try {
-      const response = await uploadImg(imgData);
+      const response = await serviceUsers.uploadImg({path: "AuploadImageA",method: "post", date: new Date()},imgData);
 
       return response;
     } catch (error) {
@@ -152,7 +138,7 @@ export const GetUsersContext = ({ children }) => {
   };
   const updateDataAdmin = async (postDataUserRegister) => {
     try {
-      const response = await UpdateAdminAll(postDataUserRegister);
+      const response = await serviceUsers.UpdateAdminAll({path: "updateAdminALL",method: "post", date: new Date()},postDataUserRegister);
       const data = response.data.data[0];
       let email = data.correo;
 

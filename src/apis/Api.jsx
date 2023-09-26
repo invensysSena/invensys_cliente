@@ -9,15 +9,14 @@ export const ApiPost = async (urlServer,path,method,action,data) => (
         headers:getTokenAuth(action),
         data:data,
         timeout: 5000,
-        auth:"Bearer",
         accept: "application/json",
         httpAgent: "httpAgent",
         timeoutErrorMessage: "timeoutErrorMessage",
         decompress: true,
         agent: "agent",
         transport: "transport",
-        cancelToken: "cancelToken",
-        xsrfCookieName: "xsrfCookieName",
+        formSerializer: "formSerializer",
+        baseURL: "baseURL",
 
     })
 )
@@ -27,7 +26,6 @@ export const ApiGet = async(urlServer,path,method,action,params) => (
         method:method,
         headers:getTokenAuth(action),
         data:params,
-        timeout: 5000,
         accept: "application/json",
         httpAgent: "httpAgent",
         timeoutErrorMessage: "timeoutErrorMessage",
@@ -41,7 +39,7 @@ export const ApiGet = async(urlServer,path,method,action,params) => (
 )
 export const ApiPut = async (urlServer,path,method,action,data,params) => (
     await axios({
-        url:`${urlServer}/${path}/?q=${params}`,
+        url:`${urlServer}/${path}/?q=${JSON.stringify(params)}`,
         method:method,
         headers:getTokenAuth(action),
         data:data,

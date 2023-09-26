@@ -1,5 +1,5 @@
 let accessToken = sessionStorage.getItem("secure_token");
-import { dataIsAllowed } from "../secure/lowed.Modules";
+import { dataIsAllowed } from "./lowed.Modules";
 import CryptoJS from "crypto-js";
 export const getTokenAuth =(action) => {
     // encripta la action del usuario

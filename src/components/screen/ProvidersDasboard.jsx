@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
-import { getBusiness, getUsersAdmin } from "../../apis/ApiData";
 import { ReactSortable } from "react-sortablejs";
 import { Link, Outlet } from "react-router-dom";
 import "animate.css";
 import "../../assets/css/sorteable.css";
 import moment from "moment-with-locales-es6";
+import { serviceUsers } from "../../services/usersService";
+import { servecesPedidos } from "../../services/servecesPedidos";
+import { IconsSvgLoading } from "../../svg/IconsSvgLoading";
 moment.locale("es");
 export const ProvidersDasboard = () => {
   const [category, setCategory] = useState([]);
@@ -16,10 +18,10 @@ export const ProvidersDasboard = () => {
 
   useEffect(() => {
     (async () => {
-      getUsersAdmin().then((res) => {
+      serviceUsers.getUsersAdmin({n:1}).then((res) => {
         setUsers(res.data.data);
       });
-      getBusiness().then((res) => {
+      servecesPedidos.getBusiness({n:1}).then((res) => {
         setCategory(res.data.dataCategory);
         setProducts(res.data.dataProduct);
         setProvider(res.data.dataProvider);
@@ -123,27 +125,7 @@ export const ProvidersDasboard = () => {
       {spiner === true ? (
         <div className="relative">
           <h1 className="w-4/5 mx-auto dark:text-white my-10   flex justify-center flex-col items-center ">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="120"
-              height="120"
-              viewBox="0 0 24 24"
-            >
-              <path
-                fill="#777777"
-                d="M19 8l-4 4h3c0 3.31-2.69 6-6 6c-1.01 0-1.97-.25-2.8-.7l-1.46 1.46C8.97 19.54 10.43 20 12 20c4.42 0 8-3.58 8-8h3l-4-4zM6 12c0-3.31 2.69-6 6-6c1.01 0 1.97.25 2.8.7l1.46-1.46C15.03 4.46 13.57 4 12 4c-4.42 0-8 3.58-8 8H1l4 4l4-4H6z"
-              >
-                <animateTransform
-                  attributeName="transform"
-                  attributeType="XML"
-                  dur="5s"
-                  from="360 12 12"
-                  repeatCount="indefinite"
-                  to="0 12 12"
-                  type="rotate"
-                />
-              </path>
-            </svg>{" "}
+          {<IconsSvgLoading  w={50} h={50}/>}
             Espere un momento por favor...
           </h1>
         </div>

@@ -1,12 +1,6 @@
 import { createContext, useState, useContext } from "react";
-import {
-  PostDataUser,
-  postRecoveryEmail,
-  recoverycode,
-  newPassword,
-  PostDataAdmin,
-  AuthGoogle,
-} from "../../apis/ApiData";
+import { serviceUsers } from "../../services/usersService";
+
 export const contextUserAdmin = createContext();
 
 export const usePostAuth = () => {
@@ -18,7 +12,7 @@ export const UserContextData = ({ children }) => {
 
   const recoveryPasssword = async (email) => {
     try {
-      const response = await postRecoveryEmail(email);
+      const response = await serviceUsers.postRecoveryEmail({path: "recovery",method: "post",date: new Date()},email);
       return response;
     } catch (error) {
       return error;
@@ -26,7 +20,7 @@ export const UserContextData = ({ children }) => {
   };
   const newPasswordL = async (data) => {
     try {
-      const response = await newPassword(data);
+      const response = await serviceUsers.newPassword({path: "newPass",method: "put",date: new Date()},data);
       return response;
     } catch (error) {
       return error;
@@ -34,7 +28,7 @@ export const UserContextData = ({ children }) => {
   };
   const verifyCodeUser = async (data) => {
     try {
-      const response = await recoverycode(data);
+      const response = await serviceUsers.recoverycode({path: "newPass",method: "put",date: new Date()},data);
       return response;
     } catch (error) {
       return error;
@@ -42,7 +36,7 @@ export const UserContextData = ({ children }) => {
   };
   const getPostLoginAuthGoogle = async (postDataUser) => {
     try {
-      const response = await AuthGoogle(postDataUser);
+      const response = await serviceUsers.AuthGoogle({path: "registerUser",method: "post",date: new Date()},postDataUser);
       return response;
     } catch (error) {
       return error;
@@ -50,7 +44,7 @@ export const UserContextData = ({ children }) => {
   };
   const getPostLogin = async (postDataUser) => {
     try {
-      const response = await PostDataUser(postDataUser);
+      const response = await serviceUsers.PostDataUser({path: "registerUser",method: "post",date: new Date()},postDataUser);
       return response;
     } catch (error) {
       return error;
@@ -58,8 +52,11 @@ export const UserContextData = ({ children }) => {
   };
   const getPostRegister = async (postDataAdmin) => {
     try {
-      console.log(postDataAdmin,"sssssss")
-      const response = await PostDataAdmin(postDataAdmin);
+      const response = await serviceUsers.PostDataAdmin({
+        path: "register",
+        method: "post",
+        date: new Date()},
+        postDataAdmin);
       return response;
     } catch (error) {
       return error;

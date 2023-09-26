@@ -1,10 +1,12 @@
 import axios from "axios";
-import { urlServer } from "../urlApi/url";
-import { dataIsAllowed } from "../secure/lowed.Modules";
+import { dataIsAllowed } from "../auth/lowed.Modules";
+import { getTokenAuth, getTokenAuthFile } from "../auth/verifyAuth";
+
 let accessToken = sessionStorage.getItem("secure_token");
+import data from "../data/settings.json"
+let urlServer = data[0].url_server;
 let accesToken1 = sessionStorage.getItem("token_token1");
 let type = sessionStorage.getItem("type");
-import { getTokenAuth, getTokenAuthFile } from "../auth/verifyAuth";
 export const PostDataUser = async (postDataUser) =>
   await axios.post(`${urlServer}/login`, { postDataUser });
 export const postRecoveryEmail = async (email) =>
@@ -31,10 +33,7 @@ export const getDataAdmin = async (tokenData) =>
   await axios.post(`${urlServer}/getsataAdminr/${tokenData}`, {
     headers:getTokenAuth(),
   });
-export const getDataAll = async () =>
-  await axios.get(`${urlServer}/getAdminAll/${accessToken}`, {
-    headers:getTokenAuth(),
-  });
+
 
 export const tokenData = async (tokenData, token) =>
   await axios.post(
@@ -64,11 +63,6 @@ export const UploadcsvUsuario = async (formDataCsv, archivousuariocsv) =>
       },
     }
   );
-
-export const getUsersAdmin = async () =>
-  await axios.get(`${urlServer}/getUsersData`, {
-    headers:getTokenAuth(),
-  });
 
 
 export const DeleteuserPost = async (deleteData) =>
@@ -101,25 +95,11 @@ export const DeleteModule = async (id) =>
     }
   );
 // ? Path: src\apis\ApiData.jsx subir imagen ADMINISTRADORE
-export const uploadImg = async (imgData) =>
-  await axios.put(
-    `${urlServer}/AuploadImageA`,
-    { imgData },
-    {
-      headers: getTokenAuthFile()
-    }
-  );
+
 
 // ? Path: src\apis\ApiData.jsx actualizar datos ADMINISTRADORE
 
-export const UpdateAdminAll = async (data) =>
-  await axios.put(
-    `${urlServer}/updateAdminALL`,
-    { data },
-    {
-     headers:getTokenAuth(),
-    }
-  );
+
 
 // ? post categorias
 export const postCategorias = async (data) =>
@@ -220,7 +200,7 @@ export const updateProveedores = async (id, data) =>
 
 // ? Path: src\apis\ApiData.jsx get datos de su negocio
 export const getBusiness = async () =>
-  await axios.get(`${urlServer}/modules/${accessToken}`, {
+  await axios.get(`${urlServer}/modules/`, {
     headers:getTokenAuth(),
   });
 

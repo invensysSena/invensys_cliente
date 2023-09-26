@@ -4,13 +4,10 @@ import LoadingBar from "react-top-loading-bar";
 import { UserContextData } from "../hooks/context/UserContextData.jsx";
 import CodePassword from "../pages/CodePassword";
 import  HomePage  from "../pages/HomePage";
-import { RouterFirst } from "./RouterFirst.jsx";
-import { RouterFive } from "./RouterFive.jsx";
-import { RouterSecond } from "./RouterSecond.jsx";
-import { RouterFour } from "./RouterFour.jsx";
+
 const SignupLoadable = lazy(() => import("../components/Signup.jsx"));
 const AuthUserLoadable = lazy(() => import("../components/AuthUser.jsx"));
-const Privaci = lazy(() => import("../privacy/Privaci.jsx"));
+const Privaci = lazy(() => import("../components/privacy/Privaci.jsx"));
 const NewPassword = lazy(() => import("../pages/newPassword"));
 const RecoveryPass = lazy(() => import("../pages/RecoveryPass"));
 const RouterDasboard = lazy(() => import("./RouterDasboard.jsx"));

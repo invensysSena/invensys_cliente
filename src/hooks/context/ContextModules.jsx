@@ -1,6 +1,6 @@
 import { useState, useContext, createContext } from "react";
 
-import { getBusiness } from "../../apis/ApiData";
+import { servecesPedidos } from "../../services/servecesPedidos";
 
 const contextModules = createContext();
 
@@ -15,7 +15,7 @@ export const ContextModules = ({ children }) => {
   const [dataProviderM, setProvidersM] = useState([]);
 
   const getModulesTodo = async () => {
-    const modules = await getBusiness();
+    const modules = await servecesPedidos.getBusiness({n:1});
 
     setDataCategory(modules.data.dataCategory);
     setDataProductM(modules.data.dataProduct);

@@ -1,14 +1,8 @@
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./efectosCss.css";
-import {
-  faEnvelope,
-  faLock,
-  faCircleQuestion,
-  faEye,
-  faEyeSlash,
-} from "@fortawesome/free-solid-svg-icons";
+import {faEnvelope, faLock,faCircleQuestion,  faEye,faEyeSlash,} from "@fortawesome/free-solid-svg-icons";
 import { useGetUsers } from "../hooks/context/GetUsersContext";
 import * as Yup from "yup";
 import "animate.css";
@@ -53,9 +47,26 @@ export const UserRegister = ({ estado,  cambiarEstadoUser,stateGlobal}) => {
                 ),
             })}
             onSubmit={async (values) => {
-              try {
-                setSpiner(true);
-                await UserRegister(values);
+                try {
+                  setSpiner(true);
+                if(values.modulo === "") {
+                  stateGlobal(true)
+                  setSpiner(false);
+                  return messageError("Debe seleccionar un modulo")
+                }
+                if(values.estado === "") {
+                  stateGlobal(true)
+                  setSpiner(false);
+                  return messageError("Debe seleccionar un estado")
+                }
+            
+               let response=  await UserRegister(values);
+
+               if(response.response ? response.response.status === 400 : response.status === 400 ) {
+                stateGlobal(true)
+                setSpiner(false);
+                return messageError("El correo ya existe")
+               }
                 stateGlobal(true)
                 setSpiner(false);
                 return messageSuccess("Usuario creado correctamente");

@@ -1,17 +1,16 @@
-import { useState, useMemo, useEffect} from "react";
+import { useState, useMemo} from "react";
 import { NavLink } from "react-router-dom";
 import "../assets/css/fuente.css";
 import "animate.css";
 import { useGetUsers } from "../hooks/context/GetUsersContext";
-import { ComandoSystem } from "../cmd/ComandoSystem";
 import moment from "moment-with-locales-es6";
-import { dataIsAllowed } from "../secure/lowed.Modules";
+import { dataIsAllowed } from "../auth/lowed.Modules";
 moment.locale("es");
-import { logoutAuth } from "../utils/AuthCount";
+import { logoutAuth } from "../auth/AuthCount";
 import NavlinkCuatomLink from "./navLinkCustomen/NavlinkCuatomLink";
 import { svgAnalityc, svgBell, svgBodega, svgCategory, svgHome, svgInventory, svgLicence, svgPedidos, svgProduct, svgProfile, svgProvider, svgTraer, svgUsers, svgVentas } from "../svg/iconsMenuLateral";
-import { rolesPemissionsRouter } from "../utils/RolesRouter";
-import { permissionsPages } from "../utils/RolesRouter";
+import { rolesPemissionsRouter } from "../auth/RolesRouter";
+import { permissionsPages } from "../auth/RolesRouter";
 import { SvgSignup } from "../svg/iconsSubmenu";
 export const MenuLateral = () => {
   const { getAdminDataAll, adminGetData } = useGetUsers();
