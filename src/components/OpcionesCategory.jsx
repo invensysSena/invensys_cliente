@@ -29,7 +29,7 @@ function OpcionesCategory(e) {
       position: "top",
       border: "1px solid #5DADE2",
       backdrop: "8px",
-      customClass: "swal-wide",
+      customClass: "swal-wide shadow-xl border",
       showCancelButton: true,
       
       focusCancel: false,
@@ -58,24 +58,7 @@ function OpcionesCategory(e) {
           timer: 1000,
           background: darkMode ? "#374151":"white",
         });
-      } else if (result.isDismissed) {
-        await Swal.fire({
-          className: "swal-wide",
-
-          text: "se cancelo la eliminacion de la categoria",
-          showClass: {
-            popup: "animate__animated animate__fadeIn",
-          },
-          focusCancel: false,
-          focusConfirm: false,
-          confirmButtonColor: "#3085d6",
-          cancelButtonColor: "#ccc",
-          confirmButtonText: "Continuar",
-          color: darkMode ? "white" : "black",
-          background: darkMode ? "#374151":"white",
-          timer: 2000,
-        });
-      }
+      } 
     });
   };
   const EditId = () => {

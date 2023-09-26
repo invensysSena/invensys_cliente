@@ -1,6 +1,6 @@
 import { useState, useContext, createContext } from "react";
 import { getSubProducts, TodoFunctions } from "../../apis/ApiData";
-import { DataSubProducts } from "../../components/DataSubProducts";
+import { DataSubProducts } from "../../components/Tables/DataSubProducts";
 
 const createContextSubProducts = createContext();
 

@@ -4,12 +4,14 @@ import * as Yup from "yup";
 import { useContextCategory } from "../../hooks/context/ContextCategory";
 import { useContextProduct } from "../../hooks/context/ContextProduxt";
 import { messageSuccess, messageWarding } from "../../utils/alertsAplication";
-export const FormProduct = () => {
+import { svgX } from "../../svg/iconsSvg";
+export const FormProduct = ({estado, cambiarEstadoProduct}) => {
   const { postProducts } = useContextProduct();
   const { dataGategorias, getDataCategorias } = useContextCategory();
 
   useEffect(() => {
     getDataCategorias();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const [category, setCategoria] = useState([]);
@@ -20,7 +22,7 @@ export const FormProduct = () => {
 
   return (
     <>
-      <div className={active2 ? "hidden" : "block"}>
+      <div className={estado ===false ? "hidden" : "block"}>
         <div className="Formulario fixed bg-white dark:bg-[#374151] dark:text-white rounded-lg inset-0 drop-shadow-2xl w-6/12 m-auto  h-fit z-50">
           <div className="sec1 w-full p-2 flex justify-between">
             <div className="title">
@@ -32,21 +34,13 @@ export const FormProduct = () => {
               </p>
             </div>
 
-            <div
+            <div className="f">
+            <button
               className="x cursor-pointer"
-              onClick={() => setActive2(!active2)}
+              onClick={() => cambiarEstadoProduct(false)}
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="36"
-                height="36"
-                viewBox="0 0 256 256"
-              >
-                <path
-                  fill="currentColor"
-                  d="M204.24 195.76a6 6 0 1 1-8.48 8.48L128 136.49l-67.76 67.75a6 6 0 0 1-8.48-8.48L119.51 128L51.76 60.24a6 6 0 0 1 8.48-8.48L128 119.51l67.76-67.75a6 6 0 0 1 8.48 8.48L136.49 128Z"
-                />
-              </svg>
+              {svgX(28,28,"#fe5f57")}
+            </button>
             </div>
           </div>
           <div className="formulario">

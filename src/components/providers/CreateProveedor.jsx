@@ -4,8 +4,9 @@ import * as Yup from "yup";
 import { useContextProviders } from "../../hooks/context/ContextProveedores";
 import { useContextCategory } from "../../hooks/context/ContextCategory";
 import { messageError, messageInfo, messageSuccess } from "../../utils/alertsAplication";
+import { svgX } from "../../svg/iconsSvg";
 
-export const CreateProveedor = () => {
+export const CreateProveedor = ({estado, cambiarEstado }) => {
   const { dataGategorias, getDataCategorias } = useContextCategory();
   const { postProviders } = useContextProviders();
   useEffect(() => {
@@ -19,7 +20,7 @@ export const CreateProveedor = () => {
   return (
     <>
 
-      <div className={active2 ? "hidden" : "block"}>
+      <div className={estado === false ? "hidden" : "block"}>
         <div className="Formulario fixed bg-white rounded-lg dark:bg-[#374151] dark:text-white inset-0 drop-shadow-2xl w-6/12 m-auto  h-fit z-50">
           <div className="sec1 w-full p-2 flex justify-between">
             <div className="title">
@@ -33,19 +34,9 @@ export const CreateProveedor = () => {
 
             <div
               className="x cursor-pointer"
-              onClick={() => setActive2(!active2)}
+              onClick={() => cambiarEstado(false)}
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="36"
-                height="36"
-                viewBox="0 0 256 256"
-              >
-                <path
-                  fill="currentColor"
-                  d="M204.24 195.76a6 6 0 1 1-8.48 8.48L128 136.49l-67.76 67.75a6 6 0 0 1-8.48-8.48L119.51 128L51.76 60.24a6 6 0 0 1 8.48-8.48L128 119.51l67.76-67.75a6 6 0 0 1 8.48 8.48L136.49 128Z"
-                />
-              </svg>
+               {svgX(28,28,"#fe5f57")}
             </div>
           </div>
           <div className="formulario">
@@ -85,7 +76,6 @@ export const CreateProveedor = () => {
 
                 if (response.status === 201) {
                   setLoading(true);
-                  return messageSuccess("Producto creado con exito");
                 } else {
                   setLoading(true);
                   messageError("Error al crear el proveedor");

@@ -6,43 +6,33 @@ import {
   faLock,
   faCircleQuestion,
 } from "@fortawesome/free-solid-svg-icons";
-import x from "../assets/icons/x.svg";
+
 import * as Yup from "yup";
 import "animate.css";
 import { Link } from "react-router-dom";
 import "../assets/css/styleSlider.css";
 import { useContextCategory } from "../hooks/context/ContextCategory";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { messageError, messageSuccess } from "../utils/alertsAplication";
-export const RegisterCategorys = ({ estado = false }) => {
+import { svgX } from "../svg/IconsSvg";
+export const RegisterCategorys = ({ estado,cambiarEstado }) => {
   const { postDataCategorias } = useContextCategory();
 
   const [typeInput, setTypeInput] = useState(true);
-  const [estados, setEstado] = useState(false);
+
   const [spiner, setSpiner] = useState(false);
-  const handleShow = () => {
-    setEstado(false);
-  };
-
-  useEffect(() => {
-    if (estado) {
-      setEstado(true);
-    } else {
-      setEstado(false);
-    }
-  }, [estado]);
-
+  
+ 
   return (
-    <div className={estados ? "  h-full absolute z-30 w-4/5" : "hidden"}>
+    <div className={estado ? "  h-full m-auto absolute z-30 w-full " : "hidden"}>
 
-      <div className="form-signup w-4/5 sm:w-96 mx-auto sm:mx-auto mt-5 fixed inset-0 my-auto ">
+      <div className="form-signup w-4/5 sm:w-96 mx-auto sm:mx-auto mt-36 fixed inset-0 ">
         <div className="container-signup dark:bg-[#374151] dark:border-none dark:text-white  border shadow-2xl pb-1 rounded-lg bg-white ">
           <button
-            className="bg-[#fe5f57] rounded-full absolute right-1 top-1"
-            onClick={handleShow}
+            className="bg-[#fff] rounded-full absolute right-1 top-1"
+            onClick={()=> cambiarEstado(false)}
           >
-            <LazyLoadImage effect="blur" src={x} alt="" />
+            {svgX(28,28,"#fe5f57")}
           </button>
           <h2 className="text-xl font-semibold mt-2 mb-5 pt-5 text-center  ">
             Crear categoria
@@ -62,10 +52,10 @@ export const RegisterCategorys = ({ estado = false }) => {
               let response = await postDataCategorias(values);
 
               if (response.status === 201) {
-                messageSuccess("Se creo la categoria");
+                messageSuccess(" Categoria creada con exito");
                 setSpiner(false);
                 setEstado(false);
-                window.location.reload();
+                // window.location.reload();
               } else {
                 messageError("Ocurrio un error al crear la categoria");
                  setSpiner(false);
@@ -75,10 +65,7 @@ export const RegisterCategorys = ({ estado = false }) => {
             <Form>
               <div
                 className="Fiel-email bg-white dark:bg-[#374151] dark:text-white  flex items-center mx-2 my-1
-                           border-solid border-2 border-[#1876F2]  rounded
-                         
-                             "
-              >
+                           border-solid border-2 border-[#1876F2]  rounded">
                 <div className=" icons py-2 px-2 text-gray-400">
                   <FontAwesomeIcon icon={faEnvelope} className="mx-1 text-xl" />
                 </div>

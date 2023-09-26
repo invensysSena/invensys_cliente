@@ -1,1 +1,24 @@
-{}
+[
+    {
+      "name": "invensys",
+      "versio": "1.0.0",
+      "description": "API para obtener usuarios de invensys",
+      "author": "Reservado",
+      "license": "MIT",
+      "url_server": "http://localhost:5001",
+      "port": 5001,
+      "protocolo": "http",
+      "path": "users/invensys",
+      "method": "GET",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "config": {
+        "timeout": 1000
+      },
+      "server": {
+        "host": "localhost",
+        "port": 3000
+      }
+    }
+  ]

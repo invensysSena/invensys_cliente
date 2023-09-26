@@ -1,15 +1,20 @@
 import { useEffect, useState } from "react";
 import "../assets/css/CambioFotoPerfilAdmin.css";
-import { useGetUsers } from "../hooks/context/GetUsersContext";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { IconsSvgLoading } from "../svg/IconsSvgLoading";
 import { useRef } from "react";
-export const CambioFotoPerfilAdmin = ({stateView}) => {
-  const { uploadImgAdminAll } = useGetUsers();
+import { svgX } from "../svg/iconsSvg";
+import { messageError, messageSuccess } from "../utils/alertsAplication";
+import { serviceUsers } from "../services/usersService";
+import { ActionUser } from "../utils/Constant";
+import { useNavigate } from "react-router-dom";
+export const CambioFotoPerfilAdmin = ({estado,cambiarEstado}) => {
+  let navigate = useNavigate();
+
   const [view, setView] = useState(true);
   const [Image, setImage] = useState([]);
   const [load, setLoad] = useState(true);
+
   const hasEffectRun = useRef(false);
   function dragOverHandler() {
     const dropArea = document.querySelector(".drag-area");
@@ -124,43 +129,36 @@ export const CambioFotoPerfilAdmin = ({stateView}) => {
     dragOverHandler();
   },[view]);
 
-  const uploadImg = async () => {
+const uploadImg = async () => {
     setLoad(false);
-   
-    await uploadImgAdminAll(Image);
-    // await window.location.reload();
-    setLoad(true);
+    try {
+      let action = ActionUser.GETALLADMIN_UPDATE_IMG
+      await serviceUsers.uploadImg(action,Image);
+      messageSuccess("Imagen subida correctamente")
+      cambiarEstado(false)
+      setLoad(true);
+
+      let roundedNumber = Math.round(Math.random() * 100);
+      navigate("/perfil?updateImg=" + roundedNumber + "&true");
+      window.location.reload();
+      
+    }catch (error) {
+      messageError("Error al subir la imagen")
+      cambiarEstado(false)
+      setLoad(true); }
   };
 
-  console.log(stateView)
-
-  useEffect(() => {
-    setView(stateView);
-  }, [stateView]);
-
+ 
+ 
   return (
     <>
-      <div className={view === true ? "block resize " : "hidden"}>
+      <div className={estado == true ? "block resize " : "hidden"}>
         <div className="container_v resize ">
           <div className="">
             <button
               className="absolute top-0 left-0"
-              onClick={() => {
-                setView(false);
-               
-              }}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="28"
-                height="28"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  fill="#5994f5"
-                  d="M12 2c5.53 0 10 4.47 10 10s-4.47 10-10 10S2 17.53 2 12S6.47 2 12 2m3.59 5L12 10.59L8.41 7L7 8.41L10.59 12L7 15.59L8.41 17L12 13.41L15.59 17L17 15.59L13.41 12L17 8.41L15.59 7Z"
-                />
-              </svg>
+              onClick={() => cambiarEstado(false) } >
+             {svgX(35,35,"#44b2fd")}
             </button>
           </div>
           <div className="drag-area">

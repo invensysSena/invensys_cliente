@@ -1,19 +1,14 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useMemo, useState } from "react";
 import Chart from "react-apexcharts";
-import Skeleton from "react-loading-skeleton";
-
 import { Link, Outlet, Navigate } from "react-router-dom";
 import { useContextModules } from "../hooks/context/ContextModules";
 import { useGetUsers } from "../hooks/context/GetUsersContext";
 import { getBusiness } from "../apis/ApiData";
+import { IconsSvgLoading } from "../svg/IconsSvgLoading";
 
 export const InicioChart = () => {
-  const [darkMode, setDarkMode] = useState(false);
-  useEffect(() => {
-    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      setDarkMode(true);
-    }
-  }, []);
+  
   const type = sessionStorage.getItem("type");
   const { getUsersAdmins, getUsers } = useGetUsers();
   const { getModulesTodo, dataproductM, dataCategory, dataProviderM } =
@@ -188,63 +183,20 @@ export const InicioChart = () => {
     <>
       {state ? (
         <div className="skeleton flex flex-col flex-wrap lg:flex-row mt-10 justify-center gap-1">
-          <Skeleton
-            count={1}
-            width={225}
-            height={120}
-            baseColor={darkMode ? "#374151" : ""}
-            highlightColor={darkMode ? "#293a4f" : ""}
-            className="rounded-full bg-red-600 overflow-hidden"
-          />
-          <Skeleton
-            count={1}
-            width={225}
-            height={120}
-            baseColor={darkMode ? "#374151" : ""}
-            highlightColor={darkMode ? "#293a4f" : ""}
-            backgroundColor="#122640"
-            foregroundColor="#ecebeb"
-            // darkmode
-
-            className="rounded-full bg-red-600 overflow-hidden"
-          />
-          <Skeleton
-            count={1}
-            width={225}
-            height={120}
-            baseColor={darkMode ? "#374151" : ""}
-            highlightColor={darkMode ? "#293a4f" : ""}
-            className="rounded-full bg-red-600 overflow-hidden"
-          />
-          <Skeleton
-            count={1}
-            width={225}
-            baseColor={darkMode ? "#374151" : ""}
-            highlightColor={darkMode ? "#293a4f" : ""}
-            height={120}
-            className="rounded-full bg-red-600 overflow-hidden"
-          />
-          <Skeleton
-            count={1}
-            width={225}
-            baseColor={darkMode ? "#374151" : ""}
-            highlightColor={darkMode ? "#293a4f" : ""}
-            height={120}
-            className="rounded-full bg-red-600 overflow-hidden"
-          />
+          <IconsSvgLoading w={60} h={60} />
         </div>
       ) : (
         <div className="help">
           <div className="cards mt-8 flex gap-2 justify-start flex-wrap 2xl:justify-center  mx-auto scroll-smooth">
             {type === "user" ? null : (
               <section className="relative w-full md:w-auto">
-                <Link to={`users/${token}`} className="">
+                <Link to={`users/${token}`} className="kk">
                   <div
                     className="card-single effect_blure dark:bg-[#37415197] rounded-md block md:inline-block p-2
-        border-b-4 border-[#00a6ed] hover:translate-y-[-3px] duration-200 hover:shadow-lg relative
-        "
+                    border-b-4 border-[#00a6ed] hover:translate-y-[-3px] duration-200 hover:shadow-lg relative
+                    "
                   >
-                    <Link to="/usuarios" className="absolute top-0  right-0">
+                    <Link to={"/usuarios"} className="absolute top-0  right-0">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="28"
@@ -419,7 +371,7 @@ export const InicioChart = () => {
                   </div>
                 </div>
               </Link>
-            </section>
+            </section> 
             <section className="relative w-full md:w-auto">
               <Link to={`categorias/${token}`} className="">
                 <div
@@ -427,7 +379,7 @@ export const InicioChart = () => {
         border-b-4 border-red-400 hover:translate-y-[-3px] duration-200 hover:shadow-lg relative
         "
                 >
-                  <Link to="/categorias" className="absolute top-0  right-0">
+                  <Link to={"/categorias"} className="absolute top-0  right-0">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="28"

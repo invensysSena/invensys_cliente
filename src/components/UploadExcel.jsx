@@ -2,42 +2,35 @@ import { useEffect, useState } from "react";
 import { Formik, Form, Field } from "formik";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleQuestion } from "@fortawesome/free-solid-svg-icons";
-import x from "../assets/icons/x.svg";
+
 import "animate.css";
 import { Link, useNavigate } from "react-router-dom";
 import "../assets/css/styleSlider.css";
 import { useGetUsers } from "../hooks/context/GetUsersContext";
 import "./efectosCss.css";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { messageSuccess, messageWarding } from "../utils/alertsAplication";
-export const UploadExcel = ({ estado = false }) => {
+import { svgX } from "../svg/iconsSvg";
+export const UploadExcel = ({ estado,cambiarEstadoExcel}) => {
   const { postUploadcsvUsuario } = useGetUsers();
   const [csv, setCsv] = useState([]);
   const navigate = useNavigate();
 
-  const [estados, setEstado] = useState(false);
+
   const [spiner, setSpiner] = useState(false);
-
-  const handleShow = () => {
-    setEstado(false);
-  };
-
-  useEffect(() => {
-    if (estado) {
-      setEstado(true);
-    } else {
-      setEstado(false);
-    }
-  }, [estado]);
-
   useEffect(() => {
     const fileUpload = document.getElementById("file");
+
+  
     const progress = document.getElementById("progress");
     const load_bar = document.querySelector(".load-bar");
     const count = document.getElementById("count");
     fileUpload.addEventListener("change", (e) => {
       load_bar.style.backgroundColor = "#eee";
+
+      // validar formato de archivo csv
+      const allowedExtensions = /(.csv)$/i;
+      if (!allowedExtensions.exec(fileUpload.value)) messageWarding("El formato del archivo no es valido");
 
       const file = e.target.files[0];
       const fileReader = new FileReader();
@@ -48,24 +41,24 @@ export const UploadExcel = ({ estado = false }) => {
         count.innerHTML = Number.parseInt((e.loaded * 100) / e.total) + "%";
         count.style.transition = "all 0.5s ease";
         count.style.transform = "translateX(-50%)";
-        count.style.color = "#fff";
+        count.style.color = "#777";
       });
 
       fileReader.addEventListener("load", () => {
         progress.style.width = "100%";
       });
     });
-  });
+  }, [ ]);
 
   return (
-    <div className={estados ? "  h-full absolute left-6 md:left-auto z-30 w-full md:w-4/5" : "hidden"}>
+    <div className={estado ? "  h-full absolute left-6 md:left-auto z-30 w-full md:w-4/5" : "hidden"}>
       <div className="form-signup w-4/5 sm:w-96 mx-auto sm:mx-auto mt-5 relative ">
         <div className="container-signup dark:border-none border shadow-2xl pb-1 rounded-lg effect_blur1 ">
           <button
-            className="bg-[#fe5f57] rounded-full absolute right-1 top-1"
-            onClick={handleShow}
+            className="bg-[#fff] rounded-full absolute right-1 top-1"
+            onClick={() => cambiarEstadoExcel(false)}
           >
-            <LazyLoadImage src={x} alt="" />
+        {svgX(25, 25, "#fe5f57")}
           </button>
           <h2 className="text-xl font-semibold mt-2 mb-5 pt-5 text-center  dark:text-white ">
             Subir archivo csv
@@ -86,8 +79,7 @@ export const UploadExcel = ({ estado = false }) => {
 
               if (response.status === 201) {
                 messageSuccess("Se subio el archivo");
-                await setSpiner(false);
-                setEstado(false);
+                 setSpiner(false);
                 setTimeout(() => {
                   window.location.reload();
                   navigate("/usuarios");

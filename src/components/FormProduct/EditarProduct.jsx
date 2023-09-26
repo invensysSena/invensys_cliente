@@ -48,7 +48,7 @@ export const EditarProduct = () => {
 dark:bg-gradient-to-r from-[#163b59] from-10%
  via-[#18324f] via-30% to-[#121b2e] to-90% "
       >
-        <div className="Formulario fixed dark:bg-[#37415197] dark:text-white bg-white rounded-lg inset-0 drop-shadow-2xl w-6/12 m-auto  h-fit z-50">
+        <div className="Formulario fixed dark:bg-[#37415197] dark:text-white bg-white border rounded-lg inset-0 drop-shadow-2xl w-6/12 m-auto  h-fit z-50">
           <div className="sec1 w-full p-2 flex justify-between">
             <div className="x cursor-pointer">
               <Link to="/producto">

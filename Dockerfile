@@ -1,4 +1,9 @@
-FROM node:18.16-alpine3.16
+FROM node:16-bullseye
+
+
+RUN apt-get update && apt-get install -y
+
+RUN mkdir -p /usr/src/app 
 
 WORKDIR /app
 
@@ -8,8 +13,6 @@ COPY . .
 
 RUN npm install
 
-EXPOSE 3000
+CMD ["npm", "start"]
 
-CMD [ "npm", "start" ]
-
-
+EXPOSE  3031

@@ -2,7 +2,7 @@ import { GoogleLogin } from "@react-oauth/google";
 import jwt_decode from "jwt-decode";
 import { messageError } from "../utils/alertsAplication";
 import { messages } from "../utils/messageinvensys";
-import { AuthGoogleAdmin } from "../utils/AuthCount";
+import { AuthGoogleAdmin } from "./AuthCount";
 import { AuthGoogle } from "../apis/ApiData";
 export const AuthGoogleA = () => {
   const setDataGoogl = async (data) => {
@@ -11,7 +11,7 @@ export const AuthGoogleA = () => {
     const response = await AuthGoogle(postDataUser);
     if (response.status === 200) {
       await AuthGoogleAdmin(response.data);
-      window.location.href = "/perfil";
+       window.location.href = "/perfil";
     } else {
       messageError(messages.MESSAGE_AUTH_GOOGLE_ERROR);
     }

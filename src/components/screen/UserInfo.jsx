@@ -2,11 +2,12 @@ import { useState, useEffect } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { Link, useParams } from "react-router-dom";
-import { getUsersAdmin, getServices } from "../../apis/ApiData";
+import {  getServices } from "../../apis/ApiData";
 import sinDada from "../../assets/img/sinDada.jpg";
 import moment from "moment-with-locales-es6";
 import "animate.css";
 import "../../assets/css/perfilUser.css";
+import { serviceUsers } from "../../services/usersService";
 moment.locale("es");
 export const UserInfo = () => {
   const [services, setServices] = useState([]);
@@ -14,10 +15,10 @@ export const UserInfo = () => {
 
   const [spiner, setSpiner] = useState(true);
   let id = useParams();
-  const getUserId = users.filter((item) => item.idAccount === id.id);
+  const getUserId = users.filter((item) => item.iduser === id.id);
   useEffect(() => {
     (async () => {
-      getUsersAdmin().then((res) => {
+      serviceUsers.getUsersAdmin({n:1}).then((res) => {
         setUsers(res.data.data);
       });
       await getServices(id.id).then((res) => {
@@ -64,7 +65,7 @@ export const UserInfo = () => {
           {getUserId.map((item) => {
             return (
               <div
-                key={item.idAccount}
+                key={item.iduser}
                 className="flex  flex-col gap-1 w-[279px] md:w-full sm:flex-row"
               >
                 <div className="w-full  ">
@@ -91,10 +92,10 @@ export const UserInfo = () => {
                     </div>
 
                     <div className="description dark:text-white">
-                      <h3 className="dark:text-white">{item.correo}</h3>
+                      <h3 className="dark:text-white">{item.email}</h3>
                       <h4 className="dark:text-white">Usuario</h4>
                       <p>
-                        Fecha de creación: de la cuenta: {item.fecha} ·{" "}
+                        Fecha de creación: de la cuenta: {item.datecreate} ·{" "}
                         {item.hora}
                       </p>
                     </div>

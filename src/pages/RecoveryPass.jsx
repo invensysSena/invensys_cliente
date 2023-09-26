@@ -19,9 +19,6 @@ function RecoveryPass() {
   const navigate = useNavigate();
   return (
     <div className="bg-gray-100 min-h-screen
-
-        
-
     dark:bg-gradient-to-r from-[#163b59] from-10%
      via-[#18324f] via-30% to-[#121b2e] to-90%  relative">
       <div className="flex dark:bg-[#37415197] dark:text-white dark:border-none  bg-white w-full border-b justify-between items-center">
