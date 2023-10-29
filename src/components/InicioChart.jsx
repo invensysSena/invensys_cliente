@@ -4,8 +4,8 @@ import Chart from "react-apexcharts";
 import { Link, Outlet, Navigate } from "react-router-dom";
 import { useContextModules } from "../hooks/context/ContextModules";
 import { useGetUsers } from "../hooks/context/GetUsersContext";
-import { getBusiness } from "../apis/ApiData";
 import { IconsSvgLoading } from "../svg/IconsSvgLoading";
+import { servicesPedidos } from "../services/servicesPedidos";
 
 export const InicioChart = () => {
   
@@ -20,7 +20,7 @@ export const InicioChart = () => {
     (async () => {
       try {
         setstate(true);
-        const res = await getBusiness();
+        const res = await servicesPedidos.getBusiness({x:"r"});
         setBodegas(res.data.dataInventary);
         await getModulesTodo();
         await getUsersAdmins();

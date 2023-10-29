@@ -1,7 +1,7 @@
 import  { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
 import moment from "moment-with-locales-es6";
-import { servecesPedidos } from "../../services/servecesPedidos";
+import { servicesPedidos } from "../../services/servicesPedidos";
 import { serviceUsers } from "../../services/usersService";
 moment.locale("es");
 export const HomeDaboard = () => {
@@ -15,7 +15,7 @@ export const HomeDaboard = () => {
     serviceUsers.getUsersAdmin({n:1}).then((res) => {
       setUsers(res.data.data);
     });
-    servecesPedidos.getBusiness({n:1}).then((res) => {
+    servicesPedidos.getBusiness({n:1}).then((res) => {
       setCategory(res.data.dataCategory);
       setProducts(res.data.dataProduct);
       setProvider(res.data.dataProvider);

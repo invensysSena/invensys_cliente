@@ -1,7 +1,7 @@
 import { useState,useMemo } from "react";
 import { NavLink } from "react-router-dom";
-import { getBusiness } from "../../apis/ApiData";
 import { serviceUsers } from "../../services/usersService";
+import { servicesPedidos } from "../../services/servicesPedidos";
 export const AnalitycMenuVista = () => {
   const [expand, setExpand] = useState(false);
   const [modules, setModules] = useState([]);
@@ -10,7 +10,7 @@ export const AnalitycMenuVista = () => {
     (async () => {
       const data = await serviceUsers.getDataAll({n:1});
       setAdmin(data.data.data);
-      const bussiness = await getBusiness();
+      const bussiness = await servicesPedidos.getBusiness({x:"y"});
       setModules([
         bussiness.data.dataCategory,
         bussiness.data.dataCompany,

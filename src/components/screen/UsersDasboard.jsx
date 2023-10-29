@@ -8,7 +8,7 @@ import moment from "moment-with-locales-es6";
 import { useMemo } from "react";
 import { serviceUsers } from "../../services/usersService";
 import { IconsSvgLoading } from "../../svg/IconsSvgLoading";
-import { servecesPedidos } from "../../services/servecesPedidos";
+import { servicesPedidos } from "../../services/servicesPedidos";
 moment.locale("es");
 export const UsersDasboard = () => {
   const [category, setCategory] = useState([]);
@@ -23,9 +23,10 @@ export const UsersDasboard = () => {
         console.log(res.data.data);
         setUsers(res.data.data);
       });
-      servecesPedidos.getBusiness({n:1}).then((res) => {
+      servicesPedidos.getBusiness({n:1}).then((res) => {
         setProducts(res.data.dataProduct);
         setProvider(res.data.dataProvider);
+        setCategory(res.data.dataCategory);
         setSpiner(false);
       });
     })();

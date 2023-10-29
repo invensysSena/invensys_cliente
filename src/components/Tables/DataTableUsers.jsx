@@ -3,7 +3,6 @@ import { useRef, useState, useCallback } from "react";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
 import "react-loading-skeleton/dist/skeleton.css";
-import "ag-grid-enterprise";
 import { AgGridReact } from "ag-grid-react";
 import { AG_GRID_LOCALE_EN } from "../locale/locale";
 import OpcionTabledCrud from "../OpcionTabledCrud";
@@ -19,6 +18,7 @@ import "react-lazy-load-image-component/src/effects/blur.css";
 import { svgCsv, svgExcel, svgImportExcel, svgPrints, svgSearch, svgUsersTable } from "../../svg/IconsSvg";
 import { getFormatTimeLocale } from "../../utils/UtilsMoments";
 import { useEffect } from "react";
+
 export const DataTableUsers = () => {
   
   const defaultColDef = ChackSelection();
@@ -29,6 +29,7 @@ export const DataTableUsers = () => {
   const { getUsersAdmins, getUsers, } = useGetUsers();
   useEffect(() => {
     const initial = async () => {
+      console.log("useEffect")
       await getUsersAdmins();
     };
     initial();

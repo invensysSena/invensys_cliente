@@ -22,9 +22,12 @@ export const FormTrae = ({state, cambiarState}) => {
     try {
       setLoading(true);
       e.preventDefault();
-      let _id = data1 ? data1[0]._id : "";
+      console.log(data)
+      let _id = data1.length>0 ? data1[0]._id : "";
       await TraeServices.postTrae(action,data);
-      await TraeServices.updateCompany(action,data,{_id});
+      if(_id){
+        await TraeServices.updateCompany(action,data,{_id});
+      }
       setLoading(false);
       cambiarState(!state);
     } catch (error) {

@@ -1,8 +1,6 @@
 import  { useMemo, useState } from "react";
-
-import { getBusiness } from "../../apis/ApiData";
+import { servicesPedidos } from "../../services/servicesPedidos";
 import moment from "moment-with-locales-es6";
-import Skeleton from "react-loading-skeleton";
 import { IconsSvgLoading } from "../../svg/IconsSvgLoading";
 import { serviceUsers } from "../../services/usersService";
 moment.locale("es");
@@ -16,7 +14,7 @@ export const ChartBodegaC1 = () => {
   useMemo(() => {
     (async () => {
       setLoad(true);
-      const bussiness = await getBusiness();
+      const bussiness = await servicesPedidos.getBusiness({x:"y"});
       setBodega(bussiness.data.dataInventary);
       setSubProducts(bussiness.data.dataSubProduct);
       setCompras(bussiness.data.dataPedidos);

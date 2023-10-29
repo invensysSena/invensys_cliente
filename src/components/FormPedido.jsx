@@ -7,8 +7,8 @@ import moment from "moment-with-locales-es6";
 import { messageError, messageSuccess } from "../utils/alertsAplication";
 import { servicesInventory } from "../services/servicesInventory";
 import { servicesProveedor } from "../services/servicesProveedor";
-import { servecesProduct } from "../services/servicesProduct";
-import { servecesPedidos } from "../services/servecesPedidos";
+import { servicesProduct } from "../services/servicesProduct";
+import { servicesPedidos } from "../services/servicesPedidos";
 moment.locale("es");
 export const FormPedido = () => {
   const navigate = useNavigate();
@@ -39,7 +39,7 @@ export const FormPedido = () => {
 
   useEffect(() => {
     (async () => {
-      const subProducts = await servecesProduct.getSubProducts({path: "subProducts",method: "get", date: new Date()},idInventario);
+      const subProducts = await servicesProduct.getSubProducts({path: "subProducts",method: "get", date: new Date()},idInventario);
       setSubProducts(subProducts.data.response);
     })();
   }, [idInventario]);
@@ -82,7 +82,7 @@ export const FormPedido = () => {
     if (value === "") {
       value = "";
     }
-    const data =  await servecesProduct.getSubProducts({path: "subProducts",method: "get", date: new Date()},idInventario);
+    const data =  await servicesProduct.getSubProducts({path: "subProducts",method: "get", date: new Date()},idInventario);
     return setProducts(data.data.response);
   };
   const habdleSave = (i) => {
@@ -120,7 +120,7 @@ export const FormPedido = () => {
     (async () => {
       setLoading(true);
       try {
-        const response = await servecesPedidos.postPedidos( {path: "pedidos",method: "post", date: new Date()},pedidosList);
+        const response = await servicesPedidos.postPedidos( {path: "pedidos",method: "post", date: new Date()},pedidosList);
         setLoading(false);
         if (response.status === 200) {
           messageSuccess("Pedido realizado con exito");

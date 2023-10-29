@@ -1,11 +1,5 @@
 import { useContext, createContext, useState } from "react";
-import {
-  getInventario,
-  postInventario,
-  deleteInventario,
-  updateInventario,
-} from "../../apis/ApiData";
-
+import { serviceInventory } from "../../services/serviceInventory";
 const InventarioContext = createContext();
 
 export const useInventario = () => useContext(InventarioContext);
@@ -14,23 +8,28 @@ export const ContextInventario = ({ children }) => {
   const [inventario, setInventario] = useState([]);
 
   const GetInventario = async () => {
-    const data = await getInventario();
+    const data = await serviceInventory.getInventario({method:"get"});
     setInventario(data.data.response);
     return data;
   };
 
   const PostInventario = async (data) => {
-    const inventarios = await postInventario(data);
+    const inventarios = await serviceInventory.postInventario({method:"POST"},data);
     setInventario([...inventario, inventarios.data.response]);
     return inventarios;
   };
   const DeleteInventario = async (id) => {
-    const response = await deleteInventario(id);
+    try {
+      const response = await serviceInventory.deleteInventario({method:"POST"},{id:id});
     setInventario(inventario.filter((item) => item._id !== id));
     return response;
+    } catch (error) {
+      console.log(error)
+      return error;
+    }
   };
   const UpdateInventario = async (id, data) => {
-    const response = await updateInventario(id, data);
+    const response = await serviceInventory.updateInventario({method:"POST"},{id:id}, data);
 
     setInventario(
       inventario.map((items) =>

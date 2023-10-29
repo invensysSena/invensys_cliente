@@ -1,13 +1,10 @@
 import { useEffect, useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import {
-  getProductsId,
-  getCategorias,
-  updateProducto,
-} from "../../apis/ApiData";
-import { messageError, messageWarding } from "../../utils/alertsAplication";
+import { messageError, messageSuccess, messageWarding } from "../../utils/alertsAplication";
 import { messages } from "../../utils/messageinvensys";
+import { servicesProduct } from "../../services/servicesProduct";
+import { servicesCategory } from "../../services/serviceCategrory";
 export const EditarProduct = () => {
   const navigate = useNavigate();
   const id = useParams();
@@ -19,9 +16,9 @@ export const EditarProduct = () => {
   const [dataGategorias, setDataGategorias] = useState([]);
   useEffect(() => {
     (async () => {
-      const { data } = await getProductsId(id.id);
+      const { data } = await servicesProduct.getProductsId({x:"y"},{id:id.id});
 
-      const category = await getCategorias();
+      const category = await servicesCategory.getCategorias({x:"y"});
 
       setDataGategorias(category.data.data);
       setProducto(data.data);
@@ -77,25 +74,27 @@ dark:bg-gradient-to-r from-[#163b59] from-10%
           <div className="formulario">
             <Formik
               initialValues={{
-                name: producto.description,
+                name: producto.name,
                 description: "",
               }}
-              onSubmit={async (values) => {
+              onSubmit={async (_values) => {
                 setLoading(false);
                 const data = {
-                  name: values.name,
+                  name: producto.name,
                   description: producto.description,
                   category: category[0],
                 };
+                console.log(producto)
+                console.log(data);
 
                 if (category.length === 0) {
                   setLoading(true);
                   return messageWarding(messages.MESSAGE_PRODUCTO_WARNING)
                 } else {
-                  const response = await updateProducto(id.id, data);
+                  const response = await servicesProduct.updateProducto({x:"r"}, data,{id:id.id});
                   if (response.status === 200) {
                     setLoading(true);
-                     messageWarding(messages.MESSAGE_PRODUCTO_OK)
+                     messageSuccess(messages.MESSAGE_PRODUCTO_OK)
                     return navigate("/producto");
                   } else {
                     setLoading(true);

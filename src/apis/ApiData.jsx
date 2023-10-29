@@ -1,12 +1,10 @@
 import axios from "axios";
 import { dataIsAllowed } from "../auth/lowed.Modules";
-import { getTokenAuth, getTokenAuthFile } from "../auth/verifyAuth";
-
+import { getTokenAuth, } from "../auth/verifyAuth";
 let accessToken = sessionStorage.getItem("secure_token");
 import data from "../data/settings.json"
 let urlServer = data[0].url_server;
-let accesToken1 = sessionStorage.getItem("token_token1");
-let type = sessionStorage.getItem("type");
+
 export const PostDataUser = async (postDataUser) =>
   await axios.post(`${urlServer}/login`, { postDataUser });
 export const postRecoveryEmail = async (email) =>
@@ -15,42 +13,13 @@ export const recoverycode = async (data) =>
   await axios.post(`${urlServer}/recoverycode`, { data });
 export const newPassword = async (data) =>
   await axios.post(`${urlServer}/newPass`, { data });
-export const AuthGoogle = async (data) =>{
-  const queryParams = new URLSearchParams(data).toString();
-  const url = `${urlServer}/authgoogleAccount?${queryParams}`;
-  return await axios.post(url);
-}
+  export const AuthGoogle = async (data) =>{
+    const queryParams = new URLSearchParams(data).toString();
+    const url = `${urlServer}/authgoogleAccount?${queryParams}`;
+    return await axios.post(url);
+  }
+  
 
-
-export const PostDataAdmin = async (data) =>{
-
-  const queryParams = new URLSearchParams(data).toString();
-  const url = `${urlServer}/register?${queryParams}`;
-  return await axios.post(url);
-}
-
-export const getDataAdmin = async (tokenData) =>
-  await axios.post(`${urlServer}/getsataAdminr/${tokenData}`, {
-    headers:getTokenAuth(),
-  });
-
-
-export const tokenData = async (tokenData, token) =>
-  await axios.post(
-    `${urlServer}/register`,
-    { tokenData },
-    {
-      headers:getTokenAuth(),
-    }
-  );
-export const PostDataUserRegister = async (postDataUserRegister) =>
-  await axios.post(
-    `${urlServer}/registerUser`,
-    { postDataUserRegister },
-    {
-     headers:getTokenAuth(),
-    }
-  );
 export const UploadcsvUsuario = async (formDataCsv, archivousuariocsv) =>
   await axios.post(
     `${urlServer}/uploadcsvUsers`,
@@ -64,141 +33,6 @@ export const UploadcsvUsuario = async (formDataCsv, archivousuariocsv) =>
     }
   );
 
-
-export const DeleteuserPost = async (deleteData) =>
-  await axios.post(
-    `${urlServer}/deleteUser`,
-    { deleteData },
-    {
-     headers:getTokenAuth(),
-    }
-  );
-
-export const setModule = async (path,iduser,idmodule) =>
-  await axios.post(
-    `${urlServer}/setModule`,
-    { path,iduser,idmodule },
-    {
-     headers:getTokenAuth(),
-    }
-  );
-export const GetModule = async (id) =>
-  await axios.get(`${urlServer}/getModuleUsers/${id}`, {
-    headers:getTokenAuth(),
-  });
-export const DeleteModule = async (id) =>
-  await axios.post(
-    `${urlServer}/deleteModuleUser`,
-    { id },
-    {
-     headers:getTokenAuth(),
-    }
-  );
-// ? Path: src\apis\ApiData.jsx subir imagen ADMINISTRADORE
-
-
-// ? Path: src\apis\ApiData.jsx actualizar datos ADMINISTRADORE
-
-
-
-// ? post categorias
-export const postCategorias = async (data) =>
-  await axios.post(
-    `${urlServer}/category`,
-    { data },
-    {
-      headers:getTokenAuth(),
-    }
-  );
-
-// ? delete category
-export const deleteCategory = async (id) =>
-  await axios.delete(`${urlServer}/category/${id}`, {
-    headers:getTokenAuth(),
-  });
-
-// ? Path: src\apis\ApiData.jsx obtener todas la categorias
-export const getCategorias = async () =>
-  await axios.get(`${urlServer}/category/${accessToken}`, {
-    headers:getTokenAuth(),
-  });
-
-// ? Path: src\apis\ApiData.jsx actualizar categorias
-export const updateCategorias = async (id, data) =>
-  await axios.put(
-    `${urlServer}/category/${id}`,
-    { data },
-    {
-     headers:getTokenAuth(),
-    }
-  );
-// ? obtiene todos los productos
-export const getProducts = async () =>
-  await axios.get(`${urlServer}/getProducts/${accessToken}`, {
-    headers:getTokenAuth(),
-  });
-// ? insertar productos validación del token
-export const postProductos = async (data) =>
-  await axios.post(
-    `${urlServer}/createProducts`,
-    { data },
-    {
-     headers:getTokenAuth(),
-    }
-  );
-
-export const deleteproducto = async (id) =>
-  await axios.delete(`${urlServer}/deleteProducts/${id}`, {
-    headers:getTokenAuth(),
-  });
-// ? Update product
-export const updateProducto = async (id, data) =>
-  await axios.put(
-    `${urlServer}/updateProducts/${id}`,
-    { data },
-    {
-     headers:getTokenAuth(),
-    }
-  );
-
-export const getProductsId = async (id) =>
-  await axios.get(`${urlServer}/getProductsId/${id}`, {
-    headers:getTokenAuth(),
-  });
-
-// ? Path: src\apis\ApiData.jsx get Proveedores
-export const getProveedores = async () =>
-  await axios.get(`${urlServer}/providers/${accessToken}`, {
-    headers:getTokenAuth(),
-  });
-
-// ? Path: src\apis\ApiData.jsx post Proveedores
-export const postProveedores = async (data) =>
-  await axios.post(
-    `${urlServer}/providers`,
-    { data },
-    {
-     headers:getTokenAuth(),
-    }
-  );
-
-// ? Path: src\apis\ApiData.jsx delete Proveedores
-export const deleteProveedores = async (id) =>
-  await axios.delete(`${urlServer}/providers/${id}`, {
-    headers:getTokenAuth(),
-  });
-
-// ? Path: src\apis\ApiData.jsx update Proveedores
-export const updateProveedores = async (id, data) =>
-  await axios.put(
-    `${urlServer}/providers/${id}`,
-    { data },
-    {
-     headers:getTokenAuth(),
-    }
-  );
-
-// ? Path: src\apis\ApiData.jsx get datos de su negocio
 export const getBusiness = async () =>
   await axios.get(`${urlServer}/modules/`, {
     headers:getTokenAuth(),
@@ -228,82 +62,13 @@ export const getInventario = async () =>
     headers:getTokenAuth(),
   });
 
-// ? Path: src\apis\ApiData.jsx post inventario
-export const postInventario = async (data) =>
-  await axios.post(
-    `${urlServer}/inventory`,
-    { data },
-    {
-     headers:getTokenAuth(),
-    }
-  );
-
-// ? Path: src\apis\ApiData.jsx delete inventario
-export const deleteInventario = async (id) =>
-  await axios.delete(`${urlServer}/inventory/${id}`, {
-    headers:getTokenAuth(),
-  });
-// ? Path: src\apis\ApiData.jsx update inventario
-export const updateInventario = async (id, data) =>
-  await axios.put(
-    `${urlServer}/inventory/${id}`,
-    { data },
-    {
-     headers:getTokenAuth(),
-    }
-  );
-
-// ? Path: src\apis\ApiData.jsx get ventas
-export const UploadSubProducts = async (id, data) =>
-  await axios.post(
-    `${urlServer}/subProducts`,
-    { data },
-    {
-     headers:getTokenAuth(),
-    }
-  );
-
 export const getSubProducts = async (id) =>
   await axios.get(`${urlServer}/subProducts/${id}`, {
     headers:getTokenAuth(),
   });
 
 export const TodoFunctions = {
-  // ? Path: src\apis\ApiData.jsx Translate Products
-  translateProducts: async (data) =>
-    await axios.post(
-      `${urlServer}/translateProducts`,
-      { data },
-      {
-        headers:getTokenAuth(),
-      }
-    ),
-
-  // ? Path: src\apis\ApiData.jsx Get Translate Products
-  getTranslateProducts: async (id) =>
-    await axios.get(`${urlServer}/translateProducts/${id}`, {
-     headers:getTokenAuth(),
-    }),
-
-  // ? Path: src\apis\ApiData.jsx updateSubproduct with TranslateProduct
-
-  updateSubproduct: async (id, data) =>
-    await axios.put(
-      `${urlServer}/translateSubProducts/${id}`,
-      { data },
-      {
-        headers:getTokenAuth(),
-      }
-    ),
-
-  updateBodegaEmail: async (id, data) =>
-    await axios.put(
-      `${urlServer}/updateEmailBodega/${id}`,
-      { data },
-      {
-        headers:getTokenAuth(),
-      }
-    ),
+ 
 
   postPedidos: async (data) =>
     await axios.post(
@@ -333,14 +98,7 @@ export const TodoFunctions = {
     await axios.get(`${urlServer}/comprasfv`, {
      headers:getTokenAuth(),
     }),
-  postTrae: async (data) =>
-    await axios.post(
-      `${urlServer}/company`,
-      { data },
-      {
-        headers:getTokenAuth(),
-      }
-    ),
+  
     updateCompany: async (_id, data) =>
     await axios.put(
       `${urlServer}/company/${_id}`,
@@ -349,10 +107,7 @@ export const TodoFunctions = {
         headers:getTokenAuth(),
       }
     ),
-  getTrae: async () =>
-    await axios.get(`${urlServer}/company`, {
-     headers:getTokenAuth(),
-    }),
+
   getPedidos: async () =>
     await axios.get(`${urlServer}/pedidos`, {
      headers:getTokenAuth(),
@@ -362,25 +117,7 @@ export const TodoFunctions = {
     await axios.delete(`${urlServer}/notificationTodoEstado`, {
      headers:getTokenAuth(),
     }),
-   
-    
-    typePermissionsModules: async (id,path, method) => {
-      try {
-        let {pathrouter} = path
-
-        let {idmodule} = id
-        const query = { idmodule,pathrouter, method };
-        const queryParams = new URLSearchParams(query).toString();
-        const response = await axios.post(`${urlServer}/typePermissionsModulesUser?${queryParams}`, null, {
-         headers:getTokenAuth(),
-        });
-        return response.data; // Devuelve los datos de la respuesta si es necesario.
-      } catch (error) {
-        // Maneja cualquier error aquí
-        console.error('Error en la solicitud:', error);
-        throw error; // Puedes relanzar el error o manejarlo según tus necesidades.
-      }
-    },
+  
   SearchDismiutionUnidadProduct: async () =>
     await axios.get(`${urlServer}/disminucionUnidades`, {
      headers:getTokenAuth(),
@@ -402,19 +139,6 @@ export const TodoFunctions = {
     await axios.get(`${urlServer}/getLicence/${accessToken}`, {
      headers:getTokenAuth(),
     }),
-  getPermissions: async () =>
-    await axios.get(`${urlServer}/getPermisions`, {
-     headers:getTokenAuth(),
-    }),
-
-  putProviders: async (id, data) =>
-    await axios.put(
-      `${urlServer}/providers/${id}`,
-      { data },
-      {
-        headers:getTokenAuth(),
-      }
-    ),
 
   putEmailUser: async (id, data) =>
     await axios.put(

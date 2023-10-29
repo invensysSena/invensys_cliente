@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { getSubProducts } from "../../apis/ApiData";
 import { useInventario } from "../../hooks/context/ContextInventario";
 import "../../assets/css/fuente.css";
 import "../../components/efectosCss.css";
 import { useContextSubProducts } from "../../hooks/context/ContextSubProducts";
 import { messageError, messageSuccess, messageWarding } from "../../utils/alertsAplication";
+import { servicesProduct } from "../../services/servicesProduct";
 export const TranslateProduct = () => {
   const [products, setProducts] = React.useState([]);
   
@@ -17,7 +17,7 @@ export const TranslateProduct = () => {
 
   useEffect(() => {
     (async () => {
-      const data = await getSubProducts(id);
+      const data = await servicesProduct.getSubProductsIdAll({x:"g"},{id:id});
       setProducts(data.data.response);
     })();
   }, [id]);
@@ -41,7 +41,7 @@ export const TranslateProduct = () => {
     if (value === "") {
       value = " ";
     }
-    const data = await getSubProducts(id);
+    const data = await servicesProduct.getSubProducts({x:"g"},{id:id});
     return setProducts(data.data.response);
   };
   const handleSubmit = async (e) => {

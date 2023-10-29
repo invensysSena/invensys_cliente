@@ -10,7 +10,7 @@ import { checkboxSelection } from "../ChackSelection";
 import { headerCheckboxSelection } from "../ChackSelection";
 import { ChackSelection } from "../ChackSelection";
 import { Outlet } from "react-router-dom";
-import { getBusiness } from "../../apis/ApiData";
+import { servicesPedidos } from "../../services/servicesPedidos";
 import { serviceUsers } from "../../services/usersService";
 
 moment.locale("es");
@@ -22,7 +22,7 @@ export const ChartHomeC5 = () => {
 
   useMemo(() => {
     (async () => {
-      const bussiness = await getBusiness();
+      const bussiness = await servicesPedidos.getBusiness({x:"y"});
 
       setCompras(bussiness.data.dataPedidoProvedor);
 

@@ -96,13 +96,11 @@ export const AuthLogin = async(response) => {
 }
 
 export const  AuthGoogleAdmin = async (response) => {
-    let getData = response;
-    sessionStorage.setItem("secure_token", getData.token);
-    sessionStorage.setItem("auth_cuenta", getData.auth);
-    sessionStorage.setItem("response_auth", getData.message);
-    sessionStorage.setItem("perfil_rol", getData.rol);
-    sessionStorage.setItem("type", getData.rol);
-    sessionStorage.setItem("email", getData.email);
+    sessionStorage.setItem("secure_token", response.token);
+    sessionStorage.setItem("auth_cuenta", response.auth);
+    sessionStorage.setItem("perfil_rol", response.rol);
+    sessionStorage.setItem("type", response.rol);
+    sessionStorage.setItem("email", response.email);
     await  rolesPemissionsRouter()
 }
 

@@ -18,12 +18,14 @@ export const serviceUsers = {
   DeleteModule: async (action,data) => await ApiPost(urlServer,"deleteModuleUser","post",action,data,null),
   DeleteuserPost : async (action,data) => await ApiPost(urlServer,"deleteUser","post",action,data,null),
   setModule: async (action,data) => await ApiPost(urlServer,"setModule","post",action,data,null),
-  GetModule: async (action,params) => await ApiGet(urlServer,"getModuleUsers","get",action,params,{id:params}), 
+  GetModule: async (action,params) => await ApiGet(urlServer,"getModuleUsers","get",action,params,params), 
   updateAdminALL: async (action,data) => await ApiPut(urlServer,"updateAdminALL","put",action,data,null), 
   UploadcsvUsuario: async (action,data) => await ApiPost(urlServer,"uploadcsvUsers","post",action,data,null),
   getDataAdmin: async (action) => await ApiGet(urlServer,"getsataAdminr","get",action,""),
   getPermissions: async (action) => await ApiGet(urlServer,"getPermisions","get",action,""),   
   typePermissionsModules: async (action,data) => await ApiPost(urlServer,"typePermissionsModulesUser","post",action,data,data),
+  postLogin: async (action,data) => await ApiPost(urlServer,"login","post",action,data,null),
+  getModulesUser: async (action,data) => await ApiGet(urlServer,"getModulesUser","get",action,data),
   
 
 }

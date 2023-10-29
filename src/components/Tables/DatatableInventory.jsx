@@ -12,14 +12,13 @@ import { headerCheckboxSelection } from "../ChackSelection";
 import { setPrinterFriendly } from "../ChackSelection";
 import { ChackSelection } from "../ChackSelection";
 import { setNormal } from "../ChackSelection";
-import { getBusiness } from "../../apis/ApiData";
 import { ContextCategory } from "../../hooks/context/ContextCategory";
 import { useContextCategory } from "../../hooks/context/ContextCategory";
 import { svgCsv, svgExcel, svgSearch } from "../../svg/IconsSvg";
 import { IconsSvgLoading } from "../../svg/IconsSvgLoading";
 import { moneyExp } from "../../utils/Utils";
 import { getFormatTimeCalendar, getFormatTimeLocale } from "../../utils/UtilsMoments";
-import { servecesPedidos } from "../../services/servecesPedidos";
+import { servicesPedidos } from "../../services/servicesPedidos";
 
 moment.locale("es");
 export const DatatableInventory = () => {
@@ -40,7 +39,7 @@ export const DatatableInventory = () => {
     (async () => {
       setLoad(true);
 
-      const res = await servecesPedidos.getBusiness({n:1});
+      const res = await servicesPedidos.getBusiness({n:1});
      
       setSubViewProducts(res.data.dataSubProduct);
       setLoad(false);

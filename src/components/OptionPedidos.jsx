@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "../assets/css/styleSlider.css";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import { Pedidos } from "./pdf/Pedidos";
-import { servecesPedidos } from "../services/servecesPedidos";
+import { servicesPedidos } from "../services/servicesPedidos";
 function OptionPedidos(e) {
   const [business, setBusiness] = useState([]);
   const [data, setData] = useState([
@@ -15,8 +15,8 @@ function OptionPedidos(e) {
   ]);
   useEffect(() => {
     (async () => {
-      const bursines = await servecesPedidos.getBusiness({path: "modules",method: "get", date: new Date()});
-      const res = await servecesPedidos.getCompras({path: "compras",method: "get",date: new Date()},e.data._id);
+      const bursines = await servicesPedidos.getBusiness({path: "modules",method: "get", date: new Date()});
+      const res = await servicesPedidos.getCompras({path: "compras",method: "get",date: new Date()},e.data._id);
       setData(res.data.response);
       setBusiness(bursines.data.dataCompany);
     })();

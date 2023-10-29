@@ -18,12 +18,12 @@ export const DataSubProducts = ({ dataInventorySubProducts, id }) => {
   // count categorias
   const defaultColDef = ChackSelection();
   const gridRef = useRef();
-  const { getSubProductsContent, subProductsData } = useContextSubProducts();
+  const {getSubProductsContentId, subProductsData } = useContextSubProducts();
  
 
   useEffect(() => {
     (async () => {
-      await getSubProductsContent(id);
+      await getSubProductsContentId(id);
     })();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

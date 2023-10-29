@@ -15,7 +15,7 @@ import { ChackSelection } from "../ChackSelection";
 import { useGetUsers } from "../../hooks/context/GetUsersContext";
 import { TodoFunctions } from "../../apis/ApiData";
 import { Outlet } from "react-router-dom";
-import { getBusiness } from "../../apis/ApiData";
+import { servicesPedidos } from "../../services/servicesPedidos";
 import { serviceUsers } from "../../services/usersService";
 
 moment.locale("es");
@@ -39,7 +39,7 @@ export const ChartHomeC4 = () => {
   const [ventas, setVentas] = useState([]);
   useEffect(() => {
     (async () => {
-      const bussiness = await getBusiness();
+      const bussiness = await servicesPedidos.getBusiness({x:"y"});
       setVentas(bussiness.data.dataCompras);
       await serviceUsers.getUsersAdmin({n:1});
     })();

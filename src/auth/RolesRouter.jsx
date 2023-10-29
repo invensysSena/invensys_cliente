@@ -1,25 +1,22 @@
-import axios from "axios";
+
 import { dataIsAllowed } from "./lowed.Modules";
-import data from "../data/settings.json"
-let urlServer = data[0].url_server;
-
-
+import { serviceUsers } from "../services/usersService";
 export const rolesPemissionsRouter = async ()=>{
   let users = new Set();
     let usersData = {
     tokeVerify: "",
     permisions: [],
   };
-
   const token = sessionStorage.getItem("secure_token");
-  const token1 = sessionStorage.getItem("token_token1");
   let type = sessionStorage.getItem("type");
 
   if(type === "user"){
     
-    const response = await axios.get(`${urlServer}/getMod/${token1}`);
-    response.length > 0 ? response.map((item)=>{
-      usersData.permisions.push(item.titulo)
+    const response = await serviceUsers.getModulesUser({ x: "y" }, null );
+    let dataPermissions = response.data.data
+    dataPermissions.length > 0 ? dataPermissions.map((item)=>{
+      let pathRouter = item.pathrouter.replace(/.*\//, "");
+      usersData.permisions.push(pathRouter)
     }) : null
   }
   if(type === "administrador"){
@@ -28,6 +25,7 @@ export const rolesPemissionsRouter = async ()=>{
     })
   }
   usersData.tokeVerify = token ? token : null;
+  console.log(usersData)
   usersData.permisions.length > 0 ? sessionStorage.setItem("users",JSON.stringify(usersData)) : null
   return users.add(usersData);
 }

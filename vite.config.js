@@ -1,6 +1,9 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 export default defineConfig({
+   optimizeDeps: {
+    include: ['esm-dep > cjs-dep'],
+  },
   plugins: [react()],
   server: {
     port: 3000,

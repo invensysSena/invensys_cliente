@@ -1,8 +1,7 @@
-import React from 'react';
 import { NavLink } from 'react-router-dom';
-
-function NavlinkCuatomLink({ dataIsAllowed, index, expand,icon }) {
-  if (!dataIsAllowed[index]) {
+function NavlinkCuatomLink({ dataIsAllowed, index, expand, icon }) {
+  console.log(dataIsAllowed[index],"kkkkkkkkk")
+  if (!dataIsAllowed[index] || !isPermissionValid(dataIsAllowed[index].nombre)) {
     return null;
   }
 
@@ -25,7 +24,6 @@ function NavlinkCuatomLink({ dataIsAllowed, index, expand,icon }) {
                rounded `
         }
       >
-
         {icon}
         <div
           className={
@@ -41,4 +39,11 @@ function NavlinkCuatomLink({ dataIsAllowed, index, expand,icon }) {
   );
 }
 
+// Función para verificar si el permiso existe en el almacenamiento de sesión
+function isPermissionValid(permission) {
+  console.log(permission,"kkkkkkkkk")
+  const permissionsPages = JSON.parse(sessionStorage.getItem("users"));
+  console.log(permissionsPages)
+  return permissionsPages && permissionsPages.permisions.includes(permission);
+}
 export default NavlinkCuatomLink;

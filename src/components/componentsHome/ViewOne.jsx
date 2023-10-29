@@ -1,7 +1,6 @@
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { useMemo, useState } from "react";
-
 import analityc from "../../assets/img/analityc.jpg";
 import estadisc from "../../assets/img/estadisc.png";
 import darkEstadist from "../../assets/img/darkestadist.png";

@@ -1,8 +1,8 @@
 import{ useEffect, useState } from "react";
-import { getBusiness } from "../../apis/ApiData";
 import Chart from "react-apexcharts";
 import moment from "moment-with-locales-es6";
 import { IconsSvgLoading } from "../../svg/IconsSvgLoading";
+import { servicesPedidos } from "../../services/servicesPedidos";
 moment.locale("es");
 
 export const ChartBodegaC2 = () => {
@@ -12,7 +12,7 @@ export const ChartBodegaC2 = () => {
   useEffect(() => {
     (async () => {
       setLoad(true);
-      const bussiness = await getBusiness();
+      const bussiness = await servicesPedidos.getBusiness({x:"y"});
 
       setVentas(bussiness.data.dataInventary);
       setLoad(false);

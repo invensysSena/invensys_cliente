@@ -19,6 +19,12 @@
       "server": {
         "host": "localhost",
         "port": 3000
+      },
+      "REQUEST_METHOD": {
+        "GET": "GET",
+        "POST": "POST",
+        "PUT": "PUT",
+        "DELETE": "DELETE"
       }
     }
   ]

@@ -6,12 +6,12 @@ import moment from "moment-with-locales-es6";
 import { CategoryInventory } from "./CategoryInventory";
 import "../../assets/css/fuente.css"
 import "../../components/efectosCss.css";
-import { getSubProducts, TodoFunctions } from "../../apis/ApiData";
 import Swal from "sweetalert2";
 import { DataSubProducts } from "../Tables/DataSubProducts";
 import { messageError, messageSuccess } from "../../utils/alertsAplication";
 import { getFormatTimeLocale } from "../../utils/UtilsMoments";
 import { serviceUsers } from "../../services/usersService";
+import { servicesProduct } from "../../services/servicesProduct";
 moment.locale("es");
 export const ConfigInventory = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -82,11 +82,12 @@ export const ConfigInventory = () => {
       setLoading(true);
       setEstadoSup(true);
 
-      let resposneSubProducs = await getSubProducts(id);
+      let resposneSubProducs = await servicesProduct.getSubProductsIdAll({x:"y"},{id:id});
+      console.log(resposneSubProducs,"jjjj")
       setSubProducts(resposneSubProducs.data.response);
       setLoading(false);
       setEstadoSup(false);
-      const resProducTranslate = await TodoFunctions.getTranslateProducts(id);
+      const resProducTranslate = await servicesProduct.getTranslateProducts({x:"y"},{id:id});
 
       setSubProductsTranslate(resProducTranslate.data.response);
       setInventoryData(inventarioSelect);
@@ -126,7 +127,7 @@ export const ConfigInventory = () => {
   const handleOptionTranslate = async (id, type) => {
     setLoadTranslate(true);
     (async () => {
-      const response = await TodoFunctions.updateSubproduct(id, type);
+      const response = await servicesProduct.updateSubproduct({x:"y"},{type:type},{id:id});
       setLoadTranslate(false);
       if (response.status === 200) {
         // quitar el producto de la lista de subProductsTranslate por el id
@@ -142,9 +143,9 @@ export const ConfigInventory = () => {
   };
 
   const handleUpdateBodega = async (correo) => {
-    const response = await TodoFunctions.updateBodegaEmail(id, correo);
+    const response = await servicesProduct.updateBodegaEmail({x:"y"},{correo:correo},{id:id});
     if (response.status === 200) {
-      await messageSuccess("Se asigno el usuario a la bodega con exito");
+      messageSuccess("Se asigno el usuario a la bodega con exito");
       window.location.reload();
     }
   };
@@ -235,7 +236,7 @@ export const ConfigInventory = () => {
                     className="icon cursor-pointer "
                     onClick={() => {
                       setSubModal(!subModal);
-                      window.location.reload();
+                      // window.location.reload();
                     }}
                   >
                     <svg

@@ -1,6 +1,6 @@
 import { useState, useContext, createContext } from "react";
-import { getSubProducts, TodoFunctions } from "../../apis/ApiData";
 import { DataSubProducts } from "../../components/Tables/DataSubProducts";
+import { servicesProduct } from "../../services/servicesProduct";
 
 const createContextSubProducts = createContext();
 
@@ -10,13 +10,18 @@ export const ContextSubProducts = ({ children }) => {
   const [subProductsData, setSubProductsData] = useState([]);
 
   const getSubProductsContent = async (id) => {
-    const data = await getSubProducts(id);
+    const data = await servicesProduct.getSubProducts({x:"f"},{id:id});
+    setSubProductsData(data.data.response);
+    return data;
+  };
+  const getSubProductsContentId = async (id) => {
+    const data = await servicesProduct.getSubProductsIdAll({x:"f"},{id:id});
     setSubProductsData(data.data.response);
     return data;
   };
 
   const updateSubProductsContent = async (id, data) => {
-    const response = await TodoFunctions.translateProducts(data);
+    const response = await servicesProduct.translateProducts({f:"ff"},data);
 
     setSubProductsData(
       subProductsData.map((item) =>
@@ -31,6 +36,7 @@ export const ContextSubProducts = ({ children }) => {
       <createContextSubProducts.Provider
         value={{
           getSubProductsContent,
+          getSubProductsContentId,
           subProductsData,
           setSubProductsData,
           updateSubProductsContent,

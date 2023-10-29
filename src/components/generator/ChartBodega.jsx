@@ -1,7 +1,5 @@
 import { ChartBodegaC1 } from "../supabase/ChartBodegaC1";
 import { ChartBodegaC2 } from "../supabase/ChartBodegaC2";
-import loadable from "@loadable/component";
-
 export const ChartBodega = () => {
   return (
     <>

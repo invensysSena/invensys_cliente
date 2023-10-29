@@ -1,9 +1,8 @@
 import {useState,useEffect} from "react";
 import Swal from "sweetalert2";
 import "../assets/css/styleSlider.css";
-import { TodoFunctions } from "../apis/ApiData"; 
-
 import { useContextProviders } from "../hooks/context/ContextProveedores";
+import { servicesProveedor } from "../services/servicesProveedor";
 
 function OptionsProviders(e) {
   const [darkMode, setDarkMode] = useState(false);
@@ -154,8 +153,8 @@ function OptionsProviders(e) {
           _id:e.data._id
         }
 
-          TodoFunctions.putProviders(e.data._id,data)
-        window.location.reload()
+        servicesProveedor.putProviders({x:"y"},data,{id:e.data._id})
+         window.location.reload()
       }
     });
   };

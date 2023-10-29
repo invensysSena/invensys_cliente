@@ -1,5 +1,5 @@
 import {useMemo, useState } from "react";
-import { getBusiness } from "../../apis/ApiData";
+import { servicesPedidos } from "../../services/servicesPedidos";
 import moment from "moment-with-locales-es6";
 import { IconsSvgLoading } from "../../svg/IconsSvgLoading";
 import { serviceUsers } from "../../services/usersService";
@@ -13,7 +13,7 @@ export const ChartHomeC3 = () => {
   useMemo(() => {
     (async () => {
       setLoad(true);
-      const bussiness = await getBusiness();
+      const bussiness = await servicesPedidos.getBusiness({x:"y"});
       setCompras(bussiness.data.dataPedidos);
       setVentas(bussiness.data.dataCompras);
       const users = await serviceUsers.getUsersAdmin({n:1});

@@ -46,7 +46,7 @@ export const GetUsersContext = ({ children }) => {
     try {
    
       const response = await serviceUsers.getUsersAdmin();
-        console.log(response)
+        
       setGetUsers(response.data.data);
     } catch (error) {
       return error;
@@ -110,7 +110,7 @@ export const GetUsersContext = ({ children }) => {
   };
   const getModule = async (id) => {
     try {
-      const response = await serviceUsers.GetModule({path: "getModuleUsers",method: "get", date: new Date()},id);
+      const response = await serviceUsers.GetModule({path: "getModuleUsers",method: "get", date: new Date()},{id:id});
       setModuleUsers(response.data.data);
       return JSON.parse(response);
     } catch (error) {

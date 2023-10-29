@@ -1,11 +1,5 @@
 import { useContext, createContext, useState } from "react";
-import {
-  getProveedores,
-  postProveedores,
-  deleteProveedores,
-  updateProveedores,
-} from "../../apis/ApiData";
-
+import { servicesProveedor } from "../../services/servicesProveedor";
 const ContextProviders = createContext();
 
 export const useContextProviders = () => useContext(ContextProviders);
@@ -14,14 +8,14 @@ export const ContextProveedores = ({ children }) => {
   const [providersData, setProvidersData] = useState([]);
 
   const getProviders = async () => {
-    const res = await getProveedores();
+    const res = await servicesProveedor.getProveedores({x:"Y"});
 
     setProvidersData(res.data);
     return res;
   };
 
   const postProviders = async (data) => {
-    const providers = await postProveedores(data);
+    const providers = await servicesProveedor.postProveedores({u:"h"},data);
 
     let getData = {
       _id: providers.data.providers._id,
@@ -38,12 +32,12 @@ export const ContextProveedores = ({ children }) => {
   };
 
   const deleteProviders = async (id) => {
-    const res = await deleteProveedores(id);
+    const res = await servicesProveedor.deleteProveedores({x:"y"},{id:id});
     setProvidersData(providersData.filter((item) => item._id !== id));
     return res;
   };
   const updateProviders = async (id, data) => {
-    const res = await updateProveedores(id, data);
+    const res = await servicesProveedor.updateProveedores( {x:"y"},data,{id:id});
     return res;
   };
 

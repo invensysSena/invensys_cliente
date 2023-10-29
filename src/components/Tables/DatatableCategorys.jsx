@@ -13,9 +13,7 @@ import { headerCheckboxSelection } from "../ChackSelection";
 import { setPrinterFriendly } from "../ChackSelection";
 import { ChackSelection } from "../ChackSelection";
 import { setNormal } from "../ChackSelection";
-
 import { ContextCategory } from "../../hooks/context/ContextCategory";
-
 import { useContextCategory } from "../../hooks/context/ContextCategory";
 import { svgCsv, svgExcel, svgPrints } from "../../svg/IconsSvg";
 import { getFormatTimeLocale } from "../../utils/UtilsMoments";

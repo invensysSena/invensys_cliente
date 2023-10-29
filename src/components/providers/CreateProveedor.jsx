@@ -3,7 +3,7 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useContextProviders } from "../../hooks/context/ContextProveedores";
 import { useContextCategory } from "../../hooks/context/ContextCategory";
-import { messageError, messageInfo, messageSuccess } from "../../utils/alertsAplication";
+import { messageError, messageInfo, } from "../../utils/alertsAplication";
 import { svgX } from "../../svg/iconsSvg";
 
 export const CreateProveedor = ({estado, cambiarEstado }) => {

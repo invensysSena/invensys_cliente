@@ -15,7 +15,8 @@ import moment from "moment-with-locales-es6";
 import ReCAPTCHA from "react-google-recaptcha";
 import { AuthGoogleA } from "../auth/AuthGoogleA";
 import { IconsSvgLoading } from "../svg/IconsSvgLoading";
-import { messageInfo } from "../utils/alertsAplication";
+import { messageInfo,messageSuccess,messageError } from "../utils/alertsAplication";
+import { authCuantaLogin } from "../auth/authCuenta";
 moment.locale("es");
 const AuthUser = () => {
   const [LoadingProgress, setLoadingProgress] = useState(0);
@@ -96,11 +97,18 @@ const AuthUser = () => {
                       "El campo no puede estar vacio"
                     ),
                   })}
-                  onSubmit={async () => {
-                    if (!recaptchaRef.current.getValue()) {
-                      messageInfo("Debes resolver el captcha para continuar");
-                      }}}
-                >
+                  onSubmit={async (values) => {
+                    // if (!recaptchaRef.current.getValue()) {messageInfo("Debes resolver el captcha para continuar");}
+                   try {
+                    await authCuantaLogin(values.email, values.password)
+                    let pathDir = sessionStorage.getItem("module");
+                    window.location.href = `${pathDir}`;
+                   }catch (error) {
+                    messageError("Email o contraseña incorrecta");
+                   }
+                    }
+                    }>
+
                   <Form>
                     <div
                       className="Fiel-email border bg-white dark:bg-transparent dark:border-[#019afa] flex items-center mx-2 my-1

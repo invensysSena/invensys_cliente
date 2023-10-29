@@ -2,7 +2,7 @@ import  { useState, useEffect, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import moment from "moment-with-locales-es6";
 import "animate.css";
-import { servecesPedidos } from "../../services/servecesPedidos";
+import { servicesPedidos } from "../../services/servicesPedidos";
 moment.locale("es");
 export const GetCategoryProvider = () => {
   const [category, setCategory] = useState([]);
@@ -11,7 +11,7 @@ export const GetCategoryProvider = () => {
   let id = useParams();
   useEffect(() => {
     (async () => {
-      servecesPedidos.getBusiness({n:1}).then((res) => {
+      servicesPedidos.getBusiness({n:1}).then((res) => {
         setCategory(res.data.dataCategory);
 
         setProvider(res.data.dataProvider);

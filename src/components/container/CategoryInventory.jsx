@@ -1,8 +1,8 @@
 import { useState, useEffect, useMemo } from "react";
-import { getCategorias } from "../../apis/ApiData";
 import { ImportProducts } from "./ImportProducts";
 import "animate.css";
 import { Link } from "react-router-dom";
+import { servicesCategory } from "../../services/serviceCategrory";
 export const CategoryInventory = () => {
   const [category, setCategory] = useState([]);
   const [arrayId, setArrayId] = useState([]);
@@ -12,7 +12,7 @@ export const CategoryInventory = () => {
   useEffect(() => {
     setLoading(true);
     (async () => {
-      const { data } = await getCategorias();
+      const { data } = await servicesCategory.getCategorias({d:"g"});
       setCategory(data.data);
       setLoading(false);
     })();

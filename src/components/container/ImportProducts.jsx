@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { getProducts, UploadSubProducts } from "../../apis/ApiData";
+
 import { Formik, Field, Form } from "formik";
 import { DatePicker } from "antd";
 import moment from "moment-with-locales-es6";
 import { useParams } from "react-router-dom";
-import { getSubProducts } from "../../apis/ApiData";
 import { messageError, messageSuccess, messageWarding } from "../../utils/alertsAplication";
-
+import {servicesProduct} from "../../services/servicesProduct"
 const { RangePicker } = DatePicker;
 moment.locale("es");
 export const ImportProducts = ({ idCategorias }) => {
@@ -20,7 +19,7 @@ export const ImportProducts = ({ idCategorias }) => {
   useEffect(() => {
     setLoadIn(true);
     (async () => {
-      const data = await getProducts();
+      const data = await servicesProduct.getProducts({ n: 1 });
       setProducts(data.data.products);
 
       setLoadIn(false);
@@ -45,7 +44,7 @@ export const ImportProducts = ({ idCategorias }) => {
   };
 
   const GetPdo = async () => {
-    getSubProducts(id);
+    servicesProduct.getSubProducts({x:"4"},id);
   };
 
   useEffect(() => {
@@ -185,7 +184,7 @@ export const ImportProducts = ({ idCategorias }) => {
                           setLoadSub(true);
                           (async () => {
                             await GetPdo();
-                            let response = await UploadSubProducts(id, data);
+                            let response = await servicesProduct.UploadSubProducts({ad:"products"}, data);
 
                             if (response.status === 200) {
                               messageSuccess("Producto agregado a la bodega con exito");

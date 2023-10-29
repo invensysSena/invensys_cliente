@@ -1,10 +1,5 @@
 import { useContext, createContext, useState } from "react";
-import {
-  getProducts,
-  postProductos,
-  deleteproducto,
-  updateProducto,
-} from "../../apis/ApiData";
+import { servicesProduct } from "../../services/servicesProduct";
 export const contextProduct = createContext();
 
 export const useContextProduct = () => {
@@ -16,12 +11,12 @@ export const ContextProduxt = ({ children }) => {
   const [dataProduct, setDataProduct] = useState([]);
 
   const getProductsAll = async () => {
-    const products = await getProducts();
+    const products = await servicesProduct.getProducts({x:"t"});
     setDataProduct(products.data.products);
     return products;
   };
   const postProducts = async (data) => {
-    const products = await postProductos(data);
+    const products = await servicesProduct.postProductos({x:"i"},data);
     const dataPost = {
       _id: products.data.data._id,
       name: products.data.data.name,
@@ -35,13 +30,13 @@ export const ContextProduxt = ({ children }) => {
     return products;
   };
   const deleteProduct = (id) => {
-    const deleteProducts = deleteproducto(id);
+    const deleteProducts = servicesProduct.deleteproducto({x:"t"},{id:id});
     setDataProduct(dataProduct.filter((item) => item._id !== id));
     return deleteProducts;
   };
 
   const updateProduct = (id, data) => {
-    const updateProducts = updateProducto(id, data);
+    const updateProducts = servicesProduct.updateProducto({x:"u"}, data,{id:id});
     setDataProduct(dataProduct.map((item) => (item._id === id ? data : item)));
     return updateProducts;
   };

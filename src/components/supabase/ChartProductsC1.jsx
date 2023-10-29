@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getBusiness } from "../../apis/ApiData";
+import { servicesPedidos } from "../../services/servicesPedidos";
 import moment from "moment-with-locales-es6";
 import { IconsSvgLoading } from "../../svg/IconsSvgLoading";
 import { serviceUsers } from "../../services/usersService";
@@ -14,7 +14,7 @@ export const ChartProductC1 = () => {
   useEffect(() => {
     (async () => {
       setLoad(true);
-      const bussiness = await getBusiness();
+      const bussiness = await servicesPedidos.getBusiness({x:"y"});
       setBodega(bussiness.data.dataInventary);
       setSubProducts(bussiness.data.dataSubProduct);
       setCompras(bussiness.data.dataPedidos);

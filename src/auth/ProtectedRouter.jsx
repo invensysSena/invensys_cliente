@@ -6,9 +6,13 @@ export const ProtectedRouter = ({
   redirectTo = "/login",
 }) => {
   const module = sessionStorage.getItem("module");
-  module ? (redirectTo = `/${module}`) : (redirectTo = "/login");
+  module ? (redirectTo = `/bodega`) : (redirectTo = "/login");
   if (!isAllowed) {
-    return <Navigate to={redirectTo} />;
+     window.location.reload();
+    return  <Navigate to={redirectTo} />;
+
+    
+    
   }
   // const navigate = useNavigate()
   return children ? children : <Outlet />;

@@ -30,8 +30,7 @@ export const MenuLateral = () => {
   const handleMouse = () => {};
   document.body.style.overflowX = "hidden";
 
-  let fechaStateUser = sessionStorage.getItem("fecha");
-  const endOf = moment(fechaStateUser).startOf("hour").fromNow();
+
 
   return (
   
@@ -269,17 +268,10 @@ export const MenuLateral = () => {
               <div className="section-2">
                 <div className="items-2">
                   <ul>
-                    <div className="email my-2 flex flex-col dark:text-[#fff] ml-3">
-                      {type === "user" ? (
-                        <>
-                          <span>Tiempo de conexión</span>
-                          <span>{endOf}</span>
-                        </>
-                      ) : null}
-                    </div>
+                 
                     <div className="email dark:text-[#4ade80] ml-3">
                       {type === "user" ? (
-                        <>{sessionStorage.getItem("correo")}</>
+                        <>{sessionStorage.getItem("email")}</>
                       ) : null}
                     </div>
                     <div className="email  ml-3">
@@ -292,20 +284,7 @@ export const MenuLateral = () => {
                         </>
                       ) : null}
                     </div>
-                    <div className="email  ml-3">
-                      {type === "user" ? (
-                        <>
-                          <span>
-                            <span className="dark:text-white">
-                              Comprobaciónes:
-                            </span>{" "}
-                            <span className="text-[#019afa]">
-                              {permissionsPages.length}{" "}
-                            </span>
-                          </span>
-                        </>
-                      ) : null}
-                    </div>
+                    
                     <div className="email   ml-3">
                       {type === "user" ? (
                         <>
@@ -314,7 +293,7 @@ export const MenuLateral = () => {
                               Restrincciones:
                             </span>{" "}
                             <span className="text-red-400">
-                              Algunas funcionalidades estan restringidas por el
+                              Algunas funcionalidades estan restringidas o desabilitadas por el
                               administrador
                             </span>
                           </span>

@@ -9,7 +9,6 @@ function App() {
     <>
     <div>
       <ToastContainer transition={Flip} />
-      
         <Router />
       </div>
     </>
